@@ -1,0 +1,489 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Key points: 
+\end_layout
+
+\begin_layout Itemize
+partially reducible uncertainty about both the private net benefit of different
+ land uses and the public benefit of conservation.
+ Both vary across sites
+\end_layout
+
+\begin_layout Itemize
+Voluntary and temporary incentives to conserve land
+\end_layout
+
+\begin_layout Itemize
+Irreversibility has cross-cutting effects:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Money spent encouraging conservation today is irrecoverable
+\end_layout
+
+\begin_layout Itemize
+Development is irreversible
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Race between development and information gathering (someone said this)
+\end_layout
+
+\begin_layout Itemize
+Model approaching begins by specifying in detail what offers the regulator
+ should make in a single period given uncertainty about both values and
+ possible correlation between them.
+ Also explore how this relationship changes if regulators believe all land
+ who private net benefit of development exceeds some threshhold has already
+ converted.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Using this function, explore how the cost of achieving a given expected
+ environmental service level depends on the quality of information (and
+ the correlations).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Model then steps back and asks how landowners should respond to prior period
+ offers knowing that if they do not develop their land, regulators will
+ learn more information and make more specific offers next period.
+\end_layout
+
+\begin_layout Itemize
+Step back 1 more period and ask what offers regulators should make now given
+ the partially reducible uncertainty
+\end_layout
+
+\begin_layout Itemize
+Particularly interested in comparative statics:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+How valuable is information? How much does the regulator's payoff increase
+ as the quality of the signals increases? Does this depend on the degree
+ of correlation? In monotonic or non-monotonic ways?
+\end_layout
+
+\begin_layout Itemize
+How much should the regulator invest in PES payments while waiting for info?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+How many parcels will it induce to conserve in period 1 that would immediately
+ convert if there were no program? (e.g.
+ if we set tempPay and period 2 offer to 0)
+\end_layout
+
+\begin_layout Itemize
+How many parcels will it induce to conserve in period 1 that wouldn't if
+ we did nothing now and responded optimally to the info in period 1 (e.g.
+ if we set tempPay to 0 but set period 2 offer using optOffer)
+\end_layout
+
+\begin_layout Itemize
+How many parcels will it induce to conserve in period 1 that it wouldn't
+ induce to conserve if we weren't expecting better info? (Or might it induce
+ fewer/different parcels to conserve in period 1 given the info than it
+ would if we weren't getting more info) (e.g.
+ set sd of signals to 0 -- no info gained).
+\end_layout
+
+\begin_layout Itemize
+How do the answers to these questions depend on our information parameters?
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Note: in general the sign of single variable comparative statics is clear
+ a priori.
+ The more interesting questions are the cross-partials
+\end_layout
+
+\begin_layout Section
+Model
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+This section is the math version.
+ Lay out the explicit details of the model, derive the results that we can
+ derive mathematically and talk briefly about the implications.
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\se}{s}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\re}{\varepsilon}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\meanP}{\mu_{p}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\pub}{\omega}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\rp}{\pi}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\priv}{p}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ubPriv}{\bar{\priv}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ubRpi}{\bar{\rp}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\offer}{\phi}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\payEnd}{R}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\env}{e}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\meanE}{\mu_{\env}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\temp}{\tau}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ew}{\delta}
+\end_inset
+
+The relationship between ecosystem service provision and landuse is both
+ important and imprecisely understood.
+ Despite many calls to preserve land from development because of ecosystem
+ service value, ecologists are rarely able to provide precise and specific
+ estimates of the service provided by individual parcels.
+ As a result, regulators seeking to implement payment for ecoystem service
+ approaches are left uncertain about what they might be purchasing.
+ 
+\end_layout
+
+\begin_layout Standard
+In this paper, I develop a stylized model to capture one essential tradeoff
+ facing regulators in developing such policies: wait to gain improvement
+ scientific understanding of the relationship between land use change and
+ ecosystem service provision or intervene today to prevent irreversible
+ land development.
+\end_layout
+
+\begin_layout Itemize
+To focus on the timing question, the model simplifies many important realities.
+ Most importantly, the model does not consider relationships between the
+ total amount of land conserved and the ecosystem services provided by a
+ specific parcel.
+\end_layout
+
+\begin_layout Itemize
+Two period schematic -- long time frames not annual probabilities
+\end_layout
+
+\begin_layout Itemize
+Individual parcels have three characteristics: an ecosystem service value
+ that describes the true value the parcel provides to society each period
+ that it remains conserved, a public development value that describes the
+ true value the parcel provides to society if it is developed, and a private
+ development value that describes the individual landowner's private per
+ period net benefit from developed land.
+ If there were no externalities, the private development value would be
+ the difference between the public development value and the ecosystem service
+ value and landowners' development decisions would be optimal.
+ Due to potential externalities related to both development and conservation,
+ this relationship does not hold; the modeling structure in the paper allows
+ for a variety of possible externalities.
+\end_layout
+
+\begin_layout Itemize
+Development is irreversible in this model so the model considers only parcels
+ that are undeveloped at the beginning of the time period
+\end_layout
+
+\begin_layout Subsection
+Timing and information structure
+\end_layout
+
+\begin_layout Standard
+At time 0, all parties know the public development of each parcel of land
+ 
+\begin_inset Formula $\pub_{i}$
+\end_inset
+
+.
+ The private development value of an individual parcel is given by 
+\begin_inset Formula $\meanP+\pub_{i}+\rp_{i}$
+\end_inset
+
+ where 
+\begin_inset Formula $\meanP$
+\end_inset
+
+ is the mean private development externality and 
+\begin_inset Formula $\rp_{i}$
+\end_inset
+
+ is an individual private deviation.
+ A postive value of 
+\begin_inset Formula $\meanP$
+\end_inset
+
+ implies that on average landowners derive more value from developing their
+ land than society does while a negative value implies the reverse.
+ Landowners know the value of 
+\begin_inset Formula $\rp_{i}$
+\end_inset
+
+ for their own land but regulators do not.
+\end_layout
+
+\begin_layout Standard
+In addition to development value, parcels of land provide ecosystem service
+ value when they are undeveloped.
+ The true environmental service value provided by a parcel is given by 
+\begin_inset Formula $\env_{i}$
+\end_inset
+
+.
+ The socially optimal use of land would thus be to develop any parcel with
+ 
+\begin_inset Formula $\pub_{i}>\env_{i}$
+\end_inset
+
+ and to conserve any parcel with 
+\begin_inset Formula $\env_{i}>\pub_{i}$
+\end_inset
+
+.
+ The challenge is that while the regulator knows 
+\begin_inset Formula $\pub_{i}$
+\end_inset
+
+, the value of 
+\begin_inset Formula $\env_{i}$
+\end_inset
+
+ is unknown.
+ Moreover, since land use is decided privately, the regulator must induce
+ individual landowners to make the appropriate land use choice, but the
+ regulator does not know exactly how much individual landowners value conservati
+on versus development.
+\end_layout
+
+\begin_layout Standard
+The key tradeoff in the model is between waiting for better information
+ and conserving land today.
+ Thus, at time 0, the regulator knows only the mean of 
+\begin_inset Formula $\env_{i}$
+\end_inset
+
+ across all parcels, represented by 
+\begin_inset Formula $\meanE$
+\end_inset
+
+.
+ At time 1, the regulator learns additional information that provides a
+ signal about the environmental service value of an individual parcel.
+ The value of this signal is 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+.
+ Assuming that the regulator has an unbiased estimate of the mean ecosystem
+ service value, the expected value of the signal for each parcel must be
+ 0.
+ The true ecosystem service value of the parcel can be written
+\begin_inset Formula 
+\[
+\env_{i}=\meanE+\se_{i}+\re_{i}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\re_{i}$
+\end_inset
+
+ is a mean zero deviation representing the remaining uncertainty about ecosystem
+ service provision level after the new information is observed.
+\end_layout
+
+\begin_layout Subsection
+Single period optimal policy
+\end_layout
+
+\begin_layout Standard
+This section will mathematically characterize the regulator's optimal policy
+ in period 2.
+ Most of this is written already in the analytical deviations document.
+\end_layout
+
+\begin_layout Standard
+Parcel specific offers depend 
+\begin_inset Formula $\mu_{\env_{it}},\sigma_{\env t},$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Simulation Results
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Note: all of my numbers are arbitrary.
+ Have to be careful about how I describe this so it doesn't just seem fake.
+\end_layout
+
+\begin_layout Subsection
+Optimal single period policy (needs a better description)
+\end_layout
+
+\begin_layout Standard
+This section will present the simulation results in detail.
+ Results are not especially interesting for a specific case, but we probably
+ need to present one specific case in detail.
+\end_layout
+
+\begin_layout Standard
+Two types of results:
+\end_layout
+
+\begin_layout Itemize
+Aggregate
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+# of parcels induced to conserve that wouldn't without policy
+\end_layout
+
+\begin_layout Itemize
+# of parcels paid to conserve that would have anyway
+\end_layout
+
+\begin_layout Itemize
+net gain from policy -- raw and percentage of base payoff (need to check
+ how I defined base payoff -- can it be negative?)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Parcel specific
+\end_layout
+
+\end_body
+\end_document
