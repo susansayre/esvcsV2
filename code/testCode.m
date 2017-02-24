@@ -1,4 +1,3 @@
-clear all
 dbstop if error
 dbstop if warning
 
@@ -9,7 +8,8 @@ for jj=1:numRIRV
     eval(['P.ind.regInfo.' regInfoRowVary{jj} '=jj;'])
 end
 
-numDraws = 100;
+quadraturePts = [5 5 1];
+[quadPts,quadWgts] = qnwnorm(quadraturePts,0*quadraturePts,eye(numRIRV));
 
 unknowns = {'se' 'rp'};
 
@@ -23,7 +23,7 @@ baseParameterMat = {
 	'sigShr'	'share of uncertainty resolved by signal'			'\frac_{\sigma^{2}_{\se}}{\sigma^{2}_{\env}}' .5;
 	'sig.rp'	'std deviation of private deviations'				'\sigma_{\re}'	1;
 	'rho.se_rp'	'correlation between signal and private deviation'	'\rho_{\se\rp}'	.5;
-	'rho.re_rp'	'correlation between env and priv devations'		'\rho_{\re\rp}'	.5;
+	'rho.e_p'	'correlation between env and priv values'			'\rho_{\env\priv}'	.5;
 };
 
 %note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of
@@ -42,7 +42,11 @@ end
 compStatRunDescriptions = {
 		%cross?	%1-paramName	2-compStatType	3-values
 		0		{'sigShr'		1				[.01 .25 .5 .75 .99]};
-	};
+		0		{'sigShr'		1				[.5]
+				 'rho.se_rp'	1				[-.5 -.25 0 .25 .5]};	
+		0		{'sigShr'		1				[.5]
+				 'rho.e_p'		1				[-.5 -.25 0 .25 .5]};	
+		};
 
 
 % construct an array of arrays containing the sets of values for each experiment	
@@ -111,11 +115,13 @@ clear ii jj kk
 if ~exist('runID','var')
     runID = datestr(now,'yyyymmdd_HHMMSS');
     doRun = 'Y';
+	restarting = 0;
 else
     doRun = input(['Do you want to continue the existing run stored in ' runID '? Y/N [N]'],'s')
     if isempty(doRun)
         doRun = 'N';
-    end
+	end
+	restarting = 1;
 end
 
 if ~strcmp(doRun,'Y')
@@ -151,16 +157,20 @@ if ~exist(['detailedOutput/' runID],'dir')
 end 
 save(['detailedOutput/' runID '/setUp'])
 
-%check later to make sure this is working right with restarts. Maybe I should draw this earlier?
-randDraw = randn(numDraws,numRIRV); %consider making this pseudo-randoms instead of randoms
-save(['detailedOutput/' runID '/randDraw.mat'],'randDraw')
+% %check later to make sure this is working right with restarts. Maybe I should draw this earlier?
+% if restarting
+% 	load(['detailedOutput/' runID '/randDraw.mat'],'randDraw')
+% else
+% 	randDraw = randn(numDraws,numRIRV); %consider making this pseudo-randoms instead of randoms
+% 	save(['detailedOutput/' runID '/randDraw.mat'],'randDraw')
+% end
 
 %step through problems and run them
 for kk=1:compStatRuns
 	for ii=1:cases{kk}
 		disp(['starting experiment ' num2str(kk) ' of ' num2str(compStatRuns) ' case ' num2str(ii) ' of ' num2str(cases{kk})])
-		thisOutput = runP2Case(randDraw,paramCases{kk}{ii});
-		save(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii)],'thisOutput')
+		thisOutput = runP2Case(quadPts,quadWgts,paramCases{kk}{ii});
+		save(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii) 'out'],'thisOutput')
 		output{kk}{ii} = thisOutput;
 	end
 end

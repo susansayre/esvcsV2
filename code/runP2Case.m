@@ -1,11 +1,12 @@
-function p2outputs = runP2Case(randDraw,P)
+function p2outputs = runP2Case(evalPts,evalWgts,P)
 
 %compute derived parameters
 P.sig.se = P.sig.env*sqrt(P.sigShr);
 P.sig.re = P.sig.env*sqrt(1-P.sigShr);
+P.rho.re_rp = (P.rho.e_p - P.rho.se_rp*sqrt(P.sigShr))/sqrt(1-P.sigShr); %This guarantees that the correlation between actual environmental and actual priv value is independent of gamma and the signal correlation
 
-regInfo(:,P.ind.regInfo.se) = P.sig.se*randDraw(:,P.ind.regInfo.se);
-regInfo(:,P.ind.regInfo.pub) = P.meanPub + randDraw(:,P.ind.regInfo.pub);
+regInfo(:,P.ind.regInfo.se) = P.sig.se*evalPts(:,P.ind.regInfo.se);
+regInfo(:,P.ind.regInfo.pub) = P.meanPub + P.sig.pub*evalPts(:,P.ind.regInfo.pub);
 regInfo(:,P.ind.regInfo.privUB) = 1;
 
 baseCases = size(regInfo,1);
@@ -23,14 +24,14 @@ regPayHatVal = regPayHat(optOfferVector,regInfo(:,P.ind.regInfo.se),regInfo(:,P.
 noOfferRegPayHatVal = regPayHat(0*optOfferVector,regInfo(:,P.ind.regInfo.se),regInfo(:,P.ind.regInfo.pub),P);
 condMeanRP = P.rho.se_rp*P.sig.rp/P.sig.se*regInfo(:,P.ind.regInfo.se);
 condSDRP = P.sig.se*P.sig.rp*sqrt(1-P.rho.se_rp^2);
-probInflationFactor = normcdf((regInfo(:,P.ind.regInfo.privUB)-regInfo(:,P.ind.regInfo.pub)-P.meanPriv-condMeanRP)./condSDRP);
-p2outputs.expRegVal = sum(reshape(regPayHatVal.*probInflationFactor,baseCases,numel(multFactors)));
-p2outputs.expRegValNoOffer = sum(reshape(noOfferRegPayHatVal.*probInflationFactor,baseCases,numel(multFactors)));
+probInflationFactor = min(1/eps,max(eps,1./normcdf((regInfo(:,P.ind.regInfo.privUB)-regInfo(:,P.ind.regInfo.pub)-P.meanPriv-condMeanRP)./condSDRP)));
+p2outputs.expRegVal = evalWgts'*(reshape(regPayHatVal.*probInflationFactor,baseCases,numel(multFactors)));
+p2outputs.expRegValNoOffer = evalWgts'*(reshape(noOfferRegPayHatVal.*probInflationFactor,baseCases,numel(multFactors)));
 
 probAcceptOffer = normcdf((optOfferVector - regInfo(:,P.ind.regInfo.pub) - P.meanPriv - condMeanRP)./condSDRP);
 probAcceptNoOffer = normcdf((-regInfo(:,P.ind.regInfo.pub) - P.meanPriv - condMeanRP)./condSDRP);
 
-p2outputs.expCons = sum(reshape(probAcceptOffer,baseCases,numel(multFactors)));
-p2outputs.expConsNoOffer = sum(reshape(probAcceptNoOffer,baseCases,numel(multFactors)));
+p2outputs.expCons = evalWgts'*(reshape(probAcceptOffer,baseCases,numel(multFactors)));
+p2outputs.expConsNoOffer = evalWgts'*(reshape(probAcceptNoOffer,baseCases,numel(multFactors)));
 
 save(fullfile('detailedOutput',P.runID,P.caseID))

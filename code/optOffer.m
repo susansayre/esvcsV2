@@ -11,9 +11,32 @@ pubVals = regInfo(:,P.ind.regInfo.pub);
 upperBounds = regInfo(:,P.ind.regInfo.privUB);
 
 optset('ncpsolve','maxit',10000);
-optset('ncpsolve','type','minmax');
-[optOffers,regPayHat] = ncpsolve('regPayFOC',0*signals,upperBounds,max(.01,min(P.meanEnv+signals-pubVals,.99*upperBounds)),signals,pubVals,P,'offer');
+optset('ncpsolve','type','ssmooth');
+optset('ncpsolve','showiters',0);
+optset('ncpsolve','tol',1e-4);
 
+%starting point check
+checkPoints = 0:.1:1;
+m=numel(checkPoints);
+n = length(signals);
+offerMult = repmat(checkPoints,n,1);
+longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
+longSignal = reshape(repmat(signals,1,m),n*m,1);
+longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
+
+rph = regPayHat(longOffer,longSignal,longPubVal,P,'offer');
+rphMat = reshape(rph,n,m);
+[~,maxCol] = max(rphMat,[],2);
+linInd = sub2ind([n m],1:n,maxCol');
+startPoint = longOffer(linInd);
+
+solveThese = find(startPoint>0);
+solveThese = 1:n;
+
+[optOfferSolns,rph] = ncpsolve('regPayFOC',0*upperBounds(solveThese),upperBounds(solveThese),startPoint(solveThese),signals(solveThese),pubVals(solveThese),P,'offer');
+
+optOffers = 0*signals;
+optOffers(solveThese) = optOfferSolns;
 %Note: we're going to "cheat" using fmincon. We really want to solve a
 %separate optimization problem for every observed combination of signal and
 %pubVal. But since the offer I make to a different parcel has no impact on

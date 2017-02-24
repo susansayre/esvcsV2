@@ -358,7 +358,7 @@ reference "sub:simplifyRegPay"
  as 
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+\frac{1}{F_{N}\left(\frac{\ubRpi-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)-\rho_{\re\rp}\frac{\sigma_{\re}}{\sigma_{\se}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\right]
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\bar{\priv}\right)=\pub_{i}+F_{N}\left(\frac{\ubRpi-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\priv|\se,\pub}}\right)^{-1}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)}{\sigma_{\priv|\se,\pub}}\right)\right]
 \]
 
 \end_inset
@@ -371,19 +371,8 @@ where
 \begin_inset Formula $F_{N}\left(\cdot\right)$
 \end_inset
 
- are the standard normal pdf and cdf respectively and 
-\begin_inset Formula $\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma_{\priv|\se,\pub}$
-\end_inset
-
- are the conditional mean and variance of 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- given the regulator's information.
+ are the standard normal pdf and cdf respectively.
+ .
 \begin_inset Foot
 status collapsed
 
@@ -410,8 +399,39 @@ Note that the conditional mean depends on the realizations of
 
 \end_inset
 
- In the last period, the regulator will maximize this expression with respect
- to 
+ In the last period, the regulator will solve
+\begin_inset Formula 
+\[
+\max_{0\le\offer_{i}\le\bar{\priv}}\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\bar{\priv}\right).
+\]
+
+\end_inset
+
+The function 
+\begin_inset Formula $\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\bar{\priv}\right)$
+\end_inset
+
+ is in general non-monotonic in 
+\begin_inset Formula $\offer_{i}$
+\end_inset
+
+.
+ are three possible situations to consider:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\frac{\partial R}{\partial\offer}\left(0,\se_{i}\pub_{i},\Sigma,\bar{\priv}\right)\le0$
+\end_inset
+
+ in which case it is 
+\emph on
+possible
+\emph default
+ that solution is to make no offer to this parcel.
+\end_layout
+
+\begin_layout Itemize
+maximize this expression with respect to 
 \begin_inset Formula $\offer_{i}$
 \end_inset
 
@@ -421,7 +441,7 @@ Note that the conditional mean depends on the realizations of
 \end_inset
 
  and 
-\begin_inset Formula $F_{N}\left(\frac{\ubPriv-\pub_{i}-\meanP-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)$
+\begin_inset Formula $F_{N}\left(\frac{\ubRpi-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\priv|\se,\pub}}\right)^{-1}$
 \end_inset
 
  are both independent of 
@@ -432,7 +452,7 @@ Note that the conditional mean depends on the realizations of
  to maximizing the simpler expression
 \begin_inset Formula 
 \[
-\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\mu_{\env|\se}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\sigma_{\re\rp}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right).
+\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right).
 \]
 
 \end_inset
@@ -445,16 +465,26 @@ Note that this simpler expression does not depend on the inferred upper
 .
  While the regulator's expected payoff before observing the signals will
  vary based on the belief about the upper bound, once a signal is observed,
- the value of the upper bound does not change the regulator's optimization.
+ the value of the upper bound does not change the regulator's optimization,
+ 
+\emph on
+as long as the solution to the maximization problem falls within the bounds
+ 
+\begin_inset Formula $\left(0,\bar{\priv}\right)$
+\end_inset
+
+
+\emph default
+.
  The likelihood of all possible remaining values of 
 \begin_inset Formula $\priv_{i}$
 \end_inset
 
  are inflated by the same factor.
- The first-order condition is
+ The first-order condition for an interior maximum is
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}f_{N}'\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}f_{N}'\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
 \]
 
 \end_inset
@@ -676,20 +706,23 @@ Since
 \begin_inset Formula $\rp_{i}$
 \end_inset
 
- have a multivariate normal distribution, and the conditional mean at the
- end can be written in terms of the means, variances and covariances of
- the three variables.
- Specifically, since all three variables have unconditional means of 0,
+ have a multivariate normal distribution, the conditional mean can be written
+ in terms of the means, variances and covariances of the three variables.
+ Specifically, since all three variables have unconditional means of 0 and
  
+\begin_inset Formula $\sigma_{\re\se}=0$
+\end_inset
+
+, 
 \begin_inset Formula $\re_{i}|\se_{i},\rp_{i}$
 \end_inset
 
  is distributed normally with mean given by
 \begin_inset Formula 
 \[
-\left(0,\sigma_{\re\rp}\right)\left[\begin{array}{cc}
-\sigma_{\se}^{2} & \sigma_{\se\rp}\\
-\sigma_{\se\rp} & \sigma_{\rp}^{2}
+\left(0,\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\right)\left[\begin{array}{cc}
+\sigma_{\se}^{2} & \rho_{\se\rp}\sigma_{\se}\sigma_{\rp}\\
+\rho_{\se\rp}\sigma_{\se}\sigma_{\rp} & \sigma_{\rp}^{2}
 \end{array}\right]^{-1}\left(\begin{array}{c}
 \se_{i}\\
 \rp_{i}
@@ -704,9 +737,9 @@ or
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}}\left(0,\sigma_{\re\rp}\right)\left[\begin{array}{cc}
-\sigma_{\rp}^{2} & -\sigma_{\se\rp}\\
--\sigma_{\se\rp} & \sigma_{\se}^{2}
+\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\rho_{\se\rp}^{2}\sigma_{\se}^{2}\sigma_{\rp}^{2}}\left(0,\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\right)\left[\begin{array}{cc}
+\sigma_{\rp}^{2} & -\rho_{\se\rp}\sigma_{\se}\sigma_{\rp}\\
+-\rho_{\se\rp}\sigma_{\se}\sigma_{\rp} & \sigma_{\se}^{2}
 \end{array}\right]\left(\begin{array}{c}
 \se_{i}\\
 \rp_{i}
@@ -718,7 +751,7 @@ or
 or
 \begin_inset Formula 
 \[
-\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}}\left(-\sigma_{\re\rp}\sigma_{\se\rp},\sigma_{\re\rp}\sigma_{\se}^{2}\right)\left(\begin{array}{c}
+\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(-\rho_{\re\rp}\rho_{\se\rp}\sigma_{\re}\sigma_{\rp}^{2}\sigma_{\se},\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\sigma_{\se}^{2}\right)\left(\begin{array}{c}
 \se_{i}\\
 \rp_{i}
 \end{array}\right)
@@ -729,25 +762,28 @@ or
 or
 \begin_inset Formula 
 \[
-\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}}\left(-\sigma_{\re\rp}\sigma_{\se\rp}\se_{i}+\sigma_{\re\rp}\sigma_{\se}^{2}\rp_{i}\right).
+\frac{1}{\sigma_{\se}^{2}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(-\rho_{\re\rp}\rho_{\se\rp}\sigma_{\re}\sigma_{\rp}^{2}\sigma_{\se}\se_{i}+\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\sigma_{\se}^{2}\rp_{i}\right)
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+-\rho_{\se\rp}\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}\se_{i}+\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\rp}}\rp_{i}
 \]
 
 \end_inset
 
 For notational simplicity, let 
-\begin_inset Formula $\alpha=\frac{-\sigma_{\re\rp}\sigma_{\se\rp}}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}}$
+\begin_inset Formula $\alpha=-\rho_{\se\rp}\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}$
 \end_inset
 
  and let 
-\begin_inset Formula $\beta=\frac{\sigma_{\re\rp}\sigma_{\se}^{2}}{\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}}$
+\begin_inset Formula $\beta=\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\rp}}$
 \end_inset
 
  and assume that 
-\begin_inset Formula $\sigma_{\se}^{2}\sigma_{\rp}^{2}\ne\sigma_{\se\rp}^{2}$
-\end_inset
-
-.
- This is equivalent to assuming that 
 \begin_inset Formula $-1<\rho_{\se\rp}<1$
 \end_inset
 
@@ -779,7 +815,15 @@ If the signal does perfectly reveal the value, the regulator's problem is
  Recalling that all three variables are mean zero, we have
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}+\frac{1}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}\intop_{-\infty}^{\offer_{i}-\meanP-\pub_{i}}\left(\alpha\se_{i}+\beta\rp\right)f_{\rp|\se}\left(\rp|\se_{i}\right)d\rp.
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}+\frac{1}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}\intop_{-\infty}^{\offer_{i}-\meanP-\pub_{i}}\left(\alpha\se_{i}+\beta\rp\right)f_{\rp|\se}\left(\rp|\se_{i}\right)d\rp
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}+\frac{1}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}\left(\alpha\se_{i}\intop_{-\infty}^{\offer_{i}-\meanP-\pub_{i}}f_{\rp|\se}\left(\rp|\se_{i}\right)d\rp+\beta\intop_{-\infty}^{\offer_{i}-\meanP-\pub_{i}}\rp f_{\rp|\se}\left(\rp|\se_{i}\right)d\rp\right).
 \]
 
 \end_inset
@@ -816,19 +860,31 @@ Moreover, since
 
 \end_inset
 
+or
+\begin_inset Formula 
+\[
+\rp_{i}|\se_{i}\sim N\left(\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i},\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)
+\]
+
+\end_inset
+
 so the standard deviation is 
-\begin_inset Formula $\frac{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}{\sigma_{\se}^{2}}=\frac{1}{\sigma_{\se}}\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}$
+\begin_inset Formula $\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}$
 \end_inset
 
 .
- Using these two subsitutions, we have
-\end_layout
-
-\begin_layout Standard
-Combining with our earlier expression, we have
+ Making these two substitutions, we have
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\left(\alpha+1+\beta\frac{\sigma_{\se\rp}}{\sigma_{\se}^{2}}\right)\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi,\se_{i}\right)}+\pub_{i}-\beta\left(\sigma_{\rp}^{2}-\frac{\sigma_{\se\rp}^{2}}{\sigma_{\se}^{2}}\right)\frac{f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi,\se_{i}\right)}.
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\left(\alpha+1\right)\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}+\frac{\beta}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}\left(-\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)+\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)\right).
+\]
+
+\end_inset
+
+Simplifying, we have
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\left(\alpha+1+\beta\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}\right)\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi,\se_{i}\right)}+\pub_{i}-\beta\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)\frac{f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi,\se_{i}\right)}.
 \]
 
 \end_inset
@@ -836,7 +892,7 @@ Combining with our earlier expression, we have
 Note that 
 \begin_inset Formula 
 \[
-\beta\frac{\sigma_{\se\rp}}{\sigma_{\se}^{2}}=\frac{\sigma_{\re\rp}\sigma_{\se\rp}}{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}
+\beta\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}=\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\rp}}\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}=\frac{\rho_{\re\rp}\rho_{\se\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}
 \]
 
 \end_inset
@@ -844,7 +900,7 @@ Note that
 so
 \begin_inset Formula 
 \[
-\alpha+1+\beta\frac{\sigma_{\se\rp}}{\sigma_{\se}^{2}}=\frac{\sigma_{\re\rp}\sigma_{\se\rp}}{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}-\frac{\sigma_{\re\rp}\sigma_{\se\rp}}{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}+1=1.
+\alpha+1+\beta\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}=\frac{\rho_{\re\rp}\rho_{\se\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}-\rho_{\se\rp}\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}+1=1.
 \]
 
 \end_inset
@@ -852,7 +908,7 @@ so
 Moreover,
 \begin_inset Formula 
 \[
-\beta\left(\sigma_{\rp}^{2}-\frac{\sigma_{\se\rp}^{2}}{\sigma_{\se}^{2}}\right)=\frac{\sigma_{\re\rp}\sigma_{\se}^{2}}{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}\left(\frac{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}{\sigma_{\se}^{2}}\right)=\sigma_{\re\rp}.
+\beta\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)=\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\rp}}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)=\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}.
 \]
 
 \end_inset
@@ -860,7 +916,18 @@ Moreover,
 Combining all these elements together, we have
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}-\sigma_{\re\rp}\frac{f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}.
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)\frac{F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}+\pub_{i}-\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\frac{f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}.
+\]
+
+\end_inset
+
+or
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}+\frac{1}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)-\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}\frac{f_{\rp|\se}\left(\offer_{i}-\meanP-\pub_{i}|\se_{i}\right)}{F_{\rp|\se}\left(\ubRpi|\se_{i}\right)}.
 \]
 
 \end_inset
@@ -877,7 +944,7 @@ Next, we can rewrite the expression in terms of the standard normal pdf
  relying on the fact that 
 \begin_inset Formula 
 \[
-f_{\rp|\se}\left(x|\se_{i}\right)=\frac{1}{\frac{1}{\sigma_{\se}}\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}f_{N}\left(\frac{x-\frac{\sigma_{\se\rp}}{\sigma_{\se}^{2}}\se_{i}}{\frac{1}{\sigma_{\se}}\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}\right)=\frac{\sigma_{\se}}{\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}f_{N}\left(\frac{\sigma_{\se}x-\frac{\sigma_{\se\rp}}{\sigma_{\se}}\se_{i}}{\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}\right)
+f_{\rp|\se}\left(x|\se_{i}\right)=\frac{1}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{x-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
 \]
 
 \end_inset
@@ -885,79 +952,35 @@ f_{\rp|\se}\left(x|\se_{i}\right)=\frac{1}{\frac{1}{\sigma_{\se}}\sqrt{\sigma_{\
 and
 \begin_inset Formula 
 \[
-F_{\rp|s}\left(x|\se_{i}\right)=F_{N}\left(\frac{x-\frac{\sigma_{\se\rp}}{\sigma_{\se}^{2}}\se_{i}}{\frac{1}{\sigma_{\se}}\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}\right)=F_{N}\left(\frac{\sigma_{\se}x-\frac{\sigma_{\se\rp}}{\sigma_{\se}}\se_{i}}{\sqrt{\sigma_{\rp}^{2}\sigma_{\se}^{2}-\sigma_{\se\rp}^{2}}}\right).
+F_{\rp|s}\left(x|\se_{i}\right)=F_{N}\left(\frac{x-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
 \]
 
 \end_inset
 
-We can also rewrite these expressions using correlations instead of covariances
- to get something somewhat simpler.
- Recall that 
-\begin_inset Formula $\rho_{xy}=\frac{\sigma_{sy}}{\sigma_{x}\sigma_{y}}$
-\end_inset
-
- or that 
-\begin_inset Formula $\sigma_{xy}=\rho_{xy}\sigma_{x}\sigma_{y}$
-\end_inset
-
-.
- Using this substitution, we have
+giving us
 \begin_inset Formula 
 \[
-\sigma_{\se}^{2}\sigma_{\rp}^{2}-\sigma_{\se\rp}^{2}=\sigma_{\se}^{2}\sigma_{\rp}^{2}-\rho_{\se\rp}^{2}\sigma_{\se}^{2}\sigma_{\rp}^{2}=\sigma_{\se}^{2}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}+F_{N}\left(\frac{\ubPriv-\pub_{i}-\meanP-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)-\frac{\rho_{\re\rp}\sigma_{\re}\sigma_{\rp}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\right]
 \]
 
 \end_inset
 
-so the standard deviation of 
-\begin_inset Formula $\rp|\se$
-\end_inset
-
- can also be written 
-\begin_inset Formula $\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}$
-\end_inset
-
- and its mean can be written 
-\begin_inset Formula $\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}$
-\end_inset
-
-We can then rewrite our distribution in terms of the standard normal pdf
- and cdf as
-\begin_inset Formula 
-\[
-f_{\rp|\se}\left(x|\se_{i}\right)=\frac{1}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{x-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
-\]
-
-\end_inset
-
-and
-\begin_inset Formula 
-\[
-F_{\rp|s}\left(x|\se_{i}\right)=F_{N}\left(\frac{x-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}+F_{N}\left(\frac{\ubRpi-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\right]
-\]
-
-\end_inset
-
-If we also substitute in for using the correlation of 
-\begin_inset Formula $\re$
+Let
+\begin_inset Formula $\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)=\meanP+\pub_{i}+\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}$
 \end_inset
 
  and 
-\begin_inset Formula $\rp,$
+\begin_inset Formula $\sigma_{\priv|\se,\pub}=\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}$
 \end_inset
 
- we have
+ be the conditional mean and variance of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ given the regulator's information, letting us write
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}+F_{N}\left(\frac{\ubRpi-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)-\rho_{\re\rp}\frac{\sigma_{\re}}{\sigma_{\se}\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\meanP-\pub_{i}-\rho_{\se\rp}\frac{\sigma_{\rp}}{\sigma_{\se}}\se_{i}}{\sigma_{\se}\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\right].
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}+F_{N}\left(\frac{\bar{\priv}-\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)}{\sigma_{\priv|\se,\pub}}\right)^{-1}\left[\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)}{\sigma_{\priv|\se,\pub}}\right)-\sigma_{\re}\frac{\rho_{\re\rp}}{\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}\left(\se_{i},\pub_{i}\right)}{\sigma_{\priv|\se,\pub}}\right)\right].
 \]
 
 \end_inset
@@ -976,7 +999,7 @@ In the text we have
 \begin_layout Standard
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}f_{N}'\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)-\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}f_{N}'\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0
 \]
 
 \end_inset
@@ -988,7 +1011,7 @@ Note that the derivative of the standard normal pdf is just
  so the last term is 
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
 \]
 
 \end_inset
@@ -996,7 +1019,7 @@ Note that the derivative of the standard normal pdf is just
 Combining terms, we have
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\left(\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}+\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\left(\frac{\meanE+\se_{i}-\offer_{i}-\pub_{i}}{\sigma_{\priv|\se,\pub}}+\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0
 \]
 
 \end_inset
@@ -1004,7 +1027,7 @@ Combining terms, we have
 or
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{1}{\sigma_{\priv|\se,\pub}}\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}+\left(\offer_{i}-\mu_{\priv|\se,\pub}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{1}{\sigma_{\priv|\se,\pub}}\left(\meanE+\se_{i}-\offer_{i}-\pub_{i}+\left(\offer_{i}-\mu_{\priv|\se,\pub}\right)\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0
 \]
 
 \end_inset
@@ -1012,7 +1035,7 @@ or
 or
 \begin_inset Formula 
 \[
--F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{1}{\sigma_{\priv|\se,\pub}}\left(\meanE+\se_{i}+\offer_{i}\left(\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}-1\right)-\pub_{i}-\mu_{\priv|\se,\pub}\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
+-F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\frac{1}{\sigma_{\priv|\se,\pub}}\left(\meanE+\se_{i}+\offer_{i}\left(\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}-1\right)-\pub_{i}-\mu_{\priv|\se,\pub}\frac{\sigma_{\re\rp}}{\sigma_{\priv|\se,\pub}^{2}}\right)f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)=0.
 \]
 
 \end_inset
