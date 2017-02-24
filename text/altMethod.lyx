@@ -232,9 +232,9 @@ At time
 \mu_{\env}\\
 \mu_{\pub}
 \end{array}\right],\left[\begin{array}{cccc}
-\sigma_{\se}^{2} & \rho_{\se\priv}\sigma_{\se}\sigma_{\priv} & \sigma_{\se\rp} & 0\\
-\rho_{\se\priv}\sigma_{\se}\sigma_{\priv} & \sigma_{\priv}^{2} & \rho_{\priv\env}\sigma_{\env}\sigma_{\priv} & \sigma_{\pub}^{2}\\
-\sigma_{\se}^{2} & \rho_{\priv\env}\sigma_{\env}\sigma_{\priv} & \sigma_{\env}^{2} & 0\\
+\sigShr\sigma_{\env}^{2} & \sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigShr\sigma_{\env}^{2} & 0\\
+\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2}+\sigma_{\pub}^{2} & \rho_{\rp\env}\sigma_{\env}\sigma_{\rp} & \sigma_{\pub}^{2}\\
+\sigShr\sigma_{\env}^{2} & \rho_{\env\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\env}^{2} & 0\\
 0 & \sigma_{\pub}^{2} & 0 & \sigma_{\pub}^{2}
 \end{array}\right]\right).
 \]
@@ -293,12 +293,20 @@ Since the denominator is constant across the range of integration, we can
 
 \end_inset
 
+We know that 
+\begin_inset Formula 
+\[
+\mu_{\env|\se,\priv}\left(\se_{i},\priv_{i}\right)=\priv_{i}\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}+\meanE+\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}-\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\pub_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\mu_{\rp}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}
+\]
+
+\end_inset
+
 
 \begin_inset Formula 
 \begin{eqnarray*}
 \intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env & = & \intop_{-\infty}^{\infty}\env f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env-\intop_{-\infty}^{\infty}\offer_{i}f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env\\
  & = & \mu_{\env|\se,\priv}\left(\se_{i},\priv\right)-\offer_{i}\\
- & = & \priv_{i}\frac{\sigShrS\sigma_{\env}\rho_{\re\rp}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}+\mu_{\env}-\frac{\left(\sigShrS-\rho_{\env\rp}\rho_{\se\rp}\right)}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\se_{i}-\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\pub_{i}+\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\mu_{\rp}-\offer_{i}\\
+ & = & \priv_{i}\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}+\mu_{\env}+\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}-\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\pub_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\mu_{\rp}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}-\offer_{i}\\
  & = & \alpha+\beta p
 \end{eqnarray*}
 
@@ -332,8 +340,7 @@ so we have
 \begin_inset Formula 
 \begin{eqnarray*}
 \payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right) & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}\left(F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)\\
- & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)\\
- & =
+ & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)
 \end{eqnarray*}
 
 \end_inset
@@ -349,8 +356,8 @@ We also know that
 and
 \begin_inset Formula 
 \begin{eqnarray*}
-\beta\mu_{\priv|\se,\pub} & = & \frac{\sigShrS\sigma_{\env}\rho_{\re\rp}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}\right)\\
- & = & \frac{\mu_{\rp}+\pub_{i}+\sigma_{\rp}\rho_{\se\rp}\rho_{\re\rp}\se_{i}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}
+\beta\mu_{\priv|\se,\pub} & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}\right)\\
+ & = & \frac{\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\mu_{\rp}+\pub_{i}\right)+\sigma_{\rp}\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\se_{i}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}
 \end{eqnarray*}
 
 \end_inset
@@ -358,21 +365,25 @@ and
 
 \begin_inset Formula 
 \begin{eqnarray*}
-\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}-\frac{\left(\sigShrS-\rho_{\env\rp}\rho_{\se\rp}\right)}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\se_{i}-\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\pub_{i}+\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\mu_{\rp}-\offer_{i}+\frac{\mu_{\rp}+\pub_{i}+\sigma_{\rp}\rho_{\se\rp}\rho_{\re\rp}\se_{i}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}-\pub_{i}\\
- & = & \mu_{\env}-\offer_{i}+\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\mu_{\rp}+\se_{i}\left(\frac{\sigma_{\rp}\rho_{\se\rp}\left(\rho_{\re\rp}+\sigShrS-\rho_{\env\rp}\right)}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\right)-\pub_{i}\left(1+\frac{\sigma_{\env}}{\sigma_{\rp}}\frac{\rho_{\re\rp}}{\left(\rho_{\se\rp}^{2}-1\right)}\right)
+\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}+\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}-\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\pub_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\mu_{\rp}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}-\offer_{i}+\frac{\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\mu_{\rp}+\pub_{i}\right)+\sigma_{\rp}\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\se_{i}}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}+\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\mu_{\rp}+\se_{i}\left(\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)+\sigma_{\rp}\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\right)-\pub_{i}\left(1+\frac{\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)-\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\right)\\
+ & = & =\mu_{\env}-\offer_{i}+\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\mu_{\rp}+\se_{i}\left(\frac{\rho_{\env\rp}\rho_{\se\rp}-\sigShrS}{\sigShrS\left(\rho_{\se\rp}-1\right)}\right)-\pub_{i}
 \end{eqnarray*}
 
 \end_inset
 
-
+Also note that 
 \begin_inset Formula 
-\begin{eqnarray*}
-\alpha+\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}+\sigShr\se_{i}-\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\mu_{\rp}+\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\left(\mu_{\rp}+\mu_{\pub}\right)+\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\frac{\sigma_{\pub}^{2}\left(\mu_{\pub}-\pub_{i}\right)}{\sigma_{\pub}^{2}+\sigma_{\rp}^{2}}-\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\frac{\sigShrS\sigma_{\env}\sigma_{\rp}\rho_{\se\rp}\se_{i}}{\sigma_{\pub}^{2}+\sigma_{\rp}^{2}}-\pub_{i}\\
- & = & \mu_{\env}+\sigShr\se_{i}+\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\mu_{\pub}\left(\right)+\rho_{\env\rp}\frac{\sigma_{\rp}}{\sigma_{\env}}\frac{\sigma_{\pub}^{2}\left(\mu_{\pub}-\pub_{i}\right)}{\sigma_{\pub}^{2}+\sigma_{\rp}^{2}}-\rho_{\env\rp}\frac{\sigShrS\sigma_{\rp}^{2}\rho_{\se\rp}\se_{i}}{\sigma_{\pub}^{2}+\sigma_{\rp}^{2}}
-\end{eqnarray*}
+\[
+F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)=F
+\]
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 so
 \begin_inset Note Note
 status collapsed
