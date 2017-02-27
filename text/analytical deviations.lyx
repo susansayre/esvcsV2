@@ -775,6 +775,16 @@ or
 
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Checked in mathematica and correct.
+\end_layout
+
+\end_inset
+
 For notational simplicity, let 
 \begin_inset Formula $\alpha=-\rho_{\se\rp}\frac{\rho_{\re\rp}}{\left(1-\rho_{\se\rp}^{2}\right)}\frac{\sigma_{\re}}{\sigma_{\se}}$
 \end_inset
