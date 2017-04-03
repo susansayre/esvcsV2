@@ -414,6 +414,86 @@ or
 
 \end_inset
 
+Let 
+\begin_inset Formula 
+\[
+\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
+\]
+
+\end_inset
+
+and note that this expression is independent of 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+.
+ We can thus write 
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)
+\]
+
+\end_inset
+
+and write our problem using the Lagrangian 
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\offer_{i},\lambda;\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)-\lambda\left(\offer_{i}-\ubPriv_{i}\right)
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)$
+\end_inset
+
+ be the solution to this optimization problem and let 
+\begin_inset Formula $\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)$
+\end_inset
+
+ be the optimized period 2 payoff.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+There's a constraint floating around in here that I need to be careful of.
+\end_layout
+
+\end_inset
+
+ The envelope theorem tells us that 
+\begin_inset Formula 
+\[
+\frac{\partial\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=\frac{\partial R\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}+\lambda
+\]
+
+\end_inset
+
+or that
+\begin_inset Formula 
+\[
+\frac{\partial\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=-\frac{1}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-2}f_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)+\lambda
+\]
+
+\end_inset
+
+Note that if 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)<\ubPriv$
+\end_inset
+
+, then 
+\begin_inset Formula $\lambda=0$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\ubPriv_{i}$
+\end_inset
+
+, then 
+\begin_inset Formula $\lambda=\frac{\partial\payEnd}{\partial\offer}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\frac{\partial\hat{\payEnd}}{\partial\offer}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)$
+\end_inset
+
 
 \end_layout
 
@@ -426,45 +506,21 @@ In the previous period, the landowner knows her own value
 \begin_inset Formula $\priv_{i}$
 \end_inset
 
- which gives her private information about the values of 
+ which may give her private information about the likelihood of possible
+ values of 
 \begin_inset Formula $\se_{i}$
 \end_inset
 
  which in turn influence the optimized offers she might receive the next
  period.
  In particular, 
-\begin_inset Formula $\se_{i}|\priv_{i}\sim N\left(\rho_{\se\rp}\frac{\sigma_{\se}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigma_{\se}^{2}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)$
+\begin_inset Formula $\se_{i}|\priv_{i}\sim N\left(\rho_{\se\rp}\frac{\sigma_{\se}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigma_{\se}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)$
 \end_inset
 
-Using this information, she can impute the probability distribution for
- 
-\begin_inset Formula $\offer_{i}^{*}$
-\end_inset
-
-.
- Let 
-\begin_inset Formula $f_{\offer^{*}|\pub,\priv}\left(\offer|\pub_{i},\priv_{i}\right)$
-\end_inset
-
- be the imputed pdf.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Note that although the underlying distributions are multivariate normal,
- the distribution of 
-\begin_inset Formula $\offer^{*}$
-\end_inset
-
- will not be normal since the variables enter non-linearly.
-\end_layout
-
-\end_inset
-
- The landowner will conserve her land in period 1 if 
+The landowner will conserve her land in period 1 if 
 \begin_inset Formula 
 \[
-\priv_{i}\left(1+\ew\right)\leq\temp_{i}+\ew\mathbb{E}_{\offer^{*}}\max\left\{ \priv_{i},\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\right\} 
+\priv_{i}\left(1+\ew\right)\leq\temp_{i}+\ew\mathbb{E}_{\se_{i}}\max\left\{ \priv_{i},\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\right\} 
 \]
 
 \end_inset
@@ -504,6 +560,7 @@ Let
 \end_inset
 
  if the landowner chooses to conserve.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -511,10 +568,64 @@ Regulator's prior period decision
 \end_layout
 
 \begin_layout Standard
-The regulator The regulator's problem is 
+The regulator's problem is 
 \begin_inset Formula 
 \[
 \max_{\temp_{i}}\mathbb{E}_{\priv_{i}}\left\{ \choice_{i}\left(\mu_{\env|\priv_{i}}-\temp_{i}+\ew\pub_{i}\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\leq p_{i}\right)\right)+\delta\left(\mu_{\env|\choice\left(\priv,\pub|\Sigma\right)=1}-\mathbb{E}_{\offer^{*}|\offer^{*}>\priv_{i}}\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)>\priv_{i}\right)\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Assume upper bound is valid
+\end_layout
+
+\begin_layout Standard
+If the assumption of an upper bound is valid, the problem becomes much easier.
+ In this case, the regulator knows that all landowners with 
+\begin_inset Formula $\priv_{i}>\ubPriv\left(\pub_{i}\right)$
+\end_inset
+
+ will develop and all others will conserve.
+ This means that the regulator's full payoff is given by
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\ubPriv\left(\pub_{i}\right)}\intop_{-\infty}^{\infty}\left(\env-\temp_{i}\right)f_{\env|\pub,\priv}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\intop_{\ubPriv\left(\pub_{i}\right)}^{\infty}\pub_{i}f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se|\pub}\left(\se|\pub_{i}\right)d\se
+\]
+
+\end_inset
+
+which can be rewritten
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\ubPriv\left(\pub_{i}\right)}\left(\mu_{\env|\priv,\pub}\left(\priv,\pub_{i}\right)-\temp_{i}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\pub_{i}\left(1-F_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\ubPriv\left(\pub_{i}\right)}\left(\priv\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}+\meanE-\temp_{i}-\left(\mu_{\rp}+\pub_{i}\right)\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\pub_{i}\left(1-F_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\pub_{i}+F_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)\left(\meanE-\temp_{i}-\left(\mu_{\rp}+\pub_{i}\right)\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}-\pub_{i}\right)+\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}\left(\mu_{\priv|\pub}\left(\pub_{i}\right)F_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)-\sigma_{\rp}^{2}f_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\pub_{i}+F_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)\left(\meanE-\temp_{i}-\pub_{i}\right)-\sigma_{\env}\rho_{\env\rp}\sigma_{\rp}f_{\priv|\pub}\left(\ubPriv\left(\pub_{i}\right)|\pub_{i}\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
 \]
 
 \end_inset

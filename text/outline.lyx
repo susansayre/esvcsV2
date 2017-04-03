@@ -156,7 +156,7 @@ How many parcels will it induce to conserve in period 1 that would immediately
 
 \begin_layout Itemize
 How many parcels will it induce to conserve in period 1 that wouldn't if
- we did nothing now and responded optimally to the info in period 1 (e.g.
+ we did nothing now and responded optimally to the info in period 2 (e.g.
  if we set tempPay to 0 but set period 2 offer using optOffer)
 \end_layout
 
@@ -274,7 +274,7 @@ The relationship between ecosystem service provision and landuse is both
 
 \begin_layout Standard
 In this paper, I develop a stylized model to capture one essential tradeoff
- facing regulators in developing such policies: wait to gain improvement
+ facing regulators in developing such policies: wait to gain improvemed
  scientific understanding of the relationship between land use change and
  ecosystem service provision or intervene today to prevent irreversible
  land development.
@@ -323,18 +323,18 @@ At time 0, all parties know the public development of each parcel of land
 
 .
  The private development value of an individual parcel is given by 
-\begin_inset Formula $\meanP+\pub_{i}+\rp_{i}$
+\begin_inset Formula $\pub_{i}+\rp_{i}$
 \end_inset
 
  where 
-\begin_inset Formula $\meanP$
-\end_inset
-
- is the mean private development externality and 
 \begin_inset Formula $\rp_{i}$
 \end_inset
 
- is an individual private deviation.
+ is an individual private deviation with mean 
+\begin_inset Formula $\meanP$
+\end_inset
+
+.
  A postive value of 
 \begin_inset Formula $\meanP$
 \end_inset
@@ -406,7 +406,7 @@ The key tradeoff in the model is between waiting for better information
  The true ecosystem service value of the parcel can be written
 \begin_inset Formula 
 \[
-\env_{i}=\meanE+\se_{i}+\re_{i}
+\env_{i}=\se_{i}+\re_{i}
 \]
 
 \end_inset
@@ -415,8 +415,12 @@ where
 \begin_inset Formula $\re_{i}$
 \end_inset
 
- is a mean zero deviation representing the remaining uncertainty about ecosystem
- service provision level after the new information is observed.
+ is a mean 
+\begin_inset Formula $\meanE$
+\end_inset
+
+ deviation representing the remaining uncertainty about ecosystem service
+ provision level after the new information is observed.
 \end_layout
 
 \begin_layout Subsection
@@ -431,7 +435,7 @@ This section will mathematically characterize the regulator's optimal policy
 
 \begin_layout Standard
 Parcel specific offers depend 
-\begin_inset Formula $\mu_{\env_{it}},\sigma_{\env t},$
+\begin_inset Formula $\mu_{\env_{t}},\sigma_{\env t},$
 \end_inset
 
 
