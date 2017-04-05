@@ -1,21 +1,8 @@
 dbstop if error
-dbstop if warning
-
-regInfoRowVary = {'se' 'pub' 'privUB'};
-numRIRV = numel(regInfoRowVary);
-
-for jj=1:numRIRV
-    eval(['P.ind.regInfo.' regInfoRowVary{jj} '=jj;'])
-end
-
-quadraturePts = [5 5 1];
-[quadPts,quadWgts] = qnwnorm(quadraturePts,0*quadraturePts,eye(numRIRV));
-
-unknowns = {'se' 'rp'};
 
 %all of the necessary parameters should be named, described and set to base values in this array
 baseParameterMat = {
-	'meanPriv'	'mean private development externality'				'\meanP'		1;
+	'meanPriv'	'mean private development externality'				'\meanP'		0;
 	'meanEnv'	'mean environmental benefit'						'\meanE'		2;
 	'meanPub'	'mean public development value'						''				1;
 	'sig.pub'	'std deviation of public development value'			''				1;
@@ -41,11 +28,17 @@ end
 %list of values to run or a set of values to make a grid from. Use the first element to indicate whether it should be a cross (1) or straight (0) 
 compStatRunDescriptions = {
 		%cross?	%1-paramName	2-compStatType	3-values
-		0		{'sigShr'		1				[.01 .25 .5 .75 .99]};
-		0		{'sigShr'		1				[.5]
-				 'rho.se_rp'	1				[-.5 -.25 0 .25 .5]};	
-		0		{'sigShr'		1				[.5]
-				 'rho.e_p'		1				[-.5 -.25 0 .25 .5]};	
+%		0		{'sigShr'		1				[.01 .25 .5 .75 .99]};
+%		1		{'sigShr'		1				[.5]
+%				 'rho.se_rp'	1				[-.5 -.25 0 .25 .5]};	
+%		1		{'sigShr'		1				[.5]
+%				 'rho.e_p'		1				[-.5 -.25 0 .25 .5]};
+		1		{'sigShr'		1				[.25 .5 .75 ]
+				 'rho.se_rp'	1				[0]}
+%				 'rho.e_p'		1				[-.5 0	.5]}
+% 		1		{'sigShr'		1				[.25]
+% 				 'rho.se_rp'	1				[.5]
+% 				 'rho.e_p'		1				[-.5]}
 		};
 
 
@@ -168,10 +161,16 @@ save(['detailedOutput/' runID '/setUp'])
 %step through problems and run them
 for kk=1:compStatRuns
 	for ii=1:cases{kk}
-		disp(['starting experiment ' num2str(kk) ' of ' num2str(compStatRuns) ' case ' num2str(ii) ' of ' num2str(cases{kk})])
-		thisOutput = runP2Case(quadPts,quadWgts,paramCases{kk}{ii});
-		save(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii) 'out'],'thisOutput')
-		output{kk}{ii} = thisOutput;
+		if exist(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii) 'out.mat'],'file')
+			load(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii) 'out'],'thisOutput')
+			output{kk}{ii} = thisOutput;
+		else
+			disp(['starting experiment ' num2str(kk) ' of ' num2str(compStatRuns) ' case ' num2str(ii) ' of ' num2str(cases{kk})])
+			thisOutput = approxP2(evalPts,paramCases{kk}{ii});
+			save(['detailedOutput/' runID '/exp' num2str(kk) 'case' num2str(ii) 'out'],'thisOutput')
+			output{kk}{ii} = thisOutput;
+		end
 	end
 end
 		
+save(['detailedOutput/' runID '/fullOutput'])
