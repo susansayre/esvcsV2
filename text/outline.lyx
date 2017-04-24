@@ -441,6 +441,16 @@ Parcel specific offers depend
 
 \end_layout
 
+\begin_layout Subsection
+Signal quality
+\end_layout
+
+\begin_layout Standard
+A primary purpose of the analysis is to investigate the impact of signal
+ quality on the results.
+ 
+\end_layout
+
 \begin_layout Section
 Simulation Results
 \end_layout
@@ -454,6 +464,147 @@ Note: all of my numbers are arbitrary.
 
 \begin_layout Subsection
 Optimal single period policy (needs a better description)
+\end_layout
+
+\begin_layout Standard
+I begin by describing in detail how a regulator will respond in the final
+ period for a particular problem and then discuss how the answer changes
+ as we change problem parameters.
+\end_layout
+
+\begin_layout Itemize
+Somewhere I need to describe what's going on with the signals.
+ 
+\end_layout
+
+\begin_layout Standard
+In the last period, the regulator has a signal of environmental service
+ value that allows some degree of targeting of offers.
+ The regulator's offer will thus depend on the signal received.
+ If there is no correlation between environmental service value and private
+ development value, the regulator's optimal offer will balance increasing
+ the offer to induce more conservation against reducing the offers to save
+ money.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOffer"
+
+\end_inset
+
+ illustrates the optimal offers as a function of the observed signal assuming
+ all parcels remain undeveloped in period 2.
+ As the graph illustrates, the optimal offer increases at a decreasing rate
+ as the observed signal increases.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Optimal Offer by Signal (Baseline scenario)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:baseOptOffer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Graph with signal on the horizontal axis and optimal offer on the vertical
+ axis.
+\end_layout
+
+\begin_layout Plain Layout
+Include the mean environmental service value minus pub value on the graph
+\end_layout
+
+\begin_layout Plain Layout
+Possibly also include mean env - pub - meanPriv
+\end_layout
+
+\end_inset
+
+In the absence of correlation between the private development externality
+ and the ecosystem service value, the optimal offer made to a parcel with
+ a given signal does not change.
+ However, the signal quality does influence the likelihood of observing
+ different signals.
+ A low signal quality implies that the likelihood of observing a very strong
+ positive or negative signal is much smaller.
+ Instead, with a low signal quality, most observed signals will provide
+ little additional information about the environmental service value and
+ the signal distribution will thus be clustered close to zero.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+An alternate approach to specifying the signal relationship would be to
+ have a signal with a constant distribution and a varying correlation with
+ the true env value.
+ My gut says these are functionally equivalent but I should verify this.
+\end_layout
+
+\end_inset
+
+ This variation in the likelihood of observing various signals induces variation
+ in the distribution of offers the regulator expects to make in period 2.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distribution of optimal offers by signal quality (baseline scenario)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:baseHistOptOffer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since there is no correlation between environmental service value and private
+ development externalities, the landowners' knowledge gives them no private
+ information about the offer they are likely to receive next period.
+ Each landowner's expectations about offers received in period 2 mirrors
+ that in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseHistOptOffer"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard

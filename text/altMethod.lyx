@@ -181,7 +181,7 @@ At time
 
 .
  The true environmental service value provided by the parcel is 
-\begin_inset Formula $\env_{i}=\meanE+\se_{i}+\re_{i}$
+\begin_inset Formula $\env_{i}=\se_{i}+\re_{i}$
 \end_inset
 
  where 
@@ -203,22 +203,14 @@ At time
 \end_inset
 
 .
- The landowner knows the value of this deviation and thus knows the value
- of her land is 
+ The landowner knows the value of this deviation and thus knows the private
+ value of developing her land is 
 \begin_inset Formula $\meanP+\pub_{i}+\rp_{i}$
 \end_inset
 
 .
- Let 
-\begin_inset Formula $\left[\begin{array}{c}
-\se_{i}\\
-\priv_{i}\\
-\env_{i}\\
-\pub_{i}
-\end{array}\right]\sim N_{4}\left(\mathbf{0},\mathbf{\Sigma}\right)$
-\end_inset
-
- where the variance-covariance matrix has the form
+ For analytical tractability, I assume that the variable have a multivariate
+ normal distribution with the form
 \begin_inset Formula 
 \[
 \left[\begin{array}{c}
@@ -233,7 +225,7 @@ At time
 \mu_{\pub}
 \end{array}\right],\left[\begin{array}{cccc}
 \sigShr\sigma_{\env}^{2} & \sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigShr\sigma_{\env}^{2} & 0\\
-\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2}+\sigma_{\pub}^{2} & \rho_{\rp\env}\sigma_{\env}\sigma_{\rp} & \sigma_{\pub}^{2}\\
+\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2}+\sigma_{\pub}^{2} & \rho_{\env\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\pub}^{2}\\
 \sigShr\sigma_{\env}^{2} & \rho_{\env\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\env}^{2} & 0\\
 0 & \sigma_{\pub}^{2} & 0 & \sigma_{\pub}^{2}
 \end{array}\right]\right).
@@ -241,7 +233,54 @@ At time
 
 \end_inset
 
-Based on previous offers and information, the regulator infers that there
+Since linear combinations of multivariate normal variables also have a multivari
+ate normal distribution, the structure above implies that 
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+\se_{i}\\
+\rp_{i}\\
+\re_{i}
+\end{array}\right]\sim N_{4}\left(\left[\begin{array}{c}
+0\\
+0\\
+0
+\end{array}\right],\left[\begin{array}{ccc}
+\sigShr\sigma_{\env}^{2} & \sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & 0\\
+\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2} & \left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\sigma_{\env}\sigma_{\rp}\\
+0 & \left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right) & \left(1-\sigShr\right)\sigma_{\env}^{2}
+\end{array}\right]\right).
+\]
+
+\end_inset
+
+This structure has a number of important features.
+ First, note that 
+\begin_inset Formula $\sigShrS\in\left(0,1\right)$
+\end_inset
+
+ measures the quality of the signal.
+ As 
+\begin_inset Formula $\sigShrS\to1$
+\end_inset
+
+, the variation in the remaining parcel specific deviations approaches 0,
+ implying that all uncertainty is removed.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\sigShrS=1$
+\end_inset
+
+ and the signal perfectly reveals the ecosystem service value, many of the
+ expressions below are undefined.
+\end_layout
+
+\end_inset
+
+ Based on previous offers and information, the regulator infers that there
  is an upper bound (
 \begin_inset Formula $\ubPriv$
 \end_inset
@@ -256,9 +295,12 @@ Based on previous offers and information, the regulator infers that there
 \begin_inset Formula $\bar{\priv}$
 \end_inset
 
- because the regulator could lower the offer to the upper bound and maintain
- perfect certainty that the parcel will be conserved.
- We can thus write the regulator's expected payoff
+ because the regulator could lower the offer to 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ and maintain perfect certainty that the parcel will be conserved.
+ The regulator's expected payoff
 \begin_inset Foot
 status collapsed
 
@@ -273,206 +315,66 @@ Strictly speaking, this expression is the expected payoff assuming
 
 \end_inset
 
- for a parcel that did not convert in the first period as the probability
- the parcel is conserved in the second period times the expected payoff
- conditional on conservation plus the (known) public development value times
- the probability the parcel is developed or 
+ for a parcel is the probability the parcel is conserved in the second period
+ times the expected payoff conditional on conservation plus the (known)
+ public development value times the probability the parcel is developed
+ or 
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env\frac{f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)}{F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)}dp+\intop_{\offer_{i}}^{\bar{\priv}}\pub_{i}\frac{f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)}{F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)}dp
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
 \]
 
 \end_inset
 
-Since the denominator is constant across the range of integration, we can
- pull it out and write
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\bar{\priv}}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
-\]
-
-\end_inset
-
-We know that 
-\begin_inset Formula 
-\[
-\mu_{\env|\se,\priv}\left(\se_{i},\priv_{i}\right)=-\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\priv_{i}+\meanE+\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env & = & \intop_{-\infty}^{\infty}\env f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env-\intop_{-\infty}^{\infty}\offer_{i}f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env\\
- & = & \mu_{\env|\se,\priv}\left(\se_{i},\priv\right)-\offer_{i}\\
- & = & -\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\priv_{i}+\mu_{\env}+\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}-\offer_{i}\\
- & = & \alpha+\beta p
-\end{eqnarray*}
-
-\end_inset
-
-And
-\begin_inset Formula 
-\begin{eqnarray*}
-\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp & = & \intop_{-\infty}^{\offer_{i}}\left(\alpha+\beta p\right)f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp\\
- & = & \alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\intop_{-\infty}^{\offer_{i}}pf_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp\\
- & = & \alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\left(\sigma_{\priv|\se,\pub}^{2}\left(-f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)+\mu_{\priv|\se,\pub}F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)\\
- & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Moreover
-\begin_inset Formula 
-\begin{eqnarray*}
-\intop_{\offer_{i}}^{\bar{\priv}}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp & = & \pub_{i}\left(F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)\\
- & = & \pub_{i}\left(F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)
-\end{eqnarray*}
-
-\end_inset
-
-so we have
-\begin_inset Formula 
-\begin{eqnarray*}
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right) & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}\left(F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)\\
- & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)
-\end{eqnarray*}
-
-\end_inset
-
-We also know that
-\begin_inset Formula 
-\[
-\mu_{\priv|\se,\pub}=\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}
-\]
-
-\end_inset
-
-and
-\begin_inset Formula 
-\begin{eqnarray*}
-\beta\mu_{\priv|\se,\pub} & =- & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}\right)\\
- & = & -\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\mu_{\rp}+\pub_{i}\right)-\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\se_{i}
-\end{eqnarray*}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{eqnarray*}
-\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}+\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\pub_{i}+\mu_{\rp}\right)+\frac{\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\se_{i}-\offer_{i}-\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\left(\mu_{\rp}+\pub_{i}\right)-\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\se_{i}-\pub_{i}\\
- & = & \mu_{\env}-\offer_{i}+\se_{i}\left(\frac{\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)-\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\right)-\pub_{i}\\
- & = & \mu_{\env}-\offer_{i}+\se_{i}\left(\frac{\rho_{\env\rp}\rho_{\se\rp}-\sigShrS-\rho_{\se\rp}\rho_{\env\rp}+\sigShrS\rho_{\se\rp}^{2}}{\sigShrS\left(\rho_{\se\rp}^{2}-1\right)}\right)-\pub_{i}\\
- & = & \mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}
-\end{eqnarray*}
-
-\end_inset
-
-Finally, note that
-\begin_inset Formula 
-\[
-\sigma_{\priv|\se,\pub}^{2}=\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)
-\]
-
-\end_inset
-
-so
-\begin_inset Formula 
-\begin{eqnarray*}
-\beta\sigma_{\priv|\se,\pub}^{2} & = & -\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(\rho_{\se\rp}^{2}-1\right)}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\\
- & = & \sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right).
-\end{eqnarray*}
-
-\end_inset
-
-Putting all these pieces together, we have
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+\frac{1}{F_{\priv|\se,\pub}\left(\bar{\priv}|\se_{i},\pub_{i}\right)}\left[\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right]
-\]
-
-\end_inset
-
-Rewriting in terms of the standard normal distribution, we have
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+\frac{1}{F_{N}\left(\frac{\bar{\priv}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)}\left[\frac{\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\priv|\se,\pub}}f_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}}\right)\right]
-\]
-
-\end_inset
-
-or
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\left[\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\right]
-\]
-
-\end_inset
-
-Let 
-\begin_inset Formula 
-\[
-\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sqrt{1-\rho_{\se\rp}^{2}}}f_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{N}\left(\frac{\offer_{i}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)
-\]
-
-\end_inset
-
-and note that this expression is independent of 
+Note that this expression is independent of 
 \begin_inset Formula $\ubPriv$
 \end_inset
 
+, so the upper bound affects the problem only through the constraint that
+ 
+\begin_inset Formula $\offer_{i}\leq\ubPriv$
+\end_inset
+
 .
- We can thus write 
+ As shown in the appendix, under the multivariate normal assumption, this
+ expression can be simplified to
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=\pub_{i}+F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
 \]
 
 \end_inset
 
-and write our problem using the Lagrangian 
+The Lagrangian for the regulator's problem is 
 \begin_inset Formula 
 \[
-\mathcal{L}\left(\offer_{i},\lambda;\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)-\lambda\left(\offer_{i}-\ubPriv_{i}\right)
+\mathcal{L}\left(\offer_{i},\lambda;\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)-\lambda_{1}\left(\offer_{i}-\ubPriv_{i}\right)+\lambda_{2}\offer_{i}
 \]
 
 \end_inset
 
-Let 
-\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)$
+where 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ is the Lagrange multiplier on the upper bound and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ is the multiplier on the lower bound.
+ Let 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\ubPriv_{i}\right)$
 \end_inset
 
  be the solution to this optimization problem and let 
-\begin_inset Formula $\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)$
+\begin_inset Formula $\payEnd^{*}\left(\se_{i},\pub_{i},\ubPriv\right)$
 \end_inset
 
  be the optimized period 2 payoff.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-There's a constraint floating around in here that I need to be careful of.
-\end_layout
-
-\end_inset
-
  The envelope theorem tells us that 
 \begin_inset Formula 
 \[
-\frac{\partial\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=\frac{\partial R\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}+\lambda
-\]
-
-\end_inset
-
-or that
-\begin_inset Formula 
-\[
-\frac{\partial\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=-\frac{1}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-2}f_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)\hat{\payEnd}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)+\lambda
+\frac{\partial\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=\lambda
 \]
 
 \end_inset
@@ -485,16 +387,16 @@ Note that if
 \begin_inset Formula $\lambda=0$
 \end_inset
 
-.
+ and the upper bound does not influence our problem.
  If 
 \begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\ubPriv_{i}$
 \end_inset
 
 , then 
-\begin_inset Formula $\lambda=\frac{\partial\payEnd}{\partial\offer}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)=F_{N}\left(\frac{\bar{\priv}-\mu_{\rp}-\pub_{i}-\frac{\sigma_{\rp}}{\sigShrS\sigma_{\env}}\rho_{\se\rp}\se_{i}}{\sigma_{\rp}\sqrt{1-\rho_{\se\rp}^{2}}}\right)^{-1}\frac{\partial\hat{\payEnd}}{\partial\offer}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)$
+\begin_inset Formula $\lambda=\frac{\partial\payEnd}{\partial\offer}\left(\ubPriv,\se_{i}\pub_{i}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection
@@ -514,10 +416,10 @@ In the previous period, the landowner knows her own value
  which in turn influence the optimized offers she might receive the next
  period.
  In particular, 
-\begin_inset Formula $\se_{i}|\priv_{i}\sim N\left(\rho_{\se\rp}\frac{\sigma_{\se}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigma_{\se}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right)$
+\begin_inset Formula $\se_{i}|\priv_{i},\pub_{i}\sim N\left(\rho_{\se\rp}\frac{\sigShrS\sigma_{\env}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigShr\sigma_{\env}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right).$
 \end_inset
 
-The landowner will conserve her land in period 1 if 
+ The landowner will conserve her land in period 1 if 
 \begin_inset Formula 
 \[
 \priv_{i}\left(1+\ew\right)\leq\temp_{i}+\ew\mathbb{E}_{\se_{i}}\max\left\{ \priv_{i},\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\right\} 
@@ -636,6 +538,170 @@ or
 \begin_layout Section
 \start_of_appendix
 Detailed mathematical derivations
+\end_layout
+
+\begin_layout Subsection
+Simplification of regulator's single period payoff
+\end_layout
+
+\begin_layout Standard
+The regulator's single period payoff as a function of the payment offered
+ is given by
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
+\]
+
+\end_inset
+
+The multivariate normal assumption allows us to simplify this expression
+ considerably.
+ First, note that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{\env|\se,\priv}\left(\se_{i},\priv_{i}\right)=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\priv_{i}+\meanE-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}
+\]
+
+\end_inset
+
+so the first inner integral can be rewritten as
+\begin_inset Formula 
+\begin{eqnarray*}
+\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env & = & \intop_{-\infty}^{\infty}\env f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env-\intop_{-\infty}^{\infty}\offer_{i}f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env\\
+ & = & \mu_{\env|\se,\priv}\left(\se_{i},\priv\right)-\offer_{i}\\
+ & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\priv_{i}+\mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}
+\end{eqnarray*}
+
+\end_inset
+
+To simplify derivations, let 
+\begin_inset Formula $\alpha=\mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}$
+\end_inset
+
+ and let 
+\begin_inset Formula $\beta=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}$
+\end_inset
+
+.
+ The full first integral is thus
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\offer_{i}}\left(\alpha+\beta p\right)f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\intop_{-\infty}^{\offer_{i}}pf_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp.
+\]
+
+\end_inset
+
+The latter integral can also be simplified under the normality assumption
+ to
+\begin_inset Formula 
+\[
+\sigma_{\priv|\se,\pub}^{2}\left(-f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)+\mu_{\priv|\se,\pub}F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right).
+\]
+
+\end_inset
+
+Combining elements, we have the full first integral as
+\begin_inset Formula 
+\[
+\alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\left(\sigma_{\priv|\se,\pub}^{2}\left(-f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)+\mu_{\priv|\se,\pub}F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right).
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The second integral in our original expression is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp & = & \pub_{i}\left(1-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)
+\end{eqnarray*}
+
+\end_inset
+
+Putting all the pieces together gives
+\begin_inset Formula 
+\begin{eqnarray*}
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right) & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}\left(1-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)\\
+ & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}
+\end{eqnarray*}
+
+\end_inset
+
+We also know that
+\begin_inset Formula 
+\[
+\mu_{\priv|\se,\pub}=\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta\mu_{\priv|\se,\pub} & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}\right)\\
+ & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\se_{i}
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}+\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\se_{i}-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}-\se_{i}\left(\frac{\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)-\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\right)-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}-\se_{i}\left(\frac{\rho_{\env\rp}\rho_{\se\rp}-\sigShrS-\rho_{\se\rp}\rho_{\env\rp}+\sigShrS\rho_{\se\rp}^{2}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\right)-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}
+\end{eqnarray*}
+
+\end_inset
+
+Finally, note that
+\begin_inset Formula 
+\[
+\sigma_{\priv|\se,\pub}^{2}=\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta\sigma_{\priv|\se,\pub}^{2} & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\\
+ & = & \sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right).
+\end{eqnarray*}
+
+\end_inset
+
+Putting all these pieces together, we have
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
