@@ -1,11 +1,9 @@
-function optOfferApprox = approxP2Reg(nodes,P,approxVarList)
+function optOfferApprox = approxP2Reg(nodes,maxUB,P,approxVarList)
 
 signals = P.sig.se*norminv(nodes(:,P.ind.regInfo.se));
-pubVals = P.meanPub + P.sig.pub*norminv(nodes(:,P.ind.regInfo.pub));
-UBs = nodes(:,P.ind.regInfo.privUB);
+pubVals = P.pubVal*ones(size(signals));
 regInfo(:,P.ind.regInfo.se) = signals;
-regInfo(:,P.ind.regInfo.pub) = pubVals;
-regInfo(:,P.ind.regInfo.privUB) = UBs;
+regInfo(:,P.ind.regInfo.privUB) = maxUB;
 
 optOfferVector = optOfferSimple(regInfo,P);
 if any(optOfferVector<0), keyboard, end

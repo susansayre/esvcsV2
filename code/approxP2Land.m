@@ -1,13 +1,12 @@
 function land2Approx = approxP2Land(nodes,P,approxVarList)
 
 %approximate my payoff in period 2 if I'm below UB
-pubVals = P.meanPub + P.sig.pub*norminv(nodes(:,P.ind.landInfo.pub));
-privVals = pubVals + P.meanPriv + P.sig.rp*norminv(nodes(:,P.ind.landInfo.rp));
+privVals = P.pubVal + P.meanPriv + P.sig.rp*norminv(nodes(:,P.ind.landInfo.rp));
 ubVals = nodes(:,P.ind.landInfo.privUB);
 
 %compute the land 2 outcomes
 for ii=1:numel(approxVarList)
-	eval([ approxVarList{ii} ' = land2outcomesAQ(approxVarList{ii},pubVals,privVals,ubVals,P);'])
+	eval([ approxVarList{ii} ' = land2outcomesAQ(approxVarList{ii},privVals,ubVals,P);'])
 	eval(['land2Approx.cVal.' approxVarList{ii} '= P.land2Approx.Phi\' approxVarList{ii} ';'])
 end
 

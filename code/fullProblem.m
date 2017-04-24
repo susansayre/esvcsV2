@@ -11,6 +11,7 @@ baseParameterMat = {
 	'sig.rp'	'std deviation of private deviations'				'\sigma_{\re}'	7.5;
 	'rho.se_rp'	'correlation between signal and private deviation'	'\rho_{\se\rp}'	0;
 	'rho.e_p'	'correlation between env and priv values'			'\rho_{\env\priv}'	0;
+	'pubVal'	'public development value'							'\pub'			5;
 };
 
 %note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of

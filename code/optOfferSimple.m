@@ -13,7 +13,7 @@ else
 end
 
 signals = regInfo(:,P.ind.regInfo.se);
-pubVals = regInfo(:,P.ind.regInfo.pub);
+pubVals = P.pubVal*ones(size(signals));
 upperBounds = regInfo(:,P.ind.regInfo.privUB);
 n = length(signals);
 
@@ -74,4 +74,4 @@ if exf<0
 	end
 end
 
-optOffers = min(optOffers,upperBounds);
+optOffers = max(0,min(optOffers,upperBounds));
