@@ -419,41 +419,118 @@ In the previous period, the landowner knows her own value
 \begin_inset Formula $\se_{i}|\priv_{i},\pub_{i}\sim N\left(\rho_{\se\rp}\frac{\sigShrS\sigma_{\env}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigShr\sigma_{\env}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right).$
 \end_inset
 
- The landowner will conserve her land in period 1 if 
+ This induces a distribution of possible offers 
+\begin_inset Formula $f_{\offer|\priv}\left(\offer|\priv_{i}\right)$
+\end_inset
+
+The benefit of conservation for the landowner is 
 \begin_inset Formula 
 \[
-\priv_{i}\left(1+\ew\right)\leq\temp_{i}+\ew\mathbb{E}_{\se_{i}}\max\left\{ \priv_{i},\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\right\} 
+B\left(\priv_{i}\right)=\temp_{i}+\ew\left(\intop_{0}^{\priv}\priv_{i}f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer+\intop_{\priv}^{\infty}\offer f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer\right)-\priv_{i}\left(1+\ew\right).
 \]
 
 \end_inset
 
+When 
+\begin_inset Formula $\priv_{i}\leq0,$
+\end_inset
 
-\begin_inset Foot
-status collapsed
+ this expression is necessarily positive, implying that parcels that prefer
+ conservations in the absence of payments will conserve regardless.
+ We thus know there is a value 
+\begin_inset Formula $\ubPriv\in\left[0,\infty\right]$
+\end_inset
 
-\begin_layout Plain Layout
-We cannot be sure this provides a unique cutoff value of 
+ such that any parcel with 
+\begin_inset Formula $\priv_{i}\leq\ubPriv$
+\end_inset
+
+ will prefer to conserve her land in the initial period.
+ If 
+\begin_inset Formula $\frac{dB}{d\priv}$
+\end_inset
+
+ is always negative, we know that there will be a unique threshhold value
+ beyond which all parcels will prefer to develop immediately.
+ 
+\begin_inset Formula 
+\[
+\frac{dB}{d\priv}=\delta\left(\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\priv_{i}\intop_{0}^{\priv}\frac{\partial f_{\offer|\priv}}{\partial\priv}\left(\offer|\priv_{i}\right)d\offer-\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\intop_{\priv}^{\infty}\offer\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\right)
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\frac{dB}{d\priv}=\delta\left(\priv_{i}+\intop_{\priv}^{\infty}\left(\offer-\priv_{i}\right)\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\left(1-F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)\right)\right).
+\]
+
+\end_inset
+
+The second term is unambiguously negative.
+ Thus the benefit of conservation can only increase with 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ if the first term is positive and large enough to overcome the second term.
+ This can only occur if higher values of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ substantially increase the probability of receiving an offer larger than
+ 
 \begin_inset Formula $\priv_{i}$
 \end_inset
 
 .
- It seems quite plausible that there are values for which very low and very
- high values do one thing and mid-range values do another.
- Landowners with extreme draws have much more information about the signal
- that will be revealed if we believe the correlations.
+ Moreover, the assumptMoreover, note that since 
+\begin_inset Formula $\intop_{0}^{\infty}f_{\offer|\priv}\left(\offer|\priv_{i}\right)=1$
+\end_inset
+
+ for all values of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial f}{\partial\priv_{i}}$
+\end_inset
+
+ cannot be positive everywhere.
+ Thus, under most conditions, there will be a unique threshhold value 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ such that parcels below this value conserve their land and parcels above
+ this value develop their land.
+ Moreover, when there is no correlation between the private development
+ and the public development value, the distribution of offers will be independen
+t of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ and we know there will be a unique threshhold.
 \end_layout
 
+\begin_layout Standard
+When a unique threshhold exists, its value solves the equation 
+\begin_inset Formula $B\left(\ubPriv\right)=0$
 \end_inset
 
-This is equivalent to 
-\begin_inset Formula 
-\[
-\priv_{i}\left(1+\ew\right)\leq\temp_{i}+\ew\priv_{i}\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\leq p_{i}\right)+\mathbb{E}_{\offer^{*}|\offer^{*}>\priv_{i}}\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)>\priv_{i}\right).
-\]
-
+.
+ When there is no correlation between 
+\begin_inset Formula $\priv_{i}$
 \end_inset
 
+ and 
+\begin_inset Formula $\env_{i}$
+\end_inset
 
+ or 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+, we know the left hand side is un
 \end_layout
 
 \begin_layout Standard

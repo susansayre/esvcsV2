@@ -274,10 +274,9 @@ The relationship between ecosystem service provision and landuse is both
 
 \begin_layout Standard
 In this paper, I develop a stylized model to capture one essential tradeoff
- facing regulators in developing such policies: wait to gain improvemed
- scientific understanding of the relationship between land use change and
- ecosystem service provision or intervene today to prevent irreversible
- land development.
+ facing regulators in developing such policies: wait to gain improved scientific
+ understanding of the relationship between land use change and ecosystem
+ service provision or intervene today to prevent irreversible land development.
 \end_layout
 
 \begin_layout Itemize
@@ -477,14 +476,35 @@ Somewhere I need to describe what's going on with the signals.
  
 \end_layout
 
+\begin_layout Itemize
+Two types of results:
+\end_layout
+
+\begin_layout Itemize
+• Aggregate
+\end_layout
+
+\begin_layout Itemize
+– # of parcels induced to conserve that wouldn't without policy
+\end_layout
+
+\begin_layout Itemize
+– # of parcels paid to conserve that would have anyway
+\end_layout
+
+\begin_layout Itemize
+– net gain from policy -- raw and percentage of base payoff (need to check
+ how I defined base payoff -- can it be negative?)
+\end_layout
+
+\begin_layout Itemize
+• Parcel specific
+\end_layout
+
 \begin_layout Standard
 In the last period, the regulator has a signal of environmental service
- value that allows some degree of targeting of offers.
- The regulator's offer will thus depend on the signal received.
- If there is no correlation between environmental service value and private
- development value, the regulator's optimal offer will balance increasing
- the offer to induce more conservation against reducing the offers to save
- money.
+ value that allows some degree of targeting of offers based on the expected
+ environmental service value conditional on the signal observed.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -496,7 +516,9 @@ reference "fig:baseOptOffer"
  all parcels remain undeveloped in period 2.
  As the graph illustrates, the optimal offer increases at a decreasing rate
  as the observed signal increases.
- 
+ Moreover, recognition that the offers are more likely to be accepted by
+ the parcels with lower private development values suggests that the regulator
+ will 
 \end_layout
 
 \begin_layout Standard
@@ -509,7 +531,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Optimal Offer by Signal (Baseline scenario)
+Optimal Offer by Signal (Baseline scenario, all parcels undeveloped)
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:baseOptOffer"
@@ -539,16 +561,45 @@ Possibly also include mean env - pub - meanPriv
 
 \end_inset
 
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Period 2 Regulator Outcomes by Signal and Private Development Value (Baseline
+ scenario, all parcels undeveloped)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 In the absence of correlation between the private development externality
  and the ecosystem service value, the optimal offer made to a parcel with
  a given signal does not change.
  However, the signal quality does influence the likelihood of observing
  different signals.
- A low signal quality implies that the likelihood of observing a very strong
- positive or negative signal is much smaller.
- Instead, with a low signal quality, most observed signals will provide
- little additional information about the environmental service value and
- the signal distribution will thus be clustered close to zero.
+ A low signal quality implies that most observed signals provide little
+ additional information about the environmental service value.
+ In this model, that implies the signal distribution will be clustered close
+ to zero and the likelihood of observing a very strong positive or negative
+ signal is much smaller.
 \begin_inset Foot
 status collapsed
 
@@ -572,7 +623,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Distribution of optimal offers by signal quality (baseline scenario)
+Distribution of optimal offers by signal quality (baseline scenario, all
+ parcels remain undeveloped)
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:baseHistOptOffer"
@@ -589,13 +641,133 @@ name "fig:baseHistOptOffer"
 
 \end_inset
 
+ As Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseHistOptOffer"
 
+\end_inset
+
+ illustrates, when the signal quality is low, the regulator views all parcels
+ as essentially the same and makes very similar offers to all parcels.
+ As the signal quality increases, the distribution of offers spreads out.
+ Moreover, the mean offer increases as does the probability of making no
+ offer to some parcels.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Period 2 outcomes by signal and private development value
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:privSigContours"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+multipanel graph with signal on the horizontal axis (measured in sd from
+ mean) and private development value on the vertical axis.
+ Consider marking meanPriv, +/- one sd of privVal, condMeanEnv and +/- one
+ sd of condEnv value.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Panel (a) Draw offer contours (necessarily vertical lines) and use scatterplot
+ with colors to denote probability offers are accepted.
+\end_layout
+
+\begin_layout Plain Layout
+Panel (b) Draw regulator payoff contours
+\end_layout
+
+\begin_layout Plain Layout
+Panel (c) Draw regulator gain 
+\end_layout
+
+\end_inset
+
+Figure
+\end_layout
+
+\begin_layout Standard
+As discussed in the next section, the optimal second period offers the regulator
+ makes will depend on her beliefs about which parcels remain undeveloped.
+ In particular, if she believes that all parcels with private development
+ value above a particular threshhold were already developed, she will not
+ make an offer exceeding this value.
+ This shifts the distribution of optimal offers.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distribution of optimal offers by assumed upper bound remaining (baseline
+ scenario, signal quality = .5)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:baseHistOptOfferUB"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseHistOptOfferUB"
+
+\end_inset
+
+ illustrates the impact of changes in the upper bound remaining undeveloped
+ on the distribution of optimal offers for a signal that reveals 50% of
+ the variation in environmental service value.
+ The distribution on the far right of the figure corresponds to an upper
+ bound three standard deviations about the mean private development value,
+ while the distribution on the left corresponds to one xx standard deviations
+ about the mean private development value.
+ As expected, lowering the upper bound compresses the distribution and increases
+ the likelihood that offers are set at the lower bound of zero.
 \end_layout
 
 \begin_layout Standard
 Since there is no correlation between environmental service value and private
- development externalities, the landowners' knowledge gives them no private
- information about the offer they are likely to receive next period.
+ development externalities in this example, the landowners' knowledge gives
+ them no private information about the offer they are likely to receive
+ next period.
  Each landowner's expectations about offers received in period 2 mirrors
  that in Figure 
 \begin_inset CommandInset ref
@@ -604,40 +776,105 @@ reference "fig:baseHistOptOffer"
 
 \end_inset
 
-.
+ and since the mean privative development value is 1, parcels believe the
+ probability of receiving an offer that would induce them to conserve in
+ period 2 is quite low even if the regulator believes that most parcels
+ remain undeveloped.
+ Most parcels thus expect that they will end up developing in period 2 if
+ they have not already.
+ As a result, very few parcels expect to receive more than their private
+ development value if they conserve their land until period 2.
+ Since they must give up their private development value in period 1 in
+ order to conserve their land, most parcels will choose to develop immediately
+ instead.
+ This in turn, will reduce the regulators beliefs about parcels remaining
+ undeveloped and will lower offers further.
+ Since the conditions described in Section zz hold when there is no correlation,
+ we know that only parcels whose private development value is less than
+ or equal to the conservation payment offered in period 1 will conserve.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOut"
+
+\end_inset
+
+illustrates how the regulator's optimal initial offer and associated outcomes
+ vary with signal quality.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Optimal outcomes for regulator by signal quality (baseline scenario)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:baseOptOut"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Comparative Statics
+\end_layout
+
+\begin_layout Subsubsection
+Changing means and variances of distributions with no correlations
+\end_layout
+
+\begin_layout Paragraph
+Private Development Value mean and variance
 \end_layout
 
 \begin_layout Standard
-This section will present the simulation results in detail.
- Results are not especially interesting for a specific case, but we probably
- need to present one specific case in detail.
-\end_layout
+The regulator's strategy depends on the distribution of private development
+ values.
+ Because she does not know the true distribution of private values, the
+ regulator knows she will be making a payment to some parcels that would
+ not have been developed regardless.
+ She wants to balance this cost against the benefit of inducing more parcels
+ to develop.
+ As the mean development value increases, two effects occur: (1) fewer parcels
+ have negative private development values and thus fewer parcels will conserve
+ without payment.
+ This reduction in the probability of 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Standard
-Two types of results:
+wasted payments
+\begin_inset Quotes erd
+\end_inset
+
+ can lead to an increase in payments.
+ At the same time, the cost of purchasing environmental services through
+ payments increases, suggesting that regulators will choose to conserve
+ less
 \end_layout
 
 \begin_layout Itemize
-Aggregate
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-# of parcels induced to conserve that wouldn't without policy
-\end_layout
-
-\begin_layout Itemize
-# of parcels paid to conserve that would have anyway
-\end_layout
-
-\begin_layout Itemize
-net gain from policy -- raw and percentage of base payoff (need to check
- how I defined base payoff -- can it be negative?)
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Parcel specific
+With low signal quality, increasing the mean private value while holding
+ the probability lowers the optimal offer
 \end_layout
 
 \end_body
