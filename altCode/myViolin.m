@@ -1,4 +1,4 @@
-function[h,L,MX,MED,F,U]=myViolin(Y,probDensity,varargin)
+function[h,L,MX,MED,F,U]=myViolin(Y,probDensity,MX,MED,varargin)
 
 % create a violin plot based on a given probability density function. Modified from 
 
@@ -53,6 +53,9 @@ if iscell(Y)==0
     Y = num2cell(Y,1);
 end
 
+if ~iscell(probDensity)
+	probDensity = num2cell(probDensity,1);
+end
 %get additional input parameters (varargin)
 if isempty(find(strcmp(varargin,'xlabel')))==0
     xL = varargin{find(strcmp(varargin,'xlabel'))+1};
@@ -105,26 +108,15 @@ for i=1:size(Y,2)
 	%check whether we have a zero
     if Y{i}(1) == 0
 		probZero(i) = probDensity{i}(1);
+	else
+		probZero(i) = 0;
 	end
 	maxf(i) = max(probDensity{i});
 end
 maxF = max(maxf);
+
 for i=1:size(Y,2)
-    probDensity{i}=probDensity{i}/maxF*0.3;
-	cumProb = cumsum(probDensity{i})./sum(probDensity{i});
-	belowMedInds = find(cumProb<=0.5);
-	[~,lowMedInd] = max(cumProb(belowMedInds));
-	lowInd=belowMedInds(lowMedInd);
-	aboveMedInds = find(cumProb>=.5);
-	[~,highMedInd] = min(cumProb(aboveMedInds));
-	highInd=aboveMedInds(highMedInd);
-	if any(belowMedInds)
-		MED(:,i)=(Y{i}(lowInd)*probDensity{i}(lowInd)+Y{i}(highInd)*probDensity{i}(highInd))./(probDensity{i}(lowInd)+probDensity{i}(highInd));
-	else
-		MED(:,i)= min(Y{i});
-	end
-    MX(:,i)= (Y{i}'*probDensity{i})/sum(probDensity{i});
-   
+	probDensity{i}=.3*probDensity{i}/maxF;
 end
 %%
 %-------------------------------------------------------------------------
@@ -190,8 +182,14 @@ end
 if plotlegend==1 & plotmean==1 | plotlegend==1 & plotmedian==1
     
     if plotmean==1 & plotmedian==1
-        L=legend([p(1) p(4) p(2)],'Mean','Median','Prob at Boundary','location','southOutside');
-    elseif plotmean==0 & plotmedian==1
+		if any(probZero)
+			L=legend([p(1) p(4) p(2)],{'Mean','Median','Prob at Boundary'},'location','southOutside');
+		elseif any(probAtMax)
+			L=legend([p(1) p(4) p(3)],{'Mean','Median','Prob at Boundary'},'location','southOutside');
+		else
+			L=legend([p(1) p(4)],{'Mean','Median'},'location','southOutside');
+		end
+	elseif plotmean==0 & plotmedian==1
         L=legend([p(2)],'Median');
     elseif plotmean==1 & plotmedian==0
         L=legend([p(1)],'Mean');

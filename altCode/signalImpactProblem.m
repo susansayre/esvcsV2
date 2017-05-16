@@ -31,6 +31,10 @@ if newRun
 		'rho.e_rp'	'correlation between env and priv values'			'\rho_{\env\priv}'	0;
 		'rho_ratio'	'ratio of correlation to signal'					'\sigShr*\rho_{\se\rp}/\rho_{\env\rp}' 1;
 		'pubVal'	'public development value'							'\pub'			0;
+		'valueType'	'set values on mean/var (0) or ratio/probNeg (1)'	''				1;
+		'meanPriv'	''													''				1;
+		'sig.env'	''													''				-1/norminv(.1);
+		'sig.rp'	''													''				-1/norminv(.1);
 	};
 
 	%note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of
@@ -48,26 +52,15 @@ if newRun
 	%list of values to run or a set of values to make a grid from. Use the first element to indicate whether it should be a cross (1) or straight (0) 
 	compStatRunDescriptions = {
 			%cross?	%1-paramName	2-compStatType	3-values
-			1		{'rho.e_rp'		1				0;
-					 'probPNeg'		1				[.1 .2];
-					 'probENeg'		1				[.1	.2];
-					 'meanRatio'	1				[.5 1 1.5]}; %baseline case
-% 			1		{'rho_ratio'	1				[.25 .75]; %share of correlation that's resolved by signal
-% 					 'rho.e_rp'		1				[-.5 .5]}; %true correlation
-	% 		1		{'rho_ratio'	1				1;
-	% 				 'rho.e_rp'		1				.75};
-	%		1		{'sigShr'		1				[.5]
-	%				 'rho.se_rp'	1				[-.5 -.25 0 .25 .5]};	
-	%		1		{'sigShr'		1				[.5]
-	%				 'rho.e_rp'		1				[-.5 -.25 0 .25 .5]};
-	% 		1		{'sigShr'		1				[.75]
-	% 				 'rho.e_rp'		1				[.1]
-	% 				 'rho.se_rp'	1				[0 .1]
-	% 				 'meanPub'		1				[10 5 0]}
-	%				 'rho.e_rp'		1				[-.5 0	.5]}
-	% 		1		{'sigShr'		1				[.25]
-	% 				 'rho.se_rp'	1				[.5]
-	% 				 'rho.e_rp'		1				[-.5]}
+% 			1		{'rho.e_rp'		1				0;
+% 					 'probPNeg'		1				[.1 .2];
+% 					 'probENeg'		1				[.1	.2];
+% 					 'meanRatio'	1				[.5 1 1.5]}; %baseline case
+%			1		{'valueType'	1				0;
+% 					 'meanPriv'		1				[.5 .75 1 1.25 1.5];
+% 					 'sig.rp'		1				-1./norminv([.05 .1 .15 .2 .25 .3])};
+ 			1		{'rho_ratio'	1				[.25 .75]; %share of correlation that's resolved by signal
+ 					 'rho.e_rp'		1				[-.5 .5]}; %true correlation
 			};
 
 	setUpExperiment

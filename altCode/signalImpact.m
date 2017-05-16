@@ -1,8 +1,12 @@
 function allOutput = signalImpact(P,sigShrVals)
 
-P.meanPriv = P.meanEnv*P.meanRatio;
-P.sig.env = -P.meanEnv/norminv(P.probENeg);
-P.sig.rp = -(P.pubVal+P.meanPriv)/norminv(P.probPNeg);
+if P.valueType
+	%valueType = 1 so use ratio and probNeg to set mean and sig
+	%if valueType = 0, this block won't be triggered and we'll use the specified meanPriv and sig values directly
+	P.meanPriv = P.meanEnv*P.meanRatio;
+	P.sig.env = -P.meanEnv/norminv(P.probENeg);
+	P.sig.rp = -(P.pubVal+P.meanPriv)/norminv(P.probPNeg);
+end
 regInfoRowVary = {'se' 'privUB'};
 numRIRV = numel(regInfoRowVary);
 
@@ -20,9 +24,9 @@ end
 clear jj
 
 P.wgtP2 = 1;
-numSig = 51;
+numSig = 501;
 numUB = 6;
-signalZVals = qnwnorm(numSig); %generate signal values to investigate based on distribution if sigShr =1;
+signalZVals = 10*(-1:2/(numSig-1):1)';
 UBVals = P.meanEnv*[(0:1/(numUB-2):1) P.meanEnv+10*P.sig.env];
 [signalZMat,UBMat] = ndgrid(signalZVals,UBVals);
 reg2outputVars = {'offer','regPay','probAccept'};
@@ -55,15 +59,16 @@ for ii=1:numel(sigShrVals)
 	
 	%rough cut at period 1 problem for landowner
 	bigSignalMat = repmat(thisP.sig.se*signalZMat(:)',numPriv,1);
-	probSignalLand = reshape(normpdf(bigSignalMat(:),thisP.sig.se/thisP.sig.rp*thisP.rho.se_rp*(privMat(:)-thisP.meanPriv-thisP.pubVal),thisP.sig.se*sqrt(1-thisP.rho.se_rp^2)),numPriv,numel(signalZMat));
-	bigOfferMat = repmat(p2CondVals(offerInd,:),numPriv,1);
-	allOutput.p2.expOfferMat(:,:,ii) = squeeze(sum(reshape(bigOfferMat.*probSignalLand,[numPriv numSig numUB]),2));
+	probSignalLand = reshape(normpdf(bigSignalMat(:),thisP.sig.se/thisP.sig.rp*thisP.rho.se_rp*(privMat(:)-thisP.meanPriv-thisP.pubVal),thisP.sig.se*sqrt(1-thisP.rho.se_rp^2)),[numPriv numSig numUB]);
+	bigOfferMat = reshape(repmat(p2CondVals(offerInd,:),numPriv,1),[numPriv numSig numUB]);
+	allOutput.p2.expOfferMat(:,:,ii) = squeeze(sum(bigOfferMat.*probSignalLand,2)./sum(probSignalLand,2));
 	allOutput.p2.conserveGainMat(:,:,ii) = allOutput.p2.expOfferMat(:,:,ii) - privValMat;
 	startPoint = thisP.meanEnv;
 	options = optimset('Display','iter','GradObj','on');
 % 	
 % 	thisPhat = rmfield(thisP,'reg2Approx');
 	disp('starting fmincon')
+	regPayFullReal(startPoint,thisP)
 	[optTempPay,~,exf] = fmincon(@(tempPay) regPayFullReal(tempPay,thisP),startPoint,[],[],[],[],0,100,'',options);		
 	if exf>0
 		fullOut = regPayFullReal(optTempPay,thisP,1);
