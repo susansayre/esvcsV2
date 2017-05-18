@@ -2,7 +2,7 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass article
+\textclass svglobal3
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -25,6 +25,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -214,7 +215,7 @@ This section is the math version.
 
 
 \begin_inset FormulaMacro
-\newcommand{\rp}{\pi}
+\newcommand{\rp}{\eta}
 \end_inset
 
 
@@ -260,6 +261,26 @@ This section is the math version.
 
 \begin_inset FormulaMacro
 \newcommand{\ew}{\delta}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\regPay}{\payEnd}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\choice}{c}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\sigShrS}{\gamma}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\sigShr}{\gamma^{2}}
 \end_inset
 
 The relationship between ecosystem service provision and landuse is both
@@ -383,26 +404,18 @@ on versus development.
 \begin_layout Standard
 The key tradeoff in the model is between waiting for better information
  and conserving land today.
- Thus, at time 0, the regulator knows only the mean of 
+ At time 0, the regulator knows only distribution of possible values of
+ 
 \begin_inset Formula $\env_{i}$
 \end_inset
 
- across all parcels, represented by 
-\begin_inset Formula $\meanE$
-\end_inset
-
 .
- At time 1, the regulator learns additional information that provides a
- signal about the environmental service value of an individual parcel.
- The value of this signal is 
+ At time 1, the regulator observes a signal 
 \begin_inset Formula $\se_{i}$
 \end_inset
 
-.
- Assuming that the regulator has an unbiased estimate of the mean ecosystem
- service value, the expected value of the signal for each parcel must be
- 0.
- The true ecosystem service value of the parcel can be written
+ about the environmental service value of an individual parcel.
+ The true ecosystem service value of the parcel is given by
 \begin_inset Formula 
 \[
 \env_{i}=\se_{i}+\re_{i}
@@ -414,27 +427,592 @@ where
 \begin_inset Formula $\re_{i}$
 \end_inset
 
- is a mean 
-\begin_inset Formula $\meanE$
+ represents the the remaining uncertainty about ecosystem service provision
+ level after the new information is observed.
+ For analytical tractability, I assume that the variable have a multivariate
+ normal distribution with the form
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+\se_{i}\\
+\priv_{i}\\
+\env_{i}\\
+\pub_{i}
+\end{array}\right]\sim N_{4}\left(\left[\begin{array}{c}
+0\\
+\mu_{\priv}\\
+\mu_{\env}\\
+\mu_{\pub}
+\end{array}\right],\left[\begin{array}{cccc}
+\sigShr\sigma_{\env}^{2} & \sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigShr\sigma_{\env}^{2} & 0\\
+\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2}+\sigma_{\pub}^{2} & \rho_{\env\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\pub}^{2}\\
+\sigShr\sigma_{\env}^{2} & \rho_{\env\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\env}^{2} & 0\\
+0 & \sigma_{\pub}^{2} & 0 & \sigma_{\pub}^{2}
+\end{array}\right]\right).
+\]
+
 \end_inset
 
- deviation representing the remaining uncertainty about ecosystem service
- provision level after the new information is observed.
+Since linear combinations of multivariate normal variables also have a multivari
+ate normal distribution, the structure above implies that 
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+\se_{i}\\
+\rp_{i}\\
+\re_{i}
+\end{array}\right]\sim N_{4}\left(\left[\begin{array}{c}
+0\\
+\meanP\\
+\meanE
+\end{array}\right],\left[\begin{array}{ccc}
+\sigShr\sigma_{\env}^{2} & \sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & 0\\
+\sigShrS\rho_{\se\rp}\sigma_{\env}\sigma_{\rp} & \sigma_{\rp}^{2} & \left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\sigma_{\env}\sigma_{\rp}\\
+0 & \left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right) & \left(1-\sigShr\right)\sigma_{\env}^{2}
+\end{array}\right]\right).
+\]
+
+\end_inset
+
+This structure has a number of important features.
+ First, note that 
+\begin_inset Formula $\sigShrS\in\left(0,1\right)$
+\end_inset
+
+ measures the quality of the signal.
+ As 
+\begin_inset Formula $\sigShrS\to1$
+\end_inset
+
+, the variation in the remaining parcel specific deviations approaches 0,
+ implying that all uncertainty is removed.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\sigShrS=1$
+\end_inset
+
+ (i.e.
+ the signal perfectly reveals the ecosystem service value) or 
+\begin_inset Formula $\sigShrS=0$
+\end_inset
+
+ (i.e.
+ the signal is the same for every parcel), many of the expressions below
+ are undefined.
+\end_layout
+
+\end_inset
+
+ As 
+\begin_inset Formula $\sigShrS\to0$
+\end_inset
+
+, the variation in observed signals also approaches zero, implying that
+ the regulator will observe uniformative signals for all parcels and the
+ regulator's degree of uncertainty will remain unchanged.
+ The signal provides no information about the remaining deviation, hence
+ the zero correlation between 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\re_{i}$
+\end_inset
+
+.
+ The general structure above allows for a variety of correlations between
+ the remaining variables.
 \end_layout
 
 \begin_layout Subsection
-Single period optimal policy
+Optimal responses
+\end_layout
+
+\begin_layout Subsubsection
+Regulator's final period offer
 \end_layout
 
 \begin_layout Standard
-This section will mathematically characterize the regulator's optimal policy
- in period 2.
- Most of this is written already in the analytical deviations document.
+At time 
+\begin_inset Formula $T,$
+\end_inset
+
+ the regulator knows the value of 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\pub_{i}$
+\end_inset
+
+ and the conditional distributions of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\env_{i}$
+\end_inset
+
+ and can offer a payment 
+\begin_inset Formula $\offer_{i}>0$
+\end_inset
+
+ to the landowner in exchange for conserving the land.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Given the multivariate normal assumption, there is a probability that the
+ regulator might want to set 
+\begin_inset Formula $\offer_{i}<0$
+\end_inset
+
+ to induce a landowner to develop land the landowner would prefer to conserve,
+ but this option is not considered in this analysis.
+\end_layout
+
+\end_inset
+
+ Under conditions described below, the regulator infers that there is an
+ upper bound (
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+) for the private development value of land that has not yet been converted.
+ Since this is the last period, the landowner will accept the offer if 
+\begin_inset Formula $\priv_{i}\leq\offer_{i}$
+\end_inset
+
+ .
+ The regulator will not make an offer above 
+\begin_inset Formula $\bar{\priv}$
+\end_inset
+
+ because the regulator could lower the offer to 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ and maintain perfect certainty that the parcel will be conserved.
+ The regulator's expected payoff
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Strictly speaking, this expression is the expected payoff assuming 
+\begin_inset Formula $\offer_{i}\leq\ubPriv$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+ for a parcel is the probability the parcel is conserved in the second period
+ times the expected payoff conditional on conservation plus the (known)
+ public development value times the probability the parcel is developed
+ or 
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
+\]
+
+\end_inset
+
+Note that this expression is independent of 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+, so the upper bound affects the problem only through the constraint that
+ 
+\begin_inset Formula $\offer_{i}\leq\ubPriv$
+\end_inset
+
+.
+ As shown in the appendix, under the multivariate normal assumption, this
+ expression can be simplified to
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
+\]
+
+\end_inset
+
+The Lagrangian for the regulator's problem is 
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\offer_{i},\lambda;\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)-\lambda_{1}\left(\offer_{i}-\ubPriv_{i}\right)+\lambda_{2}\offer_{i}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ is the Lagrange multiplier on the upper bound and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ is the multiplier on the nonnegativity constraint.
+ The first-order condition for an interior solution is
+\begin_inset Formula 
+\[
+\frac{\partial\payEnd}{\partial\offer_{i}}\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\frac{df_{\priv|\se,\pub}}{d\priv}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)=0.
+\]
+
+\end_inset
+
+Note that 
+\begin_inset Formula $\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)=\sigma_{\re\rp}$
+\end_inset
+
+ or the covariance between the two remaining sources of uncertianty.
+ Since 
+\begin_inset Formula $\priv_{i}|\se_{i},\pub_{i}$
+\end_inset
+
+ has a normal distribution, we know that
+\begin_inset Formula 
+\[
+\frac{df_{\priv|\se,\pub}}{d\priv}\left(\offer_{i}|\se_{i},\pub_{i}\right)=-\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}^{2}}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
+\]
+
+\end_inset
+
+giving us
+\begin_inset Formula 
+\[
+\left(\sigma_{\re\rp}\frac{\offer_{i}-\mu_{\priv|\se,\pub}}{\sigma_{\priv|\se,\pub}^{2}}+\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)=F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right).
+\]
+
+\end_inset
+
+The right hand side of this expression is the marginal cost of increasing
+ the offer and is equivalent to the probability that the offer is accepted.
+ The left-hand side is the marginal benefit of increasing the offer and
+ is given by the probability that increasing the offer changes the landowner's
+ conservation decision times the expected gain, conditional on the parcel
+ being marginal.
+ 
 \end_layout
 
 \begin_layout Standard
-Parcel specific offers depend 
-\begin_inset Formula $\mu_{\env_{t}},\sigma_{\env t},$
+Figure 
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\ubPriv_{i}\right)$
+\end_inset
+
+ be the solution to this optimization problem and let 
+\begin_inset Formula $\payEnd^{*}\left(\se_{i},\pub_{i},\ubPriv\right)$
+\end_inset
+
+ be the optimized period 2 payoff.
+ We can use the envelope theorem and the implict function theorem to derive
+ expressions for the comparative statics of the offers and regulator payoffs
+ with respect to 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $\ubPriv_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\pub_{i}$
+\end_inset
+
+.
+ The envelope theorem tells us that 
+\begin_inset Formula 
+\[
+\frac{\partial\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=\lambda
+\]
+
+\end_inset
+
+Note that if 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)<\ubPriv$
+\end_inset
+
+, then 
+\begin_inset Formula $\lambda=0$
+\end_inset
+
+ and the upper bound does not influence our problem.
+ If 
+\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\ubPriv_{i}$
+\end_inset
+
+, then 
+\begin_inset Formula $\lambda=\frac{\partial\payEnd}{\partial\offer}\left(\ubPriv,\se_{i}\pub_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Landowner's prior period decision
+\end_layout
+
+\begin_layout Standard
+The upper bound on parcels that remain undeveloped at time 
+\begin_inset Formula $T$
+\end_inset
+
+ depends on landowners' decision at time 0.
+ At this time, the landowner must decide whether to develop her land immediately
+ and receive a payoff of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ in every period or to accept the regulator's offered conservation payment
+ 
+\begin_inset Formula $\temp_{i}$
+\end_inset
+
+ for this period and retain the option to conserve or develop her land at
+ time 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ The landowner knows her own value 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+, which may give her private information about the likelihood of possible
+ values of 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+ and in turn influence her expectation about the optimized offers she might
+ receive the next period.
+ In particular, 
+\begin_inset Formula $\se_{i}|\priv_{i},\pub_{i}\sim N\left(\rho_{\se\rp}\frac{\sigShrS\sigma_{\env}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigShr\sigma_{\env}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right).$
+\end_inset
+
+ This induces a subjective distribution of possible offers 
+\begin_inset Formula $f_{\offer|\priv}\left(\offer|\priv_{i}\right)$
+\end_inset
+
+, implying that the benefit of conservation for the landowner is 
+\begin_inset Formula 
+\[
+B\left(\priv_{i}\right)=\temp_{i}+\ew\left(\intop_{0}^{\priv_{i}}\priv_{i}f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer+\intop_{\priv_{i}}^{\infty}\offer f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer\right)-\priv_{i}\left(1+\ew\right).
+\]
+
+\end_inset
+
+When 
+\begin_inset Formula $\priv_{i}\leq0,$
+\end_inset
+
+ this expression is necessarily positive, implying that parcels that prefer
+ conservation in the absence of payments will conserve regardless.
+ We thus know there is a value 
+\begin_inset Formula $\ubPriv\in\left[0,\infty\right]$
+\end_inset
+
+ such that any parcel with 
+\begin_inset Formula $\priv_{i}\leq\ubPriv$
+\end_inset
+
+ will prefer to conserve her land in the initial period.
+ If 
+\begin_inset Formula $\frac{dB}{d\priv}$
+\end_inset
+
+ is always negative, we also know that there will be a unique threshhold
+ value beyond which all parcels will prefer to develop immediately.
+ 
+\begin_inset Formula 
+\[
+\frac{dB}{d\priv}=\delta\left(\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\priv_{i}\intop_{0}^{\priv}\frac{\partial f_{\offer|\priv}}{\partial\priv}\left(\offer|\priv_{i}\right)d\offer-\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\intop_{\priv}^{\infty}\offer\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\right)
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\frac{dB}{d\priv}=\delta\left(\priv_{i}+\intop_{\priv}^{\infty}\left(\offer-\priv_{i}\right)\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\left(1-F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)\right)\right).
+\]
+
+\end_inset
+
+The second term is unambiguously negative.
+ Thus the benefit of conservation can only increase with 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ if the first term is positive and large enough to overcome the second term.
+ This can only occur if higher values of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ substantially increase the probability of receiving an offer larger than
+ 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+.
+ Moreover, note that since 
+\begin_inset Formula $\intop_{0}^{\infty}f_{\offer|\priv}\left(\offer|\priv_{i}\right)=1$
+\end_inset
+
+ for all values of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial f}{\partial\priv_{i}}$
+\end_inset
+
+ cannot be positive everywhere.
+ Thus, under most conditions, there will be a unique threshhold value 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ such that parcels below this value conserve their land and parcels above
+ this value develop their land.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In the simulations described below, the sign of 
+\begin_inset Formula $\frac{dB}{d\priv}$
+\end_inset
+
+ was checked in all simulations.
+ A positive sign was observed over some intervals, but the increase was
+ never large enough to violate the single threshhold condition.
+ This does not rule out the possibility that the threshhold would be violated
+ under alternate parameterizations.
+\end_layout
+
+\end_inset
+
+ Moreover, when there is no correlation between the private development
+ and the public development value, the distribution of offers will be independen
+t of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+ and we know there will be a unique threshhold.
+ 
+\end_layout
+
+\begin_layout Standard
+When a unique threshhold exists, its value solves the equation 
+\begin_inset Formula $B\left(\ubPriv\right)=0$
+\end_inset
+
+.
+ For the parcel at this threshhold, 
+\begin_inset Formula $\priv_{i}=\ubPriv$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{\offer|\priv}\left(\offer|\priv_{i}\right)=0$
+\end_inset
+
+ for any value of 
+\begin_inset Formula $\offer>\ubPriv$
+\end_inset
+
+ since the landowner knows that the regulator will never make an offer higher
+ than this.
+ As a result, the landowner knows it will receive a payoff of 
+\begin_inset Formula $_{i}$
+\end_inset
+
+ in the following period -- either because the regulator offers exactly
+ 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ and the landowner accepts or because the regulator offers 
+\begin_inset Formula $\offer_{i}<\ubPriv$
+\end_inset
+
+ and the landowner chooses to develop.
+ We therefore have 
+\begin_inset Formula 
+\[
+B\left(\ubPriv\right)=\temp_{i}+\ew\ubPriv-\ubPriv_{i}\left(1+\ew\right)=0
+\]
+
+\end_inset
+
+implying that the threshhold value is 
+\begin_inset Formula $\ubPriv=\temp_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Regulator's initial period offer
+\end_layout
+
+\begin_layout Standard
+At time 0, the regulator knows only distribution of 
+\begin_inset Formula $\se_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+, and 
+\begin_inset Formula $\env_{i}$
+\end_inset
+
+ and can offer landowner's a single period payment 
+\begin_inset Formula $\temp_{i}$
+\end_inset
+
+ in exchange for preserving their land until time 
+\begin_inset Formula $T$
+\end_inset
+
+ at which point the regulator can make another offer that the landowner
+ is free to accept or reject.
+ The regulator's problem is 
+\begin_inset Formula 
+\[
+\max_{\temp_{i}>0}\mathbb{E}_{\priv_{i}}\left\{ \choice_{i}\left(\mu_{\env|\priv_{i}}-\temp_{i}+\ew\pub_{i}\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\leq p_{i}\right)\right)+\delta\left(\mu_{\env|\choice\left(\priv,\pub|\Sigma\right)=1}-\mathbb{E}_{\offer^{*}|\offer^{*}>\priv_{i}}\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)>\priv_{i}\right)\right)\right\} 
+\]
+
+\end_inset
+
+If the assumption of an upper bound is valid, the problem becomes much easier.
+ In this case, the regulator knows that all landowners with 
+\begin_inset Formula $\priv_{i}>\ubPriv=\temp_{i}$
+\end_inset
+
+ will develop and all others will conserve.
+ This means that the regulator's full payoff is given by
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\temp_{i}}\intop_{-\infty}^{\infty}\left(\env-\temp_{i}\right)f_{\env|\pub,\priv}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\intop_{\temp_{i}}^{\infty}\pub_{i}f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv=\temp_{i}\right)f_{\se|\pub}\left(\se|\pub_{i}\right)d\se.
+\]
+
+\end_inset
+
+As shown in the appendix, this can be simplified to 
+\begin_inset Formula 
+\[
+\pub_{i}+F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\left(\meanE-\temp_{i}-\pub_{i}\right)-\sigma_{\env}\rho_{\env\rp}\sigma_{\rp}f_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
 \end_inset
 
 
@@ -547,16 +1125,15 @@ name "fig:baseOptOffer"
 \end_layout
 
 \begin_layout Plain Layout
-Graph with signal on the horizontal axis and optimal offer on the vertical
- axis.
-\end_layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2Offerexp1case8.eps
+	width 75text%
+	clip
 
-\begin_layout Plain Layout
-Include the mean environmental service value minus pub value on the graph
-\end_layout
+\end_inset
 
-\begin_layout Plain Layout
-Possibly also include mean env - pub - meanPriv
+
 \end_layout
 
 \end_inset
@@ -565,7 +1142,7 @@ Possibly also include mean env - pub - meanPriv
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -592,7 +1169,7 @@ Period 2 Regulator Outcomes by Signal and Private Development Value (Baseline
 
 In the absence of correlation between the private development externality
  and the ecosystem service value, the optimal offer made to a parcel with
- a given signal does not change.
+ a given signal does not change as the signal quality increases.
  However, the signal quality does influence the likelihood of observing
  different signals.
  A low signal quality implies that most observed signals provide little
@@ -639,9 +1216,33 @@ name "fig:baseHistOptOffer"
 
 \end_layout
 
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2offerHistMaxUBexp1case8.eps
+	width 75text%
+
 \end_inset
 
- As Figure 
+
+\end_layout
+
+\end_inset
+
+ The width of each blue bar gives the probability an offer in that vertical
+ interval is made, while the red stars indicate the mean offer made.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Note that the horizontal axis in this figure is categorical representing
+ the different signal qualities for which the model was run.
+ The numerical distance between points on the graph is not constant.
+\end_layout
+
+\end_inset
+
+As Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseHistOptOffer"
@@ -656,19 +1257,40 @@ reference "fig:baseHistOptOffer"
 \end_layout
 
 \begin_layout Standard
+Based on the offer received, a parcel will fall into one of four categories:
+ (1) parcels that will be developed regardless of the offer made, either
+ because the offer is low or the private development value is high, (2)
+ parcels that will receive no offer, but will be conserved anyway because
+ it is privately optimal to do so, (3) parcels that would have conserved
+ without an offer but receive and accept a positive offer, and (4) parcels
+ that are induced to conserve because of the payment.
+ Parcels in the first two categories make the same contribution to the regulator
+'s payoff as they would without a PES plan.
+ Parcels in the third category reflect costly but non-additional conservation
+ and make smaller contribution's to the regulator's payoff under the PES
+ plan than they would without a plan.
+ Parcels in the fourth category represent the gain of the PES plan.
+ As the offer increases, the regulator must weigh the cost of additional
+ losses on parcels in category 3 against increased gains for moving more
+ parcels from category 1 to category 4.
+ 
 \begin_inset Float figure
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Period 2 outcomes by signal and private development value
+Parcel specific gains and losses by signal quality (baseline scenario)
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:privSigContours"
+name "fig:baseRegGain"
 
 \end_inset
 
@@ -681,34 +1303,68 @@ name "fig:privSigContours"
 \end_layout
 
 \begin_layout Plain Layout
-multipanel graph with signal on the horizontal axis (measured in sd from
- mean) and private development value on the vertical axis.
- Consider marking meanPriv, +/- one sd of privVal, condMeanEnv and +/- one
- sd of condEnv value.
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/regGainMidUBexp1case8.eps
+	width 95text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+The top row of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseRegGain"
+
+\end_inset
+
+ identifies which parcels will fall into each category for three different
+ signal qualities.
+ In each panel, the private development value increases along the vertical
+ axis while the horizontal axis identifies the number of standard deviations
+ the observed signal is from its mean (which is always 0).
+ The graph extends to +/- two standard deviations from the mean private
+ development value, which is identified by the horizontal line at 1.
+ The dashed lines illustrate the +/- one standard deviation interval.
+ The gray shaded area covers the parcels that always develop (e.g.
+ category (1)), while the blank area in the lower left are the parcels that
+ will always conserve that are never made offers (e.g.
+ category (2)).
+ The orange shading illustrates category (3) -- expected regulator losses
+ on payments for non-addtional conservation, while the purple shading indicates
+ category (4) -- expected regulator gains on additional conservation.
+ Since the regulator does not observe private development value, offers
+ vary only horizontally in the figure.
+ Moreover, since there is no correlation between private development value
+ and actual ecosystem service value, expected services also vary only horizontal
+ly in the picture.
+ Thus, the only impact that private development has on the gain a regulator
+ expects to receive from a parcel with a given signal is driven by which
+ of the four categories th parcel belongs to.
+ As we increase signal quality moving along the top row of the figure, we
+ see that the parcels in categories (2) and (3) remain constant, but that
+ the losses on parcels in category (3) increase.
+ At the same time, the regulator is able to profitably induce more parcels
+ to conserve so more parcels are moved from category (1) to (4) and the
+ expected gains on parcels in category (4) increase.
  
 \end_layout
 
-\begin_layout Plain Layout
-Panel (a) Draw offer contours (necessarily vertical lines) and use scatterplot
- with colors to denote probability offers are accepted.
-\end_layout
-
-\begin_layout Plain Layout
-Panel (b) Draw regulator payoff contours
-\end_layout
-
-\begin_layout Plain Layout
-Panel (c) Draw regulator gain 
-\end_layout
-
-\end_inset
-
-Figure
-\end_layout
-
 \begin_layout Standard
-As discussed in the next section, the optimal second period offers the regulator
- makes will depend on her beliefs about which parcels remain undeveloped.
+The top row of the figure illustrates the outcome if all parcels whose private
+ development value is less than 8 standard deviations above the mean remain
+ undeveloped at the start of period.
+ As discussed in the next section, the optimal second period offers the
+ regulator makes will depend on her beliefs about which parcels remain undevelop
+ed.
  In particular, if she believes that all parcels with private development
  value above a particular threshhold were already developed, she will not
  make an offer exceeding this value.
@@ -717,7 +1373,7 @@ As discussed in the next section, the optimal second period offers the regulator
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -740,6 +1396,13 @@ name "fig:baseHistOptOfferUB"
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2offerHistMedSignalexp1case8.eps
+	width 75text%
+
+\end_inset
+
 
 \end_layout
 
@@ -756,7 +1419,7 @@ reference "fig:baseHistOptOfferUB"
  on the distribution of optimal offers for a signal that reveals 50% of
  the variation in environmental service value.
  The distribution on the far right of the figure corresponds to an upper
- bound three standard deviations about the mean private development value,
+ bound three standard deviations above the mean private development value,
  while the distribution on the left corresponds to one xx standard deviations
  about the mean private development value.
  As expected, lowering the upper bound compresses the distribution and increases
@@ -792,6 +1455,8 @@ reference "fig:baseHistOptOffer"
  Since the conditions described in Section zz hold when there is no correlation,
  we know that only parcels whose private development value is less than
  or equal to the conservation payment offered in period 1 will conserve.
+ The regulator's decision about the offer to make in period 1 will thus
+ determine the upper bound for the period 2 offer.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -827,6 +1492,13 @@ name "fig:baseOptOut"
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/exp1case8compareOuts.eps
+	width 95text%
+
+\end_inset
+
 
 \end_layout
 
@@ -875,6 +1547,301 @@ wasted payments
 \begin_layout Itemize
 With low signal quality, increasing the mean private value while holding
  the probability lowers the optimal offer
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Detailed mathematical derivations
+\end_layout
+
+\begin_layout Subsection
+Simplification of regulator's single period payoff
+\end_layout
+
+\begin_layout Standard
+The regulator's single period payoff as a function of the payment offered
+ is given by
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
+\]
+
+\end_inset
+
+The multivariate normal assumption allows us to simplify this expression
+ considerably.
+ First, note that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{\env|\se,\priv}\left(\se_{i},\priv_{i}\right)=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\priv_{i}+\meanE-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}
+\]
+
+\end_inset
+
+so the first inner integral can be rewritten as
+\begin_inset Formula 
+\begin{eqnarray*}
+\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env & = & \intop_{-\infty}^{\infty}\env f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env-\intop_{-\infty}^{\infty}\offer_{i}f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env\\
+ & = & \mu_{\env|\se,\priv}\left(\se_{i},\priv\right)-\offer_{i}\\
+ & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\priv_{i}+\mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}
+\end{eqnarray*}
+
+\end_inset
+
+To simplify derivations, let 
+\begin_inset Formula $\alpha=\mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}$
+\end_inset
+
+ and let 
+\begin_inset Formula $\beta=\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}$
+\end_inset
+
+.
+ The full first integral is thus
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\offer_{i}}\left(\alpha+\beta p\right)f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\intop_{-\infty}^{\offer_{i}}pf_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp.
+\]
+
+\end_inset
+
+The latter integral can also be simplified under the normality assumption
+ to
+\begin_inset Formula 
+\[
+\sigma_{\priv|\se,\pub}^{2}\left(-f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)+\mu_{\priv|\se,\pub}F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right).
+\]
+
+\end_inset
+
+Combining elements, we have the full first integral as
+\begin_inset Formula 
+\[
+\alpha F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\beta\left(\sigma_{\priv|\se,\pub}^{2}\left(-f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)+\mu_{\priv|\se,\pub}F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)\right)
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right).
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The second integral in our original expression is 
+\begin_inset Formula 
+\begin{eqnarray*}
+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp & = & \pub_{i}\left(1-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)
+\end{eqnarray*}
+
+\end_inset
+
+Putting all the pieces together gives
+\begin_inset Formula 
+\begin{eqnarray*}
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right) & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}\left(1-F_{\priv|\se,\pub}\left(\offer|\se_{i},\pub_{i}\right)\right)\\
+ & = & \left(\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)-\beta\sigma_{\priv|\se,\pub}^{2}f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\pub_{i}
+\end{eqnarray*}
+
+\end_inset
+
+We also know that
+\begin_inset Formula 
+\[
+\mu_{\priv|\se,\pub}=\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta\mu_{\priv|\se,\pub} & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}+\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}\right)\\
+ & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\se_{i}
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\alpha+\beta\mu_{\priv|\se,\pub}-\pub_{i} & = & \mu_{\env}-\frac{\sigma_{\rp}\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)\se_{i}+\sigShrS\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\left(\pub_{i}+\mu_{\rp}\right)}{\sigShrS\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}-\offer_{i}+\frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)\rho_{\se\rp}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\se_{i}-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}-\se_{i}\left(\frac{\left(\rho_{\env\rp}\rho_{\se\rp}-\sigShrS\right)-\rho_{\se\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\right)-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}-\se_{i}\left(\frac{\rho_{\env\rp}\rho_{\se\rp}-\sigShrS-\rho_{\se\rp}\rho_{\env\rp}+\sigShrS\rho_{\se\rp}^{2}}{\sigShrS\left(1-\rho_{\se\rp}^{2}\right)}\right)-\pub_{i}\\
+ & = & \mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}
+\end{eqnarray*}
+
+\end_inset
+
+Finally, note that
+\begin_inset Formula 
+\[
+\sigma_{\priv|\se,\pub}^{2}=\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta\sigma_{\priv|\se,\pub}^{2} & = & \frac{\sigma_{\env}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)}{\sigma_{\rp}\left(1-\rho_{\se\rp}^{2}\right)}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\\
+ & = & \sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right).
+\end{eqnarray*}
+
+\end_inset
+
+Putting all these pieces together, we have
+\begin_inset Formula 
+\[
+\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Expected value of no offer given upper bound
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+ & = & \intop_{-\infty}^{0}\intop_{-\infty}^{\infty}\env f_{\env|\priv,\pub}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub,\priv\leq\bar{\priv}}\left(\priv\right)d\priv+\pub_{i}\intop_{0}^{\bar{\priv}}f_{\priv|\pub,\priv\leq\bar{\priv}}\left(\priv\right)d\priv\\
+ & = & \frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\intop_{-\infty}^{0}\mu_{\env|\priv,\pub}\left(\priv,\pub_{i}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\pub_{i}\left(F_{\priv|\pub}\left(\bar{\priv}|\pub_{i}\right)-F_{\priv|\pub}\left(0|\pub_{i}\right)\right)\right]\\
+ & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\intop_{-\infty}^{0}\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\priv\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv-\pub_{i}F_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
+ & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\mu_{\priv|\pub}-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
+ & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
+ & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Regulator's initial period payoff
+\end_layout
+
+\begin_layout Standard
+In the text, the regulator's initial period payoff assuming the upper bound
+ assumption is valid is given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\temp_{i}}\intop_{-\infty}^{\infty}\left(\env-\temp_{i}\right)f_{\env|\pub,\priv}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\intop_{\temp_{i}}^{\infty}\pub_{i}f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv=\temp_{i}\right)f_{\se|\pub}\left(\se|\pub_{i}\right)d\se.
+\]
+
+\end_inset
+
+which can be rewritten
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\temp_{i}}\left(\mu_{\env|\priv,\pub}\left(\priv,\pub_{i}\right)-\temp_{i}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\pub_{i}\left(1-F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\intop_{-\infty}^{\temp_{i}}\left(\priv\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}+\meanE-\temp_{i}-\left(\mu_{\rp}+\pub_{i}\right)\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\pub_{i}\left(1-F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\pub_{i}+F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\left(\meanE-\temp_{i}-\left(\mu_{\rp}+\pub_{i}\right)\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}-\pub_{i}\right)+\frac{\sigma_{\env}\rho_{\env\rp}}{\sigma_{\rp}}\left(\mu_{\priv|\pub}\left(\pub_{i}\right)F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)-\sigma_{\rp}^{2}f_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\pub_{i}+F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\left(\meanE-\temp_{i}-\pub_{i}\right)-\sigma_{\env}\rho_{\env\rp}\sigma_{\rp}f_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Stuff from the first-order condition
+\end_layout
+
+\begin_layout Standard
+Next, note that 
+\begin_inset Formula $\mu_{\priv|\se,\pub}=\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}+\mu_{\rp}+\pub_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{\priv|\se,\pub}^{2}=\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)$
+\end_inset
+
+.
+ Making these subsitutions, we have
+\begin_inset Formula 
+\[
+\frac{\sigma_{\re\rp}}{\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}=\frac{F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)}{f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)}.
+\]
+
+\end_inset
+
+Since the right-hand side of this expression is necessarily positive, the
+ left-hand side must be as well, implying that at an interior solution
+\begin_inset Formula 
+\[
+\frac{\sigma_{\re\rp}}{\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}>0
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)>0$
+\end_inset
+
+, we can multiply through by this amount to get 
+\begin_inset Formula 
+\[
+\sigma_{\re\rp}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)>0
+\]
+
+\end_inset
+
+or
+\begin_inset Formula 
+\[
+\offer_{i}\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)-\sigma_{\re\rp}\right)<\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\meanE+\se_{i}\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)-\sigma_{\re\rp}\frac{\sigma_{\rp}\rho_{\se\rp}}{\sigShrS\sigma_{\env}}\right)-\pub_{i}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)+\sigma_{\re\rp}\mu_{\priv|\pub}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body

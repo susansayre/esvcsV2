@@ -72,12 +72,6 @@ for ii=1:numel(sigShrVals)
 end
 xlabel('signal value')
 ylabel('optimal period 2 offer')
-myAxis = axis();
-h(end+1) = plot(signalVals(:,ii),P.meanEnv+signalVals(:,ii),'k--');
-h(end+1) = plot(signalVals(:,ii),P.meanEnv+signalVals(:,ii)-2*P.pubVal - P.meanPriv,'k:');
-myAxis(3) = -1;
-axis(myAxis)
-legend(h([1 end-1 end]),'Optimal Offer','Conditional Mean Env','Cond Mean Env - Mean Private Value','Location','SouthOutside')
 saveas(gcf,fullfile('detailedOutput',P.runID,['p2Offer' P.caseID '.eps']),'epsc')
 close
 
@@ -161,13 +155,13 @@ end
 saveas(gcf,fullfile('detailedOutput',P.runID,['landP2' P.caseID '.eps']),'epsc')
 close
 
-%%plot p2 parcel outcomes
+%% compute p2 parcel outcomes
 %create full arrays that are numPriv x numSig x numUB x numel(sigShrVals)
 numSigShr = numel(sigShrVals); 
 numPriv2 = 41;
 finalSize = [numPriv2 numSig numUB numSigShr];
 
-privVals = P.pubVal+ P.meanPriv + (P.pubVal+P.meanPriv)/P.sig.rp*(-1:3/(numPriv2-1):2)';
+privVals = P.pubVal+ P.meanPriv + (P.pubVal+P.meanPriv)/P.sig.rp*(-2:4/(numPriv2-1):2)';
 privValArray = repmat(privVals,[1 numSig numUB numSigShr]);
 
 sigZArray = reshape(repmat(repmat(signalZMat(:),numel(sigShrVals),1)',numPriv2,1),finalSize);
@@ -195,11 +189,13 @@ else
 	clim = [-maxLoss maxLoss];
 end
 
+%% plot p2 parcel outcomes
+gap = [.04 .05]; marg_h = [.25 .05]; marg_w = [.15 .025];
 plotThese = [1 4 7];
 ubInds = [size(sigZArray,3) 3];
 for kk=1:numel(ubInds)
 	for jj=1:numel(plotThese), 
-		subplot(numel(ubInds)+1,numel(plotThese),(kk-1)*numel(plotThese)+jj)
+		subtightplot(numel(ubInds),numel(plotThese),(kk-1)*numel(plotThese)+jj,gap,marg_h,marg_w)
 		ii = plotThese(jj);
 		[patchData,h] = contourf(sigZArray(:,:,ubInds(kk),ii),privValArray(:,:,ubInds(kk),ii),-offerArray(:,:,ubInds(kk),ii)+privValArray(:,:,ubInds(kk),ii),[0 0],'k');
 		myAxis1 = axis();
@@ -223,29 +219,49 @@ for kk=1:numel(ubInds)
 		axis(myAxis);
 		patchHandle = patch(patchData(:,1),patchData(:,2),[.5 .5 .5]);
 		set(gca,'CLim',clim)
-		title(['signal quality = ' num2str(sigShrVals(ii))])
-		%xlabel('signal z-score')
+		set(gca,'FontSize',8)
+		if kk==1
+			title(['signal quality = ' num2str(sigShrVals(ii))])
+			set(gca,'XTickLabel','')
+		else
+			xlabel('signal z-score')
+			xlabelH = get(gca,'xlabel');
+			xlabelPos = get(xlabelH,'Position');
+			xlabelPos(2) = -.6;
+%			set(xlabelH,'Position',xlabelPos);
+		end
+		if jj==1
+			ylabel('private value')
+		else
+			set(gca,'YTickLabel','')
+		end
 		%ylabel('priv val')
 		hold on;
 		line([myAxis(1);myAxis(2)],P.meanPriv + P.pubVal + (P.meanPriv+P.pubVal)/P.sig.rp*[-1;-1],'Color','k','LineStyle','--') 
 		line([myAxis(1);myAxis(2)],P.meanPriv + P.pubVal + (P.meanPriv+P.pubVal)/P.sig.rp*[0;0],'Color','k') 
-		line([myAxis(1);myAxis(2)],P.meanPriv + P.pubVal + (P.meanPriv+P.pubVal)/P.sig.rp*[1;1],'Color','k','LineStyle','--') 
+		line([myAxis(1);myAxis(2)],P.meanPriv + P.pubVal + (P.meanPriv+P.pubVal)/P.sig.rp*[1;1],'Color','k','LineStyle','--')
+		line([0;0],[myAxis(3);myAxis(4)],'Color','k')
 	end
 end
 
 colormap(brewermap([],'PuOr'))
-subplot(3,3,7)
 h = colorbar('South');
-ylabel(h,'Regulator Gain')
-set(gca,'visible','off')
 set(gca,'CLim',clim)
-suptitle('Regulator gain by parcel')
-
-subplot(3,3,8)
-patch([.25;.25;.5;.5],[.6;.4;.4;.6],[.5 .5 .5])
+positionH = get(h,'Position');
+positionH(1) = marg_w(1) + ((1-sum(marg_w))/2 - positionH(2))/2;
+positionH(2) = .4*marg_h(1);
+set(h,'Position',positionH)
+blankAxes = axes('Position',[0 0 1 1],'visible','off');
 axis([0 1 0 1])
-set(gca,'visible','off')
-text(.6,.5,'Always Developed')
+patchHXVal = [1.25 1.25 1.5 1.5]*(1-sum(marg_w))/2+marg_w(1);
+patchHYVal = positionH(2)+positionH(4)*[1 0 0 1];
+patchH = patch(patchHXVal,patchHYVal,[.5 .5 .5]);
+text(mean(patchHXVal(2:3)),patchHYVal(2),'Always Developed','VerticalAlignment','top','HorizontalAlignment','center')
+text(positionH(1)+.5*positionH(3),patchHYVal(2),'Regulator Gain','VerticalAlignment','top','HorizontalAlignment','center')
+
+%add row labels on the left
+text(marg_w(1)/2,marg_h(1) + (1-sum(marg_h))/4,['UB = ' num2str(UBVals(ubInds(2)),'%1.2f')],'VerticalAlignment','middle','HorizontalAlignment','center','Rotation',90)
+text(marg_w(1)/2,marg_h(1) + 3*(1-sum(marg_h))/4,['UB = ' num2str(UBVals(ubInds(1)),'%1.2f')],'VerticalAlignment','middle','HorizontalAlignment','center','Rotation',90)
 
 saveas(gcf,fullfile('detailedOutput',P.runID,['regGainMidUB' P.caseID '.eps']),'epsc')
 close

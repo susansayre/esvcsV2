@@ -1,0 +1,439 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19560,        431]
+NotebookOptionsPosition[     19237,        415]
+NotebookOutlinePosition[     19584,        430]
+CellTagsIndexPosition[     19541,        427]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"baseMeanP", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"baseSrp", " ", "=", " ", ".78"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"baseSEnv", " ", "=", " ", ".78"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"baseMeanE", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"gamma", " ", "=", 
+     RowBox[{"Sqrt", "[", "sigShr", "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"signal", "=", 
+     RowBox[{
+      RowBox[{"sigZ", "/", "gamma"}], "/", "sEnv"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"rhoSeRp", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"rhoRatio", "*", "gamma", "*", "rhoEnvRp"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "rhoRatio"}], ")"}], "*", "rhoEnvRp", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{"1", "-", "sigShr"}], "]"}]}], ")"}], "/", "gamma"}]}]}]}],
+     ";", "\[IndentingNewLine]", 
+    RowBox[{"condMeanP", "=", 
+     RowBox[{"meanP", "+", 
+      RowBox[{"sRp", " ", "*", 
+       RowBox[{
+        RowBox[{"rhoSeRp", "/", "gamma"}], "/", "sEnv"}], "*", "signal"}]}]}],
+     ";", "\[IndentingNewLine]", 
+    RowBox[{"condSigP", " ", "=", 
+     RowBox[{"sRp", "*", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"1", "-", "rhoSeRp"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"sReRp", "=", 
+     RowBox[{"sEnv", "*", "sRp", "*", 
+      RowBox[{"(", 
+       RowBox[{"rhoEnvRp", "-", 
+        RowBox[{"gamma", "*", "rhoSeRp"}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"a", "=", 
+     RowBox[{"meanE", "+", "signal", "-", 
+      RowBox[{"sReRp", "*", 
+       RowBox[{"condMeanP", "/", 
+        RowBox[{"(", 
+         RowBox[{"condSigP", "^", "2"}], ")"}]}]}]}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"GraphicsColumn", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"CDF", "[", 
+            RowBox[{
+             RowBox[{"NormalDistribution", "[", 
+              RowBox[{"condMeanP", ",", "condSigP"}], "]"}], ",", "x"}], 
+            "]"}], ",", 
+           RowBox[{
+            RowBox[{"PDF", "[", 
+             RowBox[{
+              RowBox[{"NormalDistribution", "[", 
+               RowBox[{"condMeanP", ",", "condSigP"}], "]"}], ",", "x"}], 
+             "]"}], "*", 
+            RowBox[{"(", 
+             RowBox[{"a", "-", "x", "+", 
+              RowBox[{
+               RowBox[{"sReRp", "/", 
+                RowBox[{"(", 
+                 RowBox[{"condSigP", "^", "2"}], ")"}]}], "*", "x"}]}], 
+             ")"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"CDF", "[", 
+            RowBox[{
+             RowBox[{"NormalDistribution", "[", 
+              RowBox[{"baseMeanP", ",", "baseSrp"}], "]"}], ",", "x"}], "]"}],
+            ",", 
+           RowBox[{
+            RowBox[{"PDF", "[", 
+             RowBox[{
+              RowBox[{"NormalDistribution", "[", 
+               RowBox[{"baseMeanP", ",", "baseSrp"}], "]"}], ",", "x"}], 
+             "]"}], "*", 
+            RowBox[{"(", 
+             RowBox[{"baseMeanE", "+", 
+              RowBox[{
+               RowBox[{"sigZ", "/", "gamma"}], "/", "baseSEnv"}], "-", "x"}], 
+             ")"}]}]}], "\[IndentingNewLine]", "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "xUB"}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "yUB"}], "}"}]}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", "Thick", ",", "Dashed", ",", "Dashed"}], 
+           "}"}]}], ",", 
+         RowBox[{"Filling", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"1", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", "2", "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"Red", ",", 
+                   RowBox[{"Opacity", "[", ".5", "]"}]}], "}"}], ",", 
+                 "Transparent"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"3", "\[Rule]", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", "4", "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"Blue", ",", 
+                   RowBox[{"Opacity", "[", ".5", "]"}]}], "}"}], ",", 
+                 "Transparent"}], "}"}]}], "}"}]}]}], "}"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"meanE", "-", "x", "+", "signal"}], ")"}], "*", 
+           RowBox[{"CDF", "[", 
+            RowBox[{
+             RowBox[{"NormalDistribution", "[", 
+              RowBox[{"condMeanP", ",", "condSigP"}], "]"}], ",", "x"}], 
+            "]"}]}], "-", 
+          RowBox[{"sReRp", "*", 
+           RowBox[{"PDF", "[", 
+            RowBox[{
+             RowBox[{"NormalDistribution", "[", 
+              RowBox[{"condMeanP", ",", "condSigP"}], "]"}], ",", "x"}], 
+            "]"}]}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "xUB"}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", ".1"}], ",", ".5"}], "}"}]}]}], "]"}]}], "}"}], 
+     "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"meanP", ",", "baseMeanP"}], "}"}], ",", ".5", ",", "1.5", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sRp", ",", "baseSrp"}], "}"}], ",", ".5", ",", "2", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rhoRatio", ",", ".5"}], "}"}], ",", "0", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sigShr", ",", ".5"}], "}"}], ",", "0", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sEnv", ",", "baseSEnv"}], "}"}], ",", ".5", ",", "2", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sigZ", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "10"}], ",", "10", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"meanE", ",", "baseMeanE"}], "}"}], ",", "0", ",", "4", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rhoEnvRp", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"xUB", ",", 
+       RowBox[{"1.5", "*", "baseMeanE"}]}], "}"}], ",", 
+     RowBox[{".5", "*", "baseMeanE"}], ",", 
+     RowBox[{"5", "*", "baseMeanE"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"yUB", ",", "1"}], "}"}], ",", ".5", ",", "10", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7039517275606995`*^9, 3.7039519045326996`*^9}, {
+   3.7039520417494993`*^9, 3.7039520776218996`*^9}, {3.7039523718587*^9, 
+   3.7039530978398995`*^9}, {3.7039532295562997`*^9, 
+   3.7039534297304993`*^9}, {3.7039537140636997`*^9, 
+   3.7039538433416996`*^9}, {3.7039540167728996`*^9, 
+   3.7039541183850994`*^9}, {3.7039541585478992`*^9, 
+   3.7039541616678996`*^9}, {3.7039542749382997`*^9, 
+   3.7039543255794992`*^9}, {3.7039543855296993`*^9, 
+   3.7039544554624996`*^9}, {3.704031646597454*^9, 3.7040317384606543`*^9}, {
+   3.7040317952356544`*^9, 3.704031817256254*^9}, {3.7040333526282544`*^9, 
+   3.7040334721552544`*^9}, {3.7040336853992543`*^9, 
+   3.7040336862904544`*^9}, {3.7040345706574545`*^9, 3.704034705237254*^9}, {
+   3.7040351649962544`*^9, 3.704035171997854*^9}, {3.7040352087994547`*^9, 
+   3.7040353239904547`*^9}, {3.7040353693350544`*^9, 
+   3.7040353718466544`*^9}, {3.7040354290998545`*^9, 
+   3.7040354384466543`*^9}, {3.7040358761680546`*^9, 
+   3.7040358789976544`*^9}, {3.7040359257258544`*^9, 3.704036097089054*^9}, {
+   3.7040361428916545`*^9, 3.704036158301854*^9}, {3.704036548532854*^9, 
+   3.704036569599654*^9}, {3.704036639514654*^9, 3.7040366656742544`*^9}, {
+   3.7040367202058544`*^9, 3.7040367207362547`*^9}, 3.7040381121202545`*^9, {
+   3.7040388882278547`*^9, 3.7040388926904545`*^9}, 3.7040389729632545`*^9, {
+   3.7040398749442544`*^9, 3.7040399828738546`*^9}, {3.7040400189016542`*^9, 
+   3.7040400737142544`*^9}, {3.7040402570466547`*^9, 
+   3.7040403313134546`*^9}, {3.7040403630874543`*^9, 3.704040363477454*^9}, {
+   3.7040406704980545`*^9, 3.7040407113282824`*^9}, {3.704040813045561*^9, 
+   3.704040856556893*^9}, 3.704040895307399*^9, {3.704040977801306*^9, 
+   3.7040410115116897`*^9}, {3.70410148445887*^9, 3.7041014909484696`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  TagBox[
+   FormBox[
+    StyleBox[
+     DynamicModuleBox[{$CellContext`meanE$$ = 1, $CellContext`meanP$$ = 
+      1, $CellContext`rhoEnvRp$$ = 0, $CellContext`rhoRatio$$ = 
+      0.5, $CellContext`sEnv$$ = 0.78, $CellContext`sigShr$$ = 
+      0.5, $CellContext`sigZ$$ = 0, $CellContext`sRp$$ = 
+      0.78, $CellContext`xUB$$ = 1.5, $CellContext`yUB$$ = 1, Typeset`show$$ =
+       True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+      Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+      "\"untitled\"", Typeset`specs$$ = {{{
+         Hold[$CellContext`meanP$$], 1}, 0.5, 1.5}, {{
+         Hold[$CellContext`sRp$$], 0.78}, 0.5, 2}, {{
+         Hold[$CellContext`rhoRatio$$], 0.5}, 0, 1}, {{
+         Hold[$CellContext`sigShr$$], 0.5}, 0, 1}, {{
+         Hold[$CellContext`sEnv$$], 0.78}, 0.5, 2}, {{
+         Hold[$CellContext`sigZ$$], 0}, -10, 10}, {{
+         Hold[$CellContext`meanE$$], 1}, 0, 4}, {{
+         Hold[$CellContext`rhoEnvRp$$], 0}, -1, 1}, {{
+         Hold[$CellContext`xUB$$], 1.5}, 0.5, 5}, {{
+         Hold[$CellContext`yUB$$], 1}, 0.5, 10}}, Typeset`size$$ = {
+      360., {209., 215.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+      Typeset`skipInitDone$$ = True, $CellContext`meanP$1214610$$ = 
+      0, $CellContext`sRp$1214611$$ = 0, $CellContext`rhoRatio$1214612$$ = 
+      0, $CellContext`sigShr$1214613$$ = 0, $CellContext`sEnv$1214614$$ = 
+      0, $CellContext`sigZ$1214615$$ = 0, $CellContext`meanE$1214616$$ = 
+      0, $CellContext`rhoEnvRp$1214617$$ = 0, $CellContext`xUB$1214618$$ = 
+      0, $CellContext`yUB$1214619$$ = 0}, 
+      DynamicBox[Manipulate`ManipulateBoxes[
+       1, TraditionalForm, 
+        "Variables" :> {$CellContext`meanE$$ = 1, $CellContext`meanP$$ = 
+          1, $CellContext`rhoEnvRp$$ = 0, $CellContext`rhoRatio$$ = 
+          0.5, $CellContext`sEnv$$ = 0.78, $CellContext`sigShr$$ = 
+          0.5, $CellContext`sigZ$$ = 0, $CellContext`sRp$$ = 
+          0.78, $CellContext`xUB$$ = 1.5, $CellContext`yUB$$ = 1}, 
+        "ControllerVariables" :> {
+          Hold[$CellContext`meanP$$, $CellContext`meanP$1214610$$, 0], 
+          Hold[$CellContext`sRp$$, $CellContext`sRp$1214611$$, 0], 
+          Hold[$CellContext`rhoRatio$$, $CellContext`rhoRatio$1214612$$, 0], 
+          Hold[$CellContext`sigShr$$, $CellContext`sigShr$1214613$$, 0], 
+          Hold[$CellContext`sEnv$$, $CellContext`sEnv$1214614$$, 0], 
+          Hold[$CellContext`sigZ$$, $CellContext`sigZ$1214615$$, 0], 
+          Hold[$CellContext`meanE$$, $CellContext`meanE$1214616$$, 0], 
+          Hold[$CellContext`rhoEnvRp$$, $CellContext`rhoEnvRp$1214617$$, 0], 
+          Hold[$CellContext`xUB$$, $CellContext`xUB$1214618$$, 0], 
+          Hold[$CellContext`yUB$$, $CellContext`yUB$1214619$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, 
+        "Body" :> ($CellContext`baseMeanP = 1; $CellContext`baseSrp = 
+          0.78; $CellContext`baseSEnv = 0.78; $CellContext`baseMeanE = 
+          1; $CellContext`gamma = 
+          Sqrt[$CellContext`sigShr$$]; $CellContext`signal = \
+($CellContext`sigZ$$/$CellContext`gamma)/$CellContext`sEnv$$; \
+$CellContext`rhoSeRp = $CellContext`rhoRatio$$ $CellContext`gamma \
+$CellContext`rhoEnvRp$$ + (
+             1 - $CellContext`rhoRatio$$) $CellContext`rhoEnvRp$$ ((1 - Sqrt[
+              1 - $CellContext`sigShr$$])/$CellContext`gamma); \
+$CellContext`condMeanP = $CellContext`meanP$$ + $CellContext`sRp$$ \
+(($CellContext`rhoSeRp/$CellContext`gamma)/$CellContext`sEnv$$) \
+$CellContext`signal; $CellContext`condSigP = $CellContext`sRp$$ 
+           Sqrt[1 - $CellContext`rhoSeRp]; $CellContext`sReRp = \
+$CellContext`sEnv$$ $CellContext`sRp$$ ($CellContext`rhoEnvRp$$ - \
+$CellContext`gamma $CellContext`rhoSeRp); $CellContext`a = \
+$CellContext`meanE$$ + $CellContext`signal - $CellContext`sReRp \
+($CellContext`condMeanP/$CellContext`condSigP^2); GraphicsColumn[{
+            Plot[{
+              CDF[
+               
+               NormalDistribution[$CellContext`condMeanP, \
+$CellContext`condSigP], $CellContext`x], PDF[
+                
+                NormalDistribution[$CellContext`condMeanP, \
+$CellContext`condSigP], $CellContext`x] ($CellContext`a - $CellContext`x + \
+($CellContext`sReRp/$CellContext`condSigP^2) $CellContext`x), 
+              CDF[
+               
+               NormalDistribution[$CellContext`baseMeanP, \
+$CellContext`baseSrp], $CellContext`x], PDF[
+                
+                NormalDistribution[$CellContext`baseMeanP, \
+$CellContext`baseSrp], $CellContext`x] ($CellContext`baseMeanE + \
+($CellContext`sigZ$$/$CellContext`gamma)/$CellContext`baseSEnv - \
+$CellContext`x)}, {$CellContext`x, 0, $CellContext`xUB$$}, 
+             PlotRange -> {0, $CellContext`yUB$$}, 
+             PlotStyle -> {Thick, Thick, Dashed, Dashed}, 
+             Filling -> {1 -> {{2}, {{Red, 
+                   Opacity[0.5]}, Transparent}}, 3 -> {{4}, {{Blue, 
+                   Opacity[0.5]}, Transparent}}}], 
+            
+            Plot[($CellContext`meanE$$ - $CellContext`x + $CellContext`signal)
+                CDF[
+                
+                NormalDistribution[$CellContext`condMeanP, \
+$CellContext`condSigP], $CellContext`x] - $CellContext`sReRp PDF[
+               
+               NormalDistribution[$CellContext`condMeanP, \
+$CellContext`condSigP], $CellContext`x], {$CellContext`x, 
+              0, $CellContext`xUB$$}, PlotRange -> {-0.1, 0.5}]}]), 
+        "Specifications" :> {{{$CellContext`meanP$$, 1}, 0.5, 1.5, Appearance -> 
+           "Labeled"}, {{$CellContext`sRp$$, 0.78}, 0.5, 2, Appearance -> 
+           "Labeled"}, {{$CellContext`rhoRatio$$, 0.5}, 0, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`sigShr$$, 0.5}, 0, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`sEnv$$, 0.78}, 0.5, 2, Appearance -> 
+           "Labeled"}, {{$CellContext`sigZ$$, 0}, -10, 10, Appearance -> 
+           "Labeled"}, {{$CellContext`meanE$$, 1}, 0, 4, Appearance -> 
+           "Labeled"}, {{$CellContext`rhoEnvRp$$, 0}, -1, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`xUB$$, 1.5}, 0.5, 5, Appearance -> 
+           "Labeled"}, {{$CellContext`yUB$$, 1}, 0.5, 10, Appearance -> 
+           "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+       ImageSizeCache->{730., {240., 247.}},
+       SingleEvaluation->True],
+      Deinitialization:>None,
+      DynamicModuleValues:>{},
+      SynchronousInitialization->True,
+      UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+      UnsavedVariables:>{Typeset`initDone$$},
+      UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+     Deployed->True,
+     StripOnInput->False],
+    TraditionalForm],
+   Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.7039518869730997`*^9, 3.7039519050318995`*^9}, {
+   3.7039520520182996`*^9, 3.7039520787606993`*^9}, {3.7039530050231*^9, 
+   3.7039530324538994`*^9}, 3.7039530986198997`*^9, 3.7039531481462994`*^9, 
+   3.7039532020195*^9, 3.7039534346756997`*^9, {3.7039537538478994`*^9, 
+   3.7039537817035*^9}, 3.7039538441840997`*^9, 3.7039539055652995`*^9, 
+   3.7039541199304996`*^9, 3.7039541720246997`*^9, 3.7039542261916995`*^9, 
+   3.7039542570924997`*^9, {3.7039543154606996`*^9, 3.7039543266403*^9}, {
+   3.7039544305041*^9, 3.7039544559304996`*^9}, {3.7039549435922813`*^9, 
+   3.7039549609955053`*^9}, 3.7039550209875436`*^9, 3.704025070978737*^9, 
+   3.704031624054654*^9, 3.7040316772476544`*^9, 3.704033328878454*^9, 
+   3.7040334761800547`*^9, 3.7040335318514547`*^9, 3.7040336029088545`*^9, {
+   3.7040336703382545`*^9, 3.7040336889580545`*^9}, 3.704033784616454*^9, 
+   3.7040344817188544`*^9, 3.7040346390042543`*^9, {3.704034672633254*^9, 
+   3.704034708442254*^9}, 3.7040350195888543`*^9, 3.7040350735528545`*^9, {
+   3.704035165807454*^9, 3.7040351725894547`*^9}, 3.704035326582054*^9, 
+   3.704035372377054*^9, 3.7040354393982544`*^9, {3.7040360388434544`*^9, 
+   3.7040360982434545`*^9}, 3.7040361588632545`*^9, {3.7040367044272547`*^9, 
+   3.704036721937454*^9}, 3.7040384189252543`*^9, 3.7040384491708546`*^9, 
+   3.704038630205654*^9, 3.7040386644130545`*^9, 3.7040387000292544`*^9, 
+   3.7040388943928547`*^9, {3.7040389673472548`*^9, 3.7040389745388546`*^9}, {
+   3.7040399329806547`*^9, 3.7040399835446544`*^9}, 3.7040400756194544`*^9, 
+   3.7040402684658546`*^9, {3.7040403071702547`*^9, 3.7040403318282547`*^9}, 
+   3.7040403645226545`*^9, 3.704041012701366*^9, 3.704041268610247*^9, {
+   3.7041014947412696`*^9, 3.7041015088692694`*^9}, 3.7041015629998693`*^9, 
+   3.704115000160853*^9}]
+}, Open  ]]
+},
+WindowSize->{1600, 818},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 9822, 238, 572, "Input"],
+Cell[10405, 262, 8816, 150, 537, "Output"]
+}, Open  ]]
+}
+]
+*)
+

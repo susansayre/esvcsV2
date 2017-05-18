@@ -189,26 +189,6 @@ At time
 \end_inset
 
  is a mean 0 deviation from the expected value given the information available.
- The regulator knows the overall mean private development externality value
- 
-\begin_inset Formula $\meanP$
-\end_inset
-
- and the public development value 
-\begin_inset Formula $\pub_{i}$
-\end_inset
-
-, but does not know the value of a private deviation 
-\begin_inset Formula $\rp_{i}$
-\end_inset
-
-.
- The landowner knows the value of this deviation and thus knows the private
- value of developing her land is 
-\begin_inset Formula $\meanP+\pub_{i}+\rp_{i}$
-\end_inset
-
-.
  For analytical tractability, I assume that the variable have a multivariate
  normal distribution with the form
 \begin_inset Formula 
@@ -280,123 +260,7 @@ If
 
 \end_inset
 
- Based on previous offers and information, the regulator infers that there
- is an upper bound (
-\begin_inset Formula $\ubPriv$
-\end_inset
-
-) for the private development value of land that has not yet been converted.
- Since this is the last period, the landowner will accept the offer if 
-\begin_inset Formula $\priv_{i}\leq\offer_{i}$
-\end_inset
-
- .
- The regulator will not make an offer above 
-\begin_inset Formula $\bar{\priv}$
-\end_inset
-
- because the regulator could lower the offer to 
-\begin_inset Formula $\ubPriv$
-\end_inset
-
- and maintain perfect certainty that the parcel will be conserved.
- The regulator's expected payoff
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Strictly speaking, this expression is the expected payoff assuming 
-\begin_inset Formula $\offer_{i}\leq\ubPriv$
-\end_inset
-
-.
  
-\end_layout
-
-\end_inset
-
- for a parcel is the probability the parcel is conserved in the second period
- times the expected payoff conditional on conservation plus the (known)
- public development value times the probability the parcel is developed
- or 
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\intop_{-\infty}^{\offer_{i}}\intop_{-\infty}^{\infty}\left(\env-\offer_{i}\right)f_{\env|\se,\priv}\left(\env|\se_{i},\priv\right)d\env f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp+\intop_{\offer_{i}}^{\infty}\pub_{i}f_{\priv|\se,\pub}\left(\priv|\se_{i},\pub_{i}\right)dp
-\]
-
-\end_inset
-
-Note that this expression is independent of 
-\begin_inset Formula $\ubPriv$
-\end_inset
-
-, so the upper bound affects the problem only through the constraint that
- 
-\begin_inset Formula $\offer_{i}\leq\ubPriv$
-\end_inset
-
-.
- As shown in the appendix, under the multivariate normal assumption, this
- expression can be simplified to
-\begin_inset Formula 
-\[
-\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)=\pub_{i}-\sigma_{\env}\sigma_{\rp}\left(\rho_{\env\rp}-\sigShrS\rho_{\se\rp}\right)f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)
-\]
-
-\end_inset
-
-The Lagrangian for the regulator's problem is 
-\begin_inset Formula 
-\[
-\mathcal{L}\left(\offer_{i},\lambda;\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\payEnd\left(\offer_{i},\se_{i}\pub_{i},\Sigma\right)-\lambda_{1}\left(\offer_{i}-\ubPriv_{i}\right)+\lambda_{2}\offer_{i}
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\lambda_{1}$
-\end_inset
-
- is the Lagrange multiplier on the upper bound and 
-\begin_inset Formula $\lambda_{2}$
-\end_inset
-
- is the multiplier on the lower bound.
- Let 
-\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\ubPriv_{i}\right)$
-\end_inset
-
- be the solution to this optimization problem and let 
-\begin_inset Formula $\payEnd^{*}\left(\se_{i},\pub_{i},\ubPriv\right)$
-\end_inset
-
- be the optimized period 2 payoff.
- The envelope theorem tells us that 
-\begin_inset Formula 
-\[
-\frac{\partial\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)}{\partial\ubPriv}=\lambda
-\]
-
-\end_inset
-
-Note that if 
-\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)<\ubPriv$
-\end_inset
-
-, then 
-\begin_inset Formula $\lambda=0$
-\end_inset
-
- and the upper bound does not influence our problem.
- If 
-\begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv_{i}\right)=\ubPriv_{i}$
-\end_inset
-
-, then 
-\begin_inset Formula $\lambda=\frac{\partial\payEnd}{\partial\offer}\left(\ubPriv,\se_{i}\pub_{i}\right)$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Subsection
@@ -404,112 +268,7 @@ Landowner's prior period decision
 \end_layout
 
 \begin_layout Standard
-In the previous period, the landowner knows her own value 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- which may give her private information about the likelihood of possible
- values of 
-\begin_inset Formula $\se_{i}$
-\end_inset
-
- which in turn influence the optimized offers she might receive the next
- period.
- In particular, 
-\begin_inset Formula $\se_{i}|\priv_{i},\pub_{i}\sim N\left(\rho_{\se\rp}\frac{\sigShrS\sigma_{\env}}{\sigma_{\rp}}\left(\priv_{i}-\meanP-\pub_{i}\right),\sigShr\sigma_{\env}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right).$
-\end_inset
-
- This induces a distribution of possible offers 
-\begin_inset Formula $f_{\offer|\priv}\left(\offer|\priv_{i}\right)$
-\end_inset
-
-The benefit of conservation for the landowner is 
-\begin_inset Formula 
-\[
-B\left(\priv_{i}\right)=\temp_{i}+\ew\left(\intop_{0}^{\priv}\priv_{i}f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer+\intop_{\priv}^{\infty}\offer f_{\offer|\priv}\left(\offer|\priv_{i}\right)d\offer\right)-\priv_{i}\left(1+\ew\right).
-\]
-
-\end_inset
-
-When 
-\begin_inset Formula $\priv_{i}\leq0,$
-\end_inset
-
- this expression is necessarily positive, implying that parcels that prefer
- conservations in the absence of payments will conserve regardless.
- We thus know there is a value 
-\begin_inset Formula $\ubPriv\in\left[0,\infty\right]$
-\end_inset
-
- such that any parcel with 
-\begin_inset Formula $\priv_{i}\leq\ubPriv$
-\end_inset
-
- will prefer to conserve her land in the initial period.
- If 
-\begin_inset Formula $\frac{dB}{d\priv}$
-\end_inset
-
- is always negative, we know that there will be a unique threshhold value
- beyond which all parcels will prefer to develop immediately.
- 
-\begin_inset Formula 
-\[
-\frac{dB}{d\priv}=\delta\left(\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\priv_{i}\intop_{0}^{\priv}\frac{\partial f_{\offer|\priv}}{\partial\priv}\left(\offer|\priv_{i}\right)d\offer-\priv f_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)+\intop_{\priv}^{\infty}\offer\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\right)
-\]
-
-\end_inset
-
-or
-\begin_inset Formula 
-\[
-\frac{dB}{d\priv}=\delta\left(\priv_{i}+\intop_{\priv}^{\infty}\left(\offer-\priv_{i}\right)\frac{\partial f_{\offer|\priv}}{\partial p}\left(\offer|\priv_{i}\right)d\offer\right)-\left(1+\delta\left(1-F_{\offer|\priv}\left(\priv_{i}|\priv_{i}\right)\right)\right).
-\]
-
-\end_inset
-
-The second term is unambiguously negative.
- Thus the benefit of conservation can only increase with 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- if the first term is positive and large enough to overcome the second term.
- This can only occur if higher values of 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- substantially increase the probability of receiving an offer larger than
- 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
-.
- Moreover, the assumptMoreover, note that since 
-\begin_inset Formula $\intop_{0}^{\infty}f_{\offer|\priv}\left(\offer|\priv_{i}\right)=1$
-\end_inset
-
- for all values of 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
-, 
-\begin_inset Formula $\frac{\partial f}{\partial\priv_{i}}$
-\end_inset
-
- cannot be positive everywhere.
- Thus, under most conditions, there will be a unique threshhold value 
-\begin_inset Formula $\ubPriv$
-\end_inset
-
- such that parcels below this value conserve their land and parcels above
- this value develop their land.
- Moreover, when there is no correlation between the private development
- and the public development value, the distribution of offers will be independen
-t of 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- and we know there will be a unique threshhold.
+In the previous period, 
 \end_layout
 
 \begin_layout Standard
@@ -531,15 +290,6 @@ When a unique threshhold exists, its value solves the equation
 \end_inset
 
 , we know the left hand side is un
-\end_layout
-
-\begin_layout Standard
-Let 
-\begin_inset Formula $\choice\left(\priv_{i},\pub_{i}|\Sigma\right)=1$
-\end_inset
-
- if the landowner chooses to conserve.
- 
 \end_layout
 
 \begin_layout Subsection

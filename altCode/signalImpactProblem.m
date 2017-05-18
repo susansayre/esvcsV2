@@ -60,7 +60,7 @@ if newRun
 % 					 'meanPriv'		1				[.5 .75 1 1.25 1.5];
 % 					 'sig.rp'		1				-1./norminv([.05 .1 .15 .2 .25 .3])};
  			1		{'rho_ratio'	1				[.25 .75]; %share of correlation that's resolved by signal
- 					 'rho.e_rp'		1				[-.5 .5]}; %true correlation
+ 					 'rho.e_rp'		1				[-.5 0 .5]}; %true correlation
 			};
 
 	setUpExperiment
