@@ -5,25 +5,25 @@ for ii=1:compStatRuns
 	for jj=1:numCompStatParams{ii}
 		switch thisCompStat{jj,2}
 			case 1
-				csArray{jj} = thisCompStat{jj,3}';
-				csInds{jj} =(1:numel(thisCompStat{jj,3}))';
+				csArray{ii}{jj} = thisCompStat{jj,3}';
+				csInds{ii}{jj} =(1:numel(thisCompStat{jj,3}))';
 			case 2
 				min = thisCompStat{jj,3}(1);
 				max = thisCompStat{jj,3}(2);
 				step = (max-min)/(thisCompStat{jj,3}(3)-1);
-				csArray{jj} = (min:step:max)';
-				csInds{jj} = (1:numel(csArray{jj}))';
+				csArray{ii}{jj} = (min:step:max)';
+				csInds{ii}{jj} = (1:numel(csArray{jj}))';
 			case 3
 				eval(['baseValue = P.' thisCompStat{jj,1} ';'])
-				csArray{jj} = (thisCompStat{jj,3}*baseValue)';
-				csInds{jj} = (1:numel(thisCompStat{jj,3}))';
+				csArray{ii}{jj} = (thisCompStat{jj,3}*baseValue)';
+				csInds{ii}{jj} = (1:numel(thisCompStat{jj,3}))';
 			case 4
 				eval(['baseValue = P.' thisCompStat{jj,1} ';'])
 				min = thisCompStat{jj,3}(1);
 				max = thisCompStat{jj,3}(2);
 				step = (max-min)/(thisCompStat{jj,3}(3)-1);
-				csArray{jj} = (min:step:max)'*baseValue;
-				csInds{jj} = (1:numel(csArray{jj}))';
+				csArray{ii}{jj} = (min:step:max)'*baseValue;
+				csInds{ii}{jj} = (1:numel(csArray{jj}))';
 			otherwise
 				error(['I don''t know case ' thisCompStat{jj,2}])
 		end
@@ -31,22 +31,22 @@ for ii=1:compStatRuns
 	clear jj
 
 	if compStatRunDescriptions{ii,1}
-		csValues{ii} = gridmake(csArray);
-		csIndMat{ii} = gridmake(csInds);
+		csValues{ii} = gridmake(csArray{ii});
+		csIndMat{ii} = gridmake(csInds{ii});
 	else
 		csValues{ii} = [];
 		csIndMat{ii} = [];
-		for jj=1:numel(csArray)
-			baseInd = zeros(1,numel(csArray));
-			baseValue = zeros(1,numel(csArray));
-			for kk=1:numel(csArray)
+		for jj=1:numel(csArray{ii})
+			baseInd = zeros(1,numel(csArray{ii}));
+			baseValue = zeros(1,numel(csArray{ii}));
+			for kk=1:numel(csArray{ii})
 				if kk==jj, continue, end
 				eval(['baseValue(:,kk) = P.' thisCompStat{kk,1} ';'])
 			end
-			for kk=1:numel(csArray{jj});
+			for kk=1:numel(csArray{ii}{jj});
 				thisValue = baseValue;
 				thisInd = baseInd;
-				thisValue(:,jj) = csArray{jj}(kk);
+				thisValue(:,jj) = csArray{ii}{jj}(kk);
 				thisInd(:,jj) = kk;
 				csValues{ii} = [csValues{ii}; thisValue]; 
 				csIndMat{ii} = [csIndMat{ii}; thisInd];

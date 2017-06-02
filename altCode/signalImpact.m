@@ -114,6 +114,6 @@ neverPolicy = regPayNoInfo(0,thatP,1);
 allOutput.neverPolicyrpf = neverPolicy.val;
 allOutput.neverPolicyprobConserve = neverPolicy.probBelowUB;
 
-graphCase
+%graphCase
 
 save(fullfile('detailedOutput',P.runID,P.caseID))

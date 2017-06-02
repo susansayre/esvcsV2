@@ -24,8 +24,8 @@ if newRun
 		'meanEnv'	'mean environmental benefit'						'\meanE'		1;
 		'meanRatio'	'ratio of meanPriv to meanEnv'						'\meanP/\meanE'	1;
 		'meanPub'	'mean public development value'						''				0;
-		'probENeg'	'probability of negative env value'					''				.1;
-		'probPNeg'	'probability a parcel is conserved w/o action'		''				.1;
+		'probENeg'	'probability of negative env value'					''				.15;
+		'probPNeg'	'probability a parcel is conserved w/o action'		''				.15;
 		'sig.pub'	'std deviation of public development value'			''				1;
 		'sigShr'	'share of uncertainty resolved by signal'			'\frac_{\sigma^{2}_{\se}}{\sigma^{2}_{\env}}' .5;
 		'rho.e_rp'	'correlation between env and priv values'			'\rho_{\env\priv}'	0;
@@ -33,8 +33,8 @@ if newRun
 		'pubVal'	'public development value'							'\pub'			0;
 		'valueType'	'set values on mean/var (0) or ratio/probNeg (1)'	''				1;
 		'meanPriv'	''													''				1;
-		'sig.env'	''													''				-1/norminv(.1);
-		'sig.rp'	''													''				-1/norminv(.1);
+		'sig.env'	''													''				-1/norminv(.15);
+		'sig.rp'	''													''				-1/norminv(.15);
 	};
 
 	%note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of
@@ -56,11 +56,60 @@ if newRun
 % 					 'probPNeg'		1				[.1 .2];
 % 					 'probENeg'		1				[.1	.2];
 % 					 'meanRatio'	1				[.5 1 1.5]}; %baseline case
-%			1		{'valueType'	1				0;
-% 					 'meanPriv'		1				[.5 .75 1 1.25 1.5];
-% 					 'sig.rp'		1				-1./norminv([.05 .1 .15 .2 .25 .3])};
- 			1		{'rho_ratio'	1				[.25 .75]; %share of correlation that's resolved by signal
- 					 'rho.e_rp'		1				[-.5 0 .5]}; %true correlation
+% 			1		{'valueType'	1				1;
+% 					 'meanRatio'	1				[.5  1 1.5];
+% 					 'probPNeg'		1				[.05 .15 .25];
+% 					 'rho_ratio'	1				.5;
+% 					 'rho.e_rp'		1				[-.75:.25:.75]};
+%  			1		{'rho_ratio'	1				[0 .25 .5 .75 1]; %share of correlation that's resolved by signal
+%  					 'rho.e_rp'		1				[-.75 -.5 -.25 0 .25 .5 .75]}; %true correlation
+			1		{'rho_ratio'	1				.5; %Baseline correlation impact
+					 'valueType'	1				0;
+					 'meanPriv'		1				1;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{'rho_ratio'	1				.5;%Low mean correlation impact
+					 'valueType'	1				0;
+					 'meanPriv'		1				.5;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		 {'rho_ratio'	1				.5; %High mean correlation impact
+					 'valueType'	1				0;
+					 'meanPriv'		1				1.5;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%High var correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				0;
+					 'meanPriv'		1				1;
+					 'sig.rp'		1				-1/norminv(.05);
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%Low var correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				0;
+					 'meanPriv'		1				1;
+					 'sig.rp'		1				-1/norminv(.25);
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%Low mean ratio correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				1;
+					 'meanRatio'	1				.5;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%High mean ratio correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				1;
+					 'meanRatio'	1				1.5;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%Low prob conserve correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				1;
+					 'meanRatio'	1				1;
+					 'probPNeg'		1				.05;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+			1		{%High prob conserve correlation impact
+					 'rho_ratio'	1				.5;
+					 'valueType'	1				1;
+					 'meanRatio'	1				1;
+					 'probPNeg'		1				.25;
+					 'rho.e_rp'		1				(-.95:.05:.95)};
+					 
 			};
 
 	setUpExperiment
@@ -81,7 +130,7 @@ for kk=1:compStatRuns
 			clear allOutput
 		else
 			disp(['starting experiment ' num2str(kk) ' of ' num2str(compStatRuns) ' case ' num2str(ii) ' of ' num2str(cases{kk})])
-			output{kk}{ii} = signalImpact(paramCases{kk}{ii},[.01 .1 .25 .5 .75 .9 .99]);
+			output{kk}{ii} = signalImpact(paramCases{kk}{ii},[.001 .5 .999]);
 		end
 	end
 end

@@ -1,0 +1,393 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12930,        385]
+NotebookOptionsPosition[     12159,        353]
+NotebookOutlinePosition[     12507,        368]
+CellTagsIndexPosition[     12464,        365]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"{", 
+    RowBox[{"s", ",", "p", ",", "e"}], "}"}]}], ";", " ", 
+  RowBox[{"muX", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     SubscriptBox["\[Mu]", "p"], ",", 
+     SubscriptBox["\[Mu]", "e"]}], "}"}]}], ";", 
+  RowBox[{"sigX", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{
+        SubscriptBox["\[Rho]", "sp"], "*", 
+        SubscriptBox["\[Sigma]", "p"]}], ",", 
+       RowBox[{"\[Gamma]", "*", 
+        SubscriptBox["\[Sigma]", "e"]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Rho]", "sp"], "*", 
+        SubscriptBox["\[Sigma]", "p"]}], ",", 
+       RowBox[{
+        SubscriptBox["\[Sigma]", "p"], "^", "2"}], ",", 
+       RowBox[{
+        SubscriptBox["\[Rho]", "ep"], "*", 
+        SubscriptBox["\[Sigma]", "e"], "*", 
+        SubscriptBox["\[Sigma]", "p"]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\[Gamma]", "*", 
+        SubscriptBox["\[Sigma]", "e"]}], ",", 
+       RowBox[{
+        SubscriptBox["\[Rho]", "ep"], "*", 
+        SubscriptBox["\[Sigma]", "e"], "*", 
+        SubscriptBox["\[Sigma]", "p"]}], ",", 
+       RowBox[{
+        SubscriptBox["\[Sigma]", "e"], "^", "2"}]}], "}"}]}], 
+    "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"condMeanMult", "[", 
+   RowBox[{
+   "varInd_", ",", "condVals_", ",", "condInds_", ",", "mu_", ",", "sigma_"}],
+    "]"}], ":=", 
+  RowBox[{
+   RowBox[{"mu", "[", 
+    RowBox[{"[", "varInd", "]"}], "]"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Part", "[", 
+       RowBox[{"sigma", ",", "varInd", ",", "condInds"}], "]"}], ".", 
+      RowBox[{"Inverse", "[", 
+       RowBox[{"Part", "[", 
+        RowBox[{"sigma", ",", "condInds", ",", "condInds"}], "]"}], "]"}]}], 
+     ")"}], ".", 
+    RowBox[{"(", 
+     RowBox[{"condVals", "-", 
+      RowBox[{"Part", "[", 
+       RowBox[{"mu", ",", "condInds"}], "]"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"condSigMult", "[", 
+   RowBox[{"varInd_", ",", "condInds_", ",", "sigma_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"sigma", "[", 
+    RowBox[{"[", 
+     RowBox[{"varInd", ",", "varInd"}], "]"}], "]"}], "-", 
+   RowBox[{
+    RowBox[{"Part", "[", 
+     RowBox[{"sigma", ",", "varInd", ",", "condInds"}], "]"}], ".", 
+    RowBox[{"Inverse", "[", 
+     RowBox[{"Part", "[", 
+      RowBox[{"sigma", ",", "condInds", ",", "condInds"}], "]"}], "]"}], ".", 
+    RowBox[{"Part", "[", 
+     RowBox[{"sigma", ",", "condInds", ",", "varInd"}], 
+     "]"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"condMeanSingle", "[", 
+   RowBox[{
+   "varInd_", ",", "condVal_", ",", "condInd_", ",", "mu_", ",", "sigma_"}], 
+   "]"}], ":=", 
+  RowBox[{
+   RowBox[{"mu", "[", 
+    RowBox[{"[", "varInd", "]"}], "]"}], "+", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sigma", "[", 
+      RowBox[{"[", 
+       RowBox[{"varInd", ",", "condInd"}], "]"}], "]"}], "/", 
+     RowBox[{"sigma", "[", 
+      RowBox[{"[", 
+       RowBox[{"condInd", ",", "condInd"}], "]"}], "]"}]}], "*", 
+    RowBox[{"(", 
+     RowBox[{"condVal", "-", 
+      RowBox[{"mu", "[", 
+       RowBox[{"[", "condInd", "]"}], "]"}]}], 
+     ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"condSigSingle", "[", 
+   RowBox[{"varInd_", ",", "condInd_", ",", "sigma_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"sigma", "[", 
+    RowBox[{"[", 
+     RowBox[{"varInd", ",", "varInd"}], "]"}], "]"}], "-", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sigma", "[", 
+      RowBox[{"[", 
+       RowBox[{"varInd", ",", "condInd"}], "]"}], "]"}], "/", 
+     RowBox[{"sigma", "[", 
+      RowBox[{"[", 
+       RowBox[{"condInd", ",", "condInd"}], "]"}], "]"}]}], "*", 
+    RowBox[{"sigma", "[", 
+     RowBox[{"[", 
+      RowBox[{"condInd", ",", "varInd"}], "]"}], "]"}], 
+    "\[IndentingNewLine]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.6968621915700035`*^9, 3.696862614383404*^9}, {
+   3.6968628142776036`*^9, 3.6968628507868032`*^9}, {3.6968628854978037`*^9, 
+   3.6968629140940037`*^9}, {3.6968629717194033`*^9, 
+   3.6968630150800037`*^9}, {3.6968631292164035`*^9, 
+   3.6968631311372037`*^9}, {3.696863170256404*^9, 3.6968631746274033`*^9}, {
+   3.696863759579404*^9, 3.6968638185778036`*^9}, {3.696864028002804*^9, 
+   3.696864048219804*^9}, {3.6968664672876034`*^9, 3.696866468130004*^9}, {
+   3.6968665071188035`*^9, 3.6968665403894033`*^9}, {3.6968672680820036`*^9, 
+   3.6968673033458033`*^9}, {3.6968674578408036`*^9, 
+   3.6968675497682037`*^9}, {3.6968706857292037`*^9, 
+   3.6968707415706034`*^9}, {3.696894053458826*^9, 3.6968940658678265`*^9}, {
+   3.6968950332450266`*^9, 3.6968951107852263`*^9}, {3.696895177739826*^9, 
+   3.6968952724678264`*^9}, {3.6968954781292267`*^9, 
+   3.6968954903258266`*^9}, {3.696935216593049*^9, 3.6969352916150494`*^9}, {
+   3.696936082116249*^9, 3.696936113860649*^9}, {3.696936412819849*^9, 
+   3.696936450641249*^9}, {3.6969458010030885`*^9, 3.6969458456216884`*^9}, {
+   3.6969595708996887`*^9, 3.6969596604866886`*^9}, {3.6972154507815247`*^9, 
+   3.6972154861165247`*^9}, {3.697215532029325*^9, 3.697215540344325*^9}, {
+   3.697297247217061*^9, 3.697297250415061*^9}, {3.6974529949741654`*^9, 
+   3.6974532581490936`*^9}, {3.6974616401520696`*^9, 
+   3.6974620364066916`*^9}, {3.6974620709991503`*^9, 3.6974620726953197`*^9}, 
+   3.697462263558404*^9, {3.69754468928757*^9, 3.6975446930949507`*^9}, 
+   3.6975447329609365`*^9, 3.6992676725379066`*^9, 3.7008418167065215`*^9, {
+   3.7053330203331966`*^9, 3.7053332588493967`*^9}, {3.7053334751255965`*^9, 
+   3.7053334755623965`*^9}, 3.705334850900797*^9, {3.7053364507519965`*^9, 
+   3.7053364672461967`*^9}, {3.7053366255659966`*^9, 
+   3.7053366373021965`*^9}, {3.7053376677805967`*^9, 3.7053376745041966`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", 
+      RowBox[{
+       SubscriptBox["\[Rho]", "sp"], " ", 
+       SubscriptBox["\[Sigma]", "p"]}], 
+      RowBox[{"\[Gamma]", " ", 
+       SubscriptBox["\[Sigma]", "e"]}]},
+     {
+      RowBox[{
+       SubscriptBox["\[Rho]", "sp"], " ", 
+       SubscriptBox["\[Sigma]", "p"]}], 
+      SubsuperscriptBox["\[Sigma]", "p", "2"], 
+      RowBox[{
+       SubscriptBox["\[Rho]", "ep"], " ", 
+       SubscriptBox["\[Sigma]", "e"], " ", 
+       SubscriptBox["\[Sigma]", "p"]}]},
+     {
+      RowBox[{"\[Gamma]", " ", 
+       SubscriptBox["\[Sigma]", "e"]}], 
+      RowBox[{
+       SubscriptBox["\[Rho]", "ep"], " ", 
+       SubscriptBox["\[Sigma]", "e"], " ", 
+       SubscriptBox["\[Sigma]", "p"]}], 
+      SubsuperscriptBox["\[Sigma]", "e", "2"]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.705334851713997*^9, 3.7053364692449965`*^9, 
+  3.705336638643797*^9, 3.7053376754713964`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"muEgP", " ", "=", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"condMeanSingle", "[", 
+    RowBox[{"3", ",", 
+     SubscriptBox["p", "i"], ",", "2", ",", "muX", ",", "sigX"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.697462077037754*^9, 3.6974621603940887`*^9}, {
+  3.7053332892095966`*^9, 3.7053333333783965`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SubscriptBox["\[Sigma]", "e"], " ", 
+     SubscriptBox["\[Rho]", "ep"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SubscriptBox["p", "i"], "-", 
+       SubscriptBox["\[Mu]", "p"]}], ")"}]}], 
+    SubscriptBox["\[Sigma]", "p"]], "+", 
+   SubscriptBox["\[Mu]", "e"]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.6974621425623055`*^9, 3.697462160850134*^9}, 
+   3.7053333394985967`*^9, 3.7053334876983967`*^9, 3.7053364779713964`*^9, 
+   3.7053376791841965`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"muEgSP", " ", "=", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"condMeanMult", "[", 
+    RowBox[{"3", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["s", "i"], ",", 
+       SubscriptBox["p", "i"]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", "muX", ",", "sigX"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6992667382199063`*^9, 3.6992668097509065`*^9}, {
+  3.6992669682779064`*^9, 3.6992669873159065`*^9}, {3.705333354325597*^9, 
+  3.705333367019397*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  FractionBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[Sigma]", "p"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Sigma]", "e"], " ", 
+        SubscriptBox["s", "i"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["\[Rho]", "ep"], " ", 
+           SubscriptBox["\[Rho]", "sp"]}], "-", "\[Gamma]"}], ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["\[Mu]", "e"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SubsuperscriptBox["\[Rho]", "sp", "2"], "-", "1"}], ")"}]}]}], 
+      ")"}]}], "-", 
+    RowBox[{
+     SubscriptBox["\[Sigma]", "e"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SubscriptBox["p", "i"], "-", 
+       SubscriptBox["\[Mu]", "p"]}], ")"}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SubscriptBox["\[Rho]", "ep"], "-", 
+       RowBox[{"\[Gamma]", " ", 
+        SubscriptBox["\[Rho]", "sp"]}]}], ")"}]}]}], 
+   RowBox[{
+    SubscriptBox["\[Sigma]", "p"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      SubsuperscriptBox["\[Rho]", "sp", "2"], "-", "1"}], ")"}]}]], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{3.699266810741906*^9, 3.699266987781906*^9, 
+  3.7053333677993965`*^9, 3.705333491810197*^9, 3.705336480919797*^9, 
+  3.7053366436397963`*^9, 3.7053376818049965`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"muPgS", "=", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"condMeanSingle", "[", 
+    RowBox[{"2", ",", 
+     SubscriptBox["s", "i"], ",", "1", ",", "muX", ",", "sigX"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.697544451972841*^9, 3.697544482727916*^9}, {
+  3.705333429914797*^9, 3.7053334606763964`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{
+    SubscriptBox["s", "i"], " ", 
+    SubscriptBox["\[Sigma]", "p"], " ", 
+    SubscriptBox["\[Rho]", "sp"]}], "+", 
+   SubscriptBox["\[Mu]", "p"]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.6975444870643497`*^9, 3.6975444991105537`*^9}, 
+   3.7053334624079967`*^9, 3.7053334959441967`*^9, 3.7053364912187967`*^9, 
+   3.7053376839511967`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sigPgS", " ", "=", " ", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{"condSigSingle", "[", 
+    RowBox[{"2", ",", "1", ",", "sigX"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.697544656915333*^9, 3.6975446774543867`*^9}, 
+   3.697544712255866*^9, {3.7053335053841963`*^9, 3.7053335222837963`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   SubsuperscriptBox["\[Sigma]", "p", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"-", 
+     RowBox[{"(", 
+      RowBox[{
+       SubsuperscriptBox["\[Rho]", "sp", "2"], "-", "1"}], ")"}]}], ")"}]}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.6975447131299543`*^9, 3.6975447370363445`*^9}, 
+   3.705333522829797*^9, 3.7053364935275965`*^9, 3.7053376869981966`*^9}]
+}, Open  ]]
+},
+WindowSize->{845, 489},
+WindowMargins->{{Automatic, -48}, {Automatic, 114}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 5794, 146, 132, "Input"],
+Cell[6377, 170, 1387, 39, 76, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7801, 214, 349, 8, 31, "Input"],
+Cell[8153, 224, 540, 15, 58, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8730, 244, 534, 14, 31, "Input"],
+Cell[9267, 260, 1325, 41, 60, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10629, 306, 340, 8, 31, "Input"],
+Cell[10972, 316, 399, 10, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11408, 331, 326, 6, 31, "Input"],
+Cell[11737, 339, 406, 11, 69, "Output"]
+}, Open  ]]
+}
+]
+*)
+

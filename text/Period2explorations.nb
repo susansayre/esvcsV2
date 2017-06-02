@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19560,        431]
-NotebookOptionsPosition[     19237,        415]
-NotebookOutlinePosition[     19584,        430]
-CellTagsIndexPosition[     19541,        427]
+NotebookDataLength[     19591,        431]
+NotebookOptionsPosition[     19268,        415]
+NotebookOutlinePosition[     19615,        430]
+CellTagsIndexPosition[     19572,        427]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -265,14 +265,14 @@ Cell[BoxData[
   TagBox[
    FormBox[
     StyleBox[
-     DynamicModuleBox[{$CellContext`meanE$$ = 1, $CellContext`meanP$$ = 
+     DynamicModuleBox[{$CellContext`meanE$$ = 2.31, $CellContext`meanP$$ = 
       1, $CellContext`rhoEnvRp$$ = 0, $CellContext`rhoRatio$$ = 
       0.5, $CellContext`sEnv$$ = 0.78, $CellContext`sigShr$$ = 
       0.5, $CellContext`sigZ$$ = 0, $CellContext`sRp$$ = 
-      0.78, $CellContext`xUB$$ = 1.5, $CellContext`yUB$$ = 1, Typeset`show$$ =
-       True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-      Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-      "\"untitled\"", Typeset`specs$$ = {{{
+      0.78, $CellContext`xUB$$ = 1.91, $CellContext`yUB$$ = 1.73, 
+      Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+      Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ =
+       1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
          Hold[$CellContext`meanP$$], 1}, 0.5, 1.5}, {{
          Hold[$CellContext`sRp$$], 0.78}, 0.5, 2}, {{
          Hold[$CellContext`rhoRatio$$], 0.5}, 0, 1}, {{
@@ -284,12 +284,12 @@ Cell[BoxData[
          Hold[$CellContext`xUB$$], 1.5}, 0.5, 5}, {{
          Hold[$CellContext`yUB$$], 1}, 0.5, 10}}, Typeset`size$$ = {
       360., {209., 215.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-      Typeset`skipInitDone$$ = True, $CellContext`meanP$1214610$$ = 
-      0, $CellContext`sRp$1214611$$ = 0, $CellContext`rhoRatio$1214612$$ = 
-      0, $CellContext`sigShr$1214613$$ = 0, $CellContext`sEnv$1214614$$ = 
-      0, $CellContext`sigZ$1214615$$ = 0, $CellContext`meanE$1214616$$ = 
-      0, $CellContext`rhoEnvRp$1214617$$ = 0, $CellContext`xUB$1214618$$ = 
-      0, $CellContext`yUB$1214619$$ = 0}, 
+      Typeset`skipInitDone$$ = True, $CellContext`meanP$1220803$$ = 
+      0, $CellContext`sRp$1220804$$ = 0, $CellContext`rhoRatio$1220805$$ = 
+      0, $CellContext`sigShr$1220806$$ = 0, $CellContext`sEnv$1220807$$ = 
+      0, $CellContext`sigZ$1220808$$ = 0, $CellContext`meanE$1220809$$ = 
+      0, $CellContext`rhoEnvRp$1220810$$ = 0, $CellContext`xUB$1220811$$ = 
+      0, $CellContext`yUB$1220812$$ = 0}, 
       DynamicBox[Manipulate`ManipulateBoxes[
        1, TraditionalForm, 
         "Variables" :> {$CellContext`meanE$$ = 1, $CellContext`meanP$$ = 
@@ -298,16 +298,16 @@ Cell[BoxData[
           0.5, $CellContext`sigZ$$ = 0, $CellContext`sRp$$ = 
           0.78, $CellContext`xUB$$ = 1.5, $CellContext`yUB$$ = 1}, 
         "ControllerVariables" :> {
-          Hold[$CellContext`meanP$$, $CellContext`meanP$1214610$$, 0], 
-          Hold[$CellContext`sRp$$, $CellContext`sRp$1214611$$, 0], 
-          Hold[$CellContext`rhoRatio$$, $CellContext`rhoRatio$1214612$$, 0], 
-          Hold[$CellContext`sigShr$$, $CellContext`sigShr$1214613$$, 0], 
-          Hold[$CellContext`sEnv$$, $CellContext`sEnv$1214614$$, 0], 
-          Hold[$CellContext`sigZ$$, $CellContext`sigZ$1214615$$, 0], 
-          Hold[$CellContext`meanE$$, $CellContext`meanE$1214616$$, 0], 
-          Hold[$CellContext`rhoEnvRp$$, $CellContext`rhoEnvRp$1214617$$, 0], 
-          Hold[$CellContext`xUB$$, $CellContext`xUB$1214618$$, 0], 
-          Hold[$CellContext`yUB$$, $CellContext`yUB$1214619$$, 0]}, 
+          Hold[$CellContext`meanP$$, $CellContext`meanP$1220803$$, 0], 
+          Hold[$CellContext`sRp$$, $CellContext`sRp$1220804$$, 0], 
+          Hold[$CellContext`rhoRatio$$, $CellContext`rhoRatio$1220805$$, 0], 
+          Hold[$CellContext`sigShr$$, $CellContext`sigShr$1220806$$, 0], 
+          Hold[$CellContext`sEnv$$, $CellContext`sEnv$1220807$$, 0], 
+          Hold[$CellContext`sigZ$$, $CellContext`sigZ$1220808$$, 0], 
+          Hold[$CellContext`meanE$$, $CellContext`meanE$1220809$$, 0], 
+          Hold[$CellContext`rhoEnvRp$$, $CellContext`rhoEnvRp$1220810$$, 0], 
+          Hold[$CellContext`xUB$$, $CellContext`xUB$1220811$$, 0], 
+          Hold[$CellContext`yUB$$, $CellContext`yUB$1220812$$, 0]}, 
         "OtherVariables" :> {
          Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
           Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -410,7 +410,7 @@ $CellContext`condSigP], $CellContext`x], {$CellContext`x,
    3.7040402684658546`*^9, {3.7040403071702547`*^9, 3.7040403318282547`*^9}, 
    3.7040403645226545`*^9, 3.704041012701366*^9, 3.704041268610247*^9, {
    3.7041014947412696`*^9, 3.7041015088692694`*^9}, 3.7041015629998693`*^9, 
-   3.704115000160853*^9}]
+   3.704115000160853*^9, 3.7041899881523094`*^9}]
 }, Open  ]]
 },
 WindowSize->{1600, 818},
@@ -431,7 +431,7 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 9822, 238, 572, "Input"],
-Cell[10405, 262, 8816, 150, 537, "Output"]
+Cell[10405, 262, 8847, 150, 537, "Output"]
 }, Open  ]]
 }
 ]

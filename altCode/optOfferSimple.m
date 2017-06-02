@@ -39,21 +39,22 @@ if usePrev
 	startPoint = P.prevP2.optOffers;
 else
 	%starting point check
-	%checkPoints = 0:.1:1;
-% 	maxVal = min(maxUB,P.sig.rp*10+P.meanPub+P.meanPriv);
-% 	checkPoints = 0:maxVal/10:maxVal;
-% 	m=numel(checkPoints);
-% 	offerMult = repmat(checkPoints,n,1);
-% 	%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
-% 	longOffer = reshape(offerMult,n*m,1);
-% 	longSignal = reshape(repmat(signals,1,m),n*m,1);
-% 	longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
-% 
-% 	rph = regPay2(longOffer,longSignal,longPubVal,P);
-% 	rphMat = reshape(rph,n,m);
-% 	[~,maxCol] = max(rphMat,[],2);
-% 	linInd = sub2ind([n m],1:n,maxCol');
-% 	startPoint = min(longOffer(linInd),maxUB);
+	checkPoints = 0:.01:1;
+condMeanPriv = P.meanPriv + pubVals + P.rho.se_rp*P.sig.rp/P.sig.se*signals;
+condSDPriv = P.sig.rp*sqrt(1-P.rho.se_rp^2); 
+	maxOffer = max(0,((P.meanEnv+signals-pubVals)*condSDPriv^2-condMeanPriv*P.rho.re_rp*P.sig.re*P.sig.rp)/(condSDPriv^2-P.rho.re_rp*P.sig.re*P.sig.rp));
+	m=numel(checkPoints);
+	offerMult = repmat(checkPoints,n,1).*repmat(maxOffer,1,m);
+	%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
+	longOffer = reshape(offerMult,n*m,1);
+	longSignal = reshape(repmat(signals,1,m),n*m,1);
+	longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
+
+	rph = regPay2(longOffer,longSignal,longPubVal,P);
+	rphMat = reshape(rph,n,m);
+	[~,maxCol] = max(rphMat,[],2);
+	linInd = sub2ind([n m],1:n,maxCol');
+	startPoint = min(longOffer(linInd),maxOffer);
 end
 
 condMeanPriv = P.meanPriv + pubVals + P.rho.se_rp*P.sig.rp/P.sig.se*signals;
@@ -66,7 +67,7 @@ probAcceptZero = normcdf(0,condMeanPriv,condSDPriv);
 solveThese = intersect(find(maxOffer>zeroTol),find(probAcceptZero<1)); %eliminate cases where almost everyone will conserve with no payment or where the max viable offer is close to zero.
 optOffers = 0*signals;
 if any(solveThese)
-	[optOfferSolns,~,exf] = ncpsolve('regPay2FOC',0*maxOffer(solveThese),maxOffer(solveThese),.9*maxOffer(solveThese),signals(solveThese),pubVals(solveThese),P,'offer');
+	[optOfferSolns,~,exf] = ncpsolve('regPay2FOC',0*maxOffer(solveThese),maxOffer(solveThese),startPoint(solveThese),signals(solveThese),pubVals(solveThese),P,'offer');
 	%identify points where the "optimal offer" provides so little benefit that the algorithm is getting stuck. Essentially
 	%it doesn't matter what we do, but there is a true maximum arbitrarily close to the cond mean gain
 
