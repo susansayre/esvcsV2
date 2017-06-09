@@ -3,6 +3,7 @@
 \begin_document
 \begin_header
 \textclass svglobal3
+\options referee,smallextended
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -39,8 +40,8 @@
 \use_package stackrel 1
 \use_package stmaryrd 1
 \use_package undertilde 1
-\cite_engine basic
-\cite_engine_type default
+\cite_engine natbib
+\cite_engine_type authoryear
 \biblio_style plain
 \use_bibtopic false
 \use_indices false
@@ -185,6 +186,31 @@ Note: in general the sign of single variable comparative statics is clear
  The more interesting questions are the cross-partials
 \end_layout
 
+\begin_layout Subsection
+Previous Literature
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "polasky2011impact"
+
+\end_inset
+
+ use a simulation modeling tool to demonstrate significant divergence between
+ privately optimal and socially optimal land use decisions in Minnesota.
+\end_layout
+
+\begin_layout Subsection
+Key results
+\end_layout
+
+\begin_layout Standard
+The possibility that regulators will make more targeted offers in the future
+ will not induce more parcels to conserve today.
+ This result may well be 
+\end_layout
+
 \begin_layout Section
 Model
 \end_layout
@@ -309,12 +335,12 @@ This section is the math version.
 
 
 \begin_inset FormulaMacro
-\newcommand{\bVal}{\rhoEP-\rhoES\rhoSP}
+\newcommand{\bVal}{\rhoEP\left(1-\rhoES^{2}\right)}
 \end_inset
 
 
 \begin_inset FormulaMacro
-\newcommand{\cVal}{1-\rhoSP^{2}}
+\newcommand{\cVal}{1-\rhoES^{2}\rhoEP^{2}}
 \end_inset
 
 The relationship between ecosystem service provision and landuse is both
@@ -436,8 +462,8 @@ The key tradeoff in the model is between waiting for better information
 \mu_{\priv}\\
 \mu_{\env}
 \end{array}\right],\left[\begin{array}{ccc}
-1 & \rho_{\se\priv}\sigma_{\priv} & \rho_{\env\se}\sigma_{\env}\\
-\rho_{\se\priv}\sigma_{\priv} & \sigma_{\priv}^{2} & \rho_{\env\priv}\sigma_{\env}\sigma_{\priv}\\
+1 & \rhoES\rhoEP\sigma_{\priv} & \rho_{\env\se}\sigma_{\env}\\
+\rhoES\rhoEP\sigma_{\priv} & \sigma_{\priv}^{2} & \rho_{\env\priv}\sigma_{\env}\sigma_{\priv}\\
 \rho_{\env\se}\sigma_{\env} & \rho_{\env\priv}\sigma_{\env}\sigma_{\priv} & \sigma_{\env}^{2}
 \end{array}\right]\right).
 \]
@@ -453,36 +479,22 @@ With this structure
 \end_inset
 
  measures the correlation between environmental serice value and private
- development value, and 
-\begin_inset Formula $\rho_{\se\priv}$
-\end_inset
-
- indicates whether the signal provides any information about private development
- value.
- For the covariance matrix to be valid, we must have 
-\begin_inset Formula $\rho_{\se\priv}$
-\end_inset
-
- in the open interval whose bounds are 
-\begin_inset Formula $\rho_{\env\se}\rho_{\env\priv}\pm\sqrt{\left(1-\rho_{\env\se}^{2}\right)\left(1-\rho_{\env\priv}^{2}\right)}$
-\end_inset
-
-.
+ development value, and the signal only provides information about private
+ development value through the information it reveals about environmental
+ service value.
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-In the simulations below, 
-\begin_inset Formula $\rho_{\se\priv}$
+Formally, this structure implies that 
+\begin_inset Formula $\mu_{\priv|\env,\se}=\mu_{\priv|\env}$
 \end_inset
 
- is taken as the midpoint of this interval, e.g.
- 
-\begin_inset Formula $\rho_{\env\se}\rho_{\env\priv}$
+ for all 
+\begin_inset Formula $\env,\se$
 \end_inset
 
 .
- 
 \end_layout
 
 \end_inset
@@ -595,7 +607,7 @@ Note that this expression is independent of
  expression can be simplified to
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\left(\bVal\right)f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)
+\payEnd\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\bVal f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)
 \]
 
 \end_inset
@@ -620,7 +632,7 @@ where
  The first-order condition for an interior solution is
 \begin_inset Formula 
 \[
-\frac{\partial\payEnd}{\partial\offer_{i}}\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\left(\rho_{\env\priv}-\rhoES\rho_{\se\priv}\right)\frac{df_{\priv|\se}}{d\priv}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)-F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)=0.
+\frac{\partial\payEnd}{\partial\offer_{i}}\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\bVal\frac{df_{\priv|\se}}{d\priv}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)-F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)=0.
 \]
 
 \end_inset
@@ -632,15 +644,17 @@ Since
  has a normal distribution, we know that
 \begin_inset Formula 
 \[
-\frac{df_{\priv|\se}}{d\priv}\left(\offer_{i}|\se_{i}\right)=-\frac{\offer_{i}-\mu_{\priv}-\sigma_{\priv}\rho_{\se\priv}\se_{i}}{\sigma_{\priv|\se}^{2}}f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)
+\frac{df_{\priv|\se}}{d\priv}\left(\offer_{i}|\se_{i}\right)=-\frac{\offer_{i}-\mu_{\priv}-\sigma_{\priv}\rho_{\se\priv}\se_{i}}{\sigma_{\priv|\se}^{2}}f_{\priv|\se}\left(\offer_{i}|\se_{i}\right).
 \]
 
 \end_inset
 
-giving us
+We can then rewrite the first-order condition as requiring that the marginal
+ benefit of increasing the offer equal the marginal cost of increasing the
+ offer or
 \begin_inset Formula 
 \begin{equation}
-\overbrace{\underbrace{f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)}_{\mbox{Pr marginal}}\underbrace{\left(\frac{\sigma_{\env}\left(\rho_{\env\priv}-\rhoES\rho_{\se\priv}\right)}{\sigma_{\priv}\left(1-\rho_{\se\priv}^{2}\right)}\left(\offer_{i}-\mu_{\priv}-\sigma_{\priv}\rho_{\se\priv}\se_{i}\right)+\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)}_{\mbox{conditional expected gain}}}^{\mbox{marginal benefit}}=\overbrace{F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)}^{\mbox{marginal cost}}.\label{eq:p2FOC}
+\overbrace{\underbrace{f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)}_{\mbox{Pr marginal}}\underbrace{\left(\frac{\sigma_{\env}\bVal}{\sigma_{\priv}\left(\cVal\right)}\left(\offer_{i}-\mu_{\priv}-\sigma_{\priv}\rho_{\se\priv}\se_{i}\right)+\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)}_{\mbox{conditional expected gain}}}^{\mbox{marginal benefit}}=\overbrace{F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)}^{\mbox{marginal cost}}.\label{eq:p2FOC}
 \end{equation}
 
 \end_inset
@@ -684,6 +698,35 @@ name "fig:baseMBvMC"
 \begin_inset Graphics
 	filename baseMBvMC.eps
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula $\meanE=1$
+\end_inset
+
+, 
+\begin_inset Formula $\meanP=0.5$
+\end_inset
+
+, 
+\begin_inset Formula $\sigE=1.5$
+\end_inset
+
+, 
+\begin_inset Formula $\sigP=0.3$
+\end_inset
+
+, 
+\begin_inset Formula $\rhoES=0.5$
+\end_inset
+
+, 
+\begin_inset Formula $\rhoEP=\rhoSP=0$
 \end_inset
 
 
@@ -741,40 +784,10 @@ reference "fig:baseMBvMC"
 
 \begin_layout Standard
 As the problem parameters change, each of these lines shift.
- Since the marginal cost curve is the CDF of a normally distributed variable,
- its basic shape never changes, but it will shift left or right and become
- steeper at the mean when there is correlation between the signal and the
- private development value.
- Similarly, the probability a parcel will be marginal will shift left or
- right and its variance will fall when there is correlation between the
- signal and the private development value.
- The conditional gain increases when the signal reveals information about
- 
-\begin_inset Formula $\env_{i}$
-\end_inset
-
- In this case, the distribution of 
-\begin_inset Formula $\priv_{i}$
-\end_inset
-
- is independent of the signal observed and information about the distribution
- of ecosystem service values.
- In the left-hand panel, there is negative correlation between ecosystem
- service value and private development value.
- In this case, a high signal of environmental quality lowers the expected
- private development value.
- This raises the marginal cost of increasing an offer because the parcel
- is more likely to accept the offer.
- The opposite happens with a low signal.
- In the right-hand panel, where there is positive correlation, the opposite
- pattern holds.
-\end_layout
-
-\begin_layout Standard
-Figure 
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:deltaMB"
+reference "fig:deltaMBvMC"
 
 \end_inset
 
@@ -788,10 +801,10 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Marginal Benefit of Increasing Offer
+Impact of Changing Parameters
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:deltaMB"
+name "fig:deltaMBvMC"
 
 \end_inset
 
@@ -814,79 +827,187 @@ name "fig:deltaMB"
 \noindent
 \align center
 \begin_inset Graphics
-	filename deltaMB.eps
+	filename plotGrid.eps
 	width 100text%
 
 \end_inset
 
 
-\begin_inset space \hfill{}
+\end_layout
+
 \end_inset
 
+illustrates these changes.
+ Each row illustrates the effect on a different line from Figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:baseMBvMC"
 
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
+\end_inset
+
+.
+ The middle column illustrates the marginal benefit and cost if the regulator
+ observes a signal of zero, while the left column and right columns illustrate
+ signals that are equal distances above and below the mean signal.
+ The solid black shows the curve when there is no correlation, the dashed
+ line illustrates negative correlation and the dotted line illustrates positive
+ correlation.
+\begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename legend.eps
-
+As in the simulations below, these figures set 
+\begin_inset Formula $\rhoSP$
 \end_inset
 
-
-\begin_inset VSpace bigskip
+ to the midpoint of the range of possible values, eg.
+ 
+\begin_inset Formula $\rhoSP=\rhoEP\rhoES$
 \end_inset
 
-
+.
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
+ Since the probability a parcel's choice is changed by the offer is the
+ conditional PDF of 
+\begin_inset Formula $\priv_{i}$
 \end_inset
 
-illustrates the same changes on the marginal benefit curve.
- These changes are the result of shifts in both the probability that a parcel's
- choice is changed by the change in offer and by the impact on the conditional
- gain.
- In the middle panel, when there is no correlation, the probability that
- the parcel's decision is changed remains constant regardless of the signal
- observed, so the change in marginal benefit is due entirely to a shift
- in the conditional gain.
- Higher signals suggest higher ecosystem service values and shift the conditiona
-l gain up parallel to its original value.
- In the middle panel, there is no correlation between private development
- value and ecosystem service value.
- In this case, the distribution of 
-\backslash
-priv_{i} is independent of the signal observed and information about the
- distribution of ecosystem service values.
- In the left-hand panel, there is negative correlation between ecosystem
- service value and private development value.
- In this case, a high signal of environmental quality lowers the expected
- private development value.
- This raises the marginal cost of increasing an offer because the parcel
- is more likely to accept the offer.
- The opposite happens with a low signal.
- In the right-hand panel, where there is positive correlation, the opposite
- pattern holds.
+, its basic shape never changes.
+ Moreover, when there is no correlation, the signal does not impact the
+ distribution, so the solid lines are the same in all three panels on the
+ first row.
+ When the mean signal is observed in the center column, correlation (either
+ negative or positive), lowers the variance in the conditional distribution,
+ making the probability higher closer to the conditional mean and lower
+ further away from it.
+ In the left and right columns we see that in addition to reducing the variance
+ of the conditional distribution of 
+\begin_inset Formula $\priv_{i}$
+\end_inset
+
+, positive and negative correlation will cause its mean to shfit if a non-zero
+ signal is observed.
+ High signals increase the mean with positive correlation and decrease the
+ mean with negative correlation, while low signals do the reverse.
+ 
 \end_layout
 
 \begin_layout Standard
+The most dramatic effect of correlation is on the conditional expected gain
+ lines, shown in the second row of Figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:deltaMBvMC"
+
+\end_inset
+
+.
+ Setting 
+\begin_inset Formula $\gamma=\frac{\left(1-\rhoES^{2}\right)}{\left(1-\rhoES^{2}\rhoEP^{2}\right)}$
+\end_inset
+
+ in the conditional expected gain expression from (
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p2FOC"
+
+\end_inset
+
+) we have
+\begin_inset Formula 
+\begin{equation}
+E_{\env}\left(\env_{i}-\offer_{i}|\se_{i},\priv_{i}=\offer_{i}\right)=\left(\gamma\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}-1\right)\offer_{i}+\gamma\sigE\rhoES\rhoEP^{2}\se_{i}+\meanE-\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}\gamma\meanP\label{eq:condGainMod}
+\end{equation}
+
+\end_inset
+
+Note that 
+\begin_inset Formula $1-\rhoES^{2}\leq\gamma\leq1$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ increases as 
+\begin_inset Formula $\rhoEP^{2}$
+\end_inset
+
+ increases.
+ As a result, we see that if 
+\begin_inset Formula $\rhoEP=0$
+\end_inset
+
+ (e.g.
+ the solid lines), the conditional gain has a slope of -1 with respect to
+ the offer and its intercept will be higher or lower depending on the signal
+ received.
+ Thus the solid lines in each panel are parallel and increase in height
+ with the single.
+ Howerver, if 
+\begin_inset Formula $\rhoEP<0$
+\end_inset
+
+, the slope of the conditional gain will be less than -1, making the conditional
+ gain fall more rapidly, so the dashed lines slope down more steeply than
+ the solid lines.
+ The effect is amplified as the negative correlation gets stronger.
+ With positive correlation, the slope will increase and can be positive
+ if 
+\begin_inset Formula $\sigE>\sigP$
+\end_inset
+
+, especially when the correlation is strong.
+ Morevoer, we see that any correlation dampens the impact of the signal
+ on the conditional gain (becasue 
+\begin_inset Formula $\gamma\rhoEP^{2}<1$
+\end_inset
+
+), so the dashed and dotted lines shift up and down less with signals than
+ the solid lines do.
+ Finally, the last term in (
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:condGainMod"
+
+\end_inset
+
+) tells us that correlation also shifts the conditional gain up (at an increasin
+g rate) with negative correlation and down (at an increasing rate) with
+ positive correlation.
+ 
+\end_layout
+
+\begin_layout Standard
+The combined effect of the changes on the first two rows is shown on the
+ marginal benefit curve in the middle row of Figure 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:deltaMBvMC"
+
+\end_inset
+
+.
+ We see that for both negative and zero correlation, the marginal benefit
+ first rises, then falls, and eventually rises again, approaching zero asymptoti
+cally.
+ This pattern is reversed for positive correlation if 
+\begin_inset Formula $\sigP<\sigE$
+\end_inset
+
+.
+ The fourth row illustrates the marginal cost, which is the CDF of the variable
+ whose PDF is graphed in the first row, so the changes there are mirrored
+ in the marginal cost.
+ The final row illustrates the regulator's payoff function for the different
+ cases.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 Let 
 \begin_inset Formula $\offer_{i}^{*}\left(\se_{i},\ubPriv_{i}\right)$
 \end_inset
@@ -935,15 +1056,55 @@ Note that if
 .
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\offer^{*}\left(\se,\ubPriv\right)$
+\end_inset
+
+ be the solution to the regulator's problem and let 
+\begin_inset Formula $\regPay^{*}\left(\se,\ubPriv\right)$
+\end_inset
+
+ represent the optimized payoff.
+ Using the implicit function theorem, we know that for an interior solution
+\begin_inset Formula 
+\[
+\frac{\partial\offer^{*}}{\partial\se}=\frac{-\frac{\partial^{2}\regPay}{\partial\offer\partial\se}}{\frac{\partial^{2}\regPay}{\partial\offer^{2}}}
+\]
+
+\end_inset
+
+whose sign will be the same as 
+\begin_inset Formula $\frac{\partial^{2}\regPay}{\partial\offer\partial\se}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{\partial\offer^{*}}{\partial\ubPriv}=0$
+\end_inset
+
+.
+ When the upper bound is binding, we have 
+\begin_inset Formula $\frac{\partial\offer^{*}}{\partial\se}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{\partial\offer^{*}}{\partial\ubPriv}=\lambda=\frac{\partial\regPay}{\partial\offer}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsubsection
 Landowner's prior period decision
 \end_layout
 
 \begin_layout Standard
-The upper bound on parcels that remain undeveloped at time 
-\begin_inset Formula $T$
-\end_inset
-
+The upper bound on parcels that remain undeveloped in the second period
  depends on landowners' decision at time 0.
  At this time, the landowner must decide whether to develop her land immediately
  and receive a payoff of 
@@ -973,7 +1134,7 @@ The upper bound on parcels that remain undeveloped at time
  and in turn influence her expectation about the optimized offers she might
  receive the next period.
  In particular, 
-\begin_inset Formula $\se_{i}|\priv_{i}\sim N\left(\rho_{\se\rp}\frac{\rho_{\se\priv}\sigma_{\env}}{\sigma_{\rp}}\left(\priv_{i}-\meanP\right),\rho_{\se\priv}^{2}\sigma_{\env}^{2}\left(1-\rho_{\se\rp}^{2}\right)\right).$
+\begin_inset Formula $\se_{i}|\priv_{i}\sim N\left(\sigP\rhoES\rhoEP\left(\priv_{i}-\meanP\right),\sqrt{\cVal}\right).$
 \end_inset
 
  This induces a subjective distribution of possible offers 
@@ -1058,8 +1219,8 @@ The second term is unambiguously negative.
 \begin_inset Formula $\ubPriv$
 \end_inset
 
- such that parcels below this value conserve their land and parcels above
- this value develop their land.
+ such that if the parcel's value is below this, it will be conserved and
+ if its value is above, it will develop.
 \begin_inset Foot
 status collapsed
 
@@ -1080,7 +1241,7 @@ In the simulations described below, the sign of
  Moreover, when there is no correlation between the private development
  and the public development value, the distribution of offers will be independen
 t of 
-\begin_inset Formula $\priv_{i}$
+\begin_inset Formula $\priv$
 \end_inset
 
  and we know there will be a unique threshhold.
@@ -1094,7 +1255,7 @@ When a unique threshhold exists, its value solves the equation
 
 .
  For the parcel at this threshhold, 
-\begin_inset Formula $\priv_{i}=\ubPriv$
+\begin_inset Formula $\priv=\ubPriv$
 \end_inset
 
  and 
@@ -1124,17 +1285,28 @@ When a unique threshhold exists, its value solves the equation
  We therefore have 
 \begin_inset Formula 
 \[
-B\left(\ubPriv\right)=\temp_{i}+\ew\ubPriv-\ubPriv\left(1+\ew\right)=0
+B\left(\ubPriv\right)=\temp+\ew\ubPriv-\ubPriv\left(1+\ew\right)=0
 \]
 
 \end_inset
 
 implying that the threshhold value is 
-\begin_inset Formula $\ubPriv=\temp_{i}$
+\begin_inset Formula $\ubPriv=\temp$
 \end_inset
 
 .
- While landowners with private values below the cutoff may expect to 
+ While a landowners whose private value is below the cutoff may expect to
+ receive a value greater than their private development value in the second
+ period, the landowner at the cutoff values knows she is at the cutoff value
+ and will only conserve her land today if the payment today exceeds her
+ private development value.
+ As a result, we know that 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+ has no impact on which parcels will conserve in response to a given temporary
+ payment.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -1154,7 +1326,7 @@ At time 0, the regulator knows only distribution of
 \begin_inset Formula $\env_{i}$
 \end_inset
 
- and can offer landowner's a single period payment 
+ and can offer the landowner a payment 
 \begin_inset Formula $\temp_{i}$
 \end_inset
 
@@ -1164,24 +1336,20 @@ At time 0, the regulator knows only distribution of
 
  at which point the regulator can make another offer that the landowner
  is free to accept or reject.
- The regulator's problem is 
-\begin_inset Formula 
-\[
-\max_{\temp_{i}>0}\mathbb{E}_{\priv_{i}}\left\{ \choice_{i}\left(\mu_{\env|\priv_{i}}-\temp_{i}+\ew\pub_{i}\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\leq p_{i}\right)\right)+\delta\left(\mu_{\env|\choice\left(\priv,\pub|\Sigma\right)=1}-\mathbb{E}_{\offer^{*}|\offer^{*}>\priv_{i}}\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)\Pr\left(\offer_{i}^{*}\left(\se_{i},\pub_{i}|\Sigma\right)>\priv_{i}\right)\right)\right\} 
-\]
-
+ When there is a unique threshhold as described in the previous section,
+ the regulator knows that all landowners with 
+\begin_inset Formula $\priv_{i}>\temp_{i}$
 \end_inset
 
-If the assumption of an upper bound is valid, the problem becomes much easier.
- In this case, the regulator knows that all landowners with 
-\begin_inset Formula $\priv_{i}>\ubPriv=\temp_{i}$
+ will develop and all others will conserve, implying that 
+\begin_inset Formula $\ubPriv=\temp$
 \end_inset
 
- will develop and all others will conserve.
+.
  This means that the regulator's full payoff is given by
 \begin_inset Formula 
 \[
-\intop_{-\infty}^{\temp_{i}}\intop_{-\infty}^{\infty}\left(\env-\temp_{i}\right)f_{\env|\pub,\priv}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub}\left(\priv|\pub_{i}\right)dp+\intop_{\temp_{i}}^{\infty}\pub_{i}f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\offer_{i},\se_{i}\pub_{i},\Sigma,\ubPriv=\temp_{i}\right)f_{\se|\pub}\left(\se|\pub_{i}\right)d\se.
+\intop_{-\infty}^{\temp_{i}}\left(\mu_{\env|\priv}\left(\priv\right)-\temp_{i}\right)f_{\priv}\left(\priv\right)dp+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se.
 \]
 
 \end_inset
@@ -1189,22 +1357,57 @@ If the assumption of an upper bound is valid, the problem becomes much easier.
 As shown in the appendix, this can be simplified to 
 \begin_inset Formula 
 \[
-\pub_{i}+F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\left(\meanE-\temp_{i}-\pub_{i}\right)-\sigma_{\env}\rho_{\env\rp}\sigma_{\rp}f_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
+F_{\priv}\left(\temp\right)\left(\meanE-\temp\right)-\sigma_{\env}\sigP\rhoEP f_{\priv}\left(\temp\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se
 \]
 
 \end_inset
 
+The first-order condition for an interior solution is
+\begin_inset Formula 
+\[
+f_{\priv}\left(\temp\right)\left(\meanE-\temp+\frac{\sigE}{\sigP}\rhoEP\left(p-\meanP\right)\right)-F_{p}\left(\temp\right)+\delta\intop_{-\infty}^{\infty}\frac{\partial\regPay^{*}}{\partial\ubPriv}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se=0
+\]
 
+\end_inset
+
+or 
+\begin_inset Formula 
+\[
+f_{\priv}\left(\temp\right)\left(\meanE-\temp+\frac{\sigE}{\sigP}\rhoEP\left(p-\meanP\right)\right)+\delta\intop_{-\infty}^{\infty}\frac{\partial\regPay^{*}}{\partial\ubPriv}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se=F_{p}\left(\temp\right)
+\]
+
+\end_inset
+
+This condition mirrors (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2FOC"
+
+\end_inset
+
+) in that the marginal cost of increasing the offer is the probability it
+ will be accepted.
+ The first term of the marginal benefit of increasing the offer is the same
+ as in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p2FOC"
+
+\end_inset
+
+): the expected gain in period 1, conditional on the parcel being marginal
+ times the probability of it being marginal.
+ The new element is the 
 \end_layout
 
 \begin_layout Subsection
-Signal quality
+Summary of conclusions from the model
 \end_layout
 
 \begin_layout Standard
-A primary purpose of the analysis is to investigate the impact of signal
- quality on the results.
- 
+There should be some sort of summary results here about what I've discovered
+ from the model.
+ Maybe do some math to talk more about how correlation affects things.
 \end_layout
 
 \begin_layout Section
@@ -1270,15 +1473,14 @@ reference "fig:baseOptOffer"
 \end_inset
 
  illustrates the optimal offers as a function of the observed signal assuming
- all parcels remain undeveloped in period 2.
+ all parcels remain undeveloped in period 2 for various levels of 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+.
  As the graph illustrates, the optimal offer increases at a decreasing rate
  as the observed signal increases.
- Moreover, recognition that the offers are more likely to be accepted by
- the parcels with lower private development values suggests that the regulator
- will 
-\end_layout
-
-\begin_layout Standard
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -1288,7 +1490,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Optimal Offer by Signal (Baseline scenario, all parcels undeveloped)
+Optimal Period 2 Offers (Baseline scenario, all parcels undeveloped)
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:baseOptOffer"
@@ -1306,8 +1508,8 @@ name "fig:baseOptOffer"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2Offerexp1case8.eps
-	width 75text%
+	filename ../altCode/detailedOutput/20170608_163058/p2offer/p2Offerexp1case462.eps
+	width 50text%
 	clip
 
 \end_inset
@@ -1318,121 +1520,6 @@ name "fig:baseOptOffer"
 \end_inset
 
 
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Period 2 Regulator Outcomes by Signal and Private Development Value (Baseline
- scenario, all parcels undeveloped)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-In the absence of correlation between the private development externality
- and the ecosystem service value, the optimal offer made to a parcel with
- a given signal does not change as the signal quality increases.
- However, the signal quality does influence the likelihood of observing
- different signals.
- A low signal quality implies that most observed signals provide little
- additional information about the environmental service value.
- In this model, that implies the signal distribution will be clustered close
- to zero and the likelihood of observing a very strong positive or negative
- signal is much smaller.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-An alternate approach to specifying the signal relationship would be to
- have a signal with a constant distribution and a varying correlation with
- the true env value.
- My gut says these are functionally equivalent but I should verify this.
-\end_layout
-
-\end_inset
-
- This variation in the likelihood of observing various signals induces variation
- in the distribution of offers the regulator expects to make in period 2.
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Distribution of optimal offers by signal quality (baseline scenario, all
- parcels remain undeveloped)
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:baseHistOptOffer"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2offerHistMaxUBexp1case8.eps
-	width 75text%
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
- The width of each blue bar gives the probability an offer in that vertical
- interval is made, while the red stars indicate the mean offer made.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Note that the horizontal axis in this figure is categorical representing
- the different signal qualities for which the model was run.
- The numerical distance between points on the graph is not constant.
-\end_layout
-
-\end_inset
-
-As Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:baseHistOptOffer"
-
-\end_inset
-
- illustrates, when the signal quality is low, the regulator views all parcels
- as essentially the same and makes very similar offers to all parcels.
- As the signal quality increases, the distribution of offers spreads out.
- Moreover, the mean offer increases as does the probability of making no
- offer to some parcels.
 \end_layout
 
 \begin_layout Standard
@@ -1446,7 +1533,7 @@ Based on the offer received, a parcel will fall into one of four categories:
  Parcels in the first two categories make the same contribution to the regulator
 's payoff as they would without a PES plan.
  Parcels in the third category reflect costly but non-additional conservation
- and make smaller contribution's to the regulator's payoff under the PES
+ and make smaller contributions to the regulator's payoff under the PES
  plan than they would without a plan.
  Parcels in the fourth category represent the gain of the PES plan.
  As the offer increases, the regulator must weigh the cost of additional
@@ -1480,7 +1567,7 @@ name "fig:baseRegGain"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/regGainMidUBexp1case8.eps
+	filename ../altCode/detailedOutput/20170608_163058/regGain/regGainexp1case462.eps
 	width 95text%
 
 \end_inset
@@ -1502,7 +1589,8 @@ reference "fig:baseRegGain"
 \end_inset
 
  identifies which parcels will fall into each category for three different
- signal qualities.
+ signal qualities if all parcels remain undeveloped at the start of the
+ second period.
  In each panel, the private development value increases along the vertical
  axis while the horizontal axis identifies the number of standard deviations
  the observed signal is from its mean (which is always 0).
@@ -1510,8 +1598,8 @@ reference "fig:baseRegGain"
  development value, which is identified by the horizontal line at 1.
  The dashed lines illustrate the +/- one standard deviation interval.
  The gray shaded area covers the parcels that always develop (e.g.
- category (1)), while the blank area in the lower left includes the parcels
- that will always conserve and are never made offers (e.g.
+ category (1)), while the unshaded area includes the parcels that will always
+ conserve and are never made offers (e.g.
  category (2)).
  The orange shading illustrates category (3) -- expected regulator losses
  on payments for non-addtional conservation, while the purple shading indicates
@@ -1522,43 +1610,41 @@ reference "fig:baseRegGain"
  and actual ecosystem service value, expected services also vary only horizontal
 ly in the picture.
  Thus, the only impact that private development has on the gain a regulator
- expects to receive from a parcel with a given signal is driven by which
- of the four categories the parcel belongs to.
+ expects to receive from a parcel with a given signal is to divide the parcel
+ into the four categories.
  As we increase signal quality moving along the top row of the figure, we
- see that the parcels in categories (2) and (3) remain constant, but that
- the losses on parcels in category (3) increase.
- At the same time, the regulator is able to profitably induce more parcels
- to conserve so more parcels are moved from category (1) to (4) and the
- expected gains on parcels in category (4) increase.
+ see the number of parcels in category 2 increases as the minimum signal
+ that will induce the regulator to make an offer increases.
+ The regulator is able to profitably induce more parcels to conserve so
+ more parcels are moved from category (1) to (4) and the expected gains
+ on parcels in category (4) increase.
+ At the same time, since the regulator is making higher offers to parcels
+ with higher signals, her losses on the parcels remaining in category 3
+ increase as well.
  
 \end_layout
 
 \begin_layout Standard
-The top row of the figure illustrates the outcome if all parcels whose private
- development value is less than 8 standard deviations above the mean remain
+The top row of the figure illustrates the outcome if all parcels remain
  undeveloped at the start of period.
- As discussed in the next section, the optimal second period offers the
- regulator makes will depend on her beliefs about which parcels remain undevelop
-ed.
- In particular, if she believes that all parcels with private development
- value above a particular threshhold were already developed, she will not
- make an offer exceeding this value.
- This shifts the distribution of optimal offers.
+ However, as the figure demonstrates, parcels with high private development
+ values are likely to be developed regardless of the signal observed.
+ As a result, the regulator knows that high value parcels have already been
+ converted and will lower her offers accordingly.
  
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Distribution of optimal offers by assumed upper bound remaining (baseline
- scenario, signal quality = .5)
+Expected period 2 outcomes (baseline scenario)
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:baseHistOptOfferUB"
+name "fig:baseExpOfferbyUB"
 
 \end_inset
 
@@ -1573,8 +1659,14 @@ name "fig:baseHistOptOfferUB"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/p2offerHistMedSignalexp1case8.eps
-	width 75text%
+	filename ../altCode/detailedOutput/20170608_163058/p2expoffer/p2expofferexp1case462.eps
+	width 50text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename ../altCode/detailedOutput/20170608_163058/p2expregPay/p2expregPayexp1case462.eps
 
 \end_inset
 
@@ -1586,19 +1678,49 @@ name "fig:baseHistOptOfferUB"
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:baseHistOptOfferUB"
+reference "fig:baseExpOfferbyUB"
 
 \end_inset
 
  illustrates the impact of changes in the upper bound remaining undeveloped
- on the distribution of optimal offers for a signal that reveals 50% of
- the variation in environmental service value.
- The distribution on the far right of the figure corresponds to an upper
- bound three standard deviations above the mean private development value,
- while the distribution on the left corresponds to one xx standard deviations
- about the mean private development value.
- As expected, lowering the upper bound compresses the distribution and increases
- the likelihood that offers are set at the lower bound of zero.
+ on the mean period 2 offer as a function of the signal quality.
+ As expected, lowering the upper bound reduces the mean offer as long as
+ 
+\begin_inset Formula $\rhoES>0$
+\end_inset
+
+.
+ For relatively high upper bounds, increasing signal quality increases the
+ expected offer since improved information leads to bigger increases in
+ offers when the signal is high than decreases in offers when the signal
+ is low as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOffer"
+
+\end_inset
+
+.
+ However, as 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ falls, this effect can be reversed.
+ Since the optimal offer is bounded above by 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+, the increases in offer when the signal is high fall while the decreases
+ in offers for low signals remain unchanged.
+ As a result, when 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+ is sufficiently low, increasing 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+ will lower the expected offer.
 \end_layout
 
 \begin_layout Standard
@@ -1610,7 +1732,7 @@ Since there is no correlation between environmental service value and private
  that in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:baseHistOptOffer"
+reference "fig:baseExpOfferbyUB"
 
 \end_inset
 
@@ -1632,7 +1754,21 @@ reference "fig:baseHistOptOffer"
  or equal to the conservation payment offered in period 1 will conserve.
  The regulator's decision about the offer to make in period 1 will thus
  determine the upper bound for the period 2 offer.
- Figure 
+ In making this decision, the regulator will weigh the cost of paying more
+ parcels to conserve in period 1 against the gain from having more parcels
+ undeveloped in period 2, which is illustrated as the second panel in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseExpOfferbyUB"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseOptOut"
@@ -1645,7 +1781,7 @@ illustrates how the regulator's optimal initial offer and associated outcomes
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1669,7 +1805,7 @@ name "fig:baseOptOut"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170427_101654/exp1case8compareOuts.eps
+	filename ../altCode/detailedOutput/20170427_101654/exp1case8compareOuts.eps
 	width 95text%
 
 \end_inset
@@ -1722,6 +1858,27 @@ wasted payments
 \begin_layout Itemize
 With low signal quality, increasing the mean private value while holding
  the probability lowers the optimal offer
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../altCode/detailedOutput/20170608_163058/compareOutputA.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "esvcs"
+options "apalike2"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1836,7 +1993,7 @@ and
 
 \begin_inset Formula 
 \begin{eqnarray*}
-\alpha+\beta\mu_{\priv|\se} & = & \meanE+\frac{\sigma_{\env}\left(\rhoES-\rhoEP\rhoSP\right)}{\left(1-\rho_{\se\priv}^{2}\right)}\se_{i}-\frac{\sigE\left(\bVal\right)}{\sigP\left(\cVal\right)}\mu_{\priv}-\offer_{i}+\frac{\sigE\left(\bVal\right)}{\sigP\left(\cVal\right)}\mu_{\priv}+\frac{\rho_{\se\priv}\left(\bVal\right)}{\left(\cVal\right)}\sigma_{\env}\se_{i}\\
+\alpha+\beta\mu_{\priv|\se} & = & \meanE+\frac{\sigma_{\env}\rhoES\left(1-\rhoEP^{2}\right)}{\left(\cVal\right)}\se_{i}-\frac{\sigE\bVal}{\sigP\left(\cVal\right)}\mu_{\priv}-\offer_{i}+\frac{\sigE\bVal}{\sigP\left(\cVal\right)}\mu_{\priv}+\frac{\rhoES\rhoEP\bVal}{\left(\cVal\right)}\sigma_{\env}\se_{i}\\
  & = & \meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}
 \end{eqnarray*}
 
@@ -1845,7 +2002,7 @@ and
 Finally, note that
 \begin_inset Formula 
 \[
-\sigma_{\priv|\se}^{2}=\sigma_{\priv}^{2}\left(1-\rho_{\se\priv}^{2}\right)
+\sigma_{\priv|\se}^{2}=\sigma_{\priv}^{2}\left(\cVal\right)
 \]
 
 \end_inset
@@ -1853,7 +2010,7 @@ Finally, note that
 so
 \begin_inset Formula 
 \begin{eqnarray*}
-\beta\sigma_{\priv|\se}^{2} & = & \sigma_{\env}\sigma_{\priv}\left(\bVal\right).
+\beta\sigma_{\priv|\se}^{2} & = & \sigma_{\env}\sigma_{\priv}\bVal.
 \end{eqnarray*}
 
 \end_inset
@@ -1861,28 +2018,8 @@ so
 Putting all these pieces together, we have
 \begin_inset Formula 
 \[
-\payEnd\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\left(\bVal\right)f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)
+\payEnd\left(\offer_{i},\se_{i},\Sigma\right)=-\sigma_{\env}\sigma_{\priv}\bVal f_{\priv|\se}\left(\offer_{i}|\se_{i}\right)+\left(\meanE+\rho_{\env\se}\sigma_{\env}\se_{i}-\offer_{i}\right)F_{\priv|\se}\left(\offer_{i}|\se_{i}\right)
 \]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Expected value of no offer given upper bound
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{eqnarray*}
- & = & \intop_{-\infty}^{0}\intop_{-\infty}^{\infty}\env f_{\env|\priv,\pub}\left(\env|\priv,\pub_{i}\right)d\env f_{\priv|\pub,\priv\leq\bar{\priv}}\left(\priv\right)d\priv+\pub_{i}\intop_{0}^{\bar{\priv}}f_{\priv|\pub,\priv\leq\bar{\priv}}\left(\priv\right)d\priv\\
- & = & \frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\intop_{-\infty}^{0}\mu_{\env|\priv,\pub}\left(\priv,\pub_{i}\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv+\pub_{i}\left(F_{\priv|\pub}\left(\bar{\priv}|\pub_{i}\right)-F_{\priv|\pub}\left(0|\pub_{i}\right)\right)\right]\\
- & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\intop_{-\infty}^{0}\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\priv\right)f_{\priv|\pub}\left(\priv|\pub_{i}\right)d\priv-\pub_{i}F_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
- & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\mu_{\priv|\pub}-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
- & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)+\frac{\sigma_{\env}}{\sigma_{\rp}}\rho_{\env\rp}\left(\mu_{\rp}+\pub_{i}\right)-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]\\
- & = & \pub_{i}+\frac{1}{F_{\priv|\pub_{i}}\left(\bar{\priv}\right)}\left[\left(\mu_{\env}-\pub_{i}\right)F_{\priv|\pub}\left(0|\pub_{i}\right)-\sigma_{\env}\sigma_{\rp}\rho_{\env\rp}f_{\priv|\pub}\left(0|\pub_{i}\right)\right]
-\end{eqnarray*}
 
 \end_inset
 
@@ -1934,60 +2071,6 @@ or
 \begin_inset Formula 
 \[
 \pub_{i}+F_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)\left(\meanE-\temp_{i}-\pub_{i}\right)-\sigma_{\env}\rho_{\env\rp}\sigma_{\rp}f_{\priv|\pub}\left(\temp_{i}|\pub_{i}\right)+\delta\intop_{-\infty}^{\infty}\payEnd^{*}\left(\se_{i},\pub_{i},\Sigma,\ubPriv\right)f_{\se}\left(\se\right)d\se
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Stuff from the first-order condition
-\end_layout
-
-\begin_layout Standard
-Next, note that 
-\begin_inset Formula $\mu_{\priv|\se,\pub}=\frac{\sigma_{\rp}\rho_{\se\rp}}{\rho_{\se\priv}\sigma_{\env}}\se_{i}+\mu_{\rp}+\pub_{i}$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma_{\priv|\se,\pub}^{2}=\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)$
-\end_inset
-
-.
- Making these subsitutions, we have
-\begin_inset Formula 
-\[
-\frac{\sigma_{\re\rp}}{\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\rho_{\se\priv}\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}=\frac{F_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)}{f_{\priv|\se,\pub}\left(\offer_{i}|\se_{i},\pub_{i}\right)}.
-\]
-
-\end_inset
-
-Since the right-hand side of this expression is necessarily positive, the
- left-hand side must be as well, implying that at an interior solution
-\begin_inset Formula 
-\[
-\frac{\sigma_{\re\rp}}{\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\rho_{\se\priv}\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}>0
-\]
-
-\end_inset
-
-Since 
-\begin_inset Formula $\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)>0$
-\end_inset
-
-, we can multiply through by this amount to get 
-\begin_inset Formula 
-\[
-\sigma_{\re\rp}\left(\offer_{i}-\frac{\sigma_{\rp}\rho_{\se\rp}}{\rho_{\se\priv}\sigma_{\env}}\se_{i}-\mu_{\rp}-\pub_{i}\right)+\left(\mu_{\env}-\offer_{i}+\se_{i}-\pub_{i}\right)\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)>0
-\]
-
-\end_inset
-
-or
-\begin_inset Formula 
-\[
-\offer_{i}\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)-\sigma_{\re\rp}\right)<\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)\meanE+\se_{i}\left(\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)-\sigma_{\re\rp}\frac{\sigma_{\rp}\rho_{\se\rp}}{\rho_{\se\priv}\sigma_{\env}}\right)-\pub_{i}\sigma_{\rp}^{2}\left(1-\rho_{\se\rp}^{2}\right)+\sigma_{\re\rp}\mu_{\priv|\pub}
 \]
 
 \end_inset
