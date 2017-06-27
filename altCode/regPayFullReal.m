@@ -1,4 +1,4 @@
-function [rpf,drpf] = regPayFullApprox(tempPay,P,storeOut)
+function [rpf,drpf] = regPayFullReal(tempPay,P,storeOut)
 
 	%calculate the regulator's expected payoff if they won't get better info
 
@@ -26,24 +26,24 @@ function [rpf,drpf] = regPayFullApprox(tempPay,P,storeOut)
 % 	end
 	
 	if nargout>1
-		expVals =quadvgk(@(sigVal)p2Out({'regPay' 'derp2_dUB'},sigVal,upperBound,P),[-10*P.sig.se;10*P.sig.se],2);
+		expVals =quadvgk(@(sigVal)p2Out({'regPay' 'derp2_dUB'},sigVal,upperBound,P),[-10;10],2);
 		expRegPay2 = expVals(1,:);
 		derp2_dUB = expVals(2,:);
 	elseif P.storeOut
 		myVars = {'regPay' 'probAccept' 'offer'};
-		expVals =quadvgk(@(sigVal)p2Out(myVars,sigVal,upperBound,P),[-10*P.sig.se;10*P.sig.se],numel(myVars));
+		expVals =quadvgk(@(sigVal)p2Out(myVars,sigVal,upperBound,P),[-10;10],numel(myVars));
 		for ii=1:numel(myVars)
 			eval(['rpf.p2' myVars{ii} '=expVals(ii,:);'])
 		end
 		expRegPay2 = rpf.p2regPay;
 	else
-		expRegPay2 = quadvgk(@(sigVal)p2Out({'regPay'},sigVal,upperBound,P),[-10*P.sig.se;10*P.sig.se],1);
+		expRegPay2 = quadvgk(@(sigVal)p2Out({'regPay'},sigVal,upperBound,P),[-10;10],1);
 	end
 		
-	probBelowUB = normcdf(upperBound,P.meanPriv+P.pubVal,P.sig.rp);
-	probAtUB = normpdf(upperBound,P.meanPriv+P.pubVal,P.sig.rp);
+	probBelowUB = normcdf(upperBound,P.meanPriv+P.pubVal-P.meanPub,sqrt(P.sig.p^2-P.sig.pub^2));
+	probAtUB = normpdf(upperBound,P.meanPriv+P.pubVal-P.meanPub,sqrt(P.sig.p^2-P.sig.pub^2));
 	
-	rpfVal = P.pubVal + probBelowUB.*(P.meanEnv - tempPay - P.pubVal) - P.sig.env*P.sig.rp*P.rho.e_rp*probAtUB + P.wgtP2*expRegPay2;
+	rpfVal = P.pubVal + probBelowUB.*(P.meanEnv - tempPay - P.pubVal) - P.sig.env*P.sig.p*P.rho.ep*probAtUB + P.wgtP2*expRegPay2;
 
 	if P.storeOut
 		rpf.UBVec = upperBound;
@@ -54,8 +54,8 @@ function [rpf,drpf] = regPayFullApprox(tempPay,P,storeOut)
 	else
 		if nargout>1
 			dprobBelow = probAtUB;
-			dprobAtUB = (P.meanPriv+P.pubVal-upperBound).*probAtUB./P.sig.rp^2;
-			drpf_dtemp = -probBelowUB + dUpperBound.*(dprobBelow.*(P.meanEnv-tempPay-P.pubVal) - P.sig.env*P.sig.rp*P.rho.e_rp*dprobAtUB+P.wgtP2*derp2_dUB);
+			dprobAtUB = (P.meanPriv+P.pubVal-upperBound).*probAtUB./P.sig.p^2;
+			drpf_dtemp = -probBelowUB + dUpperBound.*(dprobBelow.*(P.meanEnv-tempPay-P.pubVal) - P.sig.env*P.sig.p*P.rho.ep*dprobAtUB+P.wgtP2*derp2_dUB);
 		end
 
 		%disp('              Starting rfpAQ integral')

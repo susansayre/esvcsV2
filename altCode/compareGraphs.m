@@ -4,8 +4,8 @@ for vi=1:numel(varList)
 	figure()
 	for ii=1:3
 		subplot(3,1,ii)
-		eval(['plot(compStatRunDescriptions{1,2}{5,3},squeeze(infoDelta{1}.' varList{vi} '(:,ii,:))'');'])
-		xlabel(compStatRunDescriptions{1,2}{5,1})
+		eval(['plot(compStatRunDescriptions{1,2}{3,3},squeeze(infoDelta{1}.' varList{vi} '(:,ii,:))'');'])
+		xlabel(compStatRunDescriptions{1,2}{3,1})
 		h(ii) = gca;
 		if ii==1
 			%ylabel(varList{vi})

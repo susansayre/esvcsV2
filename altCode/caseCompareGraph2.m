@@ -54,7 +54,7 @@ for mm = 1:3
 		myAxis = [minAxis(1) maxAxis(2) minAxis(3) maxAxis(4)];
 		axis(myAxis)
 
-		legendNames = cellstr(num2str(sigShrVals([1 2 3])','%1.2f'));
+		legendNames = cellstr(num2str(rhoESvals([1 2 3])','%1.2f'));
 		legH = legend(h2(1),legendNames{:},'Orientation','Horizontal');
 		position = get(legH,'Position');
 		position(1) = .5 - position(3)/2;

@@ -8,14 +8,14 @@ function [rpf,drpf] = regPayNoInfo(tempPay,P,storeOut)
 		P.storeOut = storeOut;
 	end
 
-	probBelowUB = normcdf(tempPay,P.meanPriv+P.pubVal,P.sig.rp);
-	probAtUB = normpdf(tempPay,P.meanPriv+P.pubVal,P.sig.rp);
+	probBelowUB = normcdf(tempPay,P.meanPriv+P.pubVal-P.meanPub,sqrt(P.sig.p^2-P.sig.pub^2));
+	probAtUB = normpdf(tempPay,P.meanPriv+P.pubVal-P.meanPub,sqrt(P.sig.p^2-P.sig.pub^2));
 	
 % 	%optimize p2
 % 	options = optimset('Display','off','GradObj','on');
 % 	[optP2Pay,fval,exf,output,lambda,doptP2Pay] = fmincon(@(p2Offer)p2Objective(p2Offer,tempPay,P),.95*tempPay,[],[],[],[],0,tempPay,'',options);
 	
-	rpfVal = (1+P.wgtP2)*(P.pubVal + probBelowUB.*(P.meanEnv - tempPay - P.pubVal) - P.sig.env*P.sig.rp*P.rho.e_rp*probAtUB);
+	rpfVal = (1+P.wgtP2)*(P.pubVal + probBelowUB.*(P.meanEnv - tempPay - P.pubVal) - P.sig.env*P.sig.p*P.rho.ep*probAtUB);
 
 	if P.storeOut
 		rpf.UBVec = tempPay;
@@ -26,8 +26,8 @@ function [rpf,drpf] = regPayNoInfo(tempPay,P,storeOut)
 	else
 		if nargout>1
 			dprobBelow = probAtUB;
-			dprobAtUB = (P.meanPriv+P.pubVal-tempPay).*probAtUB./P.sig.rp^2;
-			drpf_dtemp = (1+P.wgtP2)*(-probBelowUB + dprobBelow.*(P.meanEnv-tempPay-P.pubVal) - P.sig.env*P.sig.rp*P.rho.e_rp*dprobAtUB);
+			dprobAtUB = (P.meanPriv+P.pubVal-P.meanPub-tempPay).*probAtUB./P.sig.p^2;
+			drpf_dtemp = (1+P.wgtP2)*(-probBelowUB + dprobBelow.*(P.meanEnv-tempPay-P.pubVal) - P.sig.env*P.sig.p*P.rho.ep*dprobAtUB);
 		end
 
 		%disp('              Starting rfpAQ integral')

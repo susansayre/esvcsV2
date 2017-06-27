@@ -6,14 +6,14 @@ if ~exist('runID','var')
     doRun = 'Y';
 	newRun = 1;
 else
-    doRun = input(['Do you want to continue the existing run stored in ' runID '? Y/N [N]'],'s')
+    doRun = input(['Do you want to continue the existing run stored in ' runID '? \n Enter Y/y for yes or R/r to regraph previous cases. Default is no [N]'],'s')
     if isempty(doRun)
         doRun = 'N';
 	end
 	newRun = 0;
 end
 
-if ~(strcmp(doRun,'Y')||strcmp(doRun,'y'))
+if ~(strcmp(doRun,'Y')||strcmp(doRun,'y')||strcmp(doRun,'R')||strcmp(doRun,'r'))
     disp('Aborting run so I don''t overwrite results')
     return
 end
@@ -21,20 +21,21 @@ end
 if newRun
 	%all of the necessary parameters should be named, described and set to base values in this array
 	baseParameterMat = {
-		'meanEnv'	'mean environmental benefit'						'\meanE'		1;
-		'meanRatio'	'ratio of meanPriv to meanEnv'						'\meanP/\meanE'	1;
-		'meanPub'	'mean public development value'						''				0;
-		'probENeg'	'probability of negative env value'					''				.15;
-		'probPNeg'	'probability a parcel is conserved w/o action'		''				.15;
-		'sig.pub'	'std deviation of public development value'			''				1;
-		'sigShr'	'share of uncertainty resolved by signal'			'\frac_{\sigma^{2}_{\se}}{\sigma^{2}_{\env}}' .5;
-		'rho.e_rp'	'correlation between env and priv values'			'\rho_{\env\priv}'	0;
-		'rho_ratio'	'ratio of correlation to signal'					'\sigShr*\rho_{\se\rp}/\rho_{\env\rp}' 1;
+		'meanEnv'	'mean environmental benefit'						'\meanE'			1;
+		'meanRatio'	'ratio of meanPriv to meanEnv'						'\meanP/\meanE'		1;
+		'meanPub'	'mean public development value'						''					0;
+		'probENeg'	'probability of negative env value'					''					.15;
+		'probPNeg'	'probability a parcel is conserved w/o action'		''					.15;
+		'sig.pub'	'std deviation of public development value'			''					0;
+		'sig.se'	'normalized std dev of signal'						''					1;
+		'rho.es'	'correlation btwn env and signal'					'\rho_{\env \se}'	.5;
+		'rho.ep'	'correlation between env and priv values'			'\rho_{\env\priv}'	0;
+		'rho_ratio'	'ratio of rho.sp to rho.ep*rho.es'					''					1;
 		'pubVal'	'public development value'							'\pub'			0;
 		'valueType'	'set values on mean/var (0) or ratio/probNeg (1)'	''				1;
 		'meanPriv'	''													''				1;
 		'sig.env'	''													''				-1/norminv(.15);
-		'sig.rp'	''													''				-1/norminv(.15);
+		'sig.p'		''													''				-1/norminv(.15);
 	};
 
 	%note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of
@@ -52,73 +53,62 @@ if newRun
 	%list of values to run or a set of values to make a grid from. Use the first element to indicate whether it should be a cross (1) or straight (0) 
 	compStatRunDescriptions = {
 			%cross?	%1-paramName	2-compStatType	3-values
-% 			1		{'rho.e_rp'		1				0;
-% 					 'probPNeg'		1				[.1 .2];
-% 					 'probENeg'		1				[.1	.2];
-% 					 'meanRatio'	1				[.5 1 1.5]}; %baseline case
-% 			1		{'valueType'	1				1;
-% 					 'meanRatio'	1				[.5  1 1.5];
-% 					 'probPNeg'		1				[.05 .15 .25];
-% 					 'rho_ratio'	1				.5;
-% 					 'rho.e_rp'		1				[-.75:.25:.75]};
-%  			1		{'rho_ratio'	1				[0 .25 .5 .75 1]; %share of correlation that's resolved by signal
-%  					 'rho.e_rp'		1				[-.75 -.5 -.25 0 .25 .5 .75]}; %true correlation
-			1		{'rho_ratio'	1				.5; %Baseline correlation impact
-					 'valueType'	1				0;
-					 'meanPriv'		1				1;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{'rho_ratio'	1				.5;%Low mean correlation impact
-					 'valueType'	1				0;
-					 'meanPriv'		1				.5;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		 {'rho_ratio'	1				.5; %High mean correlation impact
-					 'valueType'	1				0;
-					 'meanPriv'		1				1.5;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%High var correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				0;
-					 'meanPriv'		1				1;
-					 'sig.rp'		1				-1/norminv(.05);
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%Low var correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				0;
-					 'meanPriv'		1				1;
-					 'sig.rp'		1				-1/norminv(.25);
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%Low mean ratio correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				1;
-					 'meanRatio'	1				.5;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%High mean ratio correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				1;
-					 'meanRatio'	1				1.5;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%Low prob conserve correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				1;
-					 'meanRatio'	1				1;
-					 'probPNeg'		1				.05;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-			1		{%High prob conserve correlation impact
-					 'rho_ratio'	1				.5;
-					 'valueType'	1				1;
-					 'meanRatio'	1				1;
-					 'probPNeg'		1				.25;
-					 'rho.e_rp'		1				(-.95:.05:.95)};
-					 
+% 			1		{'valueType'	1				0;
+% 					 'sig.p'		1				.25;
+% 					 'sig.env'		1				2;
+% 					 'meanPriv'		1				1;
+% 					 'meanEnv'		1				0;
+% 					 'rho.ep'		1				[-.9:.2:0]}; %baseline case
+% 			1		{'valueType'	1				0;
+% 					 'meanPriv'		1				[.25:.05:2];
+% 					 'sig.p'		1				[.25:.05:2];
+% 					 'sig.env'		1				.75};
+% 			1		{'valueType'	1				0;
+% 					 'meanPriv'		1				[.5];
+% 					 'sig.p'		1				[.25:.25:1];
+% 					 'sig.env'		1				.75;
+% 					 'rho.ep'		1				[-.99:.01:.99]};
+			1		{'valueType'	1				0;
+					 'meanPriv'		1				[.25:.25:1.5];
+					 'sig.p'		1				[.25:.25:1.5];
+					 'sig.env'		1				.75;
+					 'rho.ep'		1				[-.95:.05:.95]};
+% 			1		{%Baseline correlation impact
+% 					 'valueType'	1				0;
+% 					 'meanPriv'		1				1;
+% 					 'rho.ep'		1				(-.95:.05:.95)};
+% 			1		{%Low mean correlation impact
+% 					 'valueType'	1				0;
+% 					 'meanPriv'		1				.5;
+% 					 'rho.ep'		1				(-.95:.05:.95)};
+% 			1		 { %High mean correlation impact
+% 					 'valueType'	1				0;
+% 					 'meanPriv'		1				1.5;
+% 					 'rho.ep'		1				(-.95:.05:.95)};
+% 			1		{%High var correlation impact
+% 					 'valueType'	1				0;
+% 					 'meanPriv'		1				1;
+% 					 'sig.p'		1				-1/norminv(.05);
+% 					 'rho.ep'		1				(-.95:.05:.95)};
+% 			1		{%Low var correlation impact
+% 					 'valueType'	1				0;
+% 					 'meanPriv'		1				1;
+% 					 'sig.p'		1				-1/norminv(.25);
+% 					 'rho.ep'		1				(-.95:.05:.95)};
+% 			1		{'valueType'	1				2;
+% 					 'meanRatio'	1				(.5:.5:2);
+% 					 'probPNeg'		1				(.05:.05:.3);
+% 					 'rho.ep'		1				(-.95:.05:.95)};
 			};
 
 	setUpExperiment
 else
-	load(fullfile('detailedOutput',runID,'setup.mat'))
+	%load(fullfile('detailedOutput',runID,'setup.mat'))
 	disp('I''m continuing on this comparative statics run')
 	compStatRunDescriptions{:,2}
 end
 
+rhoESvals = [0:.1:1];
 %step through problems and run them
 for kk=1:compStatRuns
 	for ii=1:cases{kk}
@@ -126,11 +116,15 @@ for kk=1:compStatRuns
 			disp(['loading existing results for experiment ' num2str(kk) ' case ' num2str(ii)])
 % 			load(fullfile('detailedOutput',runID,[paramCases{kk}{ii}.caseID '.mat']),'allOutput')
 % 			output{kk}{ii} = allOutput;
-			output{kk}{ii} = regraphCase(runID,paramCases{kk}{ii}.caseID);
-			clear allOutput
+			if strcmp(doRun,'R')||strcmp(doRun,'r')
+				output{kk}{ii} = regraphCase(runID,paramCases{kk}{ii}.caseID);
+			else
+				load(fullfile('detailedOutput',runID,[paramCases{kk}{ii}.caseID]),'allOutput');
+				output{kk}{ii} = allOutput; clear allOutput
+			end
 		else
 			disp(['starting experiment ' num2str(kk) ' of ' num2str(compStatRuns) ' case ' num2str(ii) ' of ' num2str(cases{kk})])
-			output{kk}{ii} = signalImpact(paramCases{kk}{ii},[.001 .5 .999]);
+			output{kk}{ii} = signalImpact(paramCases{kk}{ii},rhoESvals);
 		end
 	end
 end

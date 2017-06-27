@@ -2,7 +2,6 @@ function [drpo,ddrpo] = regPay2FOC(offers,signals,pubVals,P,derivFlag)
 
 if nargout>1
     [rp,drpo,ddrpo] = regPay2(offers,signals,pubVals,P,derivFlag);
-
 % 	subplot(2,2,1)
 % 	plot(signals,offers)
 % 	subplot(2,2,2)

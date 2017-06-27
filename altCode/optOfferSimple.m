@@ -27,6 +27,12 @@ signals = uniqueVals(:,1);
 pubVals = uniqueVals(:,2);
 n = length(signals);
 
+if abs(P.rho.ep)==1
+	optOffer = max(P.meanPriv + P.pubVal - P.meanPub + P.sig.p*P.rho.ep*signals,0);
+	optOffer(P.meanEnv+P.sig.e*signals<optOffer)=0;
+	return
+end
+
 derivTol = 1e-8;
 optset('ncpsolve','maxit',1000);
 optset('ncpsolve','type','ssmooth');
@@ -40,26 +46,31 @@ if usePrev
 else
 	%starting point check
 	checkPoints = 0:.01:1;
-condMeanPriv = P.meanPriv + pubVals + P.rho.se_rp*P.sig.rp/P.sig.se*signals;
-condSDPriv = P.sig.rp*sqrt(1-P.rho.se_rp^2); 
-	maxOffer = max(0,((P.meanEnv+signals-pubVals)*condSDPriv^2-condMeanPriv*P.rho.re_rp*P.sig.re*P.sig.rp)/(condSDPriv^2-P.rho.re_rp*P.sig.re*P.sig.rp));
-	m=numel(checkPoints);
-	offerMult = repmat(checkPoints,n,1).*repmat(maxOffer,1,m);
-	%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
-	longOffer = reshape(offerMult,n*m,1);
-	longSignal = reshape(repmat(signals,1,m),n*m,1);
-	longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
+	[condMeanPriv,condSDPriv] = condPriv({'signal','pubVal'},[signals pubVals],P);
+	%need to recompute this max offer
+	coeff=P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp)/(P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2);
+	if coeff>1
+		minOffer = (P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff);
+		startPoint(minOffer<0,:) = condMeanPriv(minOffer<0);
+		startPoint(minOffer>0,:) = 0;
+		maxOffer = Inf + condMeanPriv;
+	else
+		maxOffer = max(0,(P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff));
+		m=numel(checkPoints);
+		offerMult = repmat(checkPoints,n,1).*repmat(maxOffer,1,m);
+		%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
+		longOffer = reshape(offerMult,n*m,1);
+		longSignal = reshape(repmat(signals,1,m),n*m,1);
+		longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
 
-	rph = regPay2(longOffer,longSignal,longPubVal,P);
-	rphMat = reshape(rph,n,m);
-	[~,maxCol] = max(rphMat,[],2);
-	linInd = sub2ind([n m],1:n,maxCol');
-	startPoint = min(longOffer(linInd),maxOffer);
+		rph = regPay2(longOffer,longSignal,longPubVal,P);
+		rphMat = reshape(rph,n,m);
+		[~,maxCol] = max(rphMat,[],2);
+		linInd = sub2ind([n m],1:n,maxCol');
+		startPoint = min(longOffer(linInd),maxOffer);
+	end
 end
 
-condMeanPriv = P.meanPriv + pubVals + P.rho.se_rp*P.sig.rp/P.sig.se*signals;
-condSDPriv = P.sig.rp*sqrt(1-P.rho.se_rp^2); 
-maxOffer = max(0,((P.meanEnv+signals-pubVals)*condSDPriv^2-condMeanPriv*P.rho.re_rp*P.sig.re*P.sig.rp)/(condSDPriv^2-P.rho.re_rp*P.sig.re*P.sig.rp));
 zeroTol = 1e-8;
 maxOffer = min(maxOffer,norminv(1-zeroTol,condMeanPriv,condSDPriv));
 
@@ -82,7 +93,6 @@ if any(solveThese)
 	if exf<0
 		%disp(['supplementing ncpsolve with fmincon, sigShr = ' num2str(P.sigShr)])
 		probInds = find(abs(drp)>derivTol);
-		startPoint = min(pubVals + P.meanPriv + P.sig.se/P.sig.rp*P.rho.se_rp*signals,.5*(P.meanEnv + signals));
 		options = optimset('Display','off','Algorithm','trust-region-reflective','GradObj','on','Hessian','user-supplied','MaxIter',10000);
 		realProbInds = solveThese(probInds);
 		%signals(realProbInds)

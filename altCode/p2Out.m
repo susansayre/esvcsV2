@@ -22,7 +22,7 @@ signals = condRegInfo(:,P.ind.regInfo.se);
 if isfield(P,'noProb') && P.noProb
 	probSignals = ones(size(signals));
 else
-	probSignals = normpdf(signals,0,P.sig.se);
+	probSignals = normpdf(signals,0,1);
 end
 
 if optimizeOffer
@@ -35,32 +35,32 @@ else
 end
 
 if ~ischar(outputVars) || ~strcmp(outputVars,'offer') %algorithm is asking for more than just the optimal offer
-
-	condMeanPriv = P.meanPriv + P.pubVal + P.rho.se_rp*P.sig.rp/P.sig.se*signals;
-	condSDPriv = P.sig.rp*sqrt(1-P.rho.se_rp^2); 
+	pubVals = P.pubVal*ones(size(signals));
+	[condMeanPriv,condSDPriv] = condPriv({'signal','pubVal'},[signals pubVals],P);
 
 	ubBinds = offerCond>=UBVal;
 	effectiveOffer = min(UBVal,offerCond);
-	distArg = (effectiveOffer - condMeanPriv)./condSDPriv;
 
-	probMarginal = normpdf(distArg);
-	probAcceptCond = normcdf(distArg);
-	regPayCond = P.pubVal + (P.meanEnv + signals - offerCond - P.pubVal).*probAcceptCond - (P.rho.re_rp*P.sig.re*P.sig.rp/condSDPriv).*probMarginal;
+	probMarginal = normpdf(effectiveOffer,condMeanPriv,condSDPriv);
+	probAcceptCond = normcdf(effectiveOffer,condMeanPriv,condSDPriv);
+	condMeanPrivCond = condMeanPriv;
+	probMarginalCond = probMarginal;
+
+	alpha = P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp)/(P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2)*P.sig.p^2*(1-P.rho.sp^2);
+	regPayCond = pubVals + (P.meanEnv + P.rho.es*P.sig.env*signals - offerCond - pubVals).*probAcceptCond - alpha*probMarginal;
 
 	if any(strcmp(outVarList,'derp2_dUB')) 
-		ddistArg = (ubBinds)./condSDPriv; %will be zero if offer<ubVal, will be 1/condSDPriv if offer>=ubVal
-		dprobMarginal = -distArg.*ddistArg.*probMarginal; %will be zero if offer<ubVal
-		dprobAccept = ddistArg.*probMarginal; %will be zero if offer<ubVal
-		derp2_dUBCond = -probAcceptCond.*ubBinds + (P.meanEnv + signals - offerCond - P.pubVal).*dprobAccept - P.rho.re_rp*P.sig.re*P.sig.rp./condSDPriv.*dprobMarginal;
+		dprobMarginal = condSDPriv^(-2)*(condMeanPriv-effectiveOffer).*probMarginal.*ubBinds; %will be zero if offer<ubVal
+		dprobAccept = probMarginal.*ubBinds; %will be zero if offer<ubVal
+		derp2_dUBCond = -probAcceptCond.*ubBinds + (P.meanEnv + P.rho.es*P.sig.env*signals - offerCond - pubVals).*dprobAccept - alpha*dprobMarginal;
 	end
 	if any(strcmp(outVarList','derp_dOffer'))
 		if optimizeOffer
 			error('this won''t work')
 		end
-		ddistArg = ones(size(signals))./condSDPriv; %will be zero if offer<ubVal, will be 1/condSDPriv if offer>=ubVal
-		dprobMarginal = -distArg.*ddistArg.*probMarginal; %will be zero if offer<ubVal
-		dprobAccept = ddistArg.*probMarginal; %will be zero if offer<ubVal
-		derp_dOfferCond = -probAcceptCond + (P.meanEnv + signals - offerCond - P.pubVal).*dprobAccept - P.rho.re_rp*P.sig.re*P.sig.rp./condSDPriv.*dprobMarginal;
+		dprobMarginal = condSDPriv^(-2)*(condMeanPriv--effectiveOffer).*probMarginal; %will be zero if offer<ubVal
+		dprobAccept = probMarginal; %will be zero if offer<ubVal
+		derp_dOfferCond = -probAcceptCond +(P.meanEnv + P.rho.es*P.sig.env*signals - offerCond - pubVals).*dprobAccept - alpha*dprobMarginal;
 	end
 end
 
