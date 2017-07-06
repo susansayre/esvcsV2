@@ -50,6 +50,7 @@ function [rpf,drpf] = regPayFullReal(tempPay,P,storeOut)
 		rpf.val = rpfVal;
 		rpf.probBelowUB = probBelowUB;
 		rpf.probAtUB = probAtUB;
+		rpf.env1 = probBelowUB.*P.meanEnv - P.sig.env*P.sig.p*P.rho.ep*probAtUB;
 		%rpf.expRegPay2 = expRegPay2;
 	else
 		if nargout>1

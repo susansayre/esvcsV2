@@ -67,13 +67,16 @@ for ii=1:numel(rhoESvals)
 	allOutput.p2.conserveGainMat(:,:,ii) = allOutput.p2.expOfferMat(:,:,ii) - privValMat;
 	startPoint = thisP.meanEnv;
 	options = optimset('Display','off','GradObj','on');
+	thisSolveP = thisP;
+	thisSolveP.offer2guess.offers = allOutput.p2.offer(:,end,ii);
+	thisSolveP.offer2guess.signals = signalVals;
 % 	
 % 	thisPhat = rmfield(thisP,'reg2Approx');
 	%disp('starting fmincon')
 	%regPayFullReal(startPoint,thisP)
-	[optTempPay,~,exf] = fmincon(@(tempPay) regPayFullReal(tempPay,thisP),startPoint,[],[],[],[],0,100,'',options);		
+	[optTempPay,~,exf] = fmincon(@(tempPay) regPayFullReal(tempPay,thisSolveP),startPoint,[],[],[],[],0,100,'',options);		
 	if exf>0
-		fullOut = regPayFullReal(optTempPay,thisP,1);
+		fullOut = regPayFullReal(optTempPay,thisSolveP,1);
 		UB = fullOut.UBVec;
 		rpf = fullOut.val;
 		probConserve = fullOut.probBelowUB;

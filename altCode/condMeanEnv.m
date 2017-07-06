@@ -9,7 +9,7 @@ if any(signalCond)
 		if any(privCond)
 			%conditional on all three
 			a = -P.sig.env*(P.sig.p^2*(P.rho.ep*P.rho.sp-P.rho.es)+P.rho.es*P.sig.pub^2);
-			b = P.sig.env*P.sig.pub*(P.rho.ep-P.rho.es*P.rho.sp);
+			b = P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp);
 			c = P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2;
 			muEnv = a/c*condVals(:,find(signalCond))+b/c*(P.meanPub-condVals(:,find(pubCond))-P.meanPriv + condVals(:,find(privCond)))+P.meanEnv;
 		else
@@ -18,9 +18,9 @@ if any(signalCond)
 		end
 	else
 		%conditional on just signal and privVal
-		a = -P.sig.env*(P.sig.p^2*(P.rho.ep*P.rho.sp-P.rho.es)+P.rho.es*P.sig.pub^2);
-		b = P.sig.env*P.sig.pub*(P.rho.ep-P.rho.es*P.rho.sp);
-		c = P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2;
+		a = -P.sig.env*P.sig.p^2*(P.rho.ep*P.rho.sp-P.rho.es);
+		b = P.sig.env*(P.rho.ep-P.rho.es*P.rho.sp);
+		c = P.sig.p^2*(1-P.rho.sp^2);
 		muEnv = a/c*condVals(:,find(signalCond)) + b/c*(-P.meanPriv + condVals(:,find(privCond)))+P.meanEnv;
 	end
 elseif any(pubCond)

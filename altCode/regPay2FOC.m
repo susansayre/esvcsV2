@@ -12,7 +12,11 @@ if nargout>1
 % 	plot(signals,-drpo./ddrpo)
 % 	pause(1)
 
-	ddrpo = diag(ddrpo);
+	try
+		ddrpo = diag(ddrpo);
+	catch
+		keyboard
+	end
 	if any(isnan(ddrpo)), keyboard, end
 	if any(isinf(ddrpo)), keyboard, end
 else

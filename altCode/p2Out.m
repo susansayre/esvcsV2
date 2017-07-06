@@ -26,9 +26,6 @@ else
 end
 
 if optimizeOffer
-	if exist('offerGuess','var')
-		P.offerGuess = offerGuess;
-	end
 	offerCond = optOfferSimple(condRegInfo,P);
 else
 	offerCond = p2Offer*ones(size(signals));

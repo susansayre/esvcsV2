@@ -6,10 +6,10 @@ function optOffers = optOfferSimple(regInfo,P)
 %   the env signal and the public development value)
 %   P: problem parameters (e.g. the means and correlation matrices)
 
-if isfield(P,'prevP2')
-	usePrev = 1;
+if isfield(P,'offer2guess')
+	useGuess = 1;
 else
-	usePrev = 0;
+	useGuess = 0;
 end
 
 signals = regInfo(:,P.ind.regInfo.se);
@@ -41,34 +41,34 @@ optset('ncpsolve','tol',derivTol);
 optset('ncpsolve','maxsize',100*P.sig.env);
 optset('ncpsolve','maxsteps',100);
 
-if usePrev
-	startPoint = P.prevP2.optOffers;
-else
 	%starting point check
-	checkPoints = 0:.01:1;
-	[condMeanPriv,condSDPriv] = condPriv({'signal','pubVal'},[signals pubVals],P);
-	%need to recompute this max offer
-	coeff=P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp)/(P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2);
-	if coeff>1
-		minOffer = (P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff);
-		startPoint(minOffer<0,:) = condMeanPriv(minOffer<0);
-		startPoint(minOffer>0,:) = 0;
-		maxOffer = Inf + condMeanPriv;
-	else
-		maxOffer = max(0,(P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff));
-		m=numel(checkPoints);
-		offerMult = repmat(checkPoints,n,1).*repmat(maxOffer,1,m);
-		%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
-		longOffer = reshape(offerMult,n*m,1);
-		longSignal = reshape(repmat(signals,1,m),n*m,1);
-		longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
+checkPoints = 0:.01:1;
+[condMeanPriv,condSDPriv] = condPriv({'signal','pubVal'},[signals pubVals],P);
+%need to recompute this max offer
+coeff=P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp)/(P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2);
+if coeff>1
+	minOffer = (P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff);
+	startPoint(minOffer<0,:) = condMeanPriv(minOffer<0);
+	startPoint(minOffer>0,:) = 0;
+	maxOffer = Inf + condMeanPriv;
+else
+	maxOffer = max(0,(P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff));
+	m=numel(checkPoints);
+	offerMult = repmat(checkPoints,n,1).*repmat(maxOffer,1,m);
+	%longOffer = reshape(offerMult.*repmat(upperBounds,1,m),n*m,1);
+	longOffer = reshape(offerMult,n*m,1);
+	longSignal = reshape(repmat(signals,1,m),n*m,1);
+	longPubVal = reshape(repmat(pubVals,1,m),n*m,1);
 
-		rph = regPay2(longOffer,longSignal,longPubVal,P);
-		rphMat = reshape(rph,n,m);
-		[~,maxCol] = max(rphMat,[],2);
-		linInd = sub2ind([n m],1:n,maxCol');
-		startPoint = min(longOffer(linInd),maxOffer);
-	end
+	rph = regPay2(longOffer,longSignal,longPubVal,P);
+	rphMat = reshape(rph,n,m);
+	[~,maxCol] = max(rphMat,[],2);
+	linInd = sub2ind([n m],1:n,maxCol');
+	startPoint = min(longOffer(linInd),maxOffer);
+end
+
+if useGuess
+	startPoint = interp1(P.offer2guess.signals,P.offer2guess.offers,signals,'linear','extrap');
 end
 
 zeroTol = 1e-8;
@@ -92,7 +92,8 @@ if any(solveThese)
  
 	if exf<0
 		%disp(['supplementing ncpsolve with fmincon, sigShr = ' num2str(P.sigShr)])
-		probInds = find(abs(drp)>derivTol);
+		%probInds = find(abs(drp)>derivTol);
+		probInds = 1:numel(solveThese);
 		options = optimset('Display','off','Algorithm','trust-region-reflective','GradObj','on','Hessian','user-supplied','MaxIter',10000);
 		realProbInds = solveThese(probInds);
 		%signals(realProbInds)
