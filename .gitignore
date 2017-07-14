@@ -48,3 +48,4 @@ Temporary Items
 detailedOutput
 /text/*.lyx#
 /altCode/debug.mat
+/text/resultsDir/*.mat

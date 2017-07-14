@@ -31,9 +31,10 @@ clear jj
 
 P.wgtP2 = 1;
 numSig = 501;
-numUB = 6;
+numUB = 14;
 signalVals = 10*(-1:2/(numSig-1):1)';
-UBVals = P.meanEnv*[(0:1/(numUB-2):1) P.meanEnv+10*P.sig.env];
+maxUB = 3;
+UBVals = P.meanEnv*[(0:maxUB/(numUB-2):maxUB) P.meanPriv+10*P.sig.p];
 [signalMat,UBMat] = ndgrid(signalVals,UBVals);
 reg2outputVars = {'offer','regPay','probAccept'};
 offerInd = find(strcmp(reg2outputVars,'offer'));

@@ -18,9 +18,9 @@ end
 condArray.all = ones(size(priv));
 condArray.conserve1 = priv<=optTempPay;
 condArray.conserve2 = priv<=offer2;
-condArray.unpaid = (priv<0)&(offer2<=1e-10);
+condArray.unpaid = (priv<0)&(offer2<=1e-4);
 condArray.nonAdd1 = priv<=0;
-condArray.nonAdd2 = (priv<0)&(offer2>1e-10);
+condArray.nonAdd2 = (priv<0)&(offer2>1e-4);
 condArray.develop1 = priv>optTempPay;
 condArray.develop2 = (priv<=optTempPay)&(priv>offer2);
 condArray.add1 = (priv>0)&(priv<=optTempPay);
@@ -44,9 +44,9 @@ switch varName
 		integrandVal = optTempPay*probCase.*condArray.conserve1;
 	case 'cost2'
 		integrandVal = offer2.*probCase.*condArray.conserve2;
-	case 'landValue1'
+	case 'envValue1'
 		integrandVal = probCase.*condMeanEnv.*condArray.conserve1;
-	case 'landValue2'
+	case 'envValue2'
 		integrandVal = probCase.*condMeanEnv.*condArray.conserve2;
 	case 'pay1'
 		integrandVal = probCase.*(condMeanEnv - optTempPay).*condArray.conserve1;
@@ -60,10 +60,16 @@ switch varName
 		integrandVal = probCase.*((condMeanEnv - offer2) - condMeanEnv.*(priv<=0)).*condArray.conserve2;
 	case 'gain'
 		integrandVal = probCase.*(((condMeanEnv - optTempPay) - condMeanEnv.*(priv<=0)).*condArray.conserve1 + ((condMeanEnv - offer2) - condMeanEnv.*(priv<=0)).*condArray.conserve2);
-	case 'landValue'
+	case 'envValue'
 		integrandVal = probCase.*condMeanEnv.*(condArray.conserve1+condArray.conserve2);
 	case 'cost'
 		integrandVal = probCase.*(optTempPay*condArray.conserve1 + offer2.*condArray.conserve2);
+	case 'privValue1'
+		integrandVal = probCase.*(priv.*(1-condArray.conserve1) + optTempPay*condArray.conserve1);
+	case 'privValue2'
+		integrandVal = probCase.*(priv.*(1-condArray.conserve2) + offer2.*condArray.conserve2);
+	case 'privValue'
+		integrandVal = probCase.*(priv.*(2-condArray.conserve1 - condArray.conserve2) + optTempPay*condArray.conserve1 + offer2.*condArray.conserve2);
 
 end
 

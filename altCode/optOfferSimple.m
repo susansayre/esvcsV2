@@ -46,10 +46,10 @@ checkPoints = 0:.01:1;
 [condMeanPriv,condSDPriv] = condPriv({'signal','pubVal'},[signals pubVals],P);
 %need to recompute this max offer
 coeff=P.sig.env*P.sig.p*(P.rho.ep-P.rho.es*P.rho.sp)/(P.sig.p^2*(1-P.rho.sp^2)-P.sig.pub^2);
-if coeff>1
+if coeff>=1
 	minOffer = (P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff);
 	startPoint(minOffer<0,:) = condMeanPriv(minOffer<0);
-	startPoint(minOffer>0,:) = 0;
+	startPoint(minOffer>=0,:) = 0;
 	maxOffer = Inf + condMeanPriv;
 else
 	maxOffer = max(0,(P.meanEnv+P.rho.es*P.sig.env*signals-pubVals-coeff*condMeanPriv)/(1-coeff));

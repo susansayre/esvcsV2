@@ -59,20 +59,21 @@ if newRun
 % 					 'meanPriv'		1				1;
 % 					 'meanEnv'		1				0;
 % 					 'rho.ep'		1				[-.9:.2:0]}; %baseline case
-% 			1		{'valueType'	1				0;
-% 					 'meanPriv'		1				[.25:.05:2];
-% 					 'sig.p'		1				[.25:.05:2];
-% 					 'sig.env'		1				.75};
+			1		{'valueType'	1				0;
+					 'meanPriv'		1				.5;
+					 'sig.p'		1				.25;
+					 'sig.env'		1				(.25:.25:2);
+					 'rho.ep'		1				(-.9:.1:.9)};
 % 			1		{'valueType'	1				0;
 % 					 'meanPriv'		1				[.5];
 % 					 'sig.p'		1				[.25:.25:1];
 % 					 'sig.env'		1				.75;
 % 					 'rho.ep'		1				[-.99:.01:.99]};
-			1		{'valueType'	1				0;
-					 'meanPriv'		1				[.25:.25:1.5];
-					 'sig.p'		1				[.25:.25:1.5];
-					 'sig.env'		1				.75;
-					 'rho.ep'		1				[-.95:.05:.95]};
+% 			1		{'valueType'	1				0;
+% 					 'meanPriv'		1				[.25:.25:1.5];
+% 					 'sig.p'		1				[.25:.25:1.5];
+% 					 'sig.env'		1				.75;
+% 					 'rho.ep'		1				[-.95:.05:.95]};
 % 			1		{%Baseline correlation impact
 % 					 'valueType'	1				0;
 % 					 'meanPriv'		1				1;
