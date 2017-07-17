@@ -114,6 +114,15 @@ key "wunder2008taking"
  landuse is often imprecisely understood so that ecologists are rarely able
  to provide precise and specific estimates of the service provided by individual
  parcels.
+ Moreover, even when the biophysical services can be accurately quantified,
+ the economic value of those services is also uncertain 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "johnson2012uncertainty"
+
+\end_inset
+
+.
  As a result, buyers seeking to implement payment for ecoystem service approache
 s are left uncertain about what they might be purchasing.
  
@@ -128,11 +137,11 @@ key "wunder2008taking"
  In many cases, this uncertainty is due to the inherently stochastic nature
  of ecoystems, but in other cases, improved scientific undertanding in the
  future may partially reduce this uncertainty.
- While this potential for improved information might indicate the benefit
- of a wait-and-see approach, development pressures are current and many
+ While this potential for improved information could suggest that a wait-and-see
+ approach would be beneficial, development pressures are current and many
  forms of development are irreversible or costly to reverse.
- If buyers wait until they are sure of the services provided, it may be
- too late to avoid development.
+ If potential ecosystem service buyers wait until they are sure of the services
+ provided by a parcel, it may be too late to avoid development.
  Instead, buyers may need to provide conservation incentives today to preserve
  the option to pay for valuable ecosystem services tomorrow.
  In this paper, I develop a stylized model to capture the impact of this
@@ -201,6 +210,22 @@ Important messages? -- potential to reduce the information rents associated
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "costello2004dynamic"
+
+\end_inset
+
+ consider conservtion for biodiversity over time.
+ As they note, the uncertainty in their model is over whether development
+ occurs or not and is only resolved when a site is either reserved or developed.
+ In the present analysis, there are two forms of uncertainty -- the buyer
+ is uncertain whether the land will be developed but is also uncertain about
+ the benefits it provides.
+ 
+\end_layout
+
+\begin_layout Standard
 End by citing article pointing out that uniform price contracts are much
  more common.
  I thus focus on how to adjust a uniform price policy given the possibility
@@ -212,7 +237,7 @@ Summarize three or four main points
 \end_layout
 
 \begin_layout Standard
-Key points: 
+Key points: c
 \end_layout
 
 \begin_layout Itemize
