@@ -77,21 +77,30 @@
 
 \begin_body
 
+\begin_layout Title
+Pay for the option to pay? The impact of improved scientific information
+ on payments for ecosystem services
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
 
 \begin_layout Standard
-Big picture -- land is being rapidly developed by provides many ecosystem
+There is a growing recognition that undeveloped land provides many ecosystem
  services in its current state.
- Signficant externalities imply that private land use decisions are optimal.
+ When the benefits of these service are external to private landowners,
+ private land use decisions are not optimal.
  In this setting, conservation payments represent a potentially important
- policy tool.
- 
-\end_layout
+ policy tool 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ferraro2002cost"
 
-\begin_layout Standard
-Despite their promise, PES payment plans come with many challenges 
+\end_inset
+
+.
+ Despite their promise, PES payment plans come with many challenges 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kinzig2011paying"
@@ -106,9 +115,41 @@ key "wunder2008taking"
 
 \end_inset
 
- and describe four critical factors for identifying whether PES programs
- can provide benefits: (1) enrollment, (2) conditionality, (3) additionality,
- and (4) the linkage between land use and ecosystem services.
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "pattanayak2010show"
+
+\end_inset
+
+ describe four critical factors for identifying whether PES programs can
+ provide benefits: (1) whether landowners (and the 
+\begin_inset Quotes eld
+\end_inset
+
+right
+\begin_inset Quotes erd
+\end_inset
+
+ landowners) 
+\emph on
+enroll
+\emph default
+ in the program, (2) whether payments are 
+\emph on
+conditional
+\emph default
+ on landowners complying with the program, (3) whether the services provide
+ are 
+\emph on
+additional
+\emph default
+ and would not be provided in the absence of the program, and (4) the whether
+ the 
+\emph on
+link between land use and ecosystem services
+\emph default
+ is understood.
  The emphasis in this paper is on the final factor.
  In particular, the relationship between ecosystem service provision and
  landuse is often imprecisely understood so that ecologists are rarely able
@@ -134,209 +175,7 @@ key "wunder2008taking"
 
  note that this concern is particularly problematic for watershed protection
  programs.
- In many cases, this uncertainty is due to the inherently stochastic nature
- of ecoystems, but in other cases, improved scientific undertanding in the
- future may partially reduce this uncertainty.
- While this potential for improved information could suggest that a wait-and-see
- approach would be beneficial, development pressures are current and many
- forms of development are irreversible or costly to reverse.
- If potential ecosystem service buyers wait until they are sure of the services
- provided by a parcel, it may be too late to avoid development.
- Instead, buyers may need to provide conservation incentives today to preserve
- the option to pay for valuable ecosystem services tomorrow.
- In this paper, I develop a stylized model to capture the impact of this
- potential for improved information on current PES plans.
-\end_layout
-
-\begin_layout Standard
-Understanding both enrollment and additionality is central to understanding
- these impacts.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-In the present study, the second factor, conditionality, is not considered.
- I assume landowners accepting payments for conservation do indeed conserve
- their land.
-\end_layout
-
-\end_inset
-
- Enrollment can cover both the number of participants interested in the
- program and whether these are the 
-\begin_inset Quotes eld
-\end_inset
-
-right
-\begin_inset Quotes erd
-\end_inset
-
- participants.
- Additionality is a special case of a general challenge of PES plans: asymmetric
- information between landowners and buyers of ecosystem service.
  
-\emph on
-Cite lots of people with no specific info about the papers? 
-\emph default
-Ferraro (2008) considers the impact of asymmetric information on PES programs
- and notes that strategies to reduce the cost of providing services generally
- fall into three categories: (1) acquiring more information, (2) offering
- a menu of contracts, or (3) conducting procurement auctions.
- He notes that no one approach dominates.
- 
-\end_layout
-
-\begin_layout Standard
-Talk about mechanism design literature.
-\emph on
-What important messages do I want coming out of this? 
-\emph default
-All of these strategies rely on the buyer using a policy that has two components
-: eg.
- a price and a quantity.
- In this paper, I consider a buyer that makes decisions about the price
- to offer only.
-\end_layout
-
-\begin_layout Standard
-Talk about auction literature.
- 
-\emph on
-Important messages? -- potential to reduce the information rents associated
- with uniform pricing, challenges about design, market power concerns.
- Duke, Messer, etc paper that talks about problem with non-additionality
- in the auction context.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "costello2004dynamic"
-
-\end_inset
-
- consider conservtion for biodiversity over time.
- As they note, the uncertainty in their model is over whether development
- occurs or not and is only resolved when a site is either reserved or developed.
- In the present analysis, there are two forms of uncertainty -- the buyer
- is uncertain whether the land will be developed but is also uncertain about
- the benefits it provides.
- 
-\end_layout
-
-\begin_layout Standard
-End by citing article pointing out that uniform price contracts are much
- more common.
- I thus focus on how to adjust a uniform price policy given the possibility
- of improved information about ecosystem service value.
-\end_layout
-
-\begin_layout Itemize
-Summarize three or four main points
-\end_layout
-
-\begin_layout Standard
-Key points: c
-\end_layout
-
-\begin_layout Itemize
-partially reducible uncertainty about both the private net benefit of different
- land uses and the public benefit of conservation.
- Both vary across sites
-\end_layout
-
-\begin_layout Itemize
-Voluntary and temporary incentives to conserve land
-\end_layout
-
-\begin_layout Itemize
-Irreversibility has cross-cutting effects:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Money spent encouraging conservation today is irrecoverable
-\end_layout
-
-\begin_layout Itemize
-Development is irreversible
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Race between development and information gathering (someone said this)
-\end_layout
-
-\begin_layout Standard
-I
-\end_layout
-
-\begin_layout Subsection
-Previous Literature
-\end_layout
-
-\begin_layout Standard
-There is an extensive literature on selecting sites for conservation.
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "newburn2005economics"
-
-\end_inset
-
- and 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "newburn2006habitat"
-
-\end_inset
-
- emphasize the importance of considering both the cost of acquiring a particular
- parcel and the likelihoood that a parcel will be developed in the absence
- of policy.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "wunder2008taking"
-
-\end_inset
-
- compare a broad set of PES case studies and conclude that programs in which
- the users of the provided ecosystem services are directly purchasing the
- services tend to perform better on a number of metrics than those where
- the government purchases services on behalf of the eventual users.
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "engel2008designing"
-
-\end_inset
-
- reach a similar conclusion and note that in many government-financed PES
- programs, the buyers 
-\begin_inset Quotes eld
-\end_inset
-
-have no first-hand information on its value, and generally cannot observe
- directly whether it is being provided
-\begin_inset Quotes erd
-\end_inset
-
- (pg.
- 666).
-\end_layout
-
-\begin_layout Standard
-The analysis in this paper focuses on a PES buyer who has adopted strategy
- 1.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
 key "wunder2008decentralized"
@@ -349,31 +188,79 @@ s to preserve natural páramos and forest to improve water quality and flow
  They note that the precise hydrology linking land use changes to desirable
  water outcomes was unavailable so the program contracted on the land use
  changes themselves rather than service provision.
+ Some of this uncertainty is due to the inherently stochastic nature of
+ ecoystems, but improved scientific undertanding in the future may partially
+ reduce this uncertainty.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See for example, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "quintero2009services"
+
+\end_inset
+
+ who use a hydrological modeling tool called SWAT to provide suggestions
+ for targeting future PES payments in the same programs.
+ 
+\end_layout
+
+\end_inset
+
+ While this potential for improved information could suggest that a wait-and-see
+ approach would be beneficial, development pressures are current and many
+ forms of development are irreversible or costly to reverse.
+ If potential ecosystem service buyers wait until they are sure of the services
+ provided by a parcel, it may be too late to avoid development.
+ Instead, buyers may need to provide conservation incentives today to preserve
+ the option to pay for valuable ecosystem services tomorrow.
+ In this paper, I develop a stylized model to capture the impact of this
+ potential for improved information on current PES plans.
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset citation
 LatexCommand citet
-key "vedel2015forest"
+key "costello2004dynamic"
 
 \end_inset
 
- use a choice experiment to demonstrate significance variation in landowners'
- willingness to accept payment for adopting particular forest management
- strategies based on their current practices and suggest that many services
- provided by uniform contracts would be non-additional.
+ emphasize the importance of up front conservation in a model of slecting
+ sites for a conservation reserve.
+ In their model, the buyer faces uncertainty about whether a particular
+ site will be developed that is only resolved when a site is either reserved
+ or developed.
+ Since the uncertainty cannot be resolved before the buyer either commits
+ to payment or loses the opportunity for conservation, there is no gain
+ from waiting for better information.
  
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset citation
-LatexCommand cite
-key "polasky2011impact"
+LatexCommand citet*
+key "newburn2005economics"
 
 \end_inset
 
- use a simulation modeling tool to demonstrate significant divergence between
- privately optimal and socially optimal land use decisions in Minnesota.
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet*
+key "newburn2006habitat"
+
+\end_inset
+
+ emphasize the importance of considering both the cost of acquiring a particular
+ parcel and the likelihoood that a parcel will be developed in the absence
+ of policy since parcels more likely to develop also likely cost more to
+ conserve.
+ My analysis differs from the reserve site selection literature in two important
+ ways.
+ First, the emphasis in the site selection literature is on uncertainty
+ over which sites will be developed.
+ I couple this uncertainty with partially reducible uncertainty about the
+ benefits different sites provide.
+ Second, I focus on temporary payments for delaying conservation rather
+ than permanent payments.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -383,81 +270,128 @@ key "shah2016permanent"
 
  develop an infinite horizon model to assess the minimum temporary and permanaen
 t payments need to induce landowners to conserve their land when landowners
- face uncertainty in the future benefits from both conservation and conversion.
- They find that accounting for both sources of uncertainty delays the point
- at which landowners will decide to convert land.
- Moreover, they compare temporary versus permanent payments for conservation
- and identify situations where these payments differ substantially.
- The analysis in this paper has a similar flavor to 
+ face uncertainty in the future (private) benefits from both conservation
+ and conversion.
+\end_layout
+
+\begin_layout Standard
+While the emphasis in this paper is on the impact of improved understanding
+ about the links between land use and ecosystem services, concerns about
+ enrollment and additionality remain important.
+ The role of asymmetric information in the PES context is well understood.
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "miao2016grassland"
+key "engel2008designing"
 
 \end_inset
 
- who model grassland easement acquisition when farmers face substantial
- uncertainty in the relative returns of cropping and grazing.
- They
+ describe three types of inefficiency that can plague PES programs as a
+ result: failing to provide a sufficiently high incentive when conservation
+ would be valuable, paying more conservation than it is worth, and paying
+ for non-additional conservation.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "ferraro2008asymmetric"
+
+\end_inset
+
+ notes that strategies to reduce the cost of asymmetric information on PES
+ programs generally fall into three categories: (1) acquiring more information,
+ (2) offering a menu of contracts using techniques from the mechanism design
+ literature, or (3) conducting procurement auctions.
+ While the literature has often focused on the second 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "parkhurst2002agglomeration,sheriff2009implementing,arguedas2011optimal"
+
+\end_inset
+
+ and third 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "cason2004auction,reeson2011adapting,bardsley2013auctioning,polasky2014implementing,depiper2015bid,fooks2016conserving"
+
+\end_inset
+
+ approaches, Ferraro emphasizes that no one approach dominates.
+ Moreover, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "arnold2013adverse"
+
+\end_inset
+
+ emphasize that adverse selection remains an issue with auctions.
+ The present analysis implicitly adopts the first strategy, allowing buyers
+ to condition a single take-it-or-leave it offer on only observed information.
+ Moreover, the emphasis here is on learning more information about the conservat
+ion value of a parcel of land; knowledge about the private development is
+ gained only indirectly when correlation between values is present.
 \end_layout
 
 \begin_layout Standard
-I explore the single period model in some detail, exploring how concerns
- about additionality, overpayment for services, and targeting the right
- parcels play out in the context of the specific model developed here.
- The insights from this 
+Many authors consider uncertainty about the ES provided by land use practices.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "rabotyagov2010ecosystem"
+
+\end_inset
+
+ considers a regulator or purchaser of offsets who wishes to maximize the
+ benefit of services subject to a constraint on the likelihood that a level
+ of service greater than or equal to the claimed level is actually provided
+ and demonstrates that applying a margin of safety discount is optimal for
+ a regulator or aggregator with CARA risk-preferences.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "springborn2013crediting"
+
+\end_inset
+
+ argue that margin of safety discounts should generally be applied at a
+ high level of aggregation rather than at a parcel level.
 \end_layout
 
 \begin_layout Standard
-My analysis differs in that it focuses on partially reducible uncertainty
- about the ecosystem services provided by a parcel.
-\end_layout
-
-\begin_layout Subsection
-Key results
+The model approach in this paper begins by considering what offer a buyer
+ of ecosystem services should make in a single period given uncertainty
+ about both the payment needed to induce conservation and the ecosystem
+ services provided by the parcel.
+ Using this model, I consider the impact of correlation between these values
+ and how the outcome changes if the buyer believes that an undeveloped parcel
+ of land must have a private development value below a certain threshhold.
+ I then step back in time and ask how landonwers should respond in prior
+ periods, knowing that if they do not develop their land, buyers will learn
+ more information about conservation value and make more specific offers
+ in the future.
+ I find that under most conditions, the possibility of improved future informati
+on does not influence a landowner's choice in the first period.
+ Finally, I step back further and explore what offer a buyer should make
+ today, given the possibility of improved information in the future.
+ The improved information naturally leads to increased offers today and
+ increases the range of parameters for which making positive offers is optimal.
+ At the same time, the increase in the buyer's payoff from responding optimally
+ tends to be quite small unless the probability of making non-additional
+ payments today is quite low and the expected conservation value substantially
+ exceeds the private development value.
 \end_layout
 
 \begin_layout Standard
-The possibility that buyers will make more targeted offers in the future
- will not induce more parcels to conserve today.
- This result may well be 
+Section 2 of the paper develops the multi-period analytical model and provides
+ a preliminary discussion of the impacts of model parameters.
+ Since the model does not have an analytical solution, Sections 3 and 4
+ use numerical simulations to present these impacts, with section 3 assuming
+ independence between the uncertainty in public conservation value and private
+ development value and section 4 considering the impact of correlation.
+ Section 5 offers concluding comments.
 \end_layout
 
 \begin_layout Section
 Model
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Not sure exactly where to put this
-\emph default
- 
-\end_layout
-
-\begin_layout Standard
-• Model approaching begins by specifying in detail what offers the buyer
- should make in a single period given uncertainty about both values and
- possible correlation between them.
- Also explore how this relationship changes if buyers believe all land who
- private net benefit of development exceeds some threshhold has already
- converted.
-\end_layout
-
-\begin_layout Standard
-– Using this function, explore how the cost of achieving a given expected
- environmental service level depends on the quality of information (and
- the correlations).
-\end_layout
-
-\begin_layout Standard
-• Model then steps back and asks how landowners should respond to prior
- period offers knowing that if they do not develop their land, buyers will
- learn more information and make more specific offers next period.
-\end_layout
-
-\begin_layout Standard
-• Step back 1 more period and ask what offers buyers should make now given
- the partially reducible uncertainty
 \end_layout
 
 \begin_layout Standard
@@ -594,21 +528,49 @@ Not sure exactly where to put this
 \end_layout
 
 \begin_layout Standard
-There is a buyer who wishes to maximize the social value of services provided
- by a given parcel of land over two time periods.
- The land parcel has two possible states: developed and conserved.
- The decision to develop a parcel of land is irreversible.
- The net private development value of the parcel is 
+There is a buyer who wishes to maximize the value of services received by
+ a given parcel of land over two time periods.
+ The land parcel has two possible states (developed and conserved) and the
+ decision to develop a parcel of land is irreversible.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "arnold2013adverse"
+
+\end_inset
+
+ hypothesize that private landowners receive benefits from their land in
+ both the developed and the conserved state and that landowners can vary
+ along both dimensions.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "vedel2015forest"
+
+\end_inset
+
+ use a choice experiment to demonstrate significance variation in landowners'
+ willingness to accept payment for adopting particular forest management
+ strategies based on their current practices also suggesting that private
+ benefits of development may vary across landowners.
+ Instead of explicitly modeling the components of private benefits, I let
+ 
 \begin_inset Formula $\priv$
 \end_inset
 
- and the net public benefit of conservation for the parcel is 
+ represent the private net benefit of development over conservation.
+ Similarly, the buyer could derive benefits from land in either state.
+ I define the buyer's benefit of 
+\emph on
+conservation
+\emph default
+ over development as 
 \begin_inset Formula $\env$
 \end_inset
 
 .
- The socially optimal use of the parcel would be to develop the land if
- 
+ From the buyer's perspective, the optimal use of the parcel would be to
+ develop the land if 
 \begin_inset Formula $\env<0$
 \end_inset
 
@@ -636,32 +598,12 @@ Throughout the model, I assume that indifference is resolved in favor of
 
 \end_inset
 
- In the absence of externalities, 
-\begin_inset Formula $\priv=-\env$
-\end_inset
-
- and private development decisions are socially optimal.
- The presence of a variety of positive and negative externalities associated
- with development and conservation implies that 
-\begin_inset Formula $\priv\neq\env$
-\end_inset
-
-; for the parcels with 
-\begin_inset Formula $\env>0$
-\end_inset
-
- and 
-\begin_inset Formula $\priv>0$
-\end_inset
-
-, there is a mismatch in incentives and the buyer could improve social welfare
- by inducing the landowner to conserve the land.
  
 \end_layout
 
 \begin_layout Standard
-The buyer views payments to the landowner as a cost, so with perfect information
-, the buyer would offer the landowner a payment 
+With perfect information, the buyer would offer the landowner a payment
+ 
 \begin_inset Formula $\offer=\priv$
 \end_inset
 
@@ -676,46 +618,29 @@ status collapsed
 \begin_layout Plain Layout
 I assume that the buyer views payments as costs rather than redistributive
  transfers.
- This is consistent with a buyer who represents a direct user of the services
- provided by conservation or with a government entity whose objective is
- to maximize the social benefit from land use, one who faces a fixed budget,
- or one who assumes there is a substantial social cost associated with raising
- funds.
-\end_layout
-
-\end_inset
-
-
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-This model setup is similar in many ways to the framework in 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "engel2008designing"
-
-\end_inset
-
- and Fig.
- 2 in their paper demonstrates similar regions to those depicted in Figures
- 
+ This is consistent with a buyer representing direct beneficiaries of ecosystem
+ services (e.g.
+ a downstream water utility making payments to upstream landowners).
+ To the extent that the buyer represents a government who views the transfers
+ as payments, the cost of payments in (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:baseExpOfferbyUB"
+reference "eq:finalPeriodObjFunc"
 
 \end_inset
 
- and 
+) and (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:baseOptOut"
+reference "eq:firstPeriodObjFunc"
 
 \end_inset
 
-.
- There are two important differences to note.
- Come back and think about this more.
+) could be multiplied by a factor 
+\begin_inset Formula $\nu$
+\end_inset
+
+ representing the opportunity cost of funds to pay for the transfers.
 \end_layout
 
 \end_inset
@@ -853,17 +778,46 @@ The buyer can make an offer to the landowner in both periods in exchange
 
 , at which point the landowner is free to develop the land or to continue
  conservation.
- Any parcel that is developed at time 0 will provide a per period benefit
- of 
+ The parcel provides a per period benefit of 
 \begin_inset Formula $\priv$
 \end_inset
 
- to the landowner in both periods, while land that is conserved will provide
- a per period benefit of 
+ to the landowner in any period in which it is developed.
+ The buyer receives a per period benefit of 
 \begin_inset Formula $\env$
 \end_inset
 
- to society.
+ from the land when it is conserved, although the value of 
+\begin_inset Formula $\env$
+\end_inset
+
+ is not directly observed.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+key "engel2008designing"
+
+\end_inset
+
+ note that in many government-financed PES programs, the buyers of an ecosystem
+ service 
+\begin_inset Quotes eld
+\end_inset
+
+have no first-hand information on its value, and generally cannot observe
+ directly whether it is being provided
+\begin_inset Quotes erd
+\end_inset
+
+ (pg.
+ 666).
+\end_layout
+
+\end_inset
+
  The relative value of payoffs in the second time period (starting at time
  
 \begin_inset Formula $T$
@@ -1000,7 +954,7 @@ Given the multivariate normal assumption, there is a probability that the
  the expected payoff conditional on conservation or 
 \begin_inset Formula 
 \begin{equation}
-\regPay\left(\offer,\se\right)=\intop_{-\infty}^{\offer}\intop_{-\infty}^{\infty}\left(\env-\offer\right)f_{\env|\se,\priv}\left(\env|\se,\priv\right)d\env f_{\priv|\se}\left(\priv|\se\right)dp
+\regPay\left(\offer,\se\right)=\intop_{-\infty}^{\offer}\intop_{-\infty}^{\infty}\left(\env-\offer\right)f_{\env|\se,\priv}\left(\env|\se,\priv\right)d\env f_{\priv|\se}\left(\priv|\se\right)dp\label{eq:finalPeriodObjFunc}
 \end{equation}
 
 \end_inset
@@ -1234,34 +1188,16 @@ reference "fig:baseMBvMC"
  and increasing the offer decreases the conditional gain dollar for dollar.
  The dot-dashed line is the product of the dashed and dotted lines and represent
 s the marginal benefit.
- In this example, with zero correlation, increasing the expected conservation
- value 
-\begin_inset Formula $\meanE$
-\end_inset
-
- or the signal would increase the benefit of changing a parcel's choice,
- tending to increase the optimal offer.
- Increasing uncertainty about the conservation value or the quality of the
- signal magnifies the impact of the signal on the optimal offer.
- Changing the mean and variance of the private development value distribution
- impact both the marginal benefit and marginal cost in potentially different
- ways above and below 
-\begin_inset Formula $\meanP$
-\end_inset
-
- so their impacts are harder to identify immediately.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:compStatMeanVarPriv"
-
-\end_inset
-
- explores these impacts numerically.
 \end_layout
 
 \begin_layout Standard
-Figure 
+The key benefit of additional information in the second period is that it
+ allows the buyer to customize the offer based on the improved understanding
+ about the conservation value provided by the parcel.
+ Separation of the first order condition into is component parts facilitates
+ discussion of how the observed signal and the possibility of correlation
+ impact the optimal payment.
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:deltaMBvMC"
@@ -1335,8 +1271,8 @@ reference "fig:baseMBvMC"
 \end_layout
 
 \begin_layout Itemize
-As the observed signal increases, the conditional gain rises because we
- expect the parcel to provide more value.
+First, as the observed signal increases, the conditional gain rises because
+ we expect the parcel to provide more value.
  Thus each of the lines in the conditional gain panels on the second row
  shift up as we move from a negative to zero to positive signal.
 \end_layout
@@ -1872,16 +1808,16 @@ At time 0, the buyer knows better information will arrive at time
 .
  This means that the buyer's full payoff is given by
 \begin_inset Formula 
-\[
-\payFull\left(\temp\right)=\intop_{-\infty}^{\temp}\left(\mu_{\env|\priv}\left(\priv\right)-\temp\right)f_{\priv}\left(\priv\right)dp+\delta\intop_{-\infty}^{\infty}\regPay^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se.
-\]
+\begin{equation}
+\payFull\left(\temp\right)=\intop_{-\infty}^{\temp}\left(\mu_{\env|\priv}\left(\priv\right)-\temp\right)f_{\priv}\left(\priv\right)dp+\delta\intop_{-\infty}^{\infty}\regPay^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se.\label{eq:firstPeriodObjFunc}
+\end{equation}
 
 \end_inset
 
 As shown in the appendix, this can be simplified to 
 \begin_inset Formula 
 \[
-F_{\priv}\left(\temp\right)\left(\meanE-\temp\right)-\sigma_{\env}\sigP\rhoEP f_{\priv}\left(\temp\right)+\delta\intop_{-\infty}^{\infty}\regPay^{*}\left(\se,\temp\right)^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se
+F_{\priv}\left(\temp\right)\left(\meanE-\temp\right)-\sigma_{\env}\sigP\rhoEP f_{\priv}\left(\temp\right)+\delta\intop_{-\infty}^{\infty}\regPay^{*}\left(\se,\temp\right)^{*}\left(\se,\temp\right)f_{\se}\left(\se\right)d\se.
 \]
 
 \end_inset
@@ -1928,12 +1864,10 @@ reference "eq:p2FOC"
 \end_inset
 
  when the upper bound is binding.
- Therefore, the new term is necessarily positive, as the possibility of
- new information increases the marginal benefit of making an offer and will
- thus increase the optimal offer.
- While we know that the optimal offer will (weakly) increase with information,
- the central question of interest is how much it will increase at different
- values.
+ Therefore, the new term is necessarily non-negative and considering the
+ second period will (weakly) lead to an increase in initial offers.
+ The key question is how much it will increase offers and how large the
+ gains will be.
  To answer these questions, I turn to numerical simulation since the model
  has no analytical solution.
 \end_layout
@@ -2077,6 +2011,44 @@ tal service value conditional on the signal observed.
 \end_inset
 
 .
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+These categories are reminiscent of 
+\begin_inset CommandInset citation
+LatexCommand citeauthor
+key "engel2008designing"
+
+\end_inset
+
+'s (2008) sources of inefficiency from PES programs but do not correspond
+ exactly except in the case of category II -- payments for non-additional
+ conservation, which correspond to Engel et.
+ al's case D.
+ Category IV here includes both situations where the value of conservation
+ is less than the cost (
+\begin_inset Formula $\priv>\env$
+\end_inset
+
+) so the outcome is efficient and situations where 
+\begin_inset Formula $\env>\priv$
+\end_inset
+
+ but the buyer's best estimates lead to an offer that was too small to induce
+ conservation (what Engel et.
+ al.
+ term Case B).
+ Moreover, because of the uncertainty, category III may include parcels
+ where the value of conservation ends up being less than the cost so the
+ buyer would have been better off not inducing conservation (what Engel
+ et.
+ al.
+ term Case C).
+\end_layout
+
+\end_inset
+
  As the offer increases, the buyer must weigh the cost of additional losses
  on parcels in category II against increased gains for moving more parcels
  from category IV to category III.
@@ -2084,7 +2056,7 @@ tal service value conditional on the signal observed.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2108,7 +2080,7 @@ name "fig:baseOptFinal"
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170608_163058/parcelCategories_allUndevelopedexp1case466.eps
+	filename resultsDir/parcelCategories_allUndevelopedexp1case692.eps
 	width 75text%
 
 \end_inset
@@ -3127,6 +3099,137 @@ Putting all these pieces together, we have
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Subsection
+Comparative Statics for 
+\begin_inset Formula $\offer^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Using the implicit function theorem, as long as 
+\begin_inset Formula $\frac{\partial^{2}\regPay}{\partial\offer^{2}}\left(\offer^{*}\right)\neq0$
+\end_inset
+
+, the impact of an exogenous variable 
+\begin_inset Formula $x$
+\end_inset
+
+ on the value of 
+\begin_inset Formula $\offer^{*}$
+\end_inset
+
+is given by
+\begin_inset Formula 
+\[
+\frac{\partial\offer^{*}}{\partial x}=-\frac{\frac{\partial^{2}\regPay}{\partial\offer\partial x}\left(\offer^{*}\right)}{\frac{\partial^{2}\regPay}{\partial\offer^{2}}\left(\offer^{*}\right)}.
+\]
+
+\end_inset
+
+At an interior maximum where the implicit function theorem holds, 
+\begin_inset Formula $\frac{\partial^{2}\regPay}{\partial\offer^{2}}\left(\offer^{*}\right)<0$
+\end_inset
+
+, so the direction of the impact of an exogenous variable on the optimal
+ offer will match the direction of that variable's influence on 
+\begin_inset Formula $\frac{\partial\regPay}{\partial\offer}$
+\end_inset
+
+.
+ As shown in Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "uniqueLocal"
+
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\condProbMarginal}{f_{\priv|s}\left(\offer|s\right)}
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\regPay}{\partial\offer}\left(\offer,\se\right)=f_{\priv|\se}\left(\offer|\se\right)\left[\left(\gamma\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}-1\right)\offer+\sigE\rhoES\left(1-\gamma\rhoEP^{2}\right)\se+\meanE-\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}\gamma\meanP\right]-F_{\priv|\se}\left(\offer|\se\right)
+\]
+
+\end_inset
+
+Moreover, 
+\begin_inset Formula $\frac{f_{\priv|\se}\left(\offer|\se\right)}{\partial x}=f_{\priv|\se}\left(\offer|\se\right)\left[\left(\frac{\offer-\mu_{\priv|s}}{\sigma_{\priv|s}^{2}}\right)\frac{\partial\mu_{\priv|s}}{\partial x}+\left(\frac{\left(\offer-\mu_{\priv|s}\right)^{2}-\sigma_{\priv|s}^{2}}{\sigma_{\priv|s}^{3}}\right)\frac{\partial\sigma_{\priv|s}}{\partial x}\right]$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{F_{\priv|\se}\left(\offer|\se\right)}{\partial x}=-f_{\priv|\se}\left(\offer|\se\right)\left[\frac{\partial\mu_{\priv|s}}{\partial x}+\left(\frac{\offer-\mu_{\priv|s}}{\sigma_{\priv|s}}\right)\frac{\partial\sigma_{\priv|s}}{\partial x}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Expected
+\begin_inset space ~
+\end_inset
+
+conservation
+\begin_inset space ~
+\end_inset
+
+value 
+\begin_inset Formula $\frac{\partial^{2}W}{\partial\offer\partial\meanE}=f_{\priv|\se}\left(\offer|\se\right)>0$
+\end_inset
+
+ so payments increase with expected conservation value
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Observed
+\begin_inset space ~
+\end_inset
+
+signal The observed signal affects the expected conservation value directly
+ and indirectly affects other components when 
+\begin_inset Formula $\rhoEP\neq0$
+\end_inset
+
+ because
+\begin_inset Formula $\frac{\partial\mu_{\priv|s}}{\partial s}=\sigP\rhoEP\rhoES$
+\end_inset
+
+.
+ Therefore, we have 
+\begin_inset Formula $\frac{\partial^{2}W}{\partial\offer\partial\meanE}=f_{\priv|\se}\left(\offer|\se\right)\sigE\rhoES\left(1-\gamma\rhoEP^{2}\right)+\sigP\rhoEP\rhoES\condProbMarginal\left(\frac{\offer-\mu_{\priv|s}}{\sigP^{2}}\right)-\condProbMarginal\sigP\rhoEP\rhoES.=\condProbMarginal\left(\sigE\right)$
+\end_inset
+
+ Factoring out 
+\begin_inset Formula $\condProbMarginal$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\[
+\condProbMarginal\left[\sigE\rhoES\left(1-\gamma\rhoEP^{2}\right)+\rhoEP\rhoES\left(\frac{\offer-\mu_{\priv|s}}{\sigP}\right)-\sigP\rhoEP\rhoES\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Proof of Proposition 
 \begin_inset CommandInset ref
@@ -3471,15 +3574,29 @@ Since
 \end_inset
 
 .
- But if 
+ The 
+\begin_inset Formula $\lim_{\offer\to-\infty}\drpfFunc=\left(1-\gamma\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}\right)\infty=-a\infty$
+\end_inset
+
+.
+ Thus, at very low values of 
+\begin_inset Formula $\offer$
+\end_inset
+
+, the sign of 
+\begin_inset Formula $\drpfFunc$
+\end_inset
+
+ is opposite the sign of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ So if 
 \begin_inset Formula $a>0$
 \end_inset
 
 , then 
-\begin_inset Formula $\lim_{\offer\to-\infty}\left(\gamma\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}-1\right)\offer+\sigE\rhoES\left(1-\gamma\rhoEP^{2}\right)\se+\meanE-\frac{\sigma_{\env}\rhoEP}{\sigma_{\priv}}\gamma\meanP=-\infty$
-\end_inset
-
- which means that 
 \begin_inset Formula $\drpfFunc<0$
 \end_inset
 
@@ -3500,6 +3617,19 @@ Since
 \end_inset
 
  that results in a local maximum.
+ Since 
+\begin_inset Formula $\rpfFunc$
+\end_inset
+
+ has at most one interior local maxima on 
+\begin_inset Formula $\left(-\infty,\infty\right)$
+\end_inset
+
+, it has at most one interior local maximum on 
+\begin_inset Formula $\left[0,\ubPriv\right]$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
