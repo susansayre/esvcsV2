@@ -82,6 +82,27 @@ Pay for the option to pay? The impact of improved scientific information
  on payments for ecosystem services
 \end_layout
 
+\begin_layout Running Title
+Paying for the option to pay?
+\end_layout
+
+\begin_layout Author
+Susan Stratton Sayre
+\end_layout
+
+\begin_layout Running Author
+S.S.
+ Sayre
+\end_layout
+
+\begin_layout Abstract
+This paper is awesome and you should publish it so I can get tenure ;)
+\end_layout
+
+\begin_layout Abstract
+Keywords: ecosystem service, uncertainty, option value, numerical simulation
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
@@ -270,8 +291,10 @@ key "shah2016permanent"
 
  develop an infinite horizon model to assess the minimum temporary and permanaen
 t payments need to induce landowners to conserve their land when landowners
- face uncertainty in the future (private) benefits from both conservation
+ face uncertainty about the future (private) benefits from both conservation
  and conversion.
+ They compute the minimum payments needed to induce conservation but do
+ no optimize from the buyer's perspective.
 \end_layout
 
 \begin_layout Standard
@@ -354,6 +377,12 @@ key "springborn2013crediting"
 
  argue that margin of safety discounts should generally be applied at a
  high level of aggregation rather than at a parcel level.
+ 
+\emph on
+Add brief discussion of mechansim design models looking at the allocation
+ of risk between buyers and sellers when buyers have better info about actual
+ services.
+ Clarify the distinction between this work and mine.
 \end_layout
 
 \begin_layout Standard
@@ -613,7 +642,7 @@ With perfect information, the buyer would offer the landowner a payment
 
  and no payment otherwise.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 I assume that the buyer views payments as costs rather than redistributive
@@ -621,8 +650,8 @@ I assume that the buyer views payments as costs rather than redistributive
  This is consistent with a buyer representing direct beneficiaries of ecosystem
  services (e.g.
  a downstream water utility making payments to upstream landowners).
- To the extent that the buyer represents a government who views the transfers
- as payments, the cost of payments in (
+ To the extent that the buyer represents a government who views the payments
+ as transfers, the cost of payments in (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:finalPeriodObjFunc"
@@ -874,7 +903,10 @@ name "sub:Buyer's-final-period"
 \end_layout
 
 \begin_layout Standard
-If the parcel remains undeveloped at time 
+In this section, I describe the optimal payment in the final period, exploring
+ how the issues of non-additionality, overpayment, and enrollment discussed
+ in the introduction play out in the context of this model.
+ If the parcel remains undeveloped at time 
 \begin_inset Formula $T$
 \end_inset
 
@@ -892,7 +924,7 @@ If the parcel remains undeveloped at time
 
  to the landowner in exchange for conserving the land.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Given the multivariate normal assumption, there is a probability that the
@@ -901,9 +933,8 @@ Given the multivariate normal assumption, there is a probability that the
 \end_inset
 
  to induce a landowner to develop land the landowner would prefer to conserve.
- Such a situation is outside the typical scope of payment for ecosystem
- service plans and is not considered in this analysis.
- The probability a parcel falls in this categoy is low in all of my simulations.
+ Such payments are outside the typical scope of payment for ecosystem service
+ plans and are not considered in this analysis.
 \end_layout
 
 \end_inset
@@ -1074,7 +1105,7 @@ where
 
  must hold.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 For the derivation of this condition, see Appendix 
@@ -1270,16 +1301,19 @@ reference "fig:baseMBvMC"
  From this figure, we observe several effects.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 First, as the observed signal increases, the conditional gain rises because
  we expect the parcel to provide more value.
  Thus each of the lines in the conditional gain panels on the second row
  shift up as we move from a negative to zero to positive signal.
-\end_layout
-
-\begin_layout Itemize
-When there is correlation, (either negative or positive), the buyer's uncertaint
-y about the private value is reduced through observation of the signal 
+ Second, when there is no correlation between conservation and development
+ value, the signal reveals no information about development value and thus
+ has no impact on the marginal cost or the probability a parcel is marginal.
+ In this case, increasing the signal unambiguously increases the optimal
+ offer.
+ Third, when there is correlation, (either negative or positive), the buyer's
+ uncertainty about the private value is reduced through observation of the
+ signal 
 \begin_inset Formula $\se$
 \end_inset
 
@@ -1288,11 +1322,7 @@ y about the private value is reduced through observation of the signal
  When the buyer observes a signal of 0 in the middle column, the mean of
  the subjective distribution remains unchanged but its variance falls as
  illustrated with the dotted lines.
- 
-\end_layout
-
-\begin_layout Itemize
-In the left and right columns we see that in addition to reducing the variance
+ In the left and right columns we see that in addition to reducing the variance
  of the conditional distribution of 
 \begin_inset Formula $\priv$
 \end_inset
@@ -1301,12 +1331,11 @@ In the left and right columns we see that in addition to reducing the variance
  signal is observed.
  High signals increase the mean with positive correlation and decrease the
  mean with negative correlation, while low signals do the reverse.
- 
-\end_layout
-
-\begin_layout Itemize
-The most dramatic effect of correlation is on the conditional expected gain
- lines, shown in the second row of Figure 
+ The combined effects can be positive or negative depending on whether the
+ optimal offer is above or below the conditional mean private development
+ value.
+ Fourth, correlation has a substantial impact on the conditional expected
+ gain, shown in the second row of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:deltaMBvMC"
@@ -1327,28 +1356,6 @@ reference "fig:deltaMBvMC"
  With correlation, increasing the offer not only increases the cost at the
  marginal parcel, it also influences the expected conservation value of
  the marginal parcel.
- These effects are driven by how correlation changes the value of 
-\begin_inset Formula $\gamma$
-\end_inset
-
-.
- We know that that 
-\begin_inset Formula $1-\rhoES^{2}\leq\gamma\leq1$
-\end_inset
-
- and 
-\begin_inset Formula $\gamma$
-\end_inset
-
- increases as 
-\begin_inset Formula $\rhoEP^{2}$
-\end_inset
-
- increases and decreases as 
-\begin_inset Formula $\rhoES$
-\end_inset
-
- increases.
  If 
 \begin_inset Formula $\rhoEP<0$
 \end_inset
@@ -1366,12 +1373,8 @@ l expected conservation value falls because the highest conservation value
 \end_inset
 
 , especially when the correlation is strong.
- 
-\end_layout
-
-\begin_layout Itemize
-Any correlation dampens the impact of the signal on the conditional gain
- (because 
+ Fifth, any correlation dampens the impact of the signal on the conditional
+ gain (because 
 \begin_inset Formula $\gamma\rhoEP^{2}<1$
 \end_inset
 
@@ -1381,11 +1384,7 @@ Any correlation dampens the impact of the signal on the conditional gain
  by the change in offer reveals some information about the expected conservation
  value when there is correlation, there is less remaining uncertainty for
  the singal to reveal.
- 
-\end_layout
-
-\begin_layout Itemize
-Finally, since 
+ Finally, since 
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -1496,7 +1495,28 @@ whose sign will be the same as
 
 \end_inset
 
+ With zero or positive correlation, the optimal offer increases with the
+ signal observed, while with negative correlation, it will tend to increase
+ at low signal values when the direct effect on the expected conservation
+ value dominates and will tend to decrease at high signal values when the
+ high signal suggests a low development value and thus a low offer needed
+ to induce conservation.
+ Sections 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simulationNoCorrelation"
 
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simulationCorrelation"
+
+\end_inset
+
+ use numerical simulations to illustrate the size of these effects for specific
+ parameterizations.
 \end_layout
 
 \begin_layout Subsection
@@ -1777,6 +1797,13 @@ implying that the threshhold value is
 
 \begin_layout Subsubsection
 Buyer's initial period offer with unique threshhold
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:intialOfferTheory"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1866,6 +1893,37 @@ reference "eq:p2FOC"
  when the upper bound is binding.
  Therefore, the new term is necessarily non-negative and considering the
  second period will (weakly) lead to an increase in initial offers.
+ 
+\end_layout
+
+\begin_layout Standard
+The impact of improved future information on the buyer's payoff can be decompose
+d into two effects.
+ Let 
+\begin_inset Formula $\temp^{*}\left(\rhoES\right)$
+\end_inset
+
+ be the optimal first period offer given an expected signal whose correlation
+ with 
+\begin_inset Formula $\env$
+\end_inset
+
+ is 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+.
+ First, there is the direct effect: improved information in the future will
+ allow the buyer to target future offers more precisely and will thus increase
+ the buyer's second period payoff.
+ Second, there is the indirect effect through the impact on 
+\begin_inset Formula $\temp$
+\end_inset
+
+.
+ This is a second order effect that disappears in the comparative statics
+ per the envelope theorem, but is the true measure of how much responding
+ to the possibility of improved information impacts the buyer's payoff.
  The key question is how much it will increase offers and how large the
  gains will be.
  To answer these questions, I turn to numerical simulation since the model
@@ -1874,6 +1932,13 @@ reference "eq:p2FOC"
 
 \begin_layout Section
 Impact of Information without Correlation
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:simulationNoCorrelation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1908,19 +1973,23 @@ Increasing or decreasing the value of
 \end_inset
 
  does not influence the landowner's decision.
- Question for Vis -- should I make a comparative static picture and put
- it in an appendix or is this too obvious to matter?
+ 
+\series bold
+\emph on
+Question for Vis -- should I make a comparative static picture and put it
+ in an appendix or is this too obvious to matter?
 \end_layout
 
 \end_inset
 
  The numerical results presented here proceed in several steps.
- First, I describe in detail the impact of signal quality on the optimal
- last period policy for a single example, assuming that 
+ In this section, I assume 
 \begin_inset Formula $\rhoEP=0$
 \end_inset
 
 .
+ First, I describe in detail the impact of signal quality on the optimal
+ last period policy for a single example.
  I then describe the two period solution for that case and how it varies
  with signal quality.
  Next, I discuss the impact of the distribution of possible values of 
@@ -1932,19 +2001,21 @@ Increasing or decreasing the value of
 \end_inset
 
 .
- Finally, I explore the impact of allowing 
+ In Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:simulationCorrelation"
+
+\end_inset
+
+, I explore the impact of allowing 
 \begin_inset Formula $\rhoEP$
 \end_inset
 
  to vary.
  Throughout the results, the emphasis is on identifying when the possibility
  of improved information will have the largest impacts on policy today.
- At the end of the section, I briefly describe the parameters that would
- lead to multiple solutions to 
-\begin_inset Formula $B\left(\priv\right)=0$
-\end_inset
-
- and would require a different first period strategy for the buyer.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -1965,14 +2036,14 @@ For this simulation, I set
 \end_inset
 
 .
- These parameters imply that the buyer believes that the parcel provides
- twice as much value to society if it is conserved than it provides to the
- landowner when developed suggesting that a PES offer has a strong chance
- of being viable.
+ These parameters imply that the buyer best estimate before observing the
+ signal is that the parcel provides twice as much conservation value to
+ the buyer as it does to the landowner when developed suggesting that a
+ PES offer has a strong chance of being viable.
  The standard deviations imply that the buyer believes there is a roughly
  an 84% chance that the parcel will be developed in the absence of a payment
  and that there is a roughly 91% chance that the net benefit of conservation
- is positive.
+ to the buyer is positive.
  
 \end_layout
 
@@ -2056,7 +2127,7 @@ key "engel2008designing"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2122,7 +2193,7 @@ reference "fig:baseOptFinal"
 
 , the signal provides no useful information and the buyer will make the
  same offer to all parcels regardless of signal because the expected conservatio
-n value is the same.
+n value is the same throughout the figure.
  When 
 \begin_inset Formula $\rhoES>0$
 \end_inset
@@ -2140,7 +2211,7 @@ reference "fig:deltaMBvMC"
 \begin_inset Formula $\rhoES$
 \end_inset
 
- increases, the minimum signal that will induce the buyer to make a positive
+ increases, the minimum signal that need to induce the buyer to make a positive
  offer increases.
  Above this threshhold, increasing the signal increases the offer at a decreasin
 g rate, with the rate of decrease falling as the signal quality increases.
@@ -2199,8 +2270,8 @@ reference "fig:baseOptFinal"
  By limiting offers to parcels that are likely to provide high conservation
  value, the buyer would limit non-additional payments and increase the expected
  gain on the parcels in category III.
- This figure readily demonstrates that if the parcel has a high value of
- 
+ But this figure readily demonstrates that if the parcel has a high value
+ of 
 \begin_inset Formula $\priv$
 \end_inset
 
@@ -2230,7 +2301,7 @@ reference "sub:Landowner's-prior-period"
 \begin_inset Formula $t=0$
 \end_inset
 
-.
+ unless given an incentive not to.
  The buyer must pay in the first period to have any option to purchase additiona
 l conservation in the second period.
  
@@ -2242,7 +2313,7 @@ As
 \end_inset
 
  falls, category III shrinks because if the parcel is in the upper right
- of this region, it has a 
+ of this region, it has a high 
 \begin_inset Formula $\priv$
 \end_inset
 
@@ -2308,10 +2379,15 @@ reference "fig:baseExpOfferbyUB"
 \end_inset
 
 .
- For relatively high upper bounds, increasing signal quality increases the
- expected offer since improved information leads to bigger increases in
- offers when the signal is high than decreases in offers when the signal
- is low as shown in Figure 
+ For most values of 
+\begin_inset Formula $\ubPriv$
+\end_inset
+
+, increasing the signal quality 
+\emph on
+lowers
+\emph default
+ the expected offer as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseOptFinal"
@@ -2319,30 +2395,24 @@ reference "fig:baseOptFinal"
 \end_inset
 
 .
- However, as 
-\begin_inset Formula $\ubPriv$
-\end_inset
-
- falls, this effect can be reversed.
  Since the optimal offer is bounded above by 
 \begin_inset Formula $\ubPriv$
 \end_inset
 
-, the increases in offer when the signal is high fall while the decreases
- in offers for low signals remain unchanged.
- As a result, when 
+, the increase in the offer when the signal is high are constrained while
+ the probability of making no offer increases as the minimum signal needed
+ to induce a positive offer increases.
+ With a high 
 \begin_inset Formula $\ubPriv$
 \end_inset
 
- is sufficiently low, increasing 
-\begin_inset Formula $\rhoES$
-\end_inset
-
- will lower the expected offer.
- Regardless of the impact on signal, increasing information naturally increases
+, this effect can be reversed because the offer following a high signal
+ is less constrained.
+ In the second panel, we see that increasing information naturally increases
  the buyer's optimized payoff, with the impact increasing with the quality
  of the signal.
- 
+ Moreover, note that increasing the quality of the signal has a much large
+ impact on the buyer's payoff when the upper bound is high.
 \end_layout
 
 \begin_layout Paragraph
@@ -2350,21 +2420,11 @@ Initial period policy
 \end_layout
 
 \begin_layout Standard
-Since the conditions described in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Buyer's-final-period"
-
-\end_inset
-
- hold when there is no correlation, we know that the parcel will only remain
- undeveloped if the private development value is less than or equal to the
- conservation payment offered in the initial period.
- Thus in the first period, the buyer will weigh the cost of paying to make
- the parcel more likely to conserve in period 1 against the gain from it
- being more likely that the parcel will remain undeveloped in the second
- period, allowing the buyer to achieve a higher payoff as illustrated in
- Figure 
+In the first period, the buyer will weigh the cost of paying to make the
+ parcel more likely to conserve in period 1 against the gain from it being
+ more likely that the parcel will remain undeveloped in the second period,
+ allowing the buyer to achieve a higher payoff as illustrated in Figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseExpOfferbyUB"
@@ -2406,20 +2466,20 @@ reference "fig:baseExpOfferbyUB"
 \begin_inset Formula $\offer<\priv<\temp$
 \end_inset
 
-, (V) developed immediately because 
+, or (V) developed immediately because 
 \begin_inset Formula $\priv>\temp$
 \end_inset
 
 .
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Assuming all parcels remain undeveloped at time 
 \begin_inset Formula $T$
 \end_inset
 
- is equivalently to assuming that category V is empty.
+ is equivalent to assuming that category V is empty.
 \end_layout
 
 \end_inset
@@ -2443,7 +2503,7 @@ reference "fig:baseOptOut"
 \begin_inset Formula $\rhoES=\left(0,0.5,1\right)$
 \end_inset
 
-, in a manner similar to Figure 
+ in a manner similar to Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseOptFinal"
@@ -2452,14 +2512,14 @@ reference "fig:baseOptFinal"
 
 .
  In each panel, the dashed line is the initial payment offered to all parties,
- which becomes the upper bound for private development value of the parcels
- remaining undeveloped at the start of the second period.
+ which becomes the upper bound for private development value if the parcel
+ remains undeveloped at the start of the second period.
  The dot-dashed line is the optimal second period offer.
  If the buyer does not expect improved information as in the top right panel,
- the second period is simply a repeat of the first; in this case, no parcels
- are developed in the second period and no parcel is made a zero offer in
- the second period so there are no parcels in either category I or category
- IV.
+ the second period is simply a repeat of the first; in this case, there
+ is no chance the parcel will be developed in the second period and no chance
+ the parcel will be made a zero offer in the second period so categories
+ I and IV are empty.
  The buyer expects half of the uncertainty about 
 \begin_inset Formula $\env$
 \end_inset
@@ -2469,12 +2529,16 @@ reference "fig:baseOptFinal"
  In these figures, the dashed line marking the inital period offer and the
  dot-dashed line marking the second period offer diverge for low signals.
  As the signal quality improves, two effects occur.
- First, the first period offers increase, decreasing the size of category
+ First, the first period offer increases, decreasing the size of category
  V.
- Second, the the buyer targets the second period offers more carefully,
- reducing the number of parcels in Category II and increasing the parcels
- in Category I.
- This targeting also shift parcels from Category III to Category IV.
+ Second, the buyer will be able to make a more targeted second period offer,
+ reducing the probability the parcel is in Category II and increasing the
+ probability it is in Category I.
+ This targeting also shift some 
+\begin_inset Formula $\left(s,p\right)$
+\end_inset
+
+ paris from Category III to Category IV.
  Category III may thus increase or decrease with more information.
 \end_layout
 
@@ -2511,7 +2575,7 @@ The probability the parcel is developed immediately (Category V) is the
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2555,36 +2619,53 @@ name "fig:baseOptOut"
 \end_layout
 
 \begin_layout Standard
-The middle panel shows the expected gain relative to no PES policy, conditional
- on the parcel being in each category.
- Categories I and II necessarily imply losses since they represent non-additiona
-l conservation.
- For Category I, these losses increase slightly with improved information
- as the initial offer increases because they will be paid more in that period.
- For Category II, the losses increase more noticeably because the parcel
- is likely to made larger offers in both periods.
- The value of the information is seen in the substantial increase in the
- gain for the parcels in Category III.
- Because the buyer's offer at 
+The middle panel illustrates the buyer's expected gain across both periods
+ relative to no policy.
+ The height of the stacked bar gives the expected gain from a PES program
+ as a function of the quality of the future information, while the shading
+ indicates the contribution to this gain from each category (e.g.
+ the conditional gain times the probability the parcel will be in that category).
+ Since the buyer will lose if the parcel is in Categories I, II, and possibly
+ IV, the bars for these categories are below the axis (representing losses)
+ and the wide purple bars show much of the gain from Category III offsets
+ these losses and how much remains.
+ The final row illustrates the portion of the gains from the middle panel
+ that result from customizing the first period offer to the level of information
+ expected at time 
 \begin_inset Formula $T$
 \end_inset
 
- is targeted toward high-conservation value parcels, the gain on parcels
- in this category is substantially higher.
+.
+ As noted in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:intialOfferTheory"
+
+\end_inset
+
+, this second order effect of information measures the value of adjusting
+ current policy for the possibility of improved information.
  
 \end_layout
 
 \begin_layout Standard
-The bottom row illustrates the buyer's expected gain across both periods
- relative to no policy.
- The height of the stacked bar gives the expected gain, while the shading
- indicates the contribution to this gain from each category (e.g.
- the conditional gain from the middle panel times the probability the parcel
- will be in that category from the top panel).
- Since the buyer will on parcels in Categories I, II, and possibly IV, the
- bars for these categories are below the axis (representing losses) and
- the wide purple bars show much of the gain from Category III offsets these
- losses and how much remains.
+From this figure, we see that information changes the optimal offers and
+ the probability of first period conservation, but does not have a dramatic
+ effect.
+ The expected gain rises modestly from 0.19 to 0.25 (or roughly 19% to 25%
+ of the initial estimated conservation value) as 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+ rises from 0 to 1.
+ But only a small portion of the gain from this increase comes from customizing
+ the first period policy to the level of expected information.
+ Even if the buyer expects to learn 
+\begin_inset Formula $\env$
+\end_inset
+
+ perfectly, adjusting policy today will increase the expected gain by only
+ 1.3% of the expected conservation value.
 \end_layout
 
 \begin_layout Subsection
@@ -2599,7 +2680,15 @@ name "sub:compStatMeanVarPriv"
 \end_layout
 
 \begin_layout Standard
-Figure 
+The values in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOut"
+
+\end_inset
+
+ are specific to the parameterization.
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:meanVarImpact"
@@ -2608,7 +2697,8 @@ reference "fig:meanVarImpact"
 
  illustrates the impact of changing the mean and variance of private development
  value on the offers made today, the probability of conservation today,
- and the expected payoff across both periods.
+ the expected payoff across both periods, adn the value of customizing the
+ first period offer to the expected improvement in information.
  The dashed lines in the second and third row represent the outcome if the
  buyer adopted no policy, while the different color lines indicate the value
  for various levels of 
@@ -2659,6 +2749,10 @@ name "fig:meanVarImpact"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 As the mean development value increases along the 
 \begin_inset Formula $x$
 \end_inset
@@ -2685,10 +2779,8 @@ As the mean development value increases along the
  This increases the probability the parcel will be paid for non-additional
  service and thus lowers the optimal offer.
  For a high standard deviation and low mean, the high probability of paying
- for non-additional services drives optimal payments to zero.
- As optimal offers fall, the probability of conservation and the buyers
- payoff both fall as well.
- 
+ for non-additional services drives optimal payments to zero and the probability
+ of conservation and the buyer payoff coverge to the no PES value.
 \end_layout
 
 \begin_layout Standard
@@ -2714,9 +2806,9 @@ The effect of improved future information on the outcomes is illustrated
  In other words, the buyer should modify today's policy more in response
  to the possibility of improved information when the private development
  value is expected to be high.
- At the same time, the value of modifying the policy, both in terms of the
- probability that land is conserved and overall payoff first rises and then
- falls as expected private development value increases.
+ At the same time, the value of the information, both in terms of the probabilit
+y that land is conserved and overall payoff first rises and then falls as
+ expected private development value increases.
  Ultimately, this implies that buyers should pay the most attention to the
  possibility of improved information when the uncertainty about private
  development value is smaller than the uncertainty about conservation value
@@ -2751,6 +2843,13 @@ on.
 
 \begin_layout Section
 Impact of future information with correlation
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:simulationCorrelation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2827,7 +2926,7 @@ reference "fig:categoryCorrelation"
 
 \end_inset
 
- replicates the left hand panels of Figure 
+ replicates the right hand panels of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:baseOptOut"
@@ -2835,6 +2934,23 @@ reference "fig:baseOptOut"
 \end_inset
 
  with negative (left column) and positive (right column) correlation.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See the appendix for a similiar figure replicates the left hand panels of
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOut"
+
+\end_inset
+
+ with correlation.
+\end_layout
+
+\end_inset
+
  
 \begin_inset Float figure
 wide false
@@ -2883,27 +2999,108 @@ name "fig:categoryCorrelation"
 
 \end_inset
 
-Positive correlation makes the situation worse the buyer in all cases because
- the buyer will want to induce the parcel to conserve precisely when it
- is also the most expensive to induce to conserve.
+All else equal, positive correlation makes the buyer worse off in all cases
+ because the parcel is valuable to conserve  precisely when it is also the
+ most expensive to induce to conserve.
  Moreover, since the buyer cannot reliably identify when this is the case,
- attempts to induce conservation will require high offers that will also
- be accepted when the parcel provides low gains.
+ attempts to induce conservation of valuable land will require high offers
+ that will also be accepted when the parcel provides low gains.
  In contrast, negative correlation improves the situation for the buyer.
  The parcel is most likely to provide high conservation value when it is
  also most likely to be conserved without payment or to conserve with only
  a small payment.
- At the same time, information is far more valuable when there is positive
+ 
+\end_layout
+
+\begin_layout Standard
+At the same time, information is far more valuable when there is positive
  correlation.
  With positive correlation and current levels of uncertainty about the conservat
 ion value, the buyer will make only a very small offer today.
  The probability of non-additionality and the likelihood of paying a parcel
  more than the services it ultimately provides are too high to raise the
  offer further.
- As a result, it is highly likely that the 
+ As a result, it is highly likely that if the parcel has high conservation
+ value, it will be developed before the buyer learns this.
+ If the buyer knows better information will arrive in the future, it makes
+ sense to increase the offer so that it is more likely the parcel will remain
+ undeveloped long enough to learn its conservation value is high.
+ Moreover, comparing the second and third rows demonstrates that roughly
+ half the value of improved information comes from customizing the first
+ period offer.
+ In contrast with negative correlation, a PES program can be very valuable,
+ but improved future information has little impact on that value.
 \end_layout
 
 \begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:categoryCorrelation"
+
+\end_inset
+
+ illustrates two specific cases, with the baseline values of 
+\begin_inset Formula $\meanP$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigP$
+\end_inset
+
+ and 
+\begin_inset Formula $\rhoEP=(-0.75,0.75)$
+\end_inset
+
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:corrInfoImpact"
+
+\end_inset
+
+ graphs the impact of correlation on the value of adjusting first period
+ offers fro expected improvements in information.
+ The value is relatively low in all cases, but several important patterns
+ emerge.
+ First, the value tends to increase as correlation increases, at least up
+ to a point.
+ Once correlation becomes too high, the buyer is quite confident that only
+ parcels with very high development value will provide similarly high conservati
+on value.
+ The cost of inducing these parcels to conserve until information arrives
+ is too high for the buyer to find a PES program valuable.
+ This point is reached at a lower level of correlation as the mean development
+ value (and thus the expected cost of achieving a given conservation level)
+ increases.
+ When 
+\begin_inset Formula $\meanP=0.75$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigP=0.25$
+\end_inset
+
+ in the first panel on the third row, the value of information can be as
+ high as 0.16 (which represents 16% of the expected conservation value if
+ the land were conserved with certainty).
+ 
+\end_layout
+
+\begin_layout Standard
+When the mean development value is low, the probability of non-additionality
+ is relatively high, making the cost of increasing offers to induce more
+ conservation high.
+ Thus, the value of responding to the possbility of information is lower.
+ As the mean development value increases, lower the probability of making
+ non-additional payments, the value of information increases, until the
+ expected cost of conservation approaches the expected benefit of conservation.
+ Naturally, as uncertainty about development value increases, the costs
+ related to asymmetric information increase, eroding the buyer's ability
+ to profitably respond to improved information so the value of information
+ falls as we move across each row.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -2913,7 +3110,14 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Value of Improved Information 
+Value of Improved Information
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:corrInfoImpact"
+
+\end_inset
+
+ 
 \end_layout
 
 \end_inset
@@ -2923,7 +3127,7 @@ Value of Improved Information
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename resultsDir/deltaComp_rpf_rho.ep_meanPriv_sig.p.eps
+	filename resultsDir/valueComp_customizeGains_rho.ep_meanPriv_sig.p.eps
 
 \end_inset
 
@@ -2941,6 +3145,29 @@ Value of Improved Information
 
 \begin_layout Section
 Conclusions
+\end_layout
+
+\begin_layout Standard
+Information is most valuable when the buyer believes there is some postive
+ correlation between 
+\begin_inset Formula $\env$
+\end_inset
+
+ and 
+\begin_inset Formula $\priv$
+\end_inset
+
+ , when the buyer is relatively certain about the value of 
+\begin_inset Formula $\priv$
+\end_inset
+
+ , and believes this value to be less than the value of conserving the land,
+ but high enough that the uncertainty in development value does not imply
+ too large a risk of non-additionality.
+\end_layout
+
+\begin_layout Standard
+caveats and extensions
 \end_layout
 
 \begin_layout Standard
@@ -3637,10 +3864,72 @@ Supplemental Graphs
 \end_layout
 
 \begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:optCorrLocation"
+
+\end_inset
+
+ replicates the left-hand columns of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:baseOptOut"
+
+\end_inset
+
+ with negative and positive correlation.
+ Two effects are apparent from this figure.
+ First, in the left hand column, we see that with negative correlation,
+ the optimal offer first increases and then decreases as the observed signal
+ of conservation value rises.
+ At low signal value values, the increase in the expected conservation value
+ dominates and leads to higher offers.
+ When a high signal is observed, this causes the buyer to believe the developmen
+t is likely to be low, suggesting that the parcel can be induced to conserve
+ with a lower offer.
+ Second, we see that when there is correlation, the signal reveals information
+ about the expected development value, so the probability the parcel is
+ in each location in the figure changes as the signal increases.
+ With negative correlation, the probability of observing high 
+\begin_inset Formula $p$
+\end_inset
+
+ and low 
+\begin_inset Formula $s$
+\end_inset
+
+ or low 
+\begin_inset Formula $s$
+\end_inset
+
+ and high 
+\begin_inset Formula $p$
+\end_inset
+
+ increases, while with negative correlation, the probability of observing
+ a high 
+\begin_inset Formula $p$
+\end_inset
+
+ and a high 
+\begin_inset Formula $s$
+\end_inset
+
+ or a low 
+\begin_inset Formula $p$
+\end_inset
+
+ and a low 
+\begin_inset Formula $s$
+\end_inset
+
+ increases.
+ 
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -3675,6 +3964,10 @@ name "fig:optCorrLocation"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
