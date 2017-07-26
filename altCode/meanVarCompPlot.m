@@ -3,14 +3,15 @@
 %axis = \rho_{ep}
 %value = change in variable moving from \rho_{es} = 0 to \rho_{es} = 1
 
-plotDelta = 1;
-plotVars = {'optTempPay' 'probConserve' 'rpf'}; plotLabels = {'offer', 'Pr conserved' 'payoff' '% gain over no policy'};
+plotDelta = 0;
+plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'offer', 'Pr conserved' 'payoff' 'info gain'};
+%plotVars = {'optTempPay' 'probConserve' 'rpf'};
 xLims = [0 2];
 if plotDelta
 	axisLims = {[xLims 0 .2],[xLims 0 .2],[xLims 0 .15],[xLims 0 .15]};
 	%plotRhoEScase = find(rhoESvals==1)-1;
 else
-	axisLims = {[xLims 0 1.5],[xLims 0 1],[xLims 0 1],[xLims 0 .15]};
+	axisLims = {[xLims 0 1.5],[xLims 0 1],[xLims 0 1],[xLims 0 .05]};
 end
 
 lineVar = 'rhoES'; lineLabel = '\rho_{es}';
@@ -52,7 +53,11 @@ for plotVar = 1:numel(plotVars)
 		subtightplot(numel(plotVars),numPanel,(plotVar-1)*numPanel+colInd,gap,marg_h,marg_w)
 		hold on;
 		for li = startLine:numel(rhoESvals)
-			plot(xVals,myData(csIndMat{1}(:,panelInd)==panelValNum,li-startLine+1),'Color',lineColors(li,:),'LineWidth',1.25)
+			if strcmp(plotVars{plotVar},'customizeGain')&&li==1,
+				%
+			else
+				plot(xVals,myData(csIndMat{1}(:,panelInd)==panelValNum,li-startLine+1),'Color',lineColors(li,:),'LineWidth',1.25)
+			end				
 		end
 		if strcmp(plotVars{plotVar},'rpf') && ~plotDelta
  			plot(xVals,dataToPlot.noOfferRegPay(csIndMat{1}(:,panelInd)==panelValNum,li-startLine+1),'k--')
@@ -93,4 +98,9 @@ for plotVar = 1:numel(plotVars)
 	end
 end
 
+if plotDelta
+	saveas(gcf,fullfile('detailedOutput',runID,['delta_' xVar '_' panelVar '.eps']),'epsc')
+else
+	saveas(gcf,fullfile('detailedOutput',runID,['valueComp_' xVar '_' panelVar '.eps']),'epsc')
+end
 

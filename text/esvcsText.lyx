@@ -617,7 +617,7 @@ Model
 \end_layout
 
 \begin_layout Standard
-There is a buyer who wishes to maximize the value of services received by
+Consider a buyer who wishes to maximize the value of services received by
  a given parcel of land over two time periods.
  The land parcel has two possible states (developed and conserved) and the
  decision to develop a parcel of land is irreversible.
@@ -2015,7 +2015,7 @@ To explore the impact of different parameters on the model solution, I begin
  so the decision makers place equal weight on the time before and after
  additional information is received.
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Increasing or decreasing the value of 
@@ -2033,11 +2033,6 @@ Increasing or decreasing the value of
 \end_inset
 
  does not influence the landowner's decision.
- 
-\series bold
-\emph on
-Question for Vis -- should I make a comparative static picture and put it
- in an appendix or is this too obvious to matter?
 \end_layout
 
 \end_inset
@@ -2635,7 +2630,7 @@ The probability the parcel is developed immediately (Category V) is the
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2795,7 +2790,7 @@ name "fig:meanVarImpact"
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170615_093449/meanBySigValue.eps
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170615_093449/valueComp_meanPriv_sig.p.eps
 	width 95text%
 
 \end_inset
@@ -2856,7 +2851,31 @@ The effect of improved future information on the outcomes is illustrated
 \end_inset
 
 .
- Looking at the top row, we see that the lines diverge more as information
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanVarImpactDelta"
+
+\end_inset
+
+ in the appendix plots illustrates the difference between the lines shown
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanVarImpact"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+Looking at the top row, we see that the lines diverge more as information
  improves, implying that improving information leads to progressively larger
  changes in offers as 
 \begin_inset Formula $\meanP$
@@ -3120,8 +3139,25 @@ reference "fig:corrInfoImpact"
 
 \end_inset
 
- graphs the impact of correlation on the value of adjusting first period
- offers fro expected improvements in information.
+ graphs the impact of various degrees of correlation on the value of adjusting
+ first period offers for expected improvements in information.
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Figures illustrating the impact of correlation on the other variables graphed
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanVarImpact"
+
+\end_inset
+
+ are provided in the Appendix.
+\end_layout
+
+\end_inset
+
  The value is relatively low in all cases, but several important patterns
  emerge.
  First, the value tends to increase as correlation increases, at least up
@@ -3130,7 +3166,8 @@ reference "fig:corrInfoImpact"
  parcels with very high development value will provide similarly high conservati
 on value.
  The cost of inducing these parcels to conserve until information arrives
- is too high for the buyer to find a PES program valuable.
+ is too high for the buyer to find a PES program valuable so the buyer makes
+ no offer in the first period.
  This point is reached at a lower level of correlation as the mean development
  value (and thus the expected cost of achieving a given conservation level)
  increases.
@@ -3208,26 +3245,112 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-Information is most valuable when the buyer believes there is some postive
- correlation between 
-\begin_inset Formula $\env$
-\end_inset
-
- and 
-\begin_inset Formula $\priv$
-\end_inset
-
- , when the buyer is relatively certain about the value of 
-\begin_inset Formula $\priv$
-\end_inset
-
- , and believes this value to be less than the value of conserving the land,
- but high enough that the uncertainty in development value does not imply
- too large a risk of non-additionality.
+Ecologists and hydrologists are continually working to improve our understanding
+ of the link between land use decisions and hydrological ecosystem services.
+ Waiting until such relationships are well understood carries a real risk
+ that land will be developed and the associated services lost if buyers
+ wait until they are sure of the science before offering conservation incentives.
+ In this paper, I developed a two-period model to investigate the impact
+ of of expected improvements in knowledge on optimal PES plans today.
 \end_layout
 
 \begin_layout Standard
-caveats and extensions
+The analysis suggests that optimal first period offers increase substantially
+ as the quality of information the buyer expects to receive increases.
+ Despite these often substantial changes in the optimal offer, the difference
+ between the buyer's expected benefit from the optimal offer and the buyer's
+ expected benefit from the optimal no additional information offer is generally
+ small.
+ Three primary situations that can lead to larger gains were identified.
+ First, when the buyer believes there is some postive correlation between
+ conservation and development value, the buyer believes that the most valuable
+ land is at the highest risk of immediate development.
+ This positive correlation signficantly reducing buyer's expected benefits,
+ but amplifies the importance of preserving as much land as possible until
+ better information arrives.
+ Second, when the buyer has relatively more information about the development
+ value than the conservation value, the costs of asymmetric information
+ in the first period are reduced, while the scope for improved information
+ to alter future incentives is increased.
+ Finally, when the buyer believes that most land will be developed in the
+ absence of a policy, the low risk of non-additionality reduces the costs
+ associated with increasing current PES payments to preserve more land and
+ increases the gain from customizing offers to the degree of expected future
+ information.
+\end_layout
+
+\begin_layout Standard
+In addition to the results and conclusion presented here, the model developed
+ in this paper can provide important insights for developing a multi-period
+ model.
+ Solving the two-period model presented here requires solving the final
+ period model with many different levels of current information, the amount
+ of land remaining undeveloped as determined by the upper bound on private
+ development value of land remaining undeveloped, and the correlation between
+ the remaining uncertainty in conservation and private development value
+ under numerous parameteriziations.
+ These results provide insight into the shape of the instaneous benefit
+ a buyer would receive in a multi-period dynamic optimization model.
+\end_layout
+
+\begin_layout Standard
+The model presented here also suggests that landowners are unlikely to conserve
+ their land today if the current incentive offered to do so is less than
+ their private net benefit from development, even if they expect a buyer
+ of services to recieve improved information that may lead to higher offers
+ in the future.
+ To the extent that landowners' behavior 
+\series bold
+\emph on
+does
+\series default
+\emph default
+ change in response to prospect of better information, the analysis suggests
+ this response must be rooted in either a factor not included in the model,
+ like landowner uncertainty about future development value, or the existence
+ of multiple, disjoint regions of the landowner benefit distribution that
+ prefer conservation.
+ The analysis in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Landowner's-prior-period"
+
+\end_inset
+
+ suggest the latter case will only occur when several conditions are met.
+ First, there must be strong positive correlation between conservation value
+ and private development value, suggesting that landowner have considerable
+ private information about the offers they are likely to receive in the
+ future.
+ Second, the buyer must currently have a large amount of uncertainty about
+ conservation value, but must expect to receive much better information
+ in the future.
+ Finally, the expected benefit of conservation to the buyer must substantially
+ exceed the expected cost of inducing the landowner to conserve.
+\end_layout
+
+\begin_layout Standard
+The model presented here made several strong assumptions and focused on
+ parcel level analysis to yield a tractable model.
+ There are reasons to believe that landscape scale effects may be critical
+ in understanding the benefit of hydrological ecosystem services, so extending
+ the model to consider the impact of the total amount of development or
+ conservation and possibly its spatial arrangement would be valuable.
+ The key logistical challenge to doing so is specifying a tractable and
+ realistic specification of the relationship between the random conservation
+ and development value across parcels.
+ The present model also assumes that both buyers and sellers know the value
+ of 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+ and 
+\begin_inset Formula $\rhoEP$
+\end_inset
+
+ throughout the time frame.
+ The implications of the model could be different if one or both parties
+ was uncertain about these values.
 \end_layout
 
 \begin_layout Standard
@@ -3923,6 +4046,84 @@ Since
 Supplemental Graphs
 \end_layout
 
+\begin_layout Subsection
+Benefit of improved information
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanVarImpact"
+
+\end_inset
+
+, the impact of information on optimal values is shown by the different
+ lines.
+ It can be difficult to see how the size of these differences varies from
+ this figure.
+ Figure 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Change in optimal outcomes due to improved information
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:meanVarImpactDelta"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename C:/Users/ssayre/Documents/activeProjectRepositories/esvcsV2/altCode/detailedOutput/20170615_093449/delta_meanPriv_sig.p.eps
+	width 95text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ emphasizes these difference by plotting subtracting the value for 
+\begin_inset Formula $\rhoES=0$
+\end_inset
+
+ (e.g.
+ the lightest line in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:meanVarImpact"
+
+\end_inset
+
+) from the lines for each remaining value of 
+\begin_inset Formula $\rhoES$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Impact of correlation
+\end_layout
+
 \begin_layout Standard
 Figure 
 \begin_inset CommandInset ref
@@ -4025,6 +4226,147 @@ name "fig:optCorrLocation"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Figures 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:corrOffer"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:corrPrConserve"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:corrOptPayoff"
+
+\end_inset
+
+ illustrate the impact of correlation on optimal offers, the probability
+ of first period conservation, and the optimized expected buyer payoff.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Impact of correlation on optimal first period offers
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:corrOffer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename resultsDir/valueComp_optTempPay_rho.ep_meanPriv_sig.p.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Impact of correlation on probability of first period conservation
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:corrPrConserve"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename resultsDir/deltaComp_probConserve_rho.ep_meanPriv_sig.p.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Total mpact of correlation on buyers optimized payoff
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:corrOptPayoff"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename resultsDir/deltaComp_rpf_rho.ep_meanPriv_sig.p.eps
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard

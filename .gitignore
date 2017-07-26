@@ -49,3 +49,4 @@ detailedOutput
 /text/*.lyx#
 /altCode/debug.mat
 /text/resultsDir/*.mat
+/text/esvcs.bib.bak

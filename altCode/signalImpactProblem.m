@@ -1,5 +1,6 @@
 dbstop if error
-
+%add the Miranda version of compecon
+addpath('C:\Users\ssayre\Documents\MATLAB\myCompEcon\CEtools','C:\Users\ssayre\Documents\MATLAB\myCompEcon','C:\Users\ssayre\Documents\MATLAB\myCompEcon\CEdemos');
 %set up folders and names for storing results		
 if ~exist('runID','var')
     runID = datestr(now,'yyyymmdd_HHMMSS');

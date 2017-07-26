@@ -30,18 +30,23 @@ colormap('gray')
 colormap(1-.5*colormap)
 set(gca,'CLim',[0 .25])
 hold on;
-for ii=1:2:numel(rhoESvals)
-	[c,h] = contour(newSigLandMat,landMat,landDevelopGain(:,:,ii)+rhoESvals(ii),rhoESvals(ii)+[0 0],'Color',lineColors(ii,:),'lineWidth',1.25);
+
+lineColors = brewermap(5,'Blues');
+lineColors = lineColors(3:end,:)
+li = 1;
+for ii=1:5:numel(rhoESvals)
+	[c,h] = contour(newSigLandMat,landMat,landDevelopGain(:,:,ii)+rhoESvals(ii),rhoESvals(ii)+[0 0],'Color',lineColors(li,:),'lineWidth',1.25);
 	cHand(ii) = h;
 %	clabel(c,h,'manual');
-	[c,h] = contour(newSigLandMat(privConserve,:),landMat(privConserve,:),rhoESvals(ii)*nonAdditional(privConserve,:,ii),rhoESvals(ii)+[0 0],'Color',lineColors(ii,:),'lineWidth',1.25,'lineStyle','--');
+	[c,h] = contour(newSigLandMat(privConserve,:),landMat(privConserve,:),rhoESvals(ii)*nonAdditional(privConserve,:,ii),rhoESvals(ii)+[0 0],'Color',lineColors(li,:),'lineWidth',1.25,'lineStyle','--');
 %	clabel(c,h,'manual');
-    lineH(ii) = plot([-10 -10],[-10 10],'Color',lineColors(ii,:),'lineWidth',1.5);
+    lineH(li) = plot([-10 -10],[-10 10],'Color',lineColors(li,:),'lineWidth',1.5);
 	zeroLine = plot([-10 10],[0 0],'k:','LineWidth',1.25);
+	li = li+1;
 end
 
-legendNames = cellstr(num2str(rhoESvals(1:2:end)','%1.2f'));
-legH = legend(lineH(1:2:end),legendNames,'Location','NorthWest');
+legendNames = cellstr(num2str(rhoESvals(1:5:end)','%1.2f'));
+legH = legend(lineH,legendNames,'Location','NorthWest');
 legendTitle(legH,'\rho_{es}');
 clabH = colorbar;
 clabH.Label.String = 'Probability of Occurrence';
@@ -52,9 +57,9 @@ xlabel('signal observed')
 
 
 text(-2,.75,'Developed')
-text(-2,-.25',{'Not developed';'or paid'},'HorizontalAlignment','center')
-text(1.5,-.25',{'Paid for non-additional';'conservation'},'HorizontalAlignment','center')
-text(1,.2,'Induced to conserve','VerticalAlignment','Middle')
+text(-2.3,-.25',{'Not'; 'developed';'or paid'},'HorizontalAlignment','center')
+text(1,-.25',{'Paid for non-additional';'conservation'},'HorizontalAlignment','center')
+text(1.5,.2,'Induced to conserve','VerticalAlignment','Middle','HorizontalAlignment','center')
 set(gca,'box','off')
 
 if plotActual

@@ -18,12 +18,16 @@ if strcmp(reDoExpVal,'y')
 			for kk=1:numel(condCases)
 				fun = @(s) signalIntegrand(s,[signalVals allOutput.p2bySignal{ii}(1,:)'],outputVars{jj},allOutput.pStructs{ii},allOutput.optTempPay(ii),condCases{kk});
 				disp(['starting ' num2str(ii) '.' num2str(jj) '.' num2str(kk)])
-				expVal.(outputVars{jj})(ii,kk) = integral(fun,-Inf,Inf);
+% 				expVal.(outputVars{jj})(ii,kk) = integral(fun,-Inf,Inf);
+				modifiedOfferEstimate = min(allOutput.p2.offer(:,end,ii),allOutput.optTempPay(1));
+				fun2 = @(s) signalIntegrand(s,[signalVals modifiedOfferEstimate],outputVars{jj},allOutput.pStructs{ii},allOutput.optTempPay(1),condCases{kk});
+				expValNoCustom.(outputVars{jj})(ii,kk) = integral(fun2,-Inf,Inf);
 			end
 		end
 	end
 end
- save(fullfile('detailedOutput',P.runID,['expValMat_' P.caseID]));
+expVal.customGain = expVal.gain - expValNoCustom.gain;
+save(fullfile('detailedOutput',P.runID,['expValMat_' P.caseID]));
 
 barOrder = {'unpaid' 'nonAdd2' 'add2' 'develop2' 'develop1'};
 for ii=1:numel(barOrder)
@@ -39,9 +43,9 @@ figW = 6.5;
 figH = 4.25;
 threeRowFig = sizedFigure(3,9,75);
 
-gap = [.03 .02]; marg_h = [.18 .02]; marg_w = [.15 .03];
+gap = [.03 .02]; marg_h = [.2 .02]; marg_w = [.15 .03];
 subtightplot(3,1,1,gap,marg_h,marg_w)
-probBars = bar(expVal.prob(:,barInds(1:end-1)),'stacked','EdgeColor','none');
+probBars = bar(expVal.prob(:,barInds),'stacked','EdgeColor','none');
 for ii=1:numel(probBars)
 	probBars(ii).FaceColor = myColors(ii,:);
 end
@@ -57,26 +61,25 @@ myAxis(4) = .7;
 axis(myAxis)
 
 subtightplot(3,1,2,gap,marg_h,marg_w)
-expVal.condgain = expVal.gain./expVal.prob;
-expVal.condgain(expVal.prob<=1e-10) = 0;
-condGainH = bar(expVal.condgain(:,barInds),1,'EdgeColor','none');
-for ii=1:numel(condGainH)
-	condGainH(ii).FaceColor = myColors(ii,:);
-end
-set(gca,'FontSize',8)
-set(gca,'XTick',1:2:numel(rhoESvals))
-set(gca,'XTickLabel','')
-ylabel('Conditional buyer gain')
-% title('Contribution to gain by parcel category')
+% expVal.condgain = expVal.gain./expVal.prob;
+% expVal.condgain(expVal.prob<=1e-10) = 0;
+% condGainH = bar(expVal.condgain(:,barInds),1,'EdgeColor','none');
+% for ii=1:numel(condGainH)
+% 	condGainH(ii).FaceColor = myColors(ii,:);
+% end
+% set(gca,'FontSize',8)
+% set(gca,'XTick',1:2:numel(rhoESvals))
+% set(gca,'XTickLabel','')
+% ylabel('Conditional buyer gain')
+% % title('Contribution to gain by parcel category')
+% 
+% myAxis = axis;
+% myAxis(2) = numel(rhoESvals)+1;
+% myAxis(4) = 2;
+% axis(myAxis)
 
-myAxis = axis;
-myAxis(2) = numel(rhoESvals)+1;
-myAxis(4) = 2;
-axis(myAxis)
-
-subtightplot(3,1,3,gap,marg_h,marg_w)
+subtightplot(3,1,2,gap,marg_h,marg_w)
 losses = expVal.gain(:,barInds)<0;
-myGains = [sum(expVal.gain(:,barInds(1:2)),2) -1*expVal.gain(:,barInds(1:2)) sum(expVal.gain(:,barInds(1:3)),2) expVal.gain(:,barInds(4))];
 myGains = [sum(expVal.gain(:,barInds).*losses,2) -1*expVal.gain(:,barInds(1:2)) -losses(:,4).*expVal.gain(:,barInds(4)) expVal.gain(:,barInds(3))+sum(expVal.gain(:,barInds).*losses,2) (1-losses(:,4)).*expVal.gain(:,barInds(4))];
 gainBars = bar(myGains,'stacked','EdgeColor','none');
 
@@ -94,9 +97,9 @@ end
 
 set(gca,'FontSize',8)
 set(gca,'XTick',1:2:numel(rhoESvals))
-set(gca,'XTickLabel',cellstr(num2str(rhoESvals(1:2:end)','%3.1f')));
+set(gca,'XTickLabel','')
 ylabel('Contribution to buyer gain')
-xlabel('Signal quality (\rho_{es})')
+% xlabel('Signal quality (\rho_{es})')
 %title('Contribution to gain by parcel category')
 %xlabel('Signal quality (\rho_{es})')
 myAxis = axis;
@@ -104,7 +107,43 @@ myAxis(2) = numel(rhoESvals)+1;
 myAxis(4) = .4;
 axis(myAxis)
 
-legHand = legend(condGainH,legendTitles{:},'Location','SouthOutside');
+subtightplot(3,1,3,gap,marg_h,marg_w)
+
+myNewColors1 = [myColors(1:2,:); myColors(4,:); myColors(3,:); myColors(4,:); myColors(3,:); myColors(4,:)];
+customLosses = expVal.customGain(:,barInds)<0;
+myCustomGains1 = [sum(expVal.customGain(:,barInds).*losses,2) 0*expVal.customGain(:,barInds(4)) -1*expVal.customGain(:,barInds(1:2)) -losses(:,4).*expVal.customGain(:,barInds(4)) expVal.customGain(:,barInds(3))+sum(expVal.customGain(:,barInds).*losses,2) (1-losses(:,4)).*expVal.customGain(:,barInds(4))];
+needCatIV = find(myCustomGains(:,6)<0);
+myCustomGains2 = [-expVal.customGain(:,barInds(3)) sum(expVal.customGain(:,barInds(1:3)),2) -1*expVal.customGain(:,barInds(1:2)) 0*expVal.customGain(:,barInds(3:4)) sum(expVal.customGain(:,barInds),2)];
+myCustomGains = myCustomGains1; myCustomGains(needCatIV,:) = myCustomGains2(needCatIV,:);
+
+wideBarData = [-myCustomGains(:,3:5) -myCustomGains(:,1:2) myCustomGains(:,6:end)];
+customGainBars = bar(wideBarData,'stacked','EdgeColor','none');
+
+for ii=1:numel(customGainBars)
+	customGainBars(ii).FaceColor = myNewColors1(ii,:);
+end
+
+myNewColors2 = [myColors(3,:); myColors(4,:); myColors(1:2,:); myColors(4,:); myColors(3:4,:)];
+hold on;
+customGainBars2 = bar(myCustomGains,'stacked','BarWidth',.4,'EdgeColor','none');
+for ii=1:numel(customGainBars2)
+	customGainBars2(ii).FaceColor = myNewColors2(ii,:);
+end
+
+set(gca,'FontSize',8)
+set(gca,'XTick',1:2:numel(rhoESvals))
+set(gca,'XTickLabel',cellstr(num2str(rhoESvals(1:2:end)','%3.1f')));
+ylabel('Contribution to buyer gain from information')
+xlabel('Signal quality (\rho_{es})')
+%title('Contribution to gain by parcel category')
+%xlabel('Signal quality (\rho_{es})')
+myAxis = axis;
+myAxis(2) = numel(rhoESvals)+1;
+myAxis(3) = -.1;
+myAxis(4) = .05;
+axis(myAxis)
+
+legHand = legend(probBars,legendTitles{:},'Location','SouthOutside');
 legPos = get(legHand,'Position');
 legPos(1) = (1-legPos(3))/2;
 legPos(2) = .01;

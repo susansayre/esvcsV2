@@ -5,7 +5,7 @@
 
 expInd = 1;
 plotDelta = 0;
-plotVars = {'optTempPay' 'probConserve' 'rpf'}; plotLabels = {'offer', 'Pr conserved', 'payoff'};
+plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'offer', 'Pr conserved', 'payoff','gain'};
 
 plotRhoESvals = round(.2:.2:1,1);
 for ii=1:numel(plotRhoESvals)
@@ -33,9 +33,9 @@ else
 end
 
 if plotDelta
-	axisLims = {[xLims 0 .3],[xLims 0 .3],[xLims 0 .2]};
+	axisLims = {[xLims 0 .3],[xLims 0 .3],[xLims 0 .2],[xLims 0 .2]};
 else
-	axisLims={[xLims 0 1.5],[xLims 0 1],[xLims 0 1.5]};
+	axisLims={[xLims 0 1.5],[xLims 0 1],[xLims 0 1.5],[xLims 0 .05]};
 end
 
 	
