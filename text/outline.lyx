@@ -82,25 +82,37 @@ Pay for the option to pay? The impact of improved scientific information
  on payments for ecosystem services
 \end_layout
 
+\begin_layout Author
+Anonymous Review Copy
+\end_layout
+
 \begin_layout Running Title
 Paying for the option to pay?
 \end_layout
 
-\begin_layout Author
-Susan Stratton Sayre
-\end_layout
-
-\begin_layout Running Author
-S.S.
- Sayre
+\begin_layout Abstract
+The scientific information to precisely link land use changes to changes
+ in ecosystem service provision is often unavailable, particularly for hydrologi
+cal ecosystem services.
+ Potential buyers of ecosystem service must weigh the risk of paying to
+ incentive conservation that fails to deliver valuable ecosystem services
+ against the risk that land is developed before its value is known.
+ This paper uses a two period model to assess when expected future improvements
+ in scientific information should substantially impact payments for conservation
+ today.
+ Optimal current payments are nondecreasing in the degree of expected improvemen
+t, but the gain from customizing payments to the expected degree of improved
+ information is small in many cases.
+ Larger values occur when the buyer believes that the land whose private
+ development value is the highest also provides the highest ecosystem service,
+ when the buyer faces relatively more uncertainty about ecosystem service
+ provision than the cost of inducing conservation, and when the buyer believes
+ land is highly likely to be developed absent incentive payments.
+ 
 \end_layout
 
 \begin_layout Abstract
-This paper is awesome and you should publish it so I can get tenure ;)
-\end_layout
-
-\begin_layout Abstract
-Keywords: ecosystem service, uncertainty, option value, numerical simulation
+Keywords: ecosystem services; uncertainty; option value; numerical simulation
 \end_layout
 
 \begin_layout Section
@@ -109,11 +121,11 @@ Introduction
 
 \begin_layout Standard
 There is a growing recognition that undeveloped land provides many ecosystem
- services in its current state.
+ services.
  When the benefits of these service are external to private landowners,
  private land use decisions are not optimal.
- In this setting, conservation payments represent a potentially important
- policy tool 
+ In this setting, using a payment for ecosystem services (PES) plan to promote
+ conservation represents a potentially important policy tool 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "ferraro2002cost"
@@ -121,7 +133,31 @@ key "ferraro2002cost"
 \end_inset
 
 .
- Despite their promise, PES payment plans come with many challenges 
+ An important category of ecosystem services are termed hydrological or
+ water-related ecosystem services.
+
+\emph on
+ 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "brauman2007nature"
+
+\end_inset
+
+ discuss the nature and value of water related ecosystem services and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "porras2008all"
+
+\end_inset
+
+ document numerous examples of PES programs focused on watershed services.
+\end_layout
+
+\begin_layout Standard
+Despite their promise, PES payment plans come with many challenges 
 \begin_inset CommandInset citation
 LatexCommand citep
 key "kinzig2011paying"
@@ -143,35 +179,9 @@ key "pattanayak2010show"
 
 \end_inset
 
- describe four critical factors for identifying whether PES programs can
- provide benefits: (1) whether landowners (and the 
-\begin_inset Quotes eld
-\end_inset
-
-right
-\begin_inset Quotes erd
-\end_inset
-
- landowners) 
-\emph on
-enroll
-\emph default
- in the program, (2) whether payments are 
-\emph on
-conditional
-\emph default
- on landowners complying with the program, (3) whether the services provide
- are 
-\emph on
-additional
-\emph default
- and would not be provided in the absence of the program, and (4) the whether
- the 
-\emph on
-link between land use and ecosystem services
-\emph default
- is understood.
- The emphasis in this paper is on the final factor.
+ identify understanding the precise link between land use and ecosystem
+ services as as one of the four critical factors for identifying whether
+ PES programs can provide benefit.
  In particular, the relationship between ecosystem service provision and
  landuse is often imprecisely understood so that ecologists are rarely able
  to provide precise and specific estimates of the service provided by individual
@@ -194,51 +204,112 @@ key "wunder2008taking"
 
 \end_inset
 
- note that this concern is particularly problematic for watershed protection
- programs.
- 
+ and 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "wunder2008decentralized"
 
 \end_inset
 
- describe two decentralized PES programs in Ecaudor, one of which paid landowner
-s to preserve natural páramos and forest to improve water quality and flow
- downstream.
- They note that the precise hydrology linking land use changes to desirable
- water outcomes was unavailable so the program contracted on the land use
- changes themselves rather than service provision.
- Some of this uncertainty is due to the inherently stochastic nature of
+ emphasize that this concern is particularly acute for watershed protection
+ programs.
+  Some of this uncertainty is due to the inherently stochastic nature of
  ecoystems, but improved scientific undertanding in the future may partially
- reduce this uncertainty.
+ reduce this uncertainty and signifcant efforts to improve understanding
+ are underway.
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-See for example, 
+For example, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "quintero2009services"
 
 \end_inset
 
- who use a hydrological modeling tool called SWAT to provide suggestions
- for targeting future PES payments in the same programs.
- 
+ use a hydrological modeling tool called SWAT to provide suggestions for
+ targeting future PES payments in the same programs where such information
+ was identified as lacking in 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "wunder2008decentralized"
+
+\end_inset
+
+.
+ Methods to improve understanding of hydrological ecosystem service provisions
+ are discussed by numerous authors including 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "keeler2012linking"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "guswa2014ecosystem"
+
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "grizzetti2016assessing"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "trisurat2016integrating"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
- While this potential for improved information could suggest that a wait-and-see
- approach would be beneficial, development pressures are current and many
- forms of development are irreversible or costly to reverse.
- If potential ecosystem service buyers wait until they are sure of the services
- provided by a parcel, it may be too late to avoid development.
+ If potential ES buyers wait until they are sure of the services provided
+ by a parcel, it may be too late to avoid development.
  Instead, buyers may need to provide conservation incentives today to preserve
  the option to pay for valuable ecosystem services tomorrow.
- In this paper, I develop a stylized model to capture the impact of this
- potential for improved information on current PES plans.
+\end_layout
+
+\begin_layout Standard
+In this paper, I use a two period model to investigate how expected improvements
+ in knowledge about the link between land use changes and ecosystem service
+ (ES) provision affect optimal payments today.
+ A buyer of ES can offer payment to a landowner today in exchange for an
+ agreement to conserve land for a specified period of time but faces uncertainty
+ about both the payment needed to induce conservation and the ecosystem
+ services provided by the parcel.
+ The buyer weighs the risk of paying for conservation on parcels that in
+ fact provide little to no ES value against the risk that land that does
+ have high ES value will be irreversibly developed before the buyer learns
+ its value.
+ I begin by considering the optimal offer the buyer should make once improved
+ information is available.
+ I then step back in time and ask how landonwers should respond in the prior
+ period, knowing that if they do not develop their land, buyers will learn
+ more information about conservation value and make more specific offers
+ in the future.
+ I find that under most conditions, the possibility of improved future informati
+on does not influence a landowner's choice in the first period.
+ Finally, I step back further and explore what offer a buyer should make
+ today, given the possibility of improved information in the future.
+ The improved information naturally leads to increased offers today and
+ increases the range of parameters for which making positive offers is optimal.
+ At the same time, the increase in the buyer's payoff from responding optimally
+ tends to be quite small unless the land is highly likely to be developed
+ in the absence of a payment today 
+\series bold
+and
+\series default
+ the expected ES value substantially exceeds the expected payment needed
+ to induce conservation.
 \end_layout
 
 \begin_layout Standard
@@ -292,16 +363,17 @@ key "shah2016permanent"
  develop an infinite horizon model to assess the minimum temporary and permanaen
 t payments need to induce landowners to conserve their land when landowners
  face uncertainty about the future (private) benefits from both conservation
- and conversion.
+ and development (conversion).
  They compute the minimum payments needed to induce conservation but do
  no optimize from the buyer's perspective.
 \end_layout
 
 \begin_layout Standard
-While the emphasis in this paper is on the impact of improved understanding
- about the links between land use and ecosystem services, concerns about
- enrollment and additionality remain important.
- The role of asymmetric information in the PES context is well understood.
+The ES buyer in my model faces uncertainty about both the cost of inducing
+ conservation and the benefits of conservation.
+ Both sources of uncertainty have been considered previously.
+ Buyer uncertainy about the payment need to induce conservation is a result
+ of asymmetric information between the landowner and buyer.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -310,9 +382,9 @@ key "engel2008designing"
 \end_inset
 
  describe three types of inefficiency that can plague PES programs as a
- result: failing to provide a sufficiently high incentive when conservation
- would be valuable, paying more conservation than it is worth, and paying
- for non-additional conservation.
+ result of this assymmtery: failing to provide a sufficiently high incentive
+ when conservation would be valuable, paying more conservation than it is
+ worth, and paying for non-additional conservation.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -347,15 +419,17 @@ key "arnold2013adverse"
 \end_inset
 
  emphasize that adverse selection remains an issue with auctions.
- The present analysis implicitly adopts the first strategy, allowing buyers
- to condition a single take-it-or-leave it offer on only observed information.
- Moreover, the emphasis here is on learning more information about the conservat
-ion value of a parcel of land; knowledge about the private development is
- gained only indirectly when correlation between values is present.
+ The buyer in my model present analysis implicitly adopts the first strategy,
+ allowing buyers to condition a single take-it-or-leave it offer on only
+ observed information.
+ The emphasis here is on learning more information about the conservation
+ value of a parcel of land; knowledge about the private development is gained
+ only indirectly when correlation between values is present.
 \end_layout
 
 \begin_layout Standard
-Many authors consider uncertainty about the ES provided by land use practices.
+Uncertainty about the ES provided by land use practices has also received
+ considerable attention in the literature.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -377,40 +451,26 @@ key "springborn2013crediting"
 
  argue that margin of safety discounts should generally be applied at a
  high level of aggregation rather than at a parcel level.
- 
-\emph on
-Add brief discussion of mechansim design models looking at the allocation
- of risk between buyers and sellers when buyers have better info about actual
- services.
- Clarify the distinction between this work and mine.
+ An important consideration in the literature considering mechansims to
+ reduce the cost of assymmetric information is the relative performance
+ of input based payments versus output based payments when buyers are risk
+ neutral and landowners are risk-averse but landowners have better information
+ on the services provided by their parcel than buyers do 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "derissen2013combining"
+
+\end_inset
+
+.
+ The buyer's level of uncertainty remains fixed in these analyses; in constrast,
+ I consdier how reductions in uncertainty could affect payments in a multi-perio
+d setting.
 \end_layout
 
 \begin_layout Standard
-The model approach in this paper begins by considering what offer a buyer
- of ecosystem services should make in a single period given uncertainty
- about both the payment needed to induce conservation and the ecosystem
- services provided by the parcel.
- Using this model, I consider the impact of correlation between these values
- and how the outcome changes if the buyer believes that an undeveloped parcel
- of land must have a private development value below a certain threshhold.
- I then step back in time and ask how landonwers should respond in prior
- periods, knowing that if they do not develop their land, buyers will learn
- more information about conservation value and make more specific offers
- in the future.
- I find that under most conditions, the possibility of improved future informati
-on does not influence a landowner's choice in the first period.
- Finally, I step back further and explore what offer a buyer should make
- today, given the possibility of improved information in the future.
- The improved information naturally leads to increased offers today and
- increases the range of parameters for which making positive offers is optimal.
- At the same time, the increase in the buyer's payoff from responding optimally
- tends to be quite small unless the probability of making non-additional
- payments today is quite low and the expected conservation value substantially
- exceeds the private development value.
-\end_layout
-
-\begin_layout Standard
-Section 2 of the paper develops the multi-period analytical model and provides
+The remainder of the paper is organized as follows.
+ Section 2 of the paper develops the multi-period analytical model and provides
  a preliminary discussion of the impacts of model parameters.
  Since the model does not have an analytical solution, Sections 3 and 4
  use numerical simulations to present these impacts, with section 3 assuming
@@ -2472,7 +2532,7 @@ reference "fig:baseExpOfferbyUB"
 
 .
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Assuming all parcels remain undeveloped at time 
