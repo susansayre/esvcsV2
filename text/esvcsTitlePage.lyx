@@ -1,0 +1,131 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass svglobal3
+\begin_preamble
+\usepackage{booktabs,threeparttable}
+\end_preamble
+\options referee,smallextended,12pt
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Pay for the option to pay? The impact of improved scientific information
+ on payments for ecosystem services
+\end_layout
+
+\begin_layout Author
+Susan Stratton Sayre
+\end_layout
+
+\begin_layout Institute
+Assistant Professor, Department of Economics, Smith College, Northampton,
+ MA, ssayre@smith.edu
+\end_layout
+
+\begin_layout Abstract
+The scientific information to precisely link land use changes to changes
+ in ecosystem service provision is often unavailable, particularly for hydrologi
+cal ecosystem services.
+ Potential buyers of ecosystem services must weigh the risk of paying to
+ incentive conservation that fails to deliver valuable ecosystem services
+ against the risk that land is developed before its value is known.
+ This paper uses a two period model to assess when expected future improvements
+ in scientific information should substantially impact payments for conservation
+ today.
+ Optimal current payments increase, often substantially, as the quality
+ of expected future information increases, but the gain from increasing
+ payments to account for the expected degree of improved information is
+ small in many cases.
+ Larger values occur when the buyer believes that the land whose private
+ development value is the highest also provides the highest ecosystem service,
+ when the buyer faces relatively more uncertainty about ecosystem service
+ provision than about the cost of inducing conservation, and when the buyer
+ believes land is highly likely to be developed absent incentive payments.
+ 
+\end_layout
+
+\begin_layout Abstract
+Keywords: ecosystem services; uncertainty; option value; numerical simulation
+\end_layout
+
+\begin_layout Acknowledgements
+This work was inspired in part by conversations with Drew Guswa and Casey
+ Brown.
+ I would like to thank Vis Taraz for helpful discusssions and comments on
+ earlier drafts of this work.
+ I also appreciate the comments and suggestions of participants at the 2016
+ NAREA Annual Meeting.
+ 
+\end_layout
+
+\end_body
+\end_document
