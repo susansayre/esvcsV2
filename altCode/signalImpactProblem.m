@@ -40,8 +40,7 @@ if newRun
 	};
 
 	%note: due to the problem set-up, we assume that there is no correlation between se and re and no correlation of any of
-	%the other random values with pub. (We might want to consider whether the public value provides information about
-	%expected private deviations later).
+	%the other random values with pub.
 
 	%set the base values of the all the parameters and store in a struct named P.
 	valID = 4;

@@ -1,7 +1,9 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass svglobal3
 \begin_preamble
 \usepackage{booktabs,threeparttable}
@@ -13,16 +15,16 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
-\font_math auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -94,7 +96,7 @@ Anonymous Review Copy
 \end_layout
 
 \begin_layout Running Title
-Paying for the option to pay?
+Pay for the option to pay?
 \end_layout
 
 \begin_layout Abstract
@@ -457,7 +459,8 @@ key "rabotyagov2010ecosystem"
  benefit of services subject to a constraint on the likelihood that a level
  of service greater than or equal to the claimed level is actually provided
  and demonstrates that applying a margin of safety discount is optimal for
- a regulator or aggregator with CARA risk-preferences.
+ a regulator or aggregator whose preferences exhibit constant absolute risk
+ aversion.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -979,7 +982,7 @@ Since the model is designed to capture long time frames, there is no a priori
 Buyer's final period offer
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Buyer's-final-period"
+name "subsec:Buyer's-final-period"
 
 \end_inset
 
@@ -1126,7 +1129,10 @@ name "maxExists"
  
 \end_layout
 
-\begin_layout --Separator--
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -1545,7 +1551,7 @@ reference "sec:simulationCorrelation"
 Landowner's prior period decision
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:Landowner's-prior-period"
+name "subsec:Landowner's-prior-period"
 
 \end_inset
 
@@ -1760,7 +1766,7 @@ When a unique threshold exists, its value solves the equation
 \begin_inset Formula $\ubPriv$
 \end_inset
 
- with certainty -- either because the buyer offers exactly 
+ with certainty – either because the buyer offers exactly 
 \begin_inset Formula $\ubPriv$
 \end_inset
 
@@ -1820,7 +1826,7 @@ implying that the threshold value is
 Buyer's initial period offer with unique threshold
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:intialOfferTheory"
+name "subsec:intialOfferTheory"
 
 \end_inset
 
@@ -1931,8 +1937,8 @@ d into two effects.
  per the envelope theorem, but measures how much responding to the possibility
  of improved information impacts the buyer's payoff.
  The key numerical questions are how much improved information will increase
- optimal first period offers and how large valuable adopting these optimal
- offers will be.
+ optimal first period offers and how valuable adopting these optimal offers
+ will be.
  To answer these questions, I turn to numerical simulation since the model
  has no analytical solution.
 \end_layout
@@ -1962,7 +1968,7 @@ To explore the impact of different parameters on the model solution, I begin
  so the decision makers place equal weight on the time before and after
  additional information is received.
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Increasing or decreasing the value of 
@@ -2038,10 +2044,10 @@ For this simulation, I set
 \end_inset
 
 .
- These parameters imply that the buyer best estimate before observing the
- signal is that the parcel provides twice as much conservation value to
- the buyer as it does to the landowner when developed suggesting that a
- PES offer has a strong chance of being viable.
+ These parameters imply that the buyer's best estimate before observing
+ the signal is that the parcel provides twice as much conservation value
+ to the buyer as it does to the landowner when developed suggesting that
+ a PES offer has a strong chance of being viable.
  The standard deviations imply that the buyer believes there is a roughly
  an 84% chance that the parcel will be developed in the absence of a payment
  and that there is a roughly 91% chance that the net benefit of conservation
@@ -2096,7 +2102,7 @@ key "engel2008designing"
 \end_inset
 
 's (2008) sources of inefficiency from PES programs but do not correspond
- exactly except in the case of category II -- payments for non-additional
+ exactly except in the case of category II – payments for non-additional
  conservation, which correspond to Engel et.
  al's case D.
  Category IV here includes both situations where the value of conservation
@@ -2248,7 +2254,7 @@ reference "fig:baseOptFinal"
  in this scenario, we know from Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Landowner's-prior-period"
+reference "subsec:Landowner's-prior-period"
 
 \end_inset
 
@@ -2519,7 +2525,7 @@ The middle panel illustrates the buyer's expected gain across both periods
  As noted in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:intialOfferTheory"
+reference "subsec:intialOfferTheory"
 
 \end_inset
 
@@ -2552,7 +2558,7 @@ From this figure, we see that information changes the optimal offers and
 Impact of changing the distribution of development value
 \begin_inset CommandInset label
 LatexCommand label
-name "sub:compStatMeanVarPriv"
+name "subsec:compStatMeanVarPriv"
 
 \end_inset
 
@@ -3006,7 +3012,7 @@ does
  The analysis in subsection 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sub:Landowner's-prior-period"
+reference "subsec:Landowner's-prior-period"
 
 \end_inset
 
@@ -3105,7 +3111,8 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Impact of Changing Parameters
+Impact of Changing Parameters on the Marginal Benefits and Costs of Increasing
+ the Offer
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:deltaMBvMC"
@@ -4058,6 +4065,75 @@ Since
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Numerical simulation details
+\end_layout
+
+\begin_layout Description
+signalImpactProblem Sets up the parameters and describes which experiments
+ to run
+\end_layout
+
+\begin_layout Description
+signalImpact This code begins by considering grids of possible period 2
+ information and exploring what might happen.
+ These results are used in drawing figures for the text but not in computing
+ optimal first period offers.
+ The code then uses matlab's fmincon to optimize first period offers, calling
+ the objective function regPayFullReal.
+\end_layout
+
+\begin_layout Description
+p2Out calculates expected period 2 outcomes using a grid of values for signal
+ draws.
+ Can be used to calculate either the expected outcomes conditional a specific
+ first period offer or to calculate the expected p2 outcomes assuming the
+ regulator optimizes the offer in period2.
+ Can also weight by signal probability or consider all points equally likely.
+ Accuracy will depend on number of points in the grid.
+\end_layout
+
+\begin_layout Description
+optOfferSimple first uses a grid search to identify a good starting point.
+ Then uses the nonlinear complementary problem solver from the CompEcon2016
+ toolbox to solve the period 2 maximization problem for each case.
+ There are cases for which this algorithm fails to find the true optimum.
+ Using the grid search to identify better starting points eliminates most
+ of these, but for some parameter values, the objective function is very
+ flat and the algorithm gets stuck and believes it has found a solution
+ when in fact, it has not.
+ These are cases in which the buyer can achieve a positive but extremely
+ small payoff by making an offer that is just below the conditional expected
+ gain.
+ Essentially, it does not matter what the regulator does because the land
+ will almost certainly be developed regardless, but the true optimal offer
+ is arbitrarily close to the conditional expected gain.
+ For these cases, the 
+\begin_inset Quotes eld
+\end_inset
+
+optimal
+\begin_inset Quotes erd
+\end_inset
+
+ offer was taken to be the conditional expected gain.
+ In other cases, the ncpsolve algorithm fails to converge.
+ For these cases, the individual problems are solved case by case using
+ matlab's fmincon solver with the trust-region-reflective algorithm.
+\end_layout
+
+\begin_layout Description
+regPay2,regPay2FOC,regPay2Objective Return the regulator's period 2 objective
+ and derivatives in various formats.
+ Closed form expressions for these exist so no numerical approximation is
+ done
+\end_layout
+
+\begin_layout Description
+regPayFullReal uses the vectorized adaptive Guassian quadrature function
+ (quadvgk) to find expected period 2 values by calling the p2Out function
 \end_layout
 
 \begin_layout Section

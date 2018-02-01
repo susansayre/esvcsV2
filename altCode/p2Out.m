@@ -1,7 +1,10 @@
 function p2OutMat = p2Out(outputVars,signals,UBVal,P,p2Offer)
-%uses global adaptive quadrature to calculate expected period 2 outcomes
+%calculates expected period 2 outcomes by averaging across a grid of points
 %p2offer is an optional argument; when included the function will calculate the integrals assuming the regulator offers
 %p2 in period 2; when not included the regulator will optimize the offer in period2
+%the default behavior is to compute the probability of a particular signal occuring based on information given in P, but
+%all points can be made equally likely by calling the function with a P struct that includes a field called noProb whose
+%value is a non-zero scalar.
 
 if ischar(outputVars)
 	outVarList = {outputVars};

@@ -29,6 +29,7 @@ for jj=1:numLIRV
 end
 clear jj
 
+%set a grid of signals and upper bounds remaining conserved
 P.wgtP2 = 1;
 numSig = 501;
 numUB = 14;
@@ -39,6 +40,7 @@ UBVals = P.meanEnv*[(0:maxUB/(numUB-2):maxUB) P.meanPriv+10*P.sig.p];
 reg2outputVars = {'offer','regPay','probAccept'};
 offerInd = find(strcmp(reg2outputVars,'offer'));
 
+%consider a grid of private values drawn from the priv value distribution conditional on pubVal
 numPriv = 31;
 privVals = 3*(P.pubVal+P.meanPriv)/P.sig.p*(0:1/(numPriv-1):1)';
 privMat = repmat(privVals,1,numel(signalMat));
@@ -47,19 +49,21 @@ privValMat = repmat(privVals,1,numUB);
 % load(fullfile('detailedOutput',P.runID,'signalImpact.mat'),'output')
 % eval(['allOutput = output{1}{' strrep(P.caseID,'exp1case','') '};'])
 % clear output
+
+%% loop through possible levels of information (e.g. possible signal quality values)
 for ii=1:numel(rhoESvals)
 	thisP = P;
 	thisP.rho.es = rhoESvals(ii);
 	thisP.rho.sp = thisP.rho_ratio*rhoESvals(ii)*thisP.rho.ep;
 	
-	%investigate period 2 problem for regulator
+	%% investigate period 2 problem for regulator
 	thisPHat = thisP; thisPHat.noProb = 1;
 	p2CondVals = p2Out(reg2outputVars,signalMat(:),UBMat(:),thisPHat);
 	for vi=1:numel(reg2outputVars)
 		eval(['allOutput.p2.' reg2outputVars{vi} '(:,:,ii) = reshape(p2CondVals(vi,:),numSig,numUB);'])
 	end
 	
-	%rough cut at period 1 problem for landowner
+	%% rough cut at period 1 problem for landowner
 	bigSignalMat = repmat(signalMat(:)',numPriv,1);
 	[condMeanSignal,condSDSignal] = condSignal({'privVal','pubVal'},[privMat(:) P.pubVal*ones(size(privMat(:)))],thisP);
 	probSignalLand = reshape(normpdf(bigSignalMat(:),condMeanSignal,condSDSignal),[numPriv numSig numUB]);
@@ -71,10 +75,8 @@ for ii=1:numel(rhoESvals)
 	thisSolveP = thisP;
 	thisSolveP.offer2guess.offers = allOutput.p2.offer(:,end,ii);
 	thisSolveP.offer2guess.signals = signalVals;
-% 	
-% 	thisPhat = rmfield(thisP,'reg2Approx');
-	%disp('starting fmincon')
-	%regPayFullReal(startPoint,thisP)
+
+	%% optimize first period offer
 	[optTempPay,~,exf] = fmincon(@(tempPay) regPayFullReal(tempPay,thisSolveP),startPoint,[],[],[],[],0,100,'',options);		
 	if exf>0
 		fullOut = regPayFullReal(optTempPay,thisSolveP,1);

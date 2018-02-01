@@ -1,5 +1,6 @@
 function [drpo,ddrpo] = regPay2FOC(offers,signals,pubVals,P,derivFlag)
-
+%calculates the values of the first and second derivatives of the regulator's period 2 optimization and returns in the
+%format needed for ncpsolver to run
 if nargout>1
     [rp,drpo,ddrpo] = regPay2(offers,signals,pubVals,P,derivFlag);
 % 	subplot(2,2,1)

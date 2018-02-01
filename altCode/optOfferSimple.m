@@ -22,6 +22,7 @@ if max(upperBounds)<=0 %no parcels that privately want to develop are remaining
 	return
 end
 
+%pull out only unique regulator problems
 [uniqueVals,oInd,uInd] = unique([signals pubVals],'rows');
 signals = uniqueVals(:,1);
 pubVals = uniqueVals(:,2);
@@ -79,9 +80,9 @@ solveThese = intersect(find(maxOffer>zeroTol),find(probAcceptZero<1)); %eliminat
 optOffers = 0*signals;
 if any(solveThese)
 	[optOfferSolns,~,exf] = ncpsolve('regPay2FOC',0*maxOffer(solveThese),maxOffer(solveThese),startPoint(solveThese),signals(solveThese),pubVals(solveThese),P,'offer');
+	
 	%identify points where the "optimal offer" provides so little benefit that the algorithm is getting stuck. Essentially
 	%it doesn't matter what we do, but there is a true maximum arbitrarily close to the cond mean gain
-
 	[rp,drp,ddrp] = regPay2(optOfferSolns,signals(solveThese),pubVals(solveThese),P,'offer','offer');
 	smallObjective = find(rp<derivTol);
 	posDeriv = find(drp>0);

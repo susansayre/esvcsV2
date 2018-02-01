@@ -1,7 +1,9 @@
 function [regPayObj,drpo,ddrpo] = regPay2Objective(offers,signals,pubVals,P,derivFlag)
 
-%function used to cheat and let fmincon solve my "vector" of optimization
-%problems. See notes describing this cheat in optOffer function.
+%function can be used to cheat and let fmincon try to solve a "vector" of optimization
+%problems. See notes describing this cheat in optOffer function if used.
+%When called with scalar arguments (as from optOfferSimple), this function simply converts 
+%the regPay2 output into a minimization problem for fmincon
 if nargout>2
     [rph,dregPayHat,ddregPayHat] = regPay2(offers,signals,pubVals,P,derivFlag);
     ddrpo = -diag(ddregPayHat);
