@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    722298,      13175]
-NotebookOptionsPosition[    719672,      13085]
-NotebookOutlinePosition[    720239,      13107]
-CellTagsIndexPosition[    720196,      13104]
+NotebookDataLength[    731444,      13345]
+NotebookOptionsPosition[    728733,      13252]
+NotebookOutlinePosition[    729300,      13274]
+CellTagsIndexPosition[    729257,      13271]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -984,7 +984,7 @@ qT9Rzs/ZDlrvP+A1BsYkvpQ/AAAAAAAA8D8AAAAAAAAAAIZ7OGM=
   TraditionalForm]], "Output",
  CellChangeTimes->{3.7060259762201147`*^9, 3.7060285451324763`*^9, 
   3.7066152454791183`*^9, 3.706619760025008*^9, 3.707218353107284*^9, 
-  3.7086998705537434`*^9}]
+  3.7086998705537434`*^9, 3.7312318083873606`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4514,7 +4514,7 @@ P4DZFUGZKPc/YsyryaiF5z+i0bpPUtP3P1Z8xVd8xec/AAAAAAAA+D9ekPwC
    3.7053257398015966`*^9, 3.7056801193214507`*^9, 3.7056806478442507`*^9, 
    3.705680870271651*^9, 3.7057489027477837`*^9, 3.7060259835541615`*^9, {
    3.70602790161243*^9, 3.7060279408922844`*^9}, 3.706027976157913*^9, 
-   3.7086999302615433`*^9}]
+   3.7086999302615433`*^9, 3.7312318113973603`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4561,6 +4561,7 @@ Cell[BoxData[{
      RowBox[{"Axes", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Black"}], ",", 
      RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -4579,6 +4580,7 @@ Cell[BoxData[{
      RowBox[{"Axes", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Black"}], ",", 
      RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -4598,6 +4600,7 @@ Cell[BoxData[{
      RowBox[{"Axes", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Black"}], ",", 
      RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -4617,6 +4620,7 @@ Cell[BoxData[{
      RowBox[{"Axes", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Black"}], ",", 
      RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -4631,11 +4635,18 @@ Cell[BoxData[{
      RowBox[{"Ticks", "\[Rule]", "None"}], ",", 
      RowBox[{"Frame", "\[Rule]", 
       RowBox[{"{", 
-       RowBox[{"False", ",", "True", ",", "False", ",", "False"}], "}"}]}], 
+       RowBox[{"True", ",", "True", ",", "False", ",", "False"}], "}"}]}], 
      ",", 
      RowBox[{"Axes", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Black"}], ",", 
+     RowBox[{"FrameStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"White", ",", 
+        RowBox[{"{", 
+         RowBox[{"Thin", ",", "Black"}], "}"}], ",", "White", ",", "White"}], 
+       "}"}]}], ",", 
      RowBox[{"FrameTicks", "\[Rule]", "None"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"plotGrid", " ", "=", 
@@ -5188,8 +5199,11 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsRP"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<Offer\>\"", ",", "\"\<Regulator Payoff\>\""}], 
-             "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Offer\>\"", ",", "Black"}], "]"}], ",", 
+              "\"\<Regulator Payoff\>\""}], "}"}]}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
            RowBox[{"{", "\[IndentingNewLine]", 
@@ -5229,8 +5243,10 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsRP"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<Offer\>\"", ",", "\"\<\>\""}], "}"}]}]}], "]"}], 
-         ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Offer\>\"", ",", "Black"}], "]"}], ",", 
+              "\"\<\>\""}], "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
            RowBox[{"{", "\[IndentingNewLine]", 
@@ -5270,9 +5286,11 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsRP"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<Offer\>\"", ",", "\"\<\>\""}], "}"}]}]}], "]"}]}], 
-        "}"}]}], "\[IndentingNewLine]", "}"}], "]"}], ",", 
-    "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<Offer\>\"", ",", "Black"}], "]"}], ",", 
+              "\"\<\>\""}], "}"}]}]}], "]"}]}], "}"}]}], 
+      "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
     RowBox[{"Placed", "[", 
      RowBox[{
       RowBox[{"LineLegend", "[", 
@@ -5353,7 +5371,11 @@ esvcsV2\\\\text\\\\plotGrid.eps\>\"", ",", "plotGrid", ",", "\"\<EPS\>\""}],
    3.7060280028284845`*^9}, {3.706028056003028*^9, 3.706028067570703*^9}, {
    3.706028111403385*^9, 3.706028111996189*^9}, {3.7060281498538356`*^9, 
    3.706028205210794*^9}, {3.7086999112091436`*^9, 3.7086999175993433`*^9}, {
-   3.708699958117944*^9, 3.7086999758091435`*^9}}],
+   3.708699958117944*^9, 3.7086999758091435`*^9}, {3.73123183768836*^9, 
+   3.7312318388943605`*^9}, {3.7312318709163604`*^9, 
+   3.7312319895723605`*^9}, {3.7312320206193604`*^9, 
+   3.7312320689433603`*^9}, {3.7312321275803604`*^9, 
+   3.7312321395503607`*^9}, {3.7312321718253603`*^9, 3.7312321767363605`*^9}}],
 
 Cell[BoxData[
  FormBox[
@@ -5755,7 +5777,7 @@ QT+6
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, PlotLabel -> 
@@ -6160,7 +6182,7 @@ Kzf8D631qFI=
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, PlotLabel -> 
@@ -6565,7 +6587,7 @@ x3K5QAshPyjoh18rhy+X/uDi0UmW1+kJX2zbuN6y4xcXY9uk9VQ6feFvfFmZ
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, PlotLabel -> 
@@ -6676,7 +6698,7 @@ zX4tFbG9uLayVQKwlP3Oxeuo6AFDTGi1BCyN5/2qMaCi/wClp15J
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -6786,7 +6808,7 @@ zUkYCvo13FiiJIC75UUCl4ehZ6w6YmmJgIj02SXpHQz9Bw9UY6g=
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -6896,7 +6918,7 @@ GFZUdMZHYD+8TIClkjmWYU1F93hthF5PAIV77OCkDRX9B2IaUrc=
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -7413,7 +7435,7 @@ IHv15j4LEQvkGtQz/v1j4NT+2BOTv2/hf6UIuLs=
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -7931,7 +7953,7 @@ zkz5Q7Pk/taP779t7o6j1Pmli/NkfWQKREKV3FHNE5oVymJBZarHL+7LA/yV
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -8403,7 +8425,7 @@ AtUR3qcOB+B/zT9afw==
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -8680,7 +8702,7 @@ Z2mcHtEbCSC+7/ac/v2bBqsjVTSI+P8zfKJj
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -8957,7 +8979,7 @@ CP79V4AF9JCOEuL/AxYOg2M=
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -9233,7 +9255,7 @@ Y9Xyg8awpVykKnHgzhC14Tly/nahAC3iMrsW+vdvGjE6oo5riP8PBosF9w==
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -9544,12 +9566,19 @@ Y8c=
           All, DisplayFunction -> Identity, AspectRatio -> 
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
-          Identity, Frame -> {{True, False}, {False, False}}, FrameLabel -> {{
+          Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
              FormBox["\"Regulator Payoff\"", TraditionalForm], None}, {
-             FormBox["\"Offer\"", TraditionalForm], None}}, 
-          FrameTicks -> {{None, None}, {None, None}}, 
+             FormBox[
+              StyleBox["\"Offer\"", 
+               GrayLevel[0], StripOnInput -> False], TraditionalForm], None}},
+           FrameStyle -> {
+            GrayLevel[1], {
+             Thickness[Tiny], 
+             GrayLevel[0]}, 
+            GrayLevel[1], 
+            GrayLevel[1]}, FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -9892,12 +9921,19 @@ t7YGr4tdE3hdSOi3yKj/659rEHVlu1LPPRLSUFEwaf+9BsYnXTbin5KQr56/
           All, DisplayFunction -> Identity, AspectRatio -> 
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
-          Identity, Frame -> {{True, False}, {False, False}}, FrameLabel -> {{
+          Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
              FormBox["\"\"", TraditionalForm], None}, {
-             FormBox["\"Offer\"", TraditionalForm], None}}, 
-          FrameTicks -> {{None, None}, {None, None}}, 
+             FormBox[
+              StyleBox["\"Offer\"", 
+               GrayLevel[0], StripOnInput -> False], TraditionalForm], None}},
+           FrameStyle -> {
+            GrayLevel[1], {
+             Thickness[Tiny], 
+             GrayLevel[0]}, 
+            GrayLevel[1], 
+            GrayLevel[1]}, FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -10246,12 +10282,19 @@ nWOrLLijkXzYy7gVXl0ks9bWWKAjUSXef7IV/gd+Sfq0
           All, DisplayFunction -> Identity, AspectRatio -> 
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
-          Identity, Frame -> {{True, False}, {False, False}}, FrameLabel -> {{
+          Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
              FormBox["\"\"", TraditionalForm], None}, {
-             FormBox["\"Offer\"", TraditionalForm], None}}, 
-          FrameTicks -> {{None, None}, {None, None}}, 
+             FormBox[
+              StyleBox["\"Offer\"", 
+               GrayLevel[0], StripOnInput -> False], TraditionalForm], None}},
+           FrameStyle -> {
+            GrayLevel[1], {
+             Thickness[Tiny], 
+             GrayLevel[0]}, 
+            GrayLevel[1], 
+            GrayLevel[1]}, FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
-            GrayLevel[0.5, 0.4]], 
+            GrayLevel[0.5, 0.4]], LabelStyle -> GrayLevel[0], 
           Method -> {
            "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
             AbsolutePointSize[6], "ScalingFunctions" -> None}, 
@@ -10522,7 +10565,10 @@ nWOrLLijkXzYy7gVXl0ks9bWWKAjUSXef7IV/gd+Sfq0
    3.7060278009159746`*^9, 3.7060278531383133`*^9}, {3.7060279892795973`*^9, 
    3.706028004341695*^9}, {3.7060280582338424`*^9, 3.7060280690215125`*^9}, 
    3.706028113915001*^9, 3.7060281520378494`*^9, {3.7060281896384926`*^9, 
-   3.706028213003048*^9}, 3.7086999361949434`*^9, 3.7086999777319436`*^9}]
+   3.706028213003048*^9}, 3.7086999361949434`*^9, 3.7086999777319436`*^9, 
+   3.7312318127033606`*^9, 3.7312318531943607`*^9, {3.73123190751836*^9, 
+   3.7312319546793604`*^9}, 3.7312319915203605`*^9, 3.7312320311303606`*^9, 
+   3.73123207058436*^9, 3.7312321434183607`*^9, 3.7312321800093603`*^9}]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -12184,7 +12230,8 @@ PySjP9LjQa/XmNBywWPgB8ZHDu471/mHCRU+l+eTHpHRbYMgecJfJhx8179u
    PlotRangePadding->{6, 5}], TraditionalForm]], "Output",
  CellChangeTimes->{
   3.7060285676096215`*^9, 3.706028624335987*^9, 3.706028687709203*^9, {
-   3.7060289312151213`*^9, 3.7060289430921993`*^9}, 3.7060290002865753`*^9}]
+   3.7060289312151213`*^9, 3.7060289430921993`*^9}, 3.7060290002865753`*^9, 
+   3.7312318137323604`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12329,14 +12376,13 @@ Cell[BoxData[
   TagBox[
    FormBox[
     StyleBox[
-     DynamicModuleBox[{$CellContext`ds$$ = 
-      0.47950000000000004`, $CellContext`meanE$$ = 
-      0.65, $CellContext`meanP$$ = 0.65, $CellContext`rhoEPv$$ = 
-      0., $CellContext`rhoESv$$ = 
-      0.15000000000000002`, $CellContext`s$$ = -2.0999999999999996`, \
-$CellContext`sigE$$ = 1.35, $CellContext`sigPv$$ = 0.4, $CellContext`xMax$$ = 
-      2, $CellContext`yMax$$ = 1, $CellContext`yMin$$ = -1, Typeset`show$$ = 
-      True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     DynamicModuleBox[{$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
+      1, $CellContext`meanP$$ = 1, $CellContext`rhoEPv$$ = 
+      0.5, $CellContext`rhoESv$$ = 0.5, $CellContext`s$$ = 
+      0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
+      1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
+      1, $CellContext`yMin$$ = -1, Typeset`show$$ = True, 
+      Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
       Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
       "\"untitled\"", Typeset`specs$$ = {{{
          Hold[$CellContext`meanE$$], 1, 
@@ -12358,11 +12404,11 @@ $CellContext`sigE$$ = 1.35, $CellContext`sigPv$$ = 0.4, $CellContext`xMax$$ =
          Hold[$CellContext`yMax$$], 1, "yMax"}, 0.1, 10, 0.1}}, 
       Typeset`size$$ = {734., {174., 184.}}, Typeset`update$$ = 0, 
       Typeset`initDone$$, Typeset`skipInitDone$$ = 
-      True, $CellContext`meanE$118387$$ = 0, $CellContext`meanP$118388$$ = 
-      0, $CellContext`rhoESv$118389$$ = 0, $CellContext`s$118390$$ = 
-      0, $CellContext`ds$118391$$ = 0, $CellContext`sigE$118392$$ = 
-      0, $CellContext`sigPv$118393$$ = 0, $CellContext`rhoEPv$118394$$ = 
-      0, $CellContext`xMax$118395$$ = 0, $CellContext`yMin$118396$$ = 0}, 
+      True, $CellContext`meanE$2474$$ = 0, $CellContext`meanP$2479$$ = 
+      0, $CellContext`rhoESv$2480$$ = 0, $CellContext`s$2481$$ = 
+      0, $CellContext`ds$2482$$ = 0, $CellContext`sigE$2483$$ = 
+      0, $CellContext`sigPv$2484$$ = 0, $CellContext`rhoEPv$2485$$ = 
+      0, $CellContext`xMax$2486$$ = 0, $CellContext`yMin$2487$$ = 0}, 
       DynamicBox[Manipulate`ManipulateBoxes[
        1, TraditionalForm, 
         "Variables" :> {$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
@@ -12371,16 +12417,16 @@ $CellContext`sigE$$ = 1.35, $CellContext`sigPv$$ = 0.4, $CellContext`xMax$$ =
           0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
           1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
           1, $CellContext`yMin$$ = -1}, "ControllerVariables" :> {
-          Hold[$CellContext`meanE$$, $CellContext`meanE$118387$$, 0], 
-          Hold[$CellContext`meanP$$, $CellContext`meanP$118388$$, 0], 
-          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$118389$$, 0], 
-          Hold[$CellContext`s$$, $CellContext`s$118390$$, 0], 
-          Hold[$CellContext`ds$$, $CellContext`ds$118391$$, 0], 
-          Hold[$CellContext`sigE$$, $CellContext`sigE$118392$$, 0], 
-          Hold[$CellContext`sigPv$$, $CellContext`sigPv$118393$$, 0], 
-          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$118394$$, 0], 
-          Hold[$CellContext`xMax$$, $CellContext`xMax$118395$$, 0], 
-          Hold[$CellContext`yMin$$, $CellContext`yMin$118396$$, 0]}, 
+          Hold[$CellContext`meanE$$, $CellContext`meanE$2474$$, 0], 
+          Hold[$CellContext`meanP$$, $CellContext`meanP$2479$$, 0], 
+          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$2480$$, 0], 
+          Hold[$CellContext`s$$, $CellContext`s$2481$$, 0], 
+          Hold[$CellContext`ds$$, $CellContext`ds$2482$$, 0], 
+          Hold[$CellContext`sigE$$, $CellContext`sigE$2483$$, 0], 
+          Hold[$CellContext`sigPv$$, $CellContext`sigPv$2484$$, 0], 
+          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$2485$$, 0], 
+          Hold[$CellContext`xMax$$, $CellContext`xMax$2486$$, 0], 
+          Hold[$CellContext`yMin$$, $CellContext`yMin$2487$$, 0]}, 
         "OtherVariables" :> {
          Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
           Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -12441,8 +12487,10 @@ $CellContext`rhoEPv$$ $CellContext`rhoESv$$]}, {$CellContext`x,
    Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
  CellChangeTimes->{3.707223794638744*^9, 3.7072238931038227`*^9, 
   3.7072243510769663`*^9, 3.7072244234490643`*^9, 3.707224530657806*^9, 
-  3.7072250221746025`*^9}]
+  3.7072250221746025`*^9, 3.7312318137983603`*^9}]
 }, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Manipulate", "[", 
@@ -12574,6 +12622,123 @@ Cell[BoxData[
      RowBox[{"Appearance", "\[Rule]", "Labeled"}]}], "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.707225428118536*^9, 3.7072254432494354`*^9}}],
 
+Cell[BoxData[
+ FormBox[
+  TagBox[
+   FormBox[
+    StyleBox[
+     DynamicModuleBox[{$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
+      1, $CellContext`meanP$$ = 1, $CellContext`rhoEPv$$ = 
+      0.5, $CellContext`rhoESv$$ = 0.5, $CellContext`s$$ = 
+      0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
+      1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
+      1, $CellContext`yMin$$ = -1, Typeset`show$$ = True, 
+      Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+      Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+      "\"untitled\"", Typeset`specs$$ = {{{
+         Hold[$CellContext`meanE$$], 1, 
+         "\!\(\*SubscriptBox[\(\[Mu]\), \(e\)]\)"}, 0, 4, 0.05}, {{
+         Hold[$CellContext`meanP$$], 1, 
+         "\!\(\*SubscriptBox[\(\[Mu]\), \(p\)]\)"}, 0, 4, 0.05}, {{
+         Hold[$CellContext`rhoESv$$], 0.5, 
+         "\!\(\*SubscriptBox[\(\[Rho]\), \(es\)]\)"}, 0, 1, 0.05}, {{
+         Hold[$CellContext`s$$], 0, "s"}, -5, 5, 0.05}, {{
+         Hold[$CellContext`ds$$], 0.1, "ds"}, 0, 0.5}, {{
+         Hold[$CellContext`sigE$$], 1, 
+         "\!\(\*SubscriptBox[\(\[Sigma]\), \(e\)]\)"}, 0, 4, 0.05}, {{
+         Hold[$CellContext`sigPv$$], 1, 
+         "\!\(\*SubscriptBox[\(\[Sigma]\), \(p\)]\)"}, 0, 4, 0.05}, {{
+         Hold[$CellContext`rhoEPv$$], 0.5, 
+         "\!\(\*SubscriptBox[\(\[Rho]\), \(ep\)]\)"}, 0, 1, 0.05}, {{
+         Hold[$CellContext`xMax$$], 2, "maxOffer"}, 0.5, 10, 0.1}, {{
+         Hold[$CellContext`yMin$$], -1, "yMin"}, -10, -0.1, 0.1}, {{
+         Hold[$CellContext`yMax$$], 1, "yMax"}, 0.1, 10, 0.1}}, 
+      Typeset`size$$ = {734., {174., 184.}}, Typeset`update$$ = 0, 
+      Typeset`initDone$$, Typeset`skipInitDone$$ = 
+      True, $CellContext`meanE$2653$$ = 0, $CellContext`meanP$2654$$ = 
+      0, $CellContext`rhoESv$2655$$ = 0, $CellContext`s$2656$$ = 
+      0, $CellContext`ds$2657$$ = 0, $CellContext`sigE$2658$$ = 
+      0, $CellContext`sigPv$2659$$ = 0, $CellContext`rhoEPv$2660$$ = 
+      0, $CellContext`xMax$2661$$ = 0, $CellContext`yMin$2662$$ = 0}, 
+      DynamicBox[Manipulate`ManipulateBoxes[
+       1, TraditionalForm, 
+        "Variables" :> {$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
+          1, $CellContext`meanP$$ = 1, $CellContext`rhoEPv$$ = 
+          0.5, $CellContext`rhoESv$$ = 0.5, $CellContext`s$$ = 
+          0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
+          1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
+          1, $CellContext`yMin$$ = -1}, "ControllerVariables" :> {
+          Hold[$CellContext`meanE$$, $CellContext`meanE$2653$$, 0], 
+          Hold[$CellContext`meanP$$, $CellContext`meanP$2654$$, 0], 
+          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$2655$$, 0], 
+          Hold[$CellContext`s$$, $CellContext`s$2656$$, 0], 
+          Hold[$CellContext`ds$$, $CellContext`ds$2657$$, 0], 
+          Hold[$CellContext`sigE$$, $CellContext`sigE$2658$$, 0], 
+          Hold[$CellContext`sigPv$$, $CellContext`sigPv$2659$$, 0], 
+          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$2660$$, 0], 
+          Hold[$CellContext`xMax$$, $CellContext`xMax$2661$$, 0], 
+          Hold[$CellContext`yMin$$, $CellContext`yMin$2662$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
+        Plot[{$CellContext`MB[$CellContext`x, $CellContext`meanE$$, \
+$CellContext`meanP$$, $CellContext`s$$, $CellContext`rhoESv$$, \
+$CellContext`sigE$$, $CellContext`sigPv$$, $CellContext`rhoEPv$$, \
+$CellContext`rhoEPv$$ $CellContext`rhoESv$$] - \
+$CellContext`pA[$CellContext`x, $CellContext`meanE$$, $CellContext`meanP$$, \
+$CellContext`s$$, $CellContext`rhoESv$$, $CellContext`sigE$$, \
+$CellContext`sigPv$$, $CellContext`rhoEPv$$, $CellContext`rhoEPv$$ \
+$CellContext`rhoESv$$], $CellContext`MB[$CellContext`x, $CellContext`meanE$$, \
+$CellContext`meanP$$, $CellContext`s$$ + $CellContext`ds$$, \
+$CellContext`rhoESv$$, $CellContext`sigE$$, $CellContext`sigPv$$, \
+$CellContext`rhoEPv$$, $CellContext`rhoEPv$$ $CellContext`rhoESv$$] - \
+$CellContext`pA[$CellContext`x, $CellContext`meanE$$, $CellContext`meanP$$, \
+$CellContext`s$$ + $CellContext`ds$$, $CellContext`rhoESv$$, \
+$CellContext`sigE$$, $CellContext`sigPv$$, $CellContext`rhoEPv$$, \
+$CellContext`rhoEPv$$ $CellContext`rhoESv$$]}, {$CellContext`x, 
+           0, $CellContext`xMax$$}, 
+          PlotRange -> {$CellContext`yMin$$, $CellContext`yMax$$}, 
+          PlotLegends -> {"dR(s)", "dR(s+ds)"}], 
+        "Specifications" :> {{{$CellContext`meanE$$, 1, 
+            "\!\(\*SubscriptBox[\(\[Mu]\), \(e\)]\)"}, 0, 4, 0.05, Appearance -> 
+           Labeled}, {{$CellContext`meanP$$, 1, 
+            "\!\(\*SubscriptBox[\(\[Mu]\), \(p\)]\)"}, 0, 4, 0.05, Appearance -> 
+           Labeled}, {{$CellContext`rhoESv$$, 0.5, 
+            "\!\(\*SubscriptBox[\(\[Rho]\), \(es\)]\)"}, 0, 1, 0.05, 
+           Appearance -> Labeled}, {{$CellContext`s$$, 0, "s"}, -5, 5, 0.05, 
+           Appearance -> Labeled}, {{$CellContext`ds$$, 0.1, "ds"}, 0, 0.5, 
+           Appearance -> 
+           Labeled}, {{$CellContext`sigE$$, 1, 
+            "\!\(\*SubscriptBox[\(\[Sigma]\), \(e\)]\)"}, 0, 4, 0.05, 
+           Appearance -> 
+           Labeled}, {{$CellContext`sigPv$$, 1, 
+            "\!\(\*SubscriptBox[\(\[Sigma]\), \(p\)]\)"}, 0, 4, 0.05, 
+           Appearance -> 
+           Labeled}, {{$CellContext`rhoEPv$$, 0.5, 
+            "\!\(\*SubscriptBox[\(\[Rho]\), \(ep\)]\)"}, 0, 1, 0.05, 
+           Appearance -> Labeled}, {{$CellContext`xMax$$, 2, "maxOffer"}, 0.5,
+            10, 0.1, Appearance -> 
+           Labeled}, {{$CellContext`yMin$$, -1, "yMin"}, -10, -0.1, 0.1, 
+           Appearance -> Labeled}, {{$CellContext`yMax$$, 1, "yMax"}, 0.1, 10,
+            0.1, Appearance -> Labeled}}, "Options" :> {}, 
+        "DefaultOptions" :> {}],
+       ImageSizeCache->{1238., {220., 231.}},
+       SingleEvaluation->True],
+      Deinitialization:>None,
+      DynamicModuleValues:>{},
+      SynchronousInitialization->True,
+      UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+      UnsavedVariables:>{Typeset`initDone$$},
+      UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+     Deployed->True,
+     StripOnInput->False],
+    TraditionalForm],
+   Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
+ CellChangeTimes->{3.7312318141303606`*^9}]
+}, Open  ]],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[
@@ -12635,7 +12800,8 @@ Cell[BoxData[
    3.706616297573902*^9, 3.706616360440714*^9, 3.7066176950134716`*^9, 
    3.706619037943211*^9, {3.706619071550228*^9, 3.7066190941363773`*^9}, {
    3.7066191382402687`*^9, 3.70661918173756*^9}, {3.706619658750497*^9, 
-   3.706619664789736*^9}, 3.706619719480908*^9, 3.7066197894486*^9}]
+   3.706619664789736*^9}, 3.706619719480908*^9, 3.7066197894486*^9, 
+   3.7312318214253607`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12682,7 +12848,8 @@ Cell[BoxData[
 
 Cell[BoxData[
  FormBox["\[Infinity]", TraditionalForm]], "Output",
- CellChangeTimes->{3.7066196258950806`*^9, 3.7066198205208235`*^9}]
+ CellChangeTimes->{3.7066196258950806`*^9, 3.7066198205208235`*^9, 
+  3.7312318216053605`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12729,7 +12896,7 @@ Cell[BoxData[
  CellChangeTimes->{
   3.7066198872048635`*^9, 3.707218565671954*^9, {3.70721862861719*^9, 
    3.7072186495349455`*^9}, 3.707218704622118*^9, {3.7072195179706383`*^9, 
-   3.707219524447081*^9}}]
+   3.707219524447081*^9}, 3.7312318269153605`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12757,7 +12924,7 @@ Cell[BoxData[
  FormBox["$Aborted", TraditionalForm]], "Output",
  CellChangeTimes->{
   3.706620017593317*^9, {3.7066203232489815`*^9, 3.7066203635770435`*^9}, 
-   3.70721834482723*^9, 3.7072184985966787`*^9}]
+   3.70721834482723*^9, 3.7072184985966787`*^9, 3.7312318503263607`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -13108,73 +13275,76 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 12444, 291, 1092, "Input"],
-Cell[13027, 315, 35373, 671, 384, "Output"]
+Cell[13027, 315, 35397, 671, 351, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48437, 991, 97, 1, 112, "Section"],
+Cell[48461, 991, 97, 1, 112, "Section"],
 Cell[CellGroupData[{
-Cell[48559, 996, 24744, 522, 1643, "Input"],
-Cell[73306, 1520, 175814, 2996, 959, "Output"]
+Cell[48583, 996, 24744, 522, 1643, "Input"],
+Cell[73330, 1520, 175838, 2996, 959, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[249169, 4522, 98, 1, 112, "Section"],
+Cell[249217, 4522, 98, 1, 112, "Section"],
 Cell[CellGroupData[{
-Cell[249292, 4527, 39409, 828, 2919, "Input"],
-Cell[288704, 5357, 301235, 5167, 1026, "Output"]
+Cell[249340, 4527, 40434, 850, 2919, "Input"],
+Cell[289777, 5379, 302584, 5191, 1052, "Output"]
 }, Open  ]],
-Cell[589954, 10527, 70, 1, 47, "Input"],
-Cell[590027, 10530, 149, 2, 47, "Input"],
+Cell[592376, 10573, 70, 1, 47, "Input"],
+Cell[592449, 10576, 149, 2, 47, "Input"],
 Cell[CellGroupData[{
-Cell[590201, 10536, 6998, 167, 570, "Input"],
-Cell[597202, 10705, 88068, 1481, 149, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[685307, 12191, 5055, 133, 512, "Input"],
-Cell[690365, 12326, 6779, 117, 763, "Output"]
-}, Open  ]],
-Cell[697159, 12446, 4665, 128, 819, "Input"],
-Cell[CellGroupData[{
-Cell[701849, 12578, 2038, 49, 123, "Input"],
-Cell[703890, 12629, 514, 8, 75, "Output"]
+Cell[592623, 10582, 6998, 167, 570, "Input"],
+Cell[599624, 10751, 88096, 1482, 149, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[704441, 12642, 1469, 38, 169, "Input"],
-Cell[705913, 12682, 134, 2, 75, "Output"]
+Cell[687757, 12238, 5055, 133, 512, "Input"],
+Cell[692815, 12373, 6698, 116, 477, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[706084, 12689, 1304, 35, 123, "Input"],
-Cell[707391, 12726, 250, 5, 75, "Output"]
+Cell[699550, 12494, 4665, 128, 512, "Input"],
+Cell[704218, 12624, 6552, 114, 477, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[707678, 12736, 691, 17, 75, "Input"],
-Cell[708372, 12755, 207, 4, 75, "Output"]
+Cell[710807, 12743, 2038, 49, 77, "Input"],
+Cell[712848, 12794, 542, 9, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[708616, 12764, 1767, 43, 123, "Input"],
-Cell[710386, 12809, 569, 16, 163, "Output"]
+Cell[713427, 12808, 1469, 38, 106, "Input"],
+Cell[714899, 12848, 161, 3, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[710992, 12830, 387, 10, 75, "Input"],
-Cell[711382, 12842, 2776, 58, 612, "Output"]
-}, Open  ]],
-Cell[714173, 12903, 94, 1, 75, "Input"],
-Cell[714270, 12906, 425, 13, 75, "Input"],
-Cell[CellGroupData[{
-Cell[714720, 12923, 250, 6, 75, "Input"],
-Cell[714973, 12931, 316, 9, 134, "Output"]
+Cell[715097, 12856, 1304, 35, 77, "Input"],
+Cell[716404, 12893, 274, 5, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[715326, 12945, 1974, 57, 123, "Input"],
-Cell[717303, 13004, 287, 6, 75, "Output"]
+Cell[716715, 12903, 691, 17, 47, "Input"],
+Cell[717409, 12922, 231, 4, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[717627, 13015, 395, 10, 75, "Input"],
-Cell[718025, 13027, 201, 5, 75, "Output"]
+Cell[717677, 12931, 1767, 43, 77, "Input"],
+Cell[719447, 12976, 569, 16, 260, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[718263, 13037, 661, 19, 75, "Input"],
-Cell[718927, 13058, 717, 23, 147, "Output"]
+Cell[720053, 12997, 387, 10, 120, "Input"],
+Cell[720443, 13009, 2776, 58, 979, "Output"]
+}, Open  ]],
+Cell[723234, 13070, 94, 1, 120, "Input"],
+Cell[723331, 13073, 425, 13, 120, "Input"],
+Cell[CellGroupData[{
+Cell[723781, 13090, 250, 6, 120, "Input"],
+Cell[724034, 13098, 316, 9, 214, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[724387, 13112, 1974, 57, 196, "Input"],
+Cell[726364, 13171, 287, 6, 120, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[726688, 13182, 395, 10, 120, "Input"],
+Cell[727086, 13194, 201, 5, 120, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[727324, 13204, 661, 19, 120, "Input"],
+Cell[727988, 13225, 717, 23, 235, "Output"]
 }, Open  ]]
 }, Open  ]]
 }
