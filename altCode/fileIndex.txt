@@ -1,0 +1,56 @@
+Note: buyer is called regulator throughout most of the code. Code also includes references to a public development value based on an earlier specification of the model. Setting the public value to anything but 0 will break the code.
+
+Core simulation files:
+#################################
+condMeanEnv
+condPriv
+condSignal
+integralCaseVal2: called by signalIntegrand to 
+optOfferSimple: solves the inner optimization problem for many cases simultaneously
+p2Out: calculates expected values for period 2 outcomes
+privDist: used to set parameter values in some unused comparative statics examples
+regPay2: used to compute buyer payoff in period 2
+regPay2FOC: organizes the output of regPay2 for solving first order conditions when using ncpsolve
+regPay2Objective: organizes the output of regPay2 for solving individual problems directly when using fmincon
+regPayFullReal: computes the buyer payoff across both periods by integrating across possible period 2 information sets
+regPayNoInfo: computes the buyer payoff across both periods if no better info arrives in period2
+regraphCase: used to generate case specific graphs from stored results
+signalImpact: core simulation control file; assess the impact of improving the signal for a single parameter case
+####################################
+
+Files to facilitate running multiple parameter cases:
+###################################
+setUpExperiment: called by signalImpactProblem to set up the basic structure of a run
+signalImpactProblem: describes the experiments we want to run and generates results
+###################################
+
+Analysis/graph files used in article:
+########################################
+categoryExpVal: assess the contributions of different parcels to total benefits (generates Figs. 5,7, and 10)
+compareMultipleSolns: used to test when multiple solutions to B(p)=0 occur
+compareOut: used to extract results and facilitate comparisons across parameter cases
+compareOutMats: called by compareOut in faciliating comparisons across parameter cases
+comparePlotMeanByVarCorr: plots a single output variable across three dimensions. Can plot either delta to due info or straight value. Used to generate deltaComp and valueComp graphs. (e.g. Figs 11-13)
+computeCustomizeVal: calculates the change in payoff from customizing offers to the possibility of improved information
+finalCategoriesSingleCase: used to generate Fig. 3
+findMultipleSolns: used by compareMultipleSolns in investingatin when B(p)=0 has multiple solutions
+meanVarCompPlot: generates Figure 8
+signalIntegrand: used by categoryExpVal to integrate across possible signals
+upperBoundImpactPlots: generates Fig 4
+
+graphCase: generates detailed plots for a single case (used by code but possibly unnecessary)
+landP2plot: called by graphCase
+plotP2bySignal: called by graphCase
+plotP2exp: called by graphCase
+plotP2hist: called by graphCase
+plotP2parcelOut: called by graphCase
+censorAdjust (used by plotP2hist)
+computedHist (used by plotP2hist)
+
+Supplemental files:
+###########################
+comparePlot3x3: plots a single signal strength value and compares across parameters
+comparePlot3x3generalized: a generalized version of comparePlot3x3 that permits more control in setting which parameters occur where
+comparePlot3varByVar: generates a single variable comparison plot with the ability to vary 3 parameters -- one along x-axis, one across rows, and one down columns.
+runCases: a utility to run a subset of analyses on a subset of cases
+
