@@ -4,7 +4,7 @@
 %value = change in variable moving from \rho_{es} = 0 to \rho_{es} = 1
 
 plotDelta = 0;
-plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'offer', 'Pr conserved' 'payoff' 'info gain'};
+plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'initial offer', {'prob conserved'; 'initially'}, 'buyer payoff' {'buyer gain';'from info'}};
 %plotVars = {'optTempPay' 'probConserve' 'rpf'};
 xLims = [0 2];
 if plotDelta
@@ -45,7 +45,7 @@ else
 	dataToPlot = compareOutResults{1}; startLine = 1;
 end
 
-gap = [.025 .025]; marg_h=[.2 .05]; marg_w=[.1 .025];
+gap = [.025 .025]; marg_h=[.2 .05]; marg_w=[.2 .025];
 for plotVar = 1:numel(plotVars)
 	myData = dataToPlot.(plotVars{plotVar});
 	for colInd = 1:numPanel

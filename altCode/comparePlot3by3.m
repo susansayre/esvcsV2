@@ -1,8 +1,3 @@
-%panels = meanPriv cond on wanting to develop
-%lines = probDevelop w/o policy
-%axis = \rho_{ep}
-%value = change in variable moving from \rho_{es} = 0 to \rho_{es} = 1
-
 expInd = 1;
 plotDelta = 0;
 plotVars = {'optTempPay' 'probConserve' 'rpf'}; plotLabels = {'offer', 'Pr conserved', 'payoff'};
@@ -20,11 +15,11 @@ else
 	plotRhoEScase = find(rhoESvals==plotRhoESval);
 end
 
-lineVar = 'probPNeg'; lineLabel = '\sigma_{p}';
-panelVar = 'meanRatio'; panelLabel = '\mu_{p}';
+lineVar = 'sig.p'; lineLabel = '\sigma_{p}';
+panelVar = 'meanPriv'; panelLabel = '\mu_{p}';
 
-xInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),'rho.ep'));
-xVals = compStatRunDescriptions{expInd,2}{strcmp(compStatRunDescriptions{expInd,2}(:,1),'rho.ep'),3};
+xInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),'sig.env'));
+xVals = compStatRunDescriptions{expInd,2}{strcmp(compStatRunDescriptions{expInd,2}(:,1),'sig.env'),3};
 xInds = 1:numel(xVals);
 
 lineInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),lineVar));

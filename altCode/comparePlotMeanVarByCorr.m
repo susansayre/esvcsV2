@@ -5,7 +5,7 @@
 
 expInd = 1;
 plotDelta = 0;
-plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'offer', 'Pr conserved', 'payoff','gain'};
+plotVars = {'optTempPay' 'probConserve' 'rpf' 'customizeGains'}; plotLabels = {'offer', 'Pr conserved', 'payoff','gain from info'};
 
 plotRhoESvals = round(.2:.2:1,1);
 for ii=1:numel(plotRhoESvals)

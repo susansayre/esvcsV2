@@ -27,14 +27,15 @@ end
 colVar = 'sig.p'; colLabel = '\sigma_{p}';
 rowVar = 'meanPriv'; rowLabel = '\mu_{p}';
 
-xInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),'rho.ep'));
-xVals = compStatRunDescriptions{expInd,2}{strcmp(compStatRunDescriptions{expInd,2}(:,1),'rho.ep'),3};
+xVar = 'rho.ep'; axisLabel ='\rho_{ep}';
+xInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),xVar)); 
+xVals = compStatRunDescriptions{expInd,2}{strcmp(compStatRunDescriptions{expInd,2}(:,1),xVar),3};
 xInds = 1:numel(xVals);
 
 rowInd = find(strcmp(compStatRunDescriptions{expInd,2}(:,1),rowVar));
 rowVals = compStatRunDescriptions{expInd,2}{rowInd,3};
 rowInds = 1:numel(rowVals);
-rowInds = 1:4;
+%rowInds = 1:4;
 
 %'Accent'|'Dark2'|'Paired'|'Pastel1'|'Pastel2'|'Set1'|'Set2'|'Set3'
 lineColors = brewermap(numel(plotRhoEScases)+2,'Blues');
@@ -84,7 +85,7 @@ for plotVar = 1:numel(plotVars)
 				set(gca,'YTickLabel','')
 			end
 			if ri==numel(rowInds)
-				xlabel('\rho_{ep}')
+				xlabel(axisLabel)
 			else
 				set(gca,'XTickLabel','')
 			end

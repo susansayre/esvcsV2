@@ -53,17 +53,24 @@ if newRun
 	%list of values to run or a set of values to make a grid from. Use the first element to indicate whether it should be a cross (1) or straight (0) 
 	compStatRunDescriptions = {
 			%cross?	%1-paramName	2-compStatType	3-values
+			1		{%parameter test case
+					 'valueType'	1				2;
+					 'meanEnv'		1				1;
+					 'rho.ep'		1				0;
+					 'probENeg'		1				[.1:.1:.4];
+					 'meanRatio'	1				[.2:.2:1];
+					 'probPNeg'		1				[.25:.25:.75]};
 % 			1		{'valueType'	1				0;
 % 					 'sig.p'		1				.25;
 % 					 'sig.env'		1				2;
 % 					 'meanPriv'		1				1;
 % 					 'meanEnv'		1				0;
 % 					 'rho.ep'		1				[-.9:.2:0]}; %baseline case
-			1		{'valueType'	1				0;
-					 'meanPriv'		1				.5;
-					 'sig.p'		1				.25;
-					 'sig.env'		1				(.25:.25:2);
-					 'rho.ep'		1				(-.9:.1:.9)};
+% 			1		{'valueType'	1				0;
+% 					 'meanPriv'		1				.5;
+% 					 'sig.p'		1				.25;
+% 					 'sig.env'		1				(.25:.25:2);
+% 					 'rho.ep'		1				(-.9:.1:.9)};
 % 			1		{'valueType'	1				0;
 % 					 'meanPriv'		1				[.5];
 % 					 'sig.p'		1				[.25:.25:1];

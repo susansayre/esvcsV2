@@ -1,16 +1,29 @@
 function allOutput = signalImpact(P,rhoESvals)
 
-if P.valueType==1
-	%valueType = 1 so use ratio and probNeg to set mean and sig
-	%if valueType = 0, this block won't be triggered and we'll use the specified meanPriv and sig values directly
-	P.meanPriv = P.meanEnv*P.meanRatio;
-	P.sig.env = -P.meanEnv/norminv(P.probENeg);
-	P.sig.p = -(P.pubVal+P.meanPriv)/norminv(P.probPNeg);
-elseif P.valueType==2	
-	params = fsolve(@(x) privDist(x,P.meanRatio*P.meanEnv,P.probPNeg),[P.meanEnv*P.meanRatio,-.5/norminv(P.probPNeg)]);
-	P.meanPriv = params(1);
-	P.sig.p = params(2);
-	P.sig.env = -P.meanEnv/norminv(P.probENeg);
+switch P.valueType
+	case 0
+		%code set the relevant parameters directly
+	case 1
+		%valueType = 1 so use ratio and probNeg to set mean and sig
+		%if valueType = 0, this block won't be triggered and we'll use the specified meanPriv and sig values directly
+		P.meanPriv = P.meanEnv*P.meanRatio;
+		P.sig.env = -P.meanEnv/norminv(P.probENeg);
+		P.sig.p = -(P.pubVal+P.meanPriv)/norminv(P.probPNeg);
+	case 2	
+		%a special case designed to set the mean and variance to have the mean conditional on desire to develop satisfy
+		%a certain ratio
+		if P.probPNeg<.5
+			params = fsolve(@(x) privDist(x,P.meanRatio*P.meanEnv,P.probPNeg),[P.meanEnv*P.meanRatio,-.5/norminv(P.probPNeg)]);
+		elseif P.probPNeg==.5
+			params(1) = 0;
+			params(2) = fsolve(@(x) privDist([0 x],P.meanRatio*P.meanEnv,P.probPNeg),P.meanEnv*P.meanRatio);
+		else
+			params = fsolve(@(x) privDist(x,P.meanRatio*P.meanEnv,P.probPNeg),[P.meanEnv*P.meanRatio,.5/norminv(P.probPNeg)]);
+		end
+		P.meanPriv = params(1);
+		P.sig.p = params(2);
+		P.sig.env = -P.meanEnv/norminv(P.probENeg);
+
 end
 
 regInfoRowVary = {'se' 'privUB'};
