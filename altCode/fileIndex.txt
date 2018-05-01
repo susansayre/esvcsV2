@@ -14,7 +14,6 @@ regPay2FOC: organizes the output of regPay2 for solving first order conditions w
 regPay2Objective: organizes the output of regPay2 for solving individual problems directly when using fmincon
 regPayFullReal: computes the buyer payoff across both periods by integrating across possible period 2 information sets
 regPayNoInfo: computes the buyer payoff across both periods if no better info arrives in period2
-regraphCase: used to generate case specific graphs from stored results
 signalImpact: core simulation control file; assess the impact of improving the signal for a single parameter case
 ####################################
 
@@ -24,7 +23,7 @@ setUpExperiment: called by signalImpactProblem to set up the basic structure of 
 signalImpactProblem: describes the experiments we want to run and generates results
 ###################################
 
-Analysis/graph files used in article:
+Analysis/graph files:
 ########################################
 categoryExpVal: assess the contributions of different parcels to total benefits (generates Figs. 5,7, and 10)
 compareMultipleSolns: used to test when multiple solutions to B(p)=0 occur
@@ -37,20 +36,17 @@ findMultipleSolns: used by compareMultipleSolns in investingatin when B(p)=0 has
 meanVarCompPlot: generates Figure 8
 signalIntegrand: used by categoryExpVal to integrate across possible signals
 upperBoundImpactPlots: generates Fig 4
+legendTitle: utility for adding legend titles
+sizedFigure: utility for creating a figure of a specific size
 
-graphCase: generates detailed plots for a single case (used by code but possibly unnecessary)
-landP2plot: called by graphCase
-plotP2bySignal: called by graphCase
-plotP2exp: called by graphCase
-plotP2hist: called by graphCase
-plotP2parcelOut: called by graphCase
-censorAdjust (used by plotP2hist)
-computedHist (used by plotP2hist)
+####################
+#Required utilities#
+####################
+Available from MathWorks File Exchange:
+quadvqk
+subtightplot
+brewermap
 
-Supplemental files:
-###########################
-comparePlot3x3: plots a single signal strength value and compares across parameters
-comparePlot3x3generalized: a generalized version of comparePlot3x3 that permits more control in setting which parameters occur where
-comparePlot3varByVar: generates a single variable comparison plot with the ability to vary 3 parameters -- one along x-axis, one across rows, and one down columns.
-runCases: a utility to run a subset of analyses on a subset of cases
-
+Available from Mario Miranda:
+CompEcon toolbox 2016
+*modified version of ncpsolve included in this archive must be added to the CEtools directory to replace the default version. Code will not operate correctly if it remains in the running directory
