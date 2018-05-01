@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    731444,      13345]
-NotebookOptionsPosition[    728733,      13252]
-NotebookOutlinePosition[    729300,      13274]
-CellTagsIndexPosition[    729257,      13271]
+NotebookDataLength[    732396,      13369]
+NotebookOptionsPosition[    729687,      13276]
+NotebookOutlinePosition[    730250,      13298]
+CellTagsIndexPosition[    730207,      13295]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -984,7 +984,7 @@ qT9Rzs/ZDlrvP+A1BsYkvpQ/AAAAAAAA8D8AAAAAAAAAAIZ7OGM=
   TraditionalForm]], "Output",
  CellChangeTimes->{3.7060259762201147`*^9, 3.7060285451324763`*^9, 
   3.7066152454791183`*^9, 3.706619760025008*^9, 3.707218353107284*^9, 
-  3.7086998705537434`*^9, 3.7312318083873606`*^9}]
+  3.7086998705537434`*^9, 3.7312318083873606`*^9, 3.7330691353295355`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4514,7 +4514,7 @@ P4DZFUGZKPc/YsyryaiF5z+i0bpPUtP3P1Z8xVd8xec/AAAAAAAA+D9ekPwC
    3.7053257398015966`*^9, 3.7056801193214507`*^9, 3.7056806478442507`*^9, 
    3.705680870271651*^9, 3.7057489027477837`*^9, 3.7060259835541615`*^9, {
    3.70602790161243*^9, 3.7060279408922844`*^9}, 3.706027976157913*^9, 
-   3.7086999302615433`*^9, 3.7312318113973603`*^9}]
+   3.7086999302615433`*^9, 3.7312318113973603`*^9, 3.7330691379245353`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4697,7 +4697,9 @@ Cell[BoxData[{
            RowBox[{"PlotLabel", "\[Rule]", "\"\<Low Signal\>\""}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<\>\"", ",", "\"\<Probability Marginal\>\""}], 
+             RowBox[{
+             "\"\<\>\"", ",", 
+              "\"\<Probability parcel's\\n decision will change\>\""}], 
              "}"}]}]}], "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
@@ -4824,8 +4826,10 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsCG"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<\>\"", ",", "\"\<Conditional Gain\>\""}], "}"}]}]}],
-           "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+             "\"\<\>\"", ",", 
+              "\"\<Gain conditional\\n on changed decision\>\""}], "}"}]}]}], 
+          "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
            RowBox[{"{", "\[IndentingNewLine]", 
@@ -4949,8 +4953,10 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsMB"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<\>\"", ",", "\"\<Marginal Benefit\>\""}], "}"}]}]}],
-           "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+             "\"\<\>\"", ",", 
+              "\"\<Marginal benefit of\\n increasing offer\>\""}], "}"}]}]}], 
+          "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
            RowBox[{"{", "\[IndentingNewLine]", 
@@ -5074,7 +5080,9 @@ Cell[BoxData[{
            RowBox[{"Evaluate", "@", "plotOptionsMC"}], ",", 
            RowBox[{"FrameLabel", "\[Rule]", 
             RowBox[{"{", 
-             RowBox[{"\"\<\>\"", ",", "\"\<Marginal Cost\>\""}], "}"}]}]}], 
+             RowBox[{
+             "\"\<\>\"", ",", 
+              "\"\<Marginal cost of\\n increasing offer\>\""}], "}"}]}]}], 
           "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
@@ -5202,8 +5210,8 @@ Cell[BoxData[{
              RowBox[{
               RowBox[{"Style", "[", 
                RowBox[{"\"\<Offer\>\"", ",", "Black"}], "]"}], ",", 
-              "\"\<Regulator Payoff\>\""}], "}"}]}]}], "]"}], ",", 
-         "\[IndentingNewLine]", 
+              "\"\<Gain relative to certain\\n development\>\""}], "}"}]}]}], 
+          "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Plot", "[", 
           RowBox[{
            RowBox[{"{", "\[IndentingNewLine]", 
@@ -5375,7 +5383,10 @@ esvcsV2\\\\text\\\\plotGrid.eps\>\"", ",", "plotGrid", ",", "\"\<EPS\>\""}],
    3.7312318388943605`*^9}, {3.7312318709163604`*^9, 
    3.7312319895723605`*^9}, {3.7312320206193604`*^9, 
    3.7312320689433603`*^9}, {3.7312321275803604`*^9, 
-   3.7312321395503607`*^9}, {3.7312321718253603`*^9, 3.7312321767363605`*^9}}],
+   3.7312321395503607`*^9}, {3.7312321718253603`*^9, 
+   3.7312321767363605`*^9}, {3.733068922755535*^9, 3.733069111367535*^9}, {
+   3.733069166429535*^9, 3.733069236169527*^9}, {3.7330693821639333`*^9, 
+   3.733069430969349*^9}}],
 
 Cell[BoxData[
  FormBox[
@@ -5773,7 +5784,9 @@ QT+6
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
           Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
-             FormBox["\"Probability Marginal\"", TraditionalForm], None}, {
+             FormBox[
+             "\"Probability parcel's\\n decision will change\"", 
+              TraditionalForm], None}, {
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
@@ -6694,7 +6707,9 @@ zX4tFbG9uLayVQKwlP3Oxeuo6AFDTGi1BCyN5/2qMaCi/wClp15J
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
           Identity, Frame -> {{True, False}, {False, False}}, FrameLabel -> {{
-             FormBox["\"Conditional Gain\"", TraditionalForm], None}, {
+             FormBox[
+             "\"Gain conditional\\n on changed decision\"", TraditionalForm], 
+             None}, {
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
@@ -7431,7 +7446,9 @@ IHv15j4LEQvkGtQz/v1j4NT+2BOTv2/hf6UIuLs=
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
           Identity, Frame -> {{True, False}, {False, False}}, FrameLabel -> {{
-             FormBox["\"Marginal Benefit\"", TraditionalForm], None}, {
+             FormBox[
+             "\"Marginal benefit of\\n increasing offer\"", TraditionalForm], 
+             None}, {
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
@@ -8698,7 +8715,9 @@ Z2mcHtEbCSC+7/ac/v2bBqsjVTSI+P8zfKJj
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
           Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
-             FormBox["\"Marginal Cost\"", TraditionalForm], None}, {
+             FormBox[
+             "\"Marginal cost of\\n increasing offer\"", TraditionalForm], 
+             None}, {
              FormBox["\"\"", TraditionalForm], None}}, 
           FrameTicks -> {{None, None}, {None, None}}, 
           GridLines -> {None, None}, GridLinesStyle -> Directive[
@@ -9567,7 +9586,9 @@ Y8c=
           NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
           AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, DisplayFunction :> 
           Identity, Frame -> {{True, False}, {True, False}}, FrameLabel -> {{
-             FormBox["\"Regulator Payoff\"", TraditionalForm], None}, {
+             FormBox[
+             "\"Gain relative to certain\\n development\"", TraditionalForm], 
+             None}, {
              FormBox[
               StyleBox["\"Offer\"", 
                GrayLevel[0], StripOnInput -> False], TraditionalForm], None}},
@@ -10568,7 +10589,9 @@ nWOrLLijkXzYy7gVXl0ks9bWWKAjUSXef7IV/gd+Sfq0
    3.706028213003048*^9}, 3.7086999361949434`*^9, 3.7086999777319436`*^9, 
    3.7312318127033606`*^9, 3.7312318531943607`*^9, {3.73123190751836*^9, 
    3.7312319546793604`*^9}, 3.7312319915203605`*^9, 3.7312320311303606`*^9, 
-   3.73123207058436*^9, 3.7312321434183607`*^9, 3.7312321800093603`*^9}]
+   3.73123207058436*^9, 3.7312321434183607`*^9, 3.7312321800093603`*^9, 
+   3.7330691391335354`*^9, 3.7330692722535515`*^9, {3.7330694154864454`*^9, 
+   3.733069435973337*^9}}]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -12231,7 +12254,7 @@ PySjP9LjQa/XmNBywWPgB8ZHDu471/mHCRU+l+eTHpHRbYMgecJfJhx8179u
  CellChangeTimes->{
   3.7060285676096215`*^9, 3.706028624335987*^9, 3.706028687709203*^9, {
    3.7060289312151213`*^9, 3.7060289430921993`*^9}, 3.7060290002865753`*^9, 
-   3.7312318137323604`*^9}]
+   3.7312318137323604`*^9, 3.7330691402325354`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12404,11 +12427,11 @@ Cell[BoxData[
          Hold[$CellContext`yMax$$], 1, "yMax"}, 0.1, 10, 0.1}}, 
       Typeset`size$$ = {734., {174., 184.}}, Typeset`update$$ = 0, 
       Typeset`initDone$$, Typeset`skipInitDone$$ = 
-      True, $CellContext`meanE$2474$$ = 0, $CellContext`meanP$2479$$ = 
-      0, $CellContext`rhoESv$2480$$ = 0, $CellContext`s$2481$$ = 
-      0, $CellContext`ds$2482$$ = 0, $CellContext`sigE$2483$$ = 
-      0, $CellContext`sigPv$2484$$ = 0, $CellContext`rhoEPv$2485$$ = 
-      0, $CellContext`xMax$2486$$ = 0, $CellContext`yMin$2487$$ = 0}, 
+      True, $CellContext`meanE$3361$$ = 0, $CellContext`meanP$3366$$ = 
+      0, $CellContext`rhoESv$3367$$ = 0, $CellContext`s$3368$$ = 
+      0, $CellContext`ds$3369$$ = 0, $CellContext`sigE$3370$$ = 
+      0, $CellContext`sigPv$3371$$ = 0, $CellContext`rhoEPv$3372$$ = 
+      0, $CellContext`xMax$3373$$ = 0, $CellContext`yMin$3374$$ = 0}, 
       DynamicBox[Manipulate`ManipulateBoxes[
        1, TraditionalForm, 
         "Variables" :> {$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
@@ -12417,16 +12440,16 @@ Cell[BoxData[
           0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
           1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
           1, $CellContext`yMin$$ = -1}, "ControllerVariables" :> {
-          Hold[$CellContext`meanE$$, $CellContext`meanE$2474$$, 0], 
-          Hold[$CellContext`meanP$$, $CellContext`meanP$2479$$, 0], 
-          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$2480$$, 0], 
-          Hold[$CellContext`s$$, $CellContext`s$2481$$, 0], 
-          Hold[$CellContext`ds$$, $CellContext`ds$2482$$, 0], 
-          Hold[$CellContext`sigE$$, $CellContext`sigE$2483$$, 0], 
-          Hold[$CellContext`sigPv$$, $CellContext`sigPv$2484$$, 0], 
-          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$2485$$, 0], 
-          Hold[$CellContext`xMax$$, $CellContext`xMax$2486$$, 0], 
-          Hold[$CellContext`yMin$$, $CellContext`yMin$2487$$, 0]}, 
+          Hold[$CellContext`meanE$$, $CellContext`meanE$3361$$, 0], 
+          Hold[$CellContext`meanP$$, $CellContext`meanP$3366$$, 0], 
+          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$3367$$, 0], 
+          Hold[$CellContext`s$$, $CellContext`s$3368$$, 0], 
+          Hold[$CellContext`ds$$, $CellContext`ds$3369$$, 0], 
+          Hold[$CellContext`sigE$$, $CellContext`sigE$3370$$, 0], 
+          Hold[$CellContext`sigPv$$, $CellContext`sigPv$3371$$, 0], 
+          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$3372$$, 0], 
+          Hold[$CellContext`xMax$$, $CellContext`xMax$3373$$, 0], 
+          Hold[$CellContext`yMin$$, $CellContext`yMin$3374$$, 0]}, 
         "OtherVariables" :> {
          Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
           Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -12487,7 +12510,7 @@ $CellContext`rhoEPv$$ $CellContext`rhoESv$$]}, {$CellContext`x,
    Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
  CellChangeTimes->{3.707223794638744*^9, 3.7072238931038227`*^9, 
   3.7072243510769663`*^9, 3.7072244234490643`*^9, 3.707224530657806*^9, 
-  3.7072250221746025`*^9, 3.7312318137983603`*^9}]
+  3.7072250221746025`*^9, 3.7312318137983603`*^9, 3.733069140396535*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12655,11 +12678,11 @@ Cell[BoxData[
          Hold[$CellContext`yMax$$], 1, "yMax"}, 0.1, 10, 0.1}}, 
       Typeset`size$$ = {734., {174., 184.}}, Typeset`update$$ = 0, 
       Typeset`initDone$$, Typeset`skipInitDone$$ = 
-      True, $CellContext`meanE$2653$$ = 0, $CellContext`meanP$2654$$ = 
-      0, $CellContext`rhoESv$2655$$ = 0, $CellContext`s$2656$$ = 
-      0, $CellContext`ds$2657$$ = 0, $CellContext`sigE$2658$$ = 
-      0, $CellContext`sigPv$2659$$ = 0, $CellContext`rhoEPv$2660$$ = 
-      0, $CellContext`xMax$2661$$ = 0, $CellContext`yMin$2662$$ = 0}, 
+      True, $CellContext`meanE$3541$$ = 0, $CellContext`meanP$3542$$ = 
+      0, $CellContext`rhoESv$3543$$ = 0, $CellContext`s$3544$$ = 
+      0, $CellContext`ds$3545$$ = 0, $CellContext`sigE$3546$$ = 
+      0, $CellContext`sigPv$3547$$ = 0, $CellContext`rhoEPv$3548$$ = 
+      0, $CellContext`xMax$3549$$ = 0, $CellContext`yMin$3550$$ = 0}, 
       DynamicBox[Manipulate`ManipulateBoxes[
        1, TraditionalForm, 
         "Variables" :> {$CellContext`ds$$ = 0.1, $CellContext`meanE$$ = 
@@ -12668,16 +12691,16 @@ Cell[BoxData[
           0, $CellContext`sigE$$ = 1, $CellContext`sigPv$$ = 
           1, $CellContext`xMax$$ = 2, $CellContext`yMax$$ = 
           1, $CellContext`yMin$$ = -1}, "ControllerVariables" :> {
-          Hold[$CellContext`meanE$$, $CellContext`meanE$2653$$, 0], 
-          Hold[$CellContext`meanP$$, $CellContext`meanP$2654$$, 0], 
-          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$2655$$, 0], 
-          Hold[$CellContext`s$$, $CellContext`s$2656$$, 0], 
-          Hold[$CellContext`ds$$, $CellContext`ds$2657$$, 0], 
-          Hold[$CellContext`sigE$$, $CellContext`sigE$2658$$, 0], 
-          Hold[$CellContext`sigPv$$, $CellContext`sigPv$2659$$, 0], 
-          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$2660$$, 0], 
-          Hold[$CellContext`xMax$$, $CellContext`xMax$2661$$, 0], 
-          Hold[$CellContext`yMin$$, $CellContext`yMin$2662$$, 0]}, 
+          Hold[$CellContext`meanE$$, $CellContext`meanE$3541$$, 0], 
+          Hold[$CellContext`meanP$$, $CellContext`meanP$3542$$, 0], 
+          Hold[$CellContext`rhoESv$$, $CellContext`rhoESv$3543$$, 0], 
+          Hold[$CellContext`s$$, $CellContext`s$3544$$, 0], 
+          Hold[$CellContext`ds$$, $CellContext`ds$3545$$, 0], 
+          Hold[$CellContext`sigE$$, $CellContext`sigE$3546$$, 0], 
+          Hold[$CellContext`sigPv$$, $CellContext`sigPv$3547$$, 0], 
+          Hold[$CellContext`rhoEPv$$, $CellContext`rhoEPv$3548$$, 0], 
+          Hold[$CellContext`xMax$$, $CellContext`xMax$3549$$, 0], 
+          Hold[$CellContext`yMin$$, $CellContext`yMin$3550$$, 0]}, 
         "OtherVariables" :> {
          Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
           Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -12736,7 +12759,7 @@ $CellContext`rhoEPv$$ $CellContext`rhoESv$$]}, {$CellContext`x,
      StripOnInput->False],
     TraditionalForm],
    Manipulate`InterpretManipulate[1]], TraditionalForm]], "Output",
- CellChangeTimes->{3.7312318141303606`*^9}]
+ CellChangeTimes->{3.7312318141303606`*^9, 3.733069140941535*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12801,7 +12824,7 @@ Cell[BoxData[
    3.706619037943211*^9, {3.706619071550228*^9, 3.7066190941363773`*^9}, {
    3.7066191382402687`*^9, 3.70661918173756*^9}, {3.706619658750497*^9, 
    3.706619664789736*^9}, 3.706619719480908*^9, 3.7066197894486*^9, 
-   3.7312318214253607`*^9}]
+   3.7312318214253607`*^9, 3.733069148242535*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12849,7 +12872,7 @@ Cell[BoxData[
 Cell[BoxData[
  FormBox["\[Infinity]", TraditionalForm]], "Output",
  CellChangeTimes->{3.7066196258950806`*^9, 3.7066198205208235`*^9, 
-  3.7312318216053605`*^9}]
+  3.7312318216053605`*^9, 3.733069148433535*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12896,7 +12919,7 @@ Cell[BoxData[
  CellChangeTimes->{
   3.7066198872048635`*^9, 3.707218565671954*^9, {3.70721862861719*^9, 
    3.7072186495349455`*^9}, 3.707218704622118*^9, {3.7072195179706383`*^9, 
-   3.707219524447081*^9}, 3.7312318269153605`*^9}]
+   3.707219524447081*^9}, 3.7312318269153605`*^9, 3.733069153918535*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -12924,7 +12947,8 @@ Cell[BoxData[
  FormBox["$Aborted", TraditionalForm]], "Output",
  CellChangeTimes->{
   3.706620017593317*^9, {3.7066203232489815`*^9, 3.7066203635770435`*^9}, 
-   3.70721834482723*^9, 3.7072184985966787`*^9, 3.7312318503263607`*^9}]
+   3.70721834482723*^9, 3.7072184985966787`*^9, 3.7312318503263607`*^9, 
+   3.733069266578223*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -13250,8 +13274,8 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1680, 1008},
-WindowMargins->{{1592, Automatic}, {Automatic, 0}},
+WindowSize->{1664, 982},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 PrintingCopies->1,
 PrintingPageRange->{1, 32000},
 PrintingOptions->{"Magnification"->1.,
@@ -13275,76 +13299,76 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 12444, 291, 1092, "Input"],
-Cell[13027, 315, 35397, 671, 351, "Output"]
+Cell[13027, 315, 35421, 671, 351, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48461, 991, 97, 1, 112, "Section"],
+Cell[48485, 991, 97, 1, 112, "Section"],
 Cell[CellGroupData[{
-Cell[48583, 996, 24744, 522, 1643, "Input"],
-Cell[73330, 1520, 175838, 2996, 959, "Output"]
+Cell[48607, 996, 24744, 522, 1904, "Input"],
+Cell[73354, 1520, 175862, 2996, 949, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[249217, 4522, 98, 1, 112, "Section"],
+Cell[249265, 4522, 98, 1, 112, "Section"],
 Cell[CellGroupData[{
-Cell[249340, 4527, 40434, 850, 2919, "Input"],
-Cell[289777, 5379, 302584, 5191, 1052, "Output"]
+Cell[249388, 4527, 40819, 861, 3064, "Input"],
+Cell[290210, 5390, 302945, 5203, 1052, "Output"]
 }, Open  ]],
-Cell[592376, 10573, 70, 1, 47, "Input"],
-Cell[592449, 10576, 149, 2, 47, "Input"],
+Cell[593170, 10596, 70, 1, 47, "Input"],
+Cell[593243, 10599, 149, 2, 47, "Input"],
 Cell[CellGroupData[{
-Cell[592623, 10582, 6998, 167, 570, "Input"],
-Cell[599624, 10751, 88096, 1482, 149, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[687757, 12238, 5055, 133, 512, "Input"],
-Cell[692815, 12373, 6698, 116, 477, "Output"]
+Cell[593417, 10605, 6998, 167, 570, "Input"],
+Cell[600418, 10774, 88120, 1482, 149, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[699550, 12494, 4665, 128, 512, "Input"],
-Cell[704218, 12624, 6552, 114, 477, "Output"]
+Cell[688575, 12261, 5055, 133, 512, "Input"],
+Cell[693633, 12396, 6720, 116, 477, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[710807, 12743, 2038, 49, 77, "Input"],
-Cell[712848, 12794, 542, 9, 47, "Output"]
+Cell[700390, 12517, 4665, 128, 512, "Input"],
+Cell[705058, 12647, 6574, 114, 477, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[713427, 12808, 1469, 38, 106, "Input"],
-Cell[714899, 12848, 161, 3, 47, "Output"]
+Cell[711669, 12766, 2038, 49, 77, "Input"],
+Cell[713710, 12817, 564, 9, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[715097, 12856, 1304, 35, 77, "Input"],
-Cell[716404, 12893, 274, 5, 47, "Output"]
+Cell[714311, 12831, 1469, 38, 106, "Input"],
+Cell[715783, 12871, 183, 3, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[716715, 12903, 691, 17, 47, "Input"],
-Cell[717409, 12922, 231, 4, 47, "Output"]
+Cell[716003, 12879, 1304, 35, 77, "Input"],
+Cell[717310, 12916, 296, 5, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[717677, 12931, 1767, 43, 77, "Input"],
-Cell[719447, 12976, 569, 16, 260, "Output"]
+Cell[717643, 12926, 691, 17, 47, "Input"],
+Cell[718337, 12945, 257, 5, 47, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[720053, 12997, 387, 10, 120, "Input"],
-Cell[720443, 13009, 2776, 58, 979, "Output"]
-}, Open  ]],
-Cell[723234, 13070, 94, 1, 120, "Input"],
-Cell[723331, 13073, 425, 13, 120, "Input"],
-Cell[CellGroupData[{
-Cell[723781, 13090, 250, 6, 120, "Input"],
-Cell[724034, 13098, 316, 9, 214, "Output"]
+Cell[718631, 12955, 1767, 43, 123, "Input"],
+Cell[720401, 13000, 569, 16, 416, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[724387, 13112, 1974, 57, 196, "Input"],
-Cell[726364, 13171, 287, 6, 120, "Output"]
+Cell[721007, 13021, 387, 10, 192, "Input"],
+Cell[721397, 13033, 2776, 58, 1566, "Output"]
+}, Open  ]],
+Cell[724188, 13094, 94, 1, 192, "Input"],
+Cell[724285, 13097, 425, 13, 192, "Input"],
+Cell[CellGroupData[{
+Cell[724735, 13114, 250, 6, 192, "Input"],
+Cell[724988, 13122, 316, 9, 342, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[726688, 13182, 395, 10, 120, "Input"],
-Cell[727086, 13194, 201, 5, 120, "Output"]
+Cell[725341, 13136, 1974, 57, 313, "Input"],
+Cell[727318, 13195, 287, 6, 192, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[727324, 13204, 661, 19, 120, "Input"],
-Cell[727988, 13225, 717, 23, 235, "Output"]
+Cell[727642, 13206, 395, 10, 192, "Input"],
+Cell[728040, 13218, 201, 5, 192, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[728278, 13228, 661, 19, 192, "Input"],
+Cell[728942, 13249, 717, 23, 376, "Output"]
 }, Open  ]]
 }, Open  ]]
 }

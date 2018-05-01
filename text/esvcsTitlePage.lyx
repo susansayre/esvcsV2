@@ -1,7 +1,9 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass svglobal3
 \begin_preamble
 \usepackage{booktabs,threeparttable}
@@ -13,16 +15,16 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
-\font_math auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -92,12 +94,12 @@ Assistant Professor, Department of Economics, Smith College, Northampton,
 \end_layout
 
 \begin_layout Abstract
-The scientific information to precisely link land use changes to changes
- in ecosystem service provision is often unavailable, particularly for hydrologi
-cal ecosystem services.
+The scientific information needed to precisely link land use changes to
+ changes in ecosystem service provision is often unavailable, particularly
+ for hydrological ecosystem services.
  Potential buyers of ecosystem services must weigh the risk of paying to
- incentive conservation that fails to deliver valuable ecosystem services
- against the risk that land is developed before its value is known.
+ induce conservation that fails to deliver valuable ecosystem services against
+ the risk that land is developed before its value is known.
  This paper uses a two period model to assess when expected future improvements
  in scientific information should substantially impact payments for conservation
  today.
@@ -106,11 +108,11 @@ cal ecosystem services.
  payments to account for the expected degree of improved information is
  small in many cases.
  Larger values occur when the buyer believes that the land whose private
- development value is the highest also provides the highest ecosystem service,
- when the buyer faces relatively more uncertainty about ecosystem service
- provision than about the cost of inducing conservation, and when the buyer
- believes land is highly likely to be developed absent incentive payments.
- 
+ development value is the highest also provides the highest ecosystem service
+ value, when the buyer faces relatively more uncertainty about ecosystem
+ service provision than about the cost of inducing conservation, and when
+ the buyer believes land is highly likely to be developed absent incentive
+ payments.
 \end_layout
 
 \begin_layout Abstract
@@ -123,8 +125,7 @@ This work was inspired in part by conversations with Drew Guswa and Casey
  I would like to thank Vis Taraz for helpful discusssions and comments on
  earlier drafts of this work.
  I also appreciate the comments and suggestions of participants at the 2016
- NAREA Annual Meeting.
- 
+ NAREA Annual Meeting and two anonymous referees.
 \end_layout
 
 \end_body
