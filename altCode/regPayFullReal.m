@@ -11,19 +11,6 @@ function [rpf,drpf] = regPayFullReal(tempPay,P,storeOut)
 	upperBound = tempPay;
 	dUpperBound = ones(size(tempPay));
 	
-% 	if isfield(P,'reg2Approx')
-% 		if nargout>1
-% 			output = funeval(P.reg2Approx.cVal.regPay2,P.reg2Approx.basis,upperBound,[0;1]);
-% 			expRegPay2 = output(:,1);
-% 			derp2_dUB = output(:,2);
-% 		else
-% 			expRegPay2 = funeval(P.reg2Approx.cVal.regPay2,P.reg2Approx.basis,upperBound);
-% 		end
-% 	elseif nargout>1
-% 		[expRegPay2,derp2_dUB] = reg2PayUncond('regPay2',upperBound,P);
-% 	else
-% 		expRegPay2 = reg2PayUncond('regPay2',upperBound,P);
-% 	end
 	
 	if nargout>1
 		expVals =quadvgk(@(sigVal)p2Out({'regPay' 'derp2_dUB'},sigVal,upperBound,P),[-10;10],2);

@@ -1,18 +1,13 @@
 function [regPay,dregPay,ddregPay] = regPay2(offers,signals,pubVals,P,derivFlag1,derivFlag2)
 
-%calculate a vector of regulator pseudo expected payoffs as a function of a vector of offers, a
+%calculate a vector of regulator expected payoffs as a function of a vector of offers, a
 %vector of signals observed, a vector of public development values
 
-%when returned, the first and second derivatives are both vectors (I think
-%12/2) because the rows are completely independent. If we think of
-%regPayHat as a vector valued funciton, then dregPayHat is its Jacobian. 
+%when returned, the first and second derivatives are both vectors because 
+%the rows are completely independent. If we think of
+%regPay as a vector valued funciton, then dregPay is its Jacobian. 
 %But since each row is independent, the Jacobian is diagonal. Similar logic
 %holds for the array of Hessian matrices.
-
-%the payoffs are pseudo expected payoffs because the probabilities of the
-%different outcomes may not sum to one. We are computing the "simpler"
-%expression described in the text where we ignore the inflation factor for
-%the probability of observing various signals.
 
 %function depends on a struct of parameters providing information about the
 %problem and derivFlag determines what to take derivatives with respect to?

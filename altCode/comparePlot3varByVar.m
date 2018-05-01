@@ -22,8 +22,6 @@ for ii=1:numel(plotRhoESvals)
 	end
 end
 
-% lineVar = 'sig.p'; lineLabel = '\sigma_{p}';
-% panelVar = 'meanPriv'; panelLabel = '\mu_{p}';
 colVar = 'sig.p'; colLabel = '\sigma_{p}';
 rowVar = 'meanPriv'; rowLabel = '\mu_{p}';
 
