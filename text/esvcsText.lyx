@@ -3052,15 +3052,15 @@ reference "fig:corrInfoImpact"
 status collapsed
 
 \begin_layout Plain Layout
-Figures illustrating the impact of correlation on the other variables graphed
- in Figure 
+Figures illustrating the impact of correlation on the change in the other
+ variables graphed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:meanVarImpact"
 
 \end_inset
 
- are provided in the Appendix.
+ due to improved information are provided in the Appendix.
 \end_layout
 
 \end_inset
@@ -3313,9 +3313,56 @@ l precisely because improving knowledge about the specific level of ecosystem
 \end_layout
 
 \begin_layout Standard
+In contrast, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "asquith2008selling"
+
+\end_inset
+
+ describe a PES plan in Los Negros, Bolivia where two different buyers collabora
+ted to offer in-kind payments to upstream residents who agreed to maintain
+ forest cover on their land for a specified period of time.
+ They describe substantial uncertainty about the magnitude of the impact
+ of deforestation on dry-season stream flow, the primary service being purchased.
+ In the context of the model presented here, this suggests a high value
+ for 
+\begin_inset Formula $\sigE$
+\end_inset
+
+.
+ They also describe difficulty in determining whether the program is providing
+ additional conservation, which suggests a high value for 
+\begin_inset Formula $\sigP$
+\end_inset
+
+.
+ Again, there is limited information available to determine the precise
+ relationships between 
+\begin_inset Formula $\meanE$
+\end_inset
+
+ and 
+\begin_inset Formula $\meanP$
+\end_inset
+
+.
+ They note that in many similar areas, buyers have preferred to wait until
+ careful modeling could establish a clear link between conservation and
+ hydrological water services.
+ In contrast, the non-profit facilitating the development of the Los Negros
+ program wanted to begin the program right away, emphasizing the precautionary
+ principle.
+ The model presented in this paper lends support for this strategy; accounting
+ for the possibility of improved information can substantially increase
+ the number of situations where it is optimal to offer payments today despite
+ substantial uncertainty about the level of ecosystem service provision.
+\end_layout
+
+\begin_layout Standard
 Similarly, the Pago de Servicios Ambientales Hidrológicos (PSAH) program
  in Mexico shares many features with the model in this paper, although the
- specific timing does not match as well as in Pimampiro.
+ specific timing does not match as well as in Pimampiro and Los Negros.
 \begin_inset Foot
 status collapsed
 
@@ -3359,44 +3406,6 @@ reference "fn:redistributionCosts"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "asquith2008selling"
-
-\end_inset
-
- describe a PES plan in Bolivia where two different buyers collaborated
- to offer in-kind payments to upstream residents who agreed to maintain
- forest cover on their land for a specified period of time.
- They describe substantial uncertainty about the magnitude of the impact
- of deforestation on dry-season stream flow, the primary service being purchased.
- In the context of the model presented here, this suggests a high value
- for 
-\begin_inset Formula $\sigE$
-\end_inset
-
-.
- They also describe difficulty in determining whether the program is providing
- additional conservation, which suggests a high value for 
-\begin_inset Formula $\sigP$
-\end_inset
-
-.
- Again, there is limited information available to determine the precise
- relationships between 
-\begin_inset Formula $\meanE$
-\end_inset
-
- and 
-\begin_inset Formula $\meanP$
-\end_inset
-
-.
- They clearly indicate that the plan would not have been started without
- the support of outside entities interested in habitat protection.
 \end_layout
 
 \begin_layout Standard
@@ -4615,13 +4624,61 @@ Matlab
 .
  The second period problem is a fairly straightforward maximization problem.
  There is a closed form expression for both the buyer's objective function
- and the first order conditions for an interior maximum.
- To solve this maximization problem efficiently for multiple parameter sets
- simultaneously I use the nonlinear complementarity problem solver 
+ and the first order conditions for an interior maximum and we know that
+ there is at most one interior local maximum.
+ In contrast, the first period problem is fairly complex because the buyer's
+ objective function involves taking expectations over possible future signals,
+ recognizing that the second period offer will be optimized in response
+ to the observed signal.
+ I use 
+\noun on
+Matlab
+\noun default
+'s built-in 
+\family typewriter
+fmincon
+\family default
+ solver to solve the first period maximization problem.
+ Within the buyer's objective function, I use a vectorized global adapative
+ quadrature algorithm from the Mathworks File Exchange (
+\family typewriter
+quadvgk
+\family default
+) to calculate the integral in Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:finalPeriodObjFunc"
+
+\end_inset
+
+.
+ The 
+\family typewriter
+quadvgk
+\family default
+ algorithm works by picking sets of values for the variable of integration
+ (the observed signal) and computing the integrand simultaneously for each
+ of these possible values to economize on computations.
+ 
+\end_layout
+
+\begin_layout Standard
+Since the value of the integrand is the optimized second period payoff condition
+al on a particular signal times the probability of observing that signal
+ in period 2, the function called by 
+\family typewriter
+quadvgk
+\family default
+ must compute the solution to the second period optimization problem for
+ many observed signal values.
+ To solve this maximization problem efficiently for multiple observed signal
+ values simultaneously I use the nonlinear complementarity problem solver
+ 
 \family typewriter
 ncpsolve
 \family default
- from the CompEcon 2016 toolbox.
+ from the CompEcon 2016 toolbox, which looks for solutions to the Kuhn-Tucker
+ conditions of the individual maximization problems simultaneously.
 \begin_inset Foot
 status collapsed
 
@@ -4644,8 +4701,12 @@ key "miranda2004applied"
 
 \end_inset
 
- For most parameter sets, the problem is well behaved and solves quickly
- and easily, but two issues can arise.
+ 
+\end_layout
+
+\begin_layout Standard
+For most parameter sets, the second period problem is well behaved and solves
+ quickly and easily, but three issues can arise.
  First, as described in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4671,23 +4732,24 @@ ncpsolve
  the payoff a very small amount by making an offer arbitrarily close to
  the conditional expected benefit of conservation.
  The offer is virtually certain to be rejected and hence yields the buyer
- an expected payoff of almost zero.
+ an expected payoff of almost but not quite zero.
  When this gain gets too small, the algorithm may fail to identify this
- maximum.
+ true maximum.
  I supplement the 
 \family typewriter
 ncpsolve
 \family default
  algorithm with checks to identify these cases and manually set the optimal
  offer in these cases.
- For some parameter cases, the 
+ Finally, for some parameter cases, the 
 \family typewriter
 ncpsolve
 \family default
- algorithm is unable to solve multiple problems simultaneously due to large
- scaling differences between the cases.
- When the algorithm fails in these cases, I revert to solving the individual
- problems case by case using 
+ algorithm is unable to solve the period 2 problem simultaneously for all
+ of the different signal values due to large scaling differences between
+ the cases.
+ When the algorithm fails in these cases, I revert to solving the remaining
+ individual problems case by case using 
 \shape smallcaps
 Matlab
 \shape default
@@ -4695,27 +4757,7 @@ Matlab
 \family typewriter
 fmincon
 \family default
-).
-\end_layout
-
-\begin_layout Standard
-While the second period problem is relatively straightforward, the first
- period problem is not because the buyer's objective function involves taking
- expectations over possible future signals, recognizing that the second
- period offer will be optimized in response to the observed signal.
- I use the 
-\family typewriter
-fmincon
-\family default
- solver to solve this maximization problem.
- Within the buyer's objective function, I use a vectorized global adapative
- quadrature algorithm (
-\family typewriter
-quadvgk
-\family default
- available on the Mathworks File Exchange) to calculate the integrals that
- give the expected period 2 payoffs.
- The simulation code is available from the author upon request.
+).The simulation code is available from the author upon request.
 \end_layout
 
 \begin_layout Description
@@ -5013,8 +5055,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Impact of correlation on the increase in optimal first period offer due
- to improved information for different parameter cases
+Impact of correlation on the the increase in optimal first period offer
+ for various levels of future information across different parameter cases
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:corrOffer"
@@ -5052,8 +5094,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Impact of correlation on the increase in the probability of first period
- conservation due to improved information for different parameter cases
+Impact of correlation on the the increased probability of first period conservat
+ion for various levels of future information across different parameter
+ cases
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:corrPrConserve"
@@ -5091,8 +5134,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Impact of correlation on the increase in buyers' optimized payoff due to
- improved information for different parameter cases 
+Impact of correlation on the increase in buyers' optimized payoff for various
+ levels of future information across different parameter cases 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:corrOptPayoff"

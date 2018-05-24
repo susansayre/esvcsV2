@@ -45,6 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#======================
+#Project specific files
+#=======================
 detailedOutput
 /text/*.lyx#
 /altCode/debug.mat
